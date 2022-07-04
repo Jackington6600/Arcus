@@ -153,8 +153,7 @@ Critical successes generally mean a success with some additional bonus - such as
 
 ### Inspiration
 
-Throughout the game, players can earn inspiration points. This is gained either by certain traits (General: Inspiring), magic items, or most commonly as a reward by the DM for when a player does something really cool. A player role plays a speech well before a battle? Inspiration! A player thinks of a really clever way to get round a trap, but still comes down to a check? Inspiration!  \
- \
+Throughout the game, players can earn inspiration points. This is gained either by certain traits (General: Inspiring), magic items, or most commonly as a reward by the DM for when a player does something really cool. A player role plays a speech well before a battle? Inspiration! A player thinks of a really clever way to get round a trap, but still comes down to a check? Inspiration!
 The GM can give this inspiration directly to the action, or to the players to use when they see fit. This can then be used in a skill check or attack roll to give them Adv (+) where appropriate. Adv (+) is only a small buff to the roll but can still feel like a great way to be rewarded and can be given out to players quite liberally.
 
 
@@ -1118,8 +1117,7 @@ Arcane Level 5
   <tr>
    <td>Compel Truth
    </td>
-   <td><wip>Ask a creature a question and compel them to answer truthfully. They must still be able to understand the question to be able to answer. They may still choose to avoid the question or not answer.  \
- \
+   <td><wip>Ask a creature a question and compel them to answer truthfully. They must still be able to understand the question to be able to answer. They may still choose to avoid the question or not answer.
 If they can choose not to answer feels a bit useless - will resist maybe?
    </wip>
    </td>
@@ -7572,8 +7570,7 @@ Beast upgrades, control the beast using your AP, team support
 <p>
 Your Beast companion has its own character sheet including AP, Health, and Resistance Point pools.  It will always spend resistance points to avoid conditions.
 <p>
-On taking Beastmaster, the beast starts with its maximum HP set to 6.  You can then decrease your maximum HP by any amount of your choosing to increase the beast’s maximum HP by that amount. Every further level in Beastmaster increases your beast’s maximum HP by 2. \
- \
+On taking Beastmaster, the beast starts with its maximum HP set to 6.  You can then decrease your maximum HP by any amount of your choosing to increase the beast’s maximum HP by that amount. Every further level in Beastmaster increases your beast’s maximum HP by 2.
 If your beast were to die, you can find (buy, track, tame) a new beast and attune to it over a long rest.  The beast retains all of its stats. 
    </td>
    <td>Self
@@ -7586,10 +7583,9 @@ If your beast were to die, you can find (buy, track, tame) a new beast and attun
    </td>
    <td>Beast movement
    </td>
-   <td>The beast acts immediately before your turn, using its AP to move and attack.  It has two stances, and you can use your reaction to switch between them. \
+   <td>The beast acts immediately before your turn, using its AP to move and attack.  It has two stances, and you can use your reaction to switch between them.
 All the abilities listed use <em>your </em>reaction and AP, not the Beast’s, unless otherwise stated.
 <p>
- \
 Heel - the beast stays next to you, and tries to stay out of harm’s way.
 <p>
 Attack -  the beast uses all of its AP to move to the closest enemy and attack it.  The beast will attack with Light + DEX or STR, whichever is greater.
