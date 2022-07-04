@@ -1,3 +1,20 @@
+<style>
+    fort{
+        color:rgb(179, 0, 29);
+    }
+    refl{
+        color:rgb(41, 125, 41);
+    }
+    will{
+        color:rgb(36, 98, 199);
+    }
+    wip{
+        color:rgb(235, 177, 54);
+    }
+    avoid{
+        color:rgb(255, 0, 43);
+    }
+</style>
 # Arcus RPG
 
 
@@ -7,7 +24,7 @@ Arcus is a pen and paper tabletop role playing game (TTRPG). This system draws i
 
 If you like Divinity Original Sin 2, Baldur’s Gate 3, Gloomhaven, or Dungeons and Dragons 5e but wish the combat was more engaging - this might just be the TTRPG for you.
 
-Note: This is an unfinished ruleset and is still under development. Changes may occur regularly. All **yellow** text is work that is under consideration for tweaks or changes - use with caution. All **red **text (not to be confused with **this red** text) is unfinished work or ideas that need to be removed or completely reworked - should not be used.
+Note: This is an unfinished ruleset and is still under development. Changes may occur regularly. All **<wip> yellow </wip>** text is work that is under consideration for tweaks or changes - use with caution. All **<avoid> red </avoid>** text (not to be confused with **<fort> this red </fort>** text) is unfinished work or ideas that need to be removed or completely reworked - should not be used.
 
 
 # How to Play
@@ -165,17 +182,17 @@ Attributes outline your character’s core physical and mental capabilities. Is 
 
 There are 6 main attributes that all creatures and characters will have:
 
-**Strength (STR)** - a character's physical strength and brute force. Primarily affects attacks with some melee weapons and ability to use a shield.
+**<fort>Strength (STR)</fort>** - a character's physical strength and brute force. Primarily affects attacks with some melee weapons and ability to use a shield.
 
-**Constitution (CON)** - a combination of the character's overall health and endurance. Primarily affects your HP total.
+**<fort>Constitution (CON)</fort>** - a combination of the character's overall health and endurance. Primarily affects your HP total.
 
-**Dexterity (DEX)** - a character's hand-eye coordination, balance, and overall grace. Primarily affects your armour class, attacks with some melee weapons, and thrown ranged attacks.
+**<refl>Dexterity (DEX)</refl>** - a character's hand-eye coordination, balance, and overall grace. Primarily affects your armour class, attacks with some melee weapons, and thrown ranged attacks.
 
-**Perception (PER)** - a character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. Primarily affects initiative and ranged weapon attacks.
+**<refl>Perception (PER)</refl>** - a character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. Primarily affects initiative and ranged weapon attacks.
 
-**Intelligence (INT)** - a character's logic and reasoning capabilities as well as memory and knowledge. Primarily affects some spellcasting abilities and your number of skills.
+**<will>Intelligence (INT)</will>** - a character's logic and reasoning capabilities as well as memory and knowledge. Primarily affects some spellcasting abilities and your number of skills.
 
-**Spirit (SPI)** - a character's mental resolve, confidence and creativity. Primarily affects some spellcasting abilities and your total resistance points.
+**<will>Spirit (SPI)</will>** - a character's mental resolve, confidence and creativity. Primarily affects some spellcasting abilities and your total resistance points.
 
 Attribute values commonly range from 10 to 20, where 10 roughly describes the average human capability, but can range from 1 to 30 in some creatures. The value of the attribute will generate a modifier that can be added to dice rolls. 
 
@@ -342,22 +359,22 @@ In some rare cases your GM may allow you to drop an attribute score below 10, bu
 
 Resistance points are a resource that you will spend to prevent incoming negative effects, and negate damage. You regain them all after a long rest. 
 
-**Fortitude (FORT)** - the ability to resist negative effects using your strength and constitution - such as a sturdy stance to avoid being knocked over by a sweeping attack, or a poisonous gas having no effect on you.
+**<fort>Fortitude (FORT)</fort>** - the ability to resist negative effects using your strength and constitution - such as a sturdy stance to avoid being knocked over by a sweeping attack, or a poisonous gas having no effect on you.
 
-**Reflex (REFL)** - the ability to resist negative effects using your dexterity and perception - such as dodging an explosion of fire or a hail of arrows.
+**<refl>Reflex (REFL)</refl>** - the ability to resist negative effects using your dexterity and perception - such as dodging an explosion of fire or a hail of arrows.
 
-**Will (WILL)** - the ability to resist negative effects using your intelligence and spirit - such as focusing your mind to avoid being manipulated by a spell, or having the confidence to not become frightened.
+**<will>Will (WILL)</will>** - the ability to resist negative effects using your intelligence and spirit - such as focusing your mind to avoid being manipulated by a spell, or having the confidence to not become frightened.
 
 
 ### How Many Resistance Points Do I Have?
 
 Next calculate your resistance points from your attributes. To calculate how many you have, subtract 10 from each related attribute value, then add the two numbers together.
 
-**Fortitude (FORT) **-** **your strength value -10 added to your constitution value -10.
+**<fort>Fortitude (FORT)</fort>** - your <fort>strength</fort> value -10 added to your <fort>constitution</fort> value -10.
 
-**Reflex (REFL)** - your dexterity value -10 added to your perception value -10.
+**<refl>Reflex (REFL)</refl>** - your <refl>dexterity</refl> value -10 added to your <refl>perception</refl> value -10.
 
-**Will (WILL)** - your intelligence value -10 added to your spirit value -10.
+**<will>Will (WILL)</will>** - your <will>intelligence</will> value -10 added to your <will>spirit</will> value -10.
 
 For example, a character with 16 STR and 12 CON has 6 points in STR and 2 in CON, so has (6+2) 8 FORT resistance points.
 
@@ -988,7 +1005,8 @@ TODO: Resisting trait abilities/effects may move away from using the resistance 
   <tr>
    <td>Dispel Magic
    </td>
-   <td>Dispel the magic properties from a magical item. This will need more specification on what it can work on and how - not everything will be able to be dispelled.
+   <td><wip>Dispel the magic properties from a magical item. This will need more specification on what it can work on and how - not everything will be able to be dispelled.
+   </wip>
    </td>
    <td>3 AP - 3 Uses
    </td>
@@ -1010,7 +1028,8 @@ Arcane Level 5
   <tr>
    <td>Long Range Teleport
    </td>
-   <td>Maybe worth adding for other campaigns but I won’t use it for mine. 10 minutes to cast a multi-person teleport to a known location within X miles.
+   <td><wip>Maybe worth adding for other campaigns but I won’t use it for mine. 10 minutes to cast a multi-person teleport to a known location within X miles.
+   </wip>
    </td>
    <td>1 Use
    </td>
@@ -1020,7 +1039,8 @@ Arcane Level 5
   <tr>
    <td>Phase Shift
    </td>
-   <td>Pass through walls for a short while, continue like you can with flight?
+   <td><wip>Pass through walls for a short while, continue like you can with flight?
+   </wip>
    </td>
    <td>2 AP - 3 Uses
    </td>
@@ -1098,9 +1118,10 @@ Arcane Level 5
   <tr>
    <td>Compel Truth
    </td>
-   <td>Ask a creature a question and compel them to answer truthfully. They must still be able to understand the question to be able to answer. They may still choose to avoid the question or not answer.  \
+   <td><wip>Ask a creature a question and compel them to answer truthfully. They must still be able to understand the question to be able to answer. They may still choose to avoid the question or not answer.  \
  \
 If they can choose not to answer feels a bit useless - will resist maybe?
+   </wip>
    </td>
    <td>1 AP - 3 Uses
    </td>
@@ -1274,7 +1295,7 @@ If they can choose not to answer feels a bit useless - will resist maybe?
   <tr>
    <td>Frost Walker
    </td>
-   <td>You can choose to turn water to ice strong enough to walk over. This melts 1 minute after you’re no longer touching it
+   <td><avoid>You can choose to turn water to ice strong enough to walk over. This melts 1 minute after you’re no longer touching it
    </td>
    <td>
    </td>
@@ -1778,14 +1799,14 @@ Swimming movement works the same as regular movement but is done through a liqui
 
 #### Teleportation Movement
 
-Teleportation movement allows a creature to move to a point they can see, ignoring all obstacles between their start and end point. Teleportation movement ignores all movement restrictions the creature might have (_immobilised _or _hobbled _specifically). Teleportation movement happens instantaneously and cannot be broken up throughout a turn. A creature can teleport to a point in mid-air. Generally referred to as “teleport”, “teleportation” or “teleported”.
+Teleportation movement allows a creature to move to a point they can see, ignoring all obstacles between their start and end point. Teleportation movement ignores all movement restrictions the creature might have (_immobilised_ or _hobbled_ specifically). Teleportation movement happens instantaneously and cannot be broken up throughout a turn. A creature can teleport to a point in mid-air. Generally referred to as “teleport”, “teleportation” or “teleported”.
 
 
 #### Flying Movement
 
 Flying movement allows movement in all directions including directly and diagonally up and down. A creature can only fly if they have a flying movement speed. Some abilities or transformations can unlock a flying movement speed. 
 
-A flying creature does not have to end its movement on the ground - it does not fall or take falling damage while flying. If the creature is knocked _prone _or _stunned _they are no longer flying and will immediately fall at normal speed and take fall damage as normal - the creature becomes flying again when it spends flying movement speed. Generally referred to as “fly”, “flight” or “flying”.
+A flying creature does not have to end its movement on the ground - it does not fall or take falling damage while flying. If the creature is knocked _prone_ or _stunned_ they are no longer flying and will immediately fall at normal speed and take fall damage as normal - the creature becomes flying again when it spends flying movement speed. Generally referred to as “fly”, “flight” or “flying”.
 
 
 #### Voluntary Movement
@@ -1795,12 +1816,12 @@ Movement is considered voluntary if the creature has a choice of how it moves an
 
 #### Involuntary Movement
 
-Movement is considered involuntary if the creature does not have a choice of how it moves and where. For example, a hostile pulling, pushing, or teleporting another creature, or any movement effect on a creature that it can attempt to resist. Movement due to being _taunted_, _frightened_,_ _or _dominated _is still considered voluntary movement.
+Movement is considered involuntary if the creature does not have a choice of how it moves and where. For example, a hostile pulling, pushing, or teleporting another creature, or any movement effect on a creature that it can attempt to resist. Movement due to being _taunted_, _frightened_,or _dominated_ is still considered voluntary movement.
 
 
 #### Push/Pull Movement
 
-Push/pull movement is always involuntary and ignores difficult terrain and movement restrictions the creature might have (_immobilised_, _paralysed_,_ _or _hobbled _specifically) unless the GM deems it unreasonable. Generally referred to as “push”, “pushed”, “pull”, or “pulled”.
+Push/pull movement is always involuntary and ignores difficult terrain and movement restrictions the creature might have (_immobilised_, _paralysed_, or _hobbled_ specifically) unless the GM deems it unreasonable. Generally referred to as “push”, “pushed”, “pull”, or “pulled”.
 
 
 ## Attacking
@@ -1854,7 +1875,7 @@ Critical hits can be applied as a result of surprise or concealment or at the GM
 
 ### Multi-Target Attacks
 
-When using a multi-target ability (for example scatter shot or whirlwind) roll one attack roll as normal and compare the outcome to all targets’ AC. If you have Adv or DisAdv against one or more of the targets, roll separately for those targets and then compare to AC and apply damage as normal.
+When using a multi-target ability (for example Scatter Shot or Whirlwind) roll one attack roll as normal and compare the outcome to all targets’ AC. If you have Adv or DisAdv against one or more of the targets, roll separately for those targets and then compare to AC and apply damage as normal.
 
 
 ### Holding Attacks
@@ -1871,9 +1892,9 @@ Also if the target is aware of you but is strongly not expecting you to attack t
 
 ### Concealment
 
-A melee attack against a target you cannot see (such as when you are _blind _or the target is _invisible_) is made with DisAdv (--).
+A melee attack against a target you cannot see (such as when you are _blind_ or the target is _invisible_) is made with DisAdv (--).
 
-A ranged attack against a target you cannot see (such as when you are _blind _or the target is _invisible_) is made with DisAdv (---).
+A ranged attack against a target you cannot see (such as when you are _blind_ or the target is _invisible_) is made with DisAdv (---).
 
 An attack against a target that is unaware of your existence (such as when you are hidden/_invisible_ and combat hasn’t started) has Adv (++).
 
@@ -1996,13 +2017,13 @@ If a level 1 character had +3 to INT and was making an INT based attack that dea
 
 ### Damage Resistance, Weakness, and Vulnerability
 
-Creatures can be **resistant **to damage, this means when they take damage it is divided by 2 rounded down. Damage can never be rounded down below 1. If a creature is hit for 3 fire damage and it is resistant to fire damage it will suffer 1 fire damage.
+Creatures can be **resistant** to damage, this means when they take damage it is divided by 2 rounded down. Damage can never be rounded down below 1. If a creature is hit for 3 fire damage and it is resistant to fire damage it will suffer 1 fire damage.
 
-If a creature is **weak **to a damage type then they suffer the total damage plus 50% (half the damage, round down, and add it to the total damage).
+If a creature is **weak** to a damage type then they suffer the total damage plus 50% (half the damage, round down, and add it to the total damage).
 
-If a creature is **vulnerable **to a damage type then they suffer double the total damage.
+If a creature is **vulnerable** to a damage type then they suffer double the total damage.
 
-If a creature is **immune **to a damage type then they suffer no damage at all.
+If a creature is **immune** to a damage type then they suffer no damage at all.
 
 If a creature is immune to a damage type this cannot be altered, regardless of abilities that might try to make them weak or vulnerable to a damage type. There may still be some abilities that can temporarily overcome this damage immunity - such as Poisoned Strike. 
 
@@ -2044,7 +2065,7 @@ If you are reduced to 0 hit points you die. There are some limited ways to be br
 
 Conditions are always written in _italics_. Conditions and ability effects always last until the start of the creature’s next turn that was the source of the condition (1 round), unless stated otherwise. Many positive conditions can be permanent.
 
-No creature can have 2 instances of the same condition on them - if a creature is for example currently _stunned _and then _stunned _again, the condition is re-applied with the new duration. This re-application is classed as a new condition as the old condition is removed.
+No creature can have 2 instances of the same condition on them - if a creature is for example currently _stunned_ and then _stunned_ again, the condition is re-applied with the new duration. This re-application is classed as a new condition as the old condition is removed.
 
 
 <table>
@@ -2829,7 +2850,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td><strong>Disregard your defences to make lethal attacks against your foes.</strong> 
 <p>
-<em>Mark </em>yourself and all attacks you make<em> </em>gain Adv (++). All attacks made against you gain Adv (+).
+<em>Mark </em>yourself and all attacks you make<em> </em>gain Adv (++). <wip>All attacks made against you gain Adv (+).
    </td>
    <td>Self
    </td>
@@ -4038,7 +4059,7 @@ Select a creature within 100ft, <em>mark </em>it, and choose one resistance poin
    <td>Close Quarters Specialist
    </td>
    <td><strong>Your attacks at close range are exceptionally lethal.</strong>
-<p>
+<p><wip>
 You no longer have DisAdv (-) for ranged attacks when there is a hostile creature within 5ft. You also gain Adv (+) on all ranged attacks made against a creature within 30ft.
    </td>
    <td>Self, 5ft/30ft
@@ -4673,7 +4694,7 @@ You may push any number of creatures within 15ft to another point within 15ft. 1
    </td>
    <td>Focused Plasma
    </td>
-   <td>Create a beam of focused plasma on a point within 50ft. A creature on this point suffers Heavy+MOD Fire damage. On consecutive turns you may continue to focus the beam anywhere within 10ft of its current location for just 1AP - this does not require you to expend another ability usage. -Turn limit? Persists until it does not deal damage to a creature?
+   <td>Create a beam of focused plasma on a point within 50ft. A creature on this point suffers Heavy+MOD Fire damage. On consecutive turns you may continue to focus the beam anywhere within 10ft of its current location for just 1AP - this does not require you to expend another ability usage. <avoid>- Turn limit? Persists until it does not deal damage to a creature?
    </td>
    <td>A+E, 50ft, Single point
    </td>
@@ -4724,83 +4745,6 @@ You may push any number of creatures within 15ft to another point within 15ft. 1
    <td>3
    </td>
   </tr>
-  <tr>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>Supercharge
-   </td>
-   <td>Select any number of creatures within 25ft, each creature suffers Light Lightning damage and emits a blast of electrical energy that deals Light+MOD Lightning damage to all creatures within 5ft. 
-   </td>
-   <td>
-   </td>
-   <td>2
-   </td>
-  </tr>
-  <tr>
-   <td>1
-   </td>
-   <td>The Floor Is Lava
-   </td>
-   <td>Choose 5 consecutive tiles on the map within 50ft. These become lava for 1 turn. Creatures receive Medium+MOD damage for entering a tile or ending their turn in a tile.
-   </td>
-   <td>
-   </td>
-   <td>2
-   </td>
-  </tr>
-  <tr>
-   <td>3
-   </td>
-   <td>Elemental Aura
-   </td>
-   <td>Create an elemental aura with a 10ft radius that moves with you. When a creature ends their turn in the aura they suffer Medium+MOD (fire, frost, lightning, or physical) damage.
-   </td>
-   <td>
-   </td>
-   <td>2
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>Rock Barrier
-   </td>
-   <td>Conjure 3 enchanted chunks of stone and earth around you until the end of your next turn. Whenever you take any damage (excluding Auto-Hit attacks) you may use one or more of the chunks to reduce the damage by Light damage.
-   </td>
-   <td>
-   </td>
-   <td>1
-   </td>
-  </tr>
-  <tr>
-   <td>5
-   </td>
-   <td>Path of Frost
-   </td>
-   <td>Choose 5 connected tiles with 50ft. A creature must pay 2 FORT points to step into one of these tiles.
-<p>
-Create X tiles, every tile costs 0ft of regular movement to enter? Does this mess up some abilities too much?
-   </td>
-   <td>
-   </td>
-   <td>1
-   </td>
-  </tr>
-</table>
-
-
 
 
 
@@ -5250,9 +5194,9 @@ Gain an additional 5 WILL resistance points.
    <td>Necromancy
    </td>
    <td>I think we do all summons roughly as so:
-<p>
+<p><avoid>
 Each summon type has its own stat block/abilities and you sacrifice your own HP to create it. The summon has HP equal to the amount of HP you sacrificed to create it. Then perhaps the more HP you initially sacrifice the more abilities it has unlocked? The summon would last for several hours?
-<p>
+<p><avoid>
 Resurrect a corpse or skeleton within 5ft. Temporarily reduce your max HP by a chosen amount, giving this to your new servant. This creature is controlled by you and takes its turn immediately after yours. It has no resistance points, treats all terrain as difficult terrain, and lasts till the creature dies or your next long rest. 
    </td>
    <td>?
@@ -5407,7 +5351,7 @@ Resurrect a corpse or skeleton within 5ft. Temporarily reduce your max HP by a c
    </td>
    <td>Defensive Blink
    </td>
-   <td>Choose a willing target within 100ft. Each time this creature suffers damage until the end of your next turn they teleport 10ft directly away from their attacker. Cannot be cast on a target already under the effect of this ability.
+   <td><wip>Choose a willing target within 100ft. Each time this creature suffers damage until the end of your next turn they teleport 10ft directly away from their attacker. Cannot be cast on a target already under the effect of this ability.
    </td>
    <td>A, 100ft, Single target
    </td>
@@ -5531,7 +5475,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Levitation
    </td>
-   <td>Levitate yourself, a creature, or an object of your choice within 50ft. You can move the target via levitation up to 30ft in any direction at a 10ft/s speed. 2 FORT to resist the levitation.
+   <td><avoid>Levitate yourself, a creature, or an object of your choice within 50ft. You can move the target via levitation up to 30ft in any direction at a 10ft/s speed. 2 FORT to resist the levitation.
    </td>
    <td>
    </td>
@@ -5603,7 +5547,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Drain
    </td>
-   <td>When a creature within 100ft uses an ability, you may use your reaction to have them lose all remaining uses of the ability. Cannot be resisted. On your next turn you start with 1 fewer AP.
+   <td>When a creature within 100ft uses an ability, you may use your reaction to have them lose all remaining uses of the ability. <wip>Cannot be resisted.</wip> On your next turn you start with 1 fewer AP.
    </td>
    <td>A+E, 100ft, Single target
    </td>
@@ -5917,8 +5861,8 @@ Choose a tile within 100ft, all creatures within 10ft of the tile suffer Medium+
    </td>
    <td>Optic Separation
    </td>
-   <td>Detach your vision from your body, and your mental eye can move up to 50ft (Through walls/water/lava?). You may cast any psionic ability from this position as if you were standing where the eye is. At the end of your turn your mind returns to your body.
-<p>
+   <td><wip>Detach your vision from your body, and your mental eye can move up to 50ft (Through walls/water/lava?). You may cast any psionic ability from this position as if you were standing where the eye is. At the end of your turn your mind returns to your body.
+<p><wip>
 I still kinda want this at a higher level so that people don’t have easy access to seeing through any wall etc.
    </td>
    <td>Self
@@ -6007,7 +5951,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Psychic Swap
    </td>
-   <td>Choose 2 creatures within 100ft and swap the current negative conditions affecting them. Either creature can spend 2 WILL points to prevent their current negative conditions from changing.
+   <td><wip>Choose 2 creatures within 100ft and swap the current negative conditions affecting them. Either creature can spend 2 WILL points to prevent their current negative conditions from changing.
    </td>
    <td>A+E, 100ft, 2 targets 
    </td>
@@ -6043,7 +5987,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Torment
    </td>
-   <td>All creatures within 50ft that have a negative condition suffer Medium+SPI damage.
+   <td>All creatures within <wip>50ft</wip> that have a negative condition suffer Medium+SPI damage.
    </td>
    <td>A+E, 50ft, All within range (AoE)
    </td>
@@ -6141,8 +6085,8 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Psychotic Break
    </td>
-   <td>Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the target has any of the following conditions in this list (Marked, Silenced, Frightened, Dominated) choose one and also give them the next condition in the list. 2 WILL to resist additional conditions.
-<p>
+   <td><wip>Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the target has any of the following conditions in this list (Marked, Silenced, Frightened, Dominated) choose one and also give them the next condition in the list. 2 WILL to resist additional conditions.
+<p><wip>
 This one is actually pretty bad, as a level 10 ability the best case scenario is you get to dominate a frightened creature.. lol
    </td>
    <td>A+E, 100ft, Single target 
@@ -6183,7 +6127,7 @@ This one is actually pretty bad, as a level 10 ability the best case scenario is
 <table>
   <tr>
    <td colspan="5" >
-<h2>Nature - Use with Caution</h2>
+<h2><wip>Nature - Use with Caution</h2>
 
 <strong><em>Type: Magical</em></strong>
 <p>
@@ -7037,9 +6981,7 @@ Attack: Melee Light+Dex
    </td>
    <td>Go for the Eyes
    </td>
-   <td>Swoop down on target. \
- \
-Move up to 25ft and make a regular melee attack. On a successful hit deal Medium+DEX and blind the opponent. 2 REFL Points to resist the blind. Move up to 25ft away, however this will trigger attacks of opportunity. 
+   <td>Swoop down on target. Move up to 25ft and make a regular melee attack. On a successful hit deal Medium+DEX and blind the opponent. 2 REFL Points to resist the blind. Move up to 25ft away, however this will trigger attacks of opportunity. 
    </td>
    <td>E, Melee
    </td>
@@ -7141,7 +7083,7 @@ Attack: Melee Medium+Str
 <table>
   <tr>
    <td colspan="5" >
-<h2>Engineer - Do Not Use</h2>
+<h2><avoid>Engineer - Do Not Use</h2>
 
 Alternate names: Alchemist, Artificer, Tinker, Mechanic, Technomancer
 <p>
@@ -7429,7 +7371,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Shot of ‘spresso.
    </td>
-   <td>Cast a variable AP cost ability at level 3, and another variable AP cost ability at level 2.  At the start of your next turn, you become Stunned.
+   <td><avoid>Cast a variable AP cost ability at level 3, and another variable AP cost ability at level 2.  At the start of your next turn, you become Stunned.
    </td>
    <td>Self
    </td>
@@ -7537,10 +7479,9 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Prepared 
    </td>
-   <td>Next round, go first in the initiative order. \
- \
-OR \
- \
+   <td><wip>Next round, go first in the initiative order.
+OR 
+
 Get 1 AP of free movement this turn.
    </td>
    <td>Self
@@ -7565,7 +7506,7 @@ Get 1 AP of free movement this turn.
    </td>
    <td>Self Destruct Bot
    </td>
-   <td>Build a bot within 5ft of you and mark a target.  This bot will immediately move 15ft closer to the marked target. The bot then acts before each of your turns moving 15ft closer to the marked target. When this bot is within 5ft of the target at any time it immediately explodes, dealing Heavy+INT damage in a 10ft radius. This bot also detonates in the same way if the bot is destroyed, or if the marked target dies.  This is a construct, but with twice the normal construct HP.
+   <td><wip>Build a bot within 5ft of you and mark a target.  This bot will immediately move 15ft closer to the marked target. The bot then acts before each of your turns moving 15ft closer to the marked target. When this bot is within 5ft of the target at any time it immediately explodes, dealing Heavy+INT damage in a 10ft radius. This bot also detonates in the same way if the bot is destroyed, or if the marked target dies.  This is a construct, but with twice the normal construct HP.
    </td>
    <td>
    </td>
@@ -7599,7 +7540,7 @@ Choose 1/2/3 tiles to throw a grenade into.  These bump all creatures within 5ft
 <table>
   <tr>
    <td colspan="5" >
-<h2>Beastmaster - Do Not Use</h2>
+<h2><avoid>Beastmaster - Do Not Use</h2>
 
 Beast upgrades, control the beast using your AP, team support
 <p>
@@ -7747,7 +7688,7 @@ Attack -  the beast uses all of its AP to move to the closest enemy and attack i
    </td>
    <td>Go for the Eyes
    </td>
-   <td>Your or the beast can make a regular attack.  On a successful hit deal Medium+DEX and blind the opponent. 2 REFL Points to resist the blind. The creature that attacked now may take one 1AP of free movement.  
+   <td>Your or the beast can make a regular attack. On a successful hit deal Medium+DEX and blind the opponent. 2 REFL Points to resist the blind. The creature that attacked now may take one 1AP of free movement.  
    </td>
    <td>E
    </td>
@@ -8171,13 +8112,13 @@ Ability description should consist of:
 Here are a few examples of where this is done:
 
 
-    Strike low and take their feet out from under them. Make a melee weapon attack against a creature. On a hit, the creature is knocked _prone _and then _hobbled _for one turn. 2 FORT points to resist the _prone_, 1 FORT point to resist the _hobble_.
+Strike low and take their feet out from under them. Make a melee weapon attack against a creature. On a hit, the creature is knocked _prone_ and then _hobbled_ for one turn. 2 FORT points to resist the _prone_, 1 FORT point to resist the _hobble_.
 
 
-    Conjure a short range blast to escape your enemies. Make an INT based melee attack against a creature. This attack deals Heavy+INT force damage and you are moved up to 20ft directly away from the target. No attacks of opportunity are provoked.
+Conjure a short range blast to escape your enemies. Make an INT based melee attack against a creature. This attack deals Heavy+INT force damage and you are moved up to 20ft directly away from the target. No attacks of opportunity are provoked.
 
 
-    Create illusory bindings that lock a foe in place. Select a creature within 100ft and _immobilise _them. 2 WILL points to resist the _immobilise_, if they resist they are _hobbled_. 1 WILL point to resist the _hobble_, if they resist they suffer Light psychic damage.
+Create illusory bindings that lock a foe in place. Select a creature within 100ft and _immobilise_ them. 2 WILL points to resist the _immobilise_, if they resist they are _hobbled_. 1 WILL point to resist the _hobble_, if they resist they suffer Light psychic damage.
 
 
 ## Ability Balance Guidelines
