@@ -4745,7 +4745,7 @@ You may push any number of creatures within 15ft to another point within 15ft. 1
    <td>3
    </td>
   </tr>
-
+</table>
 
 
 <table>
