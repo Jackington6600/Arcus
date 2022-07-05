@@ -1,3 +1,13 @@
+/* Clean CSS */
+html, body, div, span {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
 html {
     scroll-behavior: smooth;
     scrollbar-width: thin;
@@ -27,6 +37,10 @@ body, a, button {
     background-color: rgb(37, 37, 37);
 }
 
+.main-content {
+    margin-left:30%;
+    max-width:65%;
+}
 
 .light-mode {
     color: rgb(37, 37, 37);
@@ -37,7 +51,7 @@ body, a, button {
     max-width: 20%;
     position: fixed;
     padding: 7px;
-    margin-left: 1%;
+    padding-left: 2%;
     overflow-y:scroll;
     max-height: 100%;
     background-color: rgb(37, 37, 37);
@@ -155,4 +169,17 @@ th, td {
 
 .tab {
     margin-left: 40px;
+}
+
+/* Responsive */
+@media screen and (max-width: 800px) {
+    .main-content {
+      max-width: 70%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .main-content {
+      max-width: 700px; /* The width is 100%, when the viewport is 800px or smaller */
+    }
 }
