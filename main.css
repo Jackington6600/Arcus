@@ -176,6 +176,9 @@ th, td {
     .main-content {
       max-width: 70%; /* The width is 100%, when the viewport is 800px or smaller */
     }
+    .sidebar {
+        max-width: 25%;
+    }
 }
 
 @media screen and (min-width: 1100px) {
