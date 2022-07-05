@@ -996,7 +996,6 @@ TODO: Resisting trait abilities/effects may move away from using the resistance 
    <td>3 AP - 3 Uses
    </td>
    <td>Identify?
-<p>
 Arcane Level 5
    </td>
   </tr>
