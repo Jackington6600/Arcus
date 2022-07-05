@@ -1,6 +1,25 @@
 html {
     scroll-behavior: smooth;
-  }
+    scrollbar-width: thin;
+}
+
+/* Width */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(37, 37, 37);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(202, 202, 202);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 255, 255);
+}
 
 body, a, button {
     font-family: Arial, Helvetica, sans-serif;
@@ -15,15 +34,19 @@ body, a, button {
 }
 
 .sidebar {
-    width: 20%;
+    max-width: 20%;
     position: fixed;
     padding: 7px;
     margin-left: 1%;
+    overflow-y:scroll;
+    max-height: 100%;
+    scrollbar-width: thin;
+    background-color: rgb(37, 37, 37);
 }
 
 button, a {
     padding-left: 7px;
-    padding-right: 7px;
+    padding-right: 15px;
     padding-top: 4px;
     padding-bottom: 4px;
     font-size: 20px;
@@ -71,11 +94,22 @@ h5 {
 }
 
 a.h2 {
-    margin-left: 10%;
+    font-size: 20px;
 }
 
 a.h3 {
+    font-size: 18px;
+    margin-left: 10%;
+}
+
+a.h4 {
+    font-size: 16px;
     margin-left: 20%;
+}
+
+a.h5 {
+    font-size: 16px;
+    margin-left: 30%;
 }
 
 table, th, td {
