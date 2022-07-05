@@ -1294,6 +1294,7 @@ If they can choose not to answer feels a bit useless - will resist maybe?
    <td>Frost Walker
    </td>
    <td><avoid>You can choose to turn water to ice strong enough to walk over. This melts 1 minute after you’re no longer touching it
+   </avoid>
    </td>
    <td>
    </td>
@@ -2849,6 +2850,7 @@ Gain an additional 5 WILL resistance points.
    <td><strong>Disregard your defences to make lethal attacks against your foes.</strong> 
 <p>
 <em>Mark </em>yourself and all attacks you make<em> </em>gain Adv (++). <wip>All attacks made against you gain Adv (+).
+</wip>
    </td>
    <td>Self
    </td>
@@ -4059,6 +4061,7 @@ Select a creature within 100ft, <em>mark </em>it, and choose one resistance poin
    <td><strong>Your attacks at close range are exceptionally lethal.</strong>
 <p><wip>
 You no longer have DisAdv (-) for ranged attacks when there is a hostile creature within 5ft. You also gain Adv (+) on all ranged attacks made against a creature within 30ft.
+</wip>
    </td>
    <td>Self, 5ft/30ft
    </td>
@@ -4692,7 +4695,7 @@ You may push any number of creatures within 15ft to another point within 15ft. 1
    </td>
    <td>Focused Plasma
    </td>
-   <td>Create a beam of focused plasma on a point within 50ft. A creature on this point suffers Heavy+MOD Fire damage. On consecutive turns you may continue to focus the beam anywhere within 10ft of its current location for just 1AP - this does not require you to expend another ability usage. <avoid>- Turn limit? Persists until it does not deal damage to a creature?
+   <td>Create a beam of focused plasma on a point within 50ft. A creature on this point suffers Heavy+MOD Fire damage. On consecutive turns you may continue to focus the beam anywhere within 10ft of its current location for just 1AP - this does not require you to expend another ability usage. <avoid>- Turn limit? Persists until it does not deal damage to a creature?</avoid>
    </td>
    <td>A+E, 50ft, Single point
    </td>
@@ -5194,8 +5197,10 @@ Gain an additional 5 WILL resistance points.
    <td>I think we do all summons roughly as so:
 <p><avoid>
 Each summon type has its own stat block/abilities and you sacrifice your own HP to create it. The summon has HP equal to the amount of HP you sacrificed to create it. Then perhaps the more HP you initially sacrifice the more abilities it has unlocked? The summon would last for several hours?
+</avoid>
 <p><avoid>
 Resurrect a corpse or skeleton within 5ft. Temporarily reduce your max HP by a chosen amount, giving this to your new servant. This creature is controlled by you and takes its turn immediately after yours. It has no resistance points, treats all terrain as difficult terrain, and lasts till the creature dies or your next long rest. 
+</avoid>
    </td>
    <td>?
    </td>
@@ -5350,6 +5355,7 @@ Resurrect a corpse or skeleton within 5ft. Temporarily reduce your max HP by a c
    <td>Defensive Blink
    </td>
    <td><wip>Choose a willing target within 100ft. Each time this creature suffers damage until the end of your next turn they teleport 10ft directly away from their attacker. Cannot be cast on a target already under the effect of this ability.
+   </wip>
    </td>
    <td>A, 100ft, Single target
    </td>
@@ -5474,6 +5480,7 @@ Gain an additional 5 WILL resistance points.
    <td>Levitation
    </td>
    <td><avoid>Levitate yourself, a creature, or an object of your choice within 50ft. You can move the target via levitation up to 30ft in any direction at a 10ft/s speed. 2 FORT to resist the levitation.
+   </avoid>
    </td>
    <td>
    </td>
@@ -5860,8 +5867,10 @@ Choose a tile within 100ft, all creatures within 10ft of the tile suffer Medium+
    <td>Optic Separation
    </td>
    <td><wip>Detach your vision from your body, and your mental eye can move up to 50ft (Through walls/water/lava?). You may cast any psionic ability from this position as if you were standing where the eye is. At the end of your turn your mind returns to your body.
+   </wip>
 <p><wip>
 I still kinda want this at a higher level so that people don’t have easy access to seeing through any wall etc.
+</wip>
    </td>
    <td>Self
    </td>
@@ -5950,6 +5959,7 @@ Gain an additional 5 WILL resistance points.
    <td>Psychic Swap
    </td>
    <td><wip>Choose 2 creatures within 100ft and swap the current negative conditions affecting them. Either creature can spend 2 WILL points to prevent their current negative conditions from changing.
+   </wip>
    </td>
    <td>A+E, 100ft, 2 targets 
    </td>
@@ -6084,8 +6094,10 @@ Gain an additional 5 WILL resistance points.
    <td>Psychotic Break
    </td>
    <td><wip>Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the target has any of the following conditions in this list (Marked, Silenced, Frightened, Dominated) choose one and also give them the next condition in the list. 2 WILL to resist additional conditions.
+   </wip>
 <p><wip>
 This one is actually pretty bad, as a level 10 ability the best case scenario is you get to dominate a frightened creature.. lol
+</wip>
    </td>
    <td>A+E, 100ft, Single target 
    </td>
@@ -6125,7 +6137,7 @@ This one is actually pretty bad, as a level 10 ability the best case scenario is
 <table>
   <tr>
    <td colspan="5" >
-<h2><wip>Nature - Use with Caution</h2>
+<h2><wip>Nature - Use with Caution</wip></h2>
 
 <strong><em>Type: Magical</em></strong>
 <p>
@@ -7081,7 +7093,7 @@ Attack: Melee Medium+Str
 <table>
   <tr>
    <td colspan="5" >
-<h2><avoid>Engineer - Do Not Use</h2>
+<h2><avoid>Engineer - Do Not Use</avoid></h2>
 
 Alternate names: Alchemist, Artificer, Tinker, Mechanic, Technomancer
 <p>
@@ -7369,7 +7381,7 @@ Gain an additional 5 WILL resistance points.
    </td>
    <td>Shot of ‘spresso.
    </td>
-   <td><avoid>Cast a variable AP cost ability at level 3, and another variable AP cost ability at level 2.  At the start of your next turn, you become Stunned.
+   <td><avoid>Cast a variable AP cost ability at level 3, and another variable AP cost ability at level 2.  At the start of your next turn, you become Stunned.</avoid>
    </td>
    <td>Self
    </td>
@@ -7481,6 +7493,7 @@ Gain an additional 5 WILL resistance points.
 OR 
 
 Get 1 AP of free movement this turn.
+</wip>
    </td>
    <td>Self
    </td>
@@ -7505,6 +7518,7 @@ Get 1 AP of free movement this turn.
    <td>Self Destruct Bot
    </td>
    <td><wip>Build a bot within 5ft of you and mark a target.  This bot will immediately move 15ft closer to the marked target. The bot then acts before each of your turns moving 15ft closer to the marked target. When this bot is within 5ft of the target at any time it immediately explodes, dealing Heavy+INT damage in a 10ft radius. This bot also detonates in the same way if the bot is destroyed, or if the marked target dies.  This is a construct, but with twice the normal construct HP.
+   </wip>
    </td>
    <td>
    </td>
@@ -7538,7 +7552,7 @@ Choose 1/2/3 tiles to throw a grenade into.  These bump all creatures within 5ft
 <table>
   <tr>
    <td colspan="5" >
-<h2><avoid>Beastmaster - Do Not Use</h2>
+<h2><avoid>Beastmaster - Do Not Use</avoid></h2>
 
 Beast upgrades, control the beast using your AP, team support
 <p>
