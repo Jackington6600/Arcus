@@ -1,9 +1,8 @@
+<h1>Arcus RPG</h1>
 
 
-# Arcus RPG
+<h1>Introduction</h1>
 
-
-# Introduction
 
 Arcus is a pen and paper tabletop role playing game (TTRPG). This system draws inspiration from a wide variety of tabletop, video game, and board game systems to deliver a balanced and simple, yet deep and tactical experience compared to other traditional tabletop RPGs. Arcus’ unique take on combat and character abilities make fights incredibly varied, team based, with great tactical depth and a high skill ceiling.
 
@@ -11,18 +10,18 @@ If you like Divinity Original Sin 2, Baldur’s Gate 3, Gloomhaven, or Dungeons 
 
 Note: This is an unfinished ruleset and is still under development. Changes may occur regularly. All **yellow** text is work that is under consideration for tweaks or changes - use with caution. All **red **text (not to be confused with **this red** text) is unfinished work or ideas that need to be removed or completely reworked - should not be used.
 
+<h1>How to Play</h1>
 
-# How to Play
 
 Play runs very similarly to other TTRPG systems, the game master (GM) creates and describes the world, and the player characters (PCs) then say what they want their character to do. If the action the PCs wish to take involves some degree of difficulty, for example jumping a large gap or avoiding a rock fall, they must roll dice to determine if the actions result in success or failure. The GM then narrates what happens as a result of the PCs’ actions. Battles, adventures and entire stories can be told using this simple back and forth system.
 
+<h2>The Players</h2>
 
-## The Players
 
 TODO: The role of the players, what they should/shouldn’t be doing.
 
+<h2>The Game Master</h2>
 
-## The Game Master
 
 TODO: The role of the GM, what they should/shouldn’t be doing.
 
@@ -54,20 +53,20 @@ TODO: The role of the GM, what they should/shouldn’t be doing.
 
 The difference between success and failure is not always clear cut. The degree of success and failure can depend on the difference between the roll result and the DC. This degree of success is determined entirely by the GM but should be consistent.
 
+<h2>Dice System</h2>
 
-## Dice System
 
 This game uses a 2d12 system - roll and add the 2d12 values together for a total that must be equal to or greater than a given difficulty value (chosen by the GM) to be successful.
 
 Every 2d12 roll will add 2 modifiers to it. These modifiers will come from a creature’s attributes such as strength, dexterity, and intelligence - the same attribute can be used twice in the same roll. The attributes used for the roll will depend on the GM’s request based on the action being taken.
 
+<h3>Examples</h3>
 
-### Examples
 
 Let’s take a warrior with +3 strength modifier, +1 dexterity modifier, and +0 perception modifier. If they want to take an action such as kicking down a door, the GM would ask them to make a “strength plus strength check”. This means the warrior will roll 2d12 as always and add their strength modifier twice to the roll (+6 total modifier bonus). If the warrior wants to pick a lock, the GM might ask them to make a “dexterity plus perception check” so the warrior will roll 2d12 and add their dexterity and perception modifiers to the roll (+1 total modifier bonus).
 
+<h3>Advantage and Disadvantage</h3>
 
-### Advantage and Disadvantage
 
 Advantage (Adv) and disadvantage (DisAdv) range from -3 (---) to +3 (+++) and can be applied to a roll/check being made. The table below describes what effect Adv and DisAdv have on a roll.
 
@@ -128,8 +127,8 @@ Sources of Adv and DisAdv vary greatly, such as attacking from high ground, or a
 
 Adv/DisAdv is often displayed as a series of (+) or (-) signs in brackets and these cancel each other out. As an example, an ability grants a warrior Adv (++) on their next attack. Other circumstances, such as a cloud of smoke, mean that the attack also has DisAdv (-). This results in (++-) for the attack roll. The (-) then cancels one (+) to give the final result of (+) for the attack roll.
 
+<h3>Critical Successes & Critical Failures</h3>
 
-### Critical Successes & Critical Failures
 
 A critical success is when the 2 dice used for the roll result each have a value of 10 or more (double digits). 
 
@@ -137,8 +136,8 @@ A critical failure is when the 2 dice used for the roll result each have a value
 
 Critical successes generally mean a success with some additional bonus - such as additional damage or beneficial results. Critical failures generally mean you fail the check regardless of the modifiers added and the DC. However, it is up to the GM to decide how they wish to handle it in their game - it should be consistent.
 
+<h3>Inspiration</h3>
 
-### Inspiration
 
 Throughout the game, players can earn inspiration points. This is gained either by certain traits (General: Inspiring), magic items, or most commonly as a reward by the DM for when a player does something really cool. A player role plays a speech well before a battle? Inspiration! A player thinks of a really clever way to get round a trap, but still comes down to a check? Inspiration!  \
  \
@@ -146,11 +145,11 @@ The GM can give this inspiration directly to the action, or to the players to us
 
 
 
+<h1>Creating a Character - Step by Step</h1>
 
-# Creating a Character - Step by Step
 
+<h2>Step 1 - Who Do You Want To Be?</h2>
 
-## Step 1 - Who Do You Want To Be?
 
 There are many ways to start making your character in Arcus and the rules should accommodate whatever fantasy character you wish to create (within reason). In particular, the race/creature you decide to be makes no difference to the capabilities of your character so there are no restrictions. You should still discuss with your GM what races there are and how being this race might affect your character’s life. Your race also shouldn’t give you any significant bonuses such as extra arms or the ability to fly, but you can discuss how to make it fair and realistic with your GM.
 
@@ -162,8 +161,8 @@ Below are some suggestions on where to start, we recommend starting with 1. and 
 2. You could instead start with the mechanics - what sort of playstyle you want to achieve, and what abilities you want your character to have. Do you want them to be a support role with healing and party boosting effects? Maybe look into Arcane or Mortality classes. Would you rather play as a brutish tank with crowd control and melee capabilities? Look into Warrior or even Elemental if you want to add a flair of magic. Go to the Classes section (step 5) first for summaries of each class and what they can help you create.
 3. You could start with your character’s personality and backstory. Perhaps you want to write a story about how your character, a humble miller, daughter of a miller, becomes a warrior on a path for vengeance after her village is plundered. How this influenced her to be cynical about the world and distrusting of others - she’s had to become independent but now needs help and is struggling with the idea of attachment. Go to the Personality and History section (step 8) to get started with this stage of character creation.
 
+<h2>Step 2 - Attributes</h2>
 
-## Step 2 - Attributes
 
 Attributes outline your character’s core physical and mental capabilities. Is your character strong or weak? Fast or slow? Smart or simple? Confident or shy? These questions will help you work out your character’s attributes.
 
@@ -341,8 +340,8 @@ Every even level (2, 4, 6, 8, 10…) you gain 1 additional attribute point to sp
 
 In some rare cases your GM may allow you to drop an attribute score below 10, but this should be for roleplaying purposes only - as 10 is already below average. You also cannot reduce your attributes in a way that would lead to you having negative resistance points (see next section).
 
+<h2>Step 3 - Resistance Points</h2>
 
-## Step 3 - Resistance Points
 
 Resistance points are a resource that you will spend to prevent incoming negative effects, and negate damage. You regain them all after a long rest. 
 
@@ -352,8 +351,8 @@ Resistance points are a resource that you will spend to prevent incoming negativ
 
 **Will (WILL)** - the ability to resist negative effects using your intelligence and spirit - such as focusing your mind to avoid being manipulated by a spell, or having the confidence to not become frightened.
 
+<h3>How Many Resistance Points Do I Have?</h3>
 
-### How Many Resistance Points Do I Have?
 
 Next calculate your resistance points from your attributes. To calculate how many you have, subtract 10 from each related attribute value, then add the two numbers together.
 
@@ -367,25 +366,25 @@ For example, a character with 16 STR and 12 CON has 6 points in STR and 2 in CON
 
 You also gain additional resistance points to assign as you wish equal to your SPI modifier. A creature with +2 SPI modifier will have 2 additional resistance points to assign as they wish, such as 1 extra FORT point and 1 extra WILL point. When your SPI modifier increases you may assign the additional resistance points freely.
 
+<h3>How Do I Use Resistance Points?</h3>
 
-### How Do I Use Resistance Points?
 
 There are 2 ways to spend resistance points:
 
+<h4>Resisting Incoming Effects</h4>
 
-#### Resisting Incoming Effects
 
 The GM will tell you the recommended cost of resisting an incoming effect. To resist it you will choose how many resistance points to spend and then roll 1d12. If you spend the recommended resistance points, reduce your current resistance points by the cost. If you spend one less than recommended you successfully resist on a 8 or higher, if you spend equal to the recommended you successfully resist on a 3 or higher, if you spend one more than recommended you automatically succeed. If you spend two less than the recommended resistance points or fail the roll you are inflicted with the condition.
 
+<h4>Resisting Incoming Damage</h4>
 
-#### Resisting Incoming Damage
 
 You can negate a single instance of incoming damage by spending any 5 of your remaining resistance points. You can do this at any time and it does not cost a reaction.
 
 However, the GM may ask you to describe how you negate the damage. This gives the player an opportunity to describe the cool and heroic actions of their character to avoid the damage/effect. It also gives the GM the opportunity, in some very rare cases, to deny the damage reduction if it cannot make sense for the damage to the character to be negated, or come to a reasonable middleground. Such as if the player is paralysed and suffers damage the player cannot negate the damage, but if it would kill them the GM can let the player drop to 1 HP and fall unconscious instead. Or in even rarer cases such as being crushed by a wave of magma the player might have no chance of survival and die instantly. Note to GMs, don’t crush your players with waves of magma - that’s mean.
 
+<h3>Notes For The GM</h3>
 
-### Notes For The GM
 
 The player can choose not to spend your resistance points and save them for later effects or damage reduction. The GM's monsters and NPCs should generally spend resistance points if they can - assuming the condition would actually affect them (e.g. a wolf would not resist something that prevents it from using magical abilities). This is to help the tactical part of knowing when the enemies will run out of resistance points, and to avoid metagaming. Some particularly intelligent creatures that may have some knowledge of the party’s abilities could save and use them even more wisely - again the GM should avoid metagaming.
 
@@ -397,25 +396,25 @@ GM tip: You can have the creatures you control not need to roll for resistance c
 
 Enemies should not be able to spend resistance points to negate damage. 
 
+<h2>Step 4 - Hit Points</h2>
 
-## Step 4 - Hit Points
 
 Your Hit Points (HP) or Health at level 1 is equal to your CON Attribute value multiplied by 2. So a CON of 16 results in 32 HP at level 1.
 
 Every odd level after first (3, 5, 7, 9 etc.) you gain 10 plus your CON modifier in additional HP. So with the same CON value you’d have 32 at level 2, 45 at level 3, 58 at level 5, and so on.
 
+<h3>Temporary Hit Points</h3>
 
-### Temporary Hit Points
 
 Temporary hit points (Temp HP) last until the start of the turn of the creature that granted the Temp HP - unless stated otherwise. They act as normal HP but are always used before regular HP. You may have multiple sources of Temp HP and these should be kept separate -. the creature with the Temp HP can choose which pool is used first.
 
+<h2>Step 5 - Classes</h2>
 
-## Step 5 - Classes
 
 Every level a character has allows 1 point/level to be assigned to a class of their choice. Classes are either physical or magical and placing points in them allows a character to unlock abilities relating to that class. Putting levels into multiple classes is actively encouraged, and there is no restriction or downside to which you choose and the order in which you progress in them.
 
+<h3>Class Summaries</h3>
 
-### Class Summaries
 
 Here is a short summary of each class - find more details about each class in the Class Tables section.
 
@@ -514,8 +513,8 @@ Here is a short summary of each class - find more details about each class in th
 </table>
 
 
+<h3>Abilities</h3>
 
-### Abilities
 
 The first level assigned a class automatically gives the character all of the core abilities in that class (denoted by “Core” in the level column). They then choose 2 abilities to unlock and use, and every level after that unlocks 1 additional ability. If you put a level in a class you must choose the abilities you unlock from that chosen class. You can choose new abilities from anywhere in the class equal or less than your level in that class. You cannot unlock an ability you already possess (that has the same name).
 
@@ -525,20 +524,20 @@ All abilities with an AP cost have 3 uses per long rest, unless there is a “-�
 
 Some abilities will have restrictions as to whether they can be done with ranged or melee weapons. This will be made clear in the description/target columns. Other abilities can be used regardless of weapon type (see Types of Attack Roll section). 
 
+<h3>Spellcasting</h3>
 
-### Spellcasting
 
 Abilities and spells that do not mention a weapon (such as most abilities from magical classes) do not require a weapon of any kind - they can even be performed without a free hand. Therefore, you can wield weapons and cast spells at the same time. Each magical class also has 1 or 2 abilities that have unlimited uses which can be used as a regular attack instead of using a weapon.
 
+<h2>Step 6 - Skills & Traits</h2>
 
-## Step 6 - Skills & Traits
 
 Level 1 characters start with 4 skills or traits of their choice (explained below), each skill at a proficient (+) level and they must meet the requirements of the chosen traits. Every odd level after this (3, 5, 7 … 19) 1 additional point is gained to either spend on an additional skill proficiency level, or an additional trait.
 
 Characters also gain additional skills equal to their INT modifier. These can only be used to become proficient (+), and cannot be spent to become expert (++) or master (+++).
 
+<h3>Skills</h3>
 
-### Skills
 
 Skills are normally 1 or 2 words that describe something your character can do particularly well, regardless of the attributes needed for the task. Look at the Skill Ideas section below and consider the following questions when deciding what skills your character might have: What has your character grown up doing? What work have they done? What are they good at? What task might they be faced with that they can do better than most? You should always discuss with your GM what might be good skills to have, that aren’t too general or too specific.
 
@@ -707,8 +706,8 @@ This is just a list of skill ideas, this should not be taken as the definitive l
 </table>
 
 
+<h3>Traits</h3>
 
-### Traits
 
 Traits are special abilities that can be found in the trait tables below. They are often non-combat abilities that add flavour and utility to a character or creature. Some also have specified requirements that a character must meet to be able to unlock the trait. Some are passive, while others are limited to 1 or 3 uses.
 
@@ -716,8 +715,8 @@ TODO: Traits are unfinished and many of them need tweaking and reworking. You sh
 
 TODO: Resisting trait abilities/effects may move away from using the resistance point system and use a contested roll instead. Or we could implement the optional empowered resistance drain that would make things work a bit more smoothly (see appendix).
 
+<h4>General Traits</h4>
 
-#### General Traits
 
 
 <table>
@@ -914,8 +913,8 @@ TODO: Resisting trait abilities/effects may move away from using the resistance 
 </table>
 
 
+<h4>Arcane Traits</h4>
 
-#### Arcane Traits
 
 
 <table>
@@ -1034,8 +1033,8 @@ Arcane Level 5
 </table>
 
 
+<h4>Psionic Traits</h4>
 
-#### Psionic Traits
 
 
 <table>
@@ -1154,8 +1153,8 @@ If they can choose not to answer feels a bit useless - will resist maybe?
 </table>
 
 
+<h4>Nature Traits</h4>
 
-#### Nature Traits
 
 
 <table>
@@ -1222,8 +1221,8 @@ If they can choose not to answer feels a bit useless - will resist maybe?
 </table>
 
 
+<h4>Mortality Traits</h4>
 
-#### Mortality Traits
 
 
 <table>
@@ -1260,8 +1259,8 @@ If they can choose not to answer feels a bit useless - will resist maybe?
 </table>
 
 
+<h4>Elemental Traits</h4>
 
-#### Elemental Traits
 
 
 <table>
@@ -1298,14 +1297,14 @@ If they can choose not to answer feels a bit useless - will resist maybe?
 </table>
 
 
-
-## 
-
-
-## Step 7 - Equipment
+<h2></h2>
 
 
-### Weapons
+<h2>Step 7 - Equipment</h2>
+
+
+<h3>Weapons</h3>
+
 
 Below are the details on all the potential weapons you might have. Weapons are fluid and can be reskinned in many ways - in theory you can think of any fantasy weapon and the rules should have a way of putting that into the game. Remember that you can wield weapons and cast spells at the same time (no free hand required) or go without any weapons and just use spells.
 
@@ -1332,8 +1331,8 @@ Below are the details on all the potential weapons you might have. Weapons are f
 * Note: Heavy weapons cannot be versatile.
 * **Dual wielding** can be done with 2 Light weapons, or a Medium and a Light weapon. Both must be one-handed. Attacks that involve both weapons can make 1 attack roll against a single target - or split into 2 against multiple targets, such as melee attack with your main hand melee weapon then throw a dagger at a different target with your offhand. Damage is calculated as normal for the weapon in the main hand, and the off-hand weapon just adds base damage (no additional attribute bonus). Attack rolls while dual wielding with a Medium and Light weapon are calculated with a -2 modifier. Attack rolls while dual wielding 2 Light weapons are done as normal.
 
+<h4>Weapon Example Table</h4>
 
-#### Weapon Example Table
 
 A summary of how the different weapons will work in the game - each weapon can be reskinned or flavoured to fit what you want your character to use. For example, you might use: knuckle dusters or a simple improvised weapon instead of a club; a handaxe, sickle or stiletto instead of a dagger; a rapier, scimitar, axe, mace, spear or short staff instead of a sword; a greataxe, greatclub, scythe or large spear instead of a greatsword; a crossbow or rifle instead of a bow; a blowdart or pistol instead of a light crossbow.
 
@@ -1442,8 +1441,8 @@ A summary of how the different weapons will work in the game - each weapon can b
 </table>
 
 
+<h3>Armour and Armour Class (AC)</h3>
 
-### Armour and Armour Class (AC)
 
 Armour class is equal to 11 plus your DEX modifier. This is the number that enemies must roll equal to or higher than to hit you successfully. A DEX modifier of +4 would result in an AC of 15.
 
@@ -1484,21 +1483,21 @@ Armour and other abilities can also affect armour class. See the armour table be
 </table>
 
 
+<h3>Shields</h3>
 
-### Shields
 
 A shield takes 1 hand to equip (your off hand), and grants an ability with unlimited uses. This ability can be used when you suffer any amount of damage, but only once per turn (does not use a reaction): It is reduced by your STR modifier in damage (minimum 0). This damage reduction occurs before any other damage reduction. Auto-hit attacks ignore shields.
 
+<h3>Non-Combat Equipment</h3>
 
-### Non-Combat Equipment
 
 TODO
 
+<h2></h2>
 
-## 
 
+<h2>Step 8 - Personality and History</h2>
 
-## Step 8 - Personality and History
 
 All characters have their strengths and weaknesses, and in role playing both are equally fun. The following questions will help you determine your character’s personality - remember that every trait is a sliding scale where your character could be anywhere in between these extremes. Are they funny or serious? Optimistic or pessimistic? Sociable or quiet? Honest or deceptive? Kind or cruel? Passionate or stoic? Collaborative or independent? Open-minded or stubborn? Energetic or calm? Spiritual or material? Generous or greedy? Respectful or rude? Forgiving or vengeful? Modest or boasting? Creative or traditional?
 
@@ -1506,21 +1505,21 @@ You can delve further by asking how your character might behave and react in dif
 
 Questions to ask about your character’s history - also see the Skills and Traits section (step 5). Where is your character from? What is their family like - what have they done and where are they now? What major events have occurred during your character’s life so far? What have they done in response and how has it moulded your character into who they are now? How has that affected their motives? What secrets do they have? How did your character gain the attributes and class that they are now? Does your character have few or many friends? Are any of those friends notable, if so what are they like? What kind of people do you trust and mistrust? Does your character have any hobbies?
 
+<h2>Step 9 - Appearance </h2>
 
-## Step 9 - Appearance 
 
 TODO
 
+<h2></h2>
 
-## 
 
+<h2>Step 10 - Levelling Up</h2>
 
-## Step 10 - Levelling Up
 
 Note: All information here is previously stated in the relevant sections. This section exists to consolidate the information for the player when they level up.
 
+<h3>Level Up Progression Table</h3>
 
-### Level Up Progression Table
 
 
 <table>
@@ -1659,8 +1658,8 @@ Note: All information here is previously stated in the relevant sections. This s
 </table>
 
 
+<h3>Level Up Summary</h3>
 
-### Level Up Summary
 
 
 
@@ -1679,21 +1678,21 @@ Note: All information here is previously stated in the relevant sections. This s
 * Levels 5, 10, 15, 20
     * Damage increases - check the damage table.
 
+<h1>Out of Combat</h1>
 
-# Out of Combat
 
+<h2>Passive Perception</h2>
 
-## Passive Perception
 
 A creature’s passive perception is equal to 10+PER+PER.
 
+<h2>Resting</h2>
 
-## Resting
 
 You can only gain the benefit of a short rest once per long rest.
 
+<h3>Short Rests (30 mins)</h3>
 
-### Short Rests (30 mins)
 
 While resting, you cannot use abilities.
 
@@ -1703,8 +1702,8 @@ Regain 1 use of each ability that you have.
 
 All active abilities you have fade during this rest.
 
+<h3>Long Rests (8 hours)</h3>
 
-### Long Rests (8 hours)
 
 Regain all HP.
 
@@ -1712,11 +1711,11 @@ Regain all ability uses.
 
 Regain all resistance points.
 
+<h1>Combat</h1>
 
-# Combat
 
+<h2>How To Run Combat</h2>
 
-## How To Run Combat
 
 
 
@@ -1731,83 +1730,83 @@ Regain all resistance points.
     6. Reactions may trigger outside of a character/creature’s turn.
     7. After the creature with lowest initiative finishes their turn a round of combat is complete, repeat step 3 until the combat is complete (when there is no longer a conflict to be resolved).
 
+<h2>Initiative</h2>
 
-## Initiative
 
 Initiative is calculated by rolling 2d12 and adding PER+PER.
 
+<h2>Action Point System</h2>
 
-## Action Point System
 
 All creatures have 3 action points (AP) to spend every turn. They are set back to 3 AP at the start of their next turn. However, some conditions and abilities may affect this.
 
+<h3>Reactions</h3>
 
-### Reactions
 
 You gain a reaction at the start of your turn every round which can be spent on various abilities and attacks of opportunity. It can be spent at any point, either on your turn or during another creature’s turn.
 
+<h2>Movement</h2>
 
-## Movement
 
 Your base movement speed is 25ft. However, this can be affected by armour, abilities, and equipment. You can spend 1 AP to move up to your base movement speed. This movement can be broken up around the other things you do on your turn - for example with 25ft of movement you could move 10ft, then attack, then move the remaining 15ft.
 
+<h3>Difficult Terrain</h3>
 
-### Difficult Terrain
 
 It takes 10ft of movement instead of 5ft to move into a tile that is considered difficult terrain. Creatures can also move through allies as if they were difficult terrain. Creatures cannot move through other hostile creatures.
 
+<h3>Types of Movement</h3>
 
-### Types of Movement
 
+<h4>Regular Movement</h4>
 
-#### Regular Movement
 
 Regular movement includes running, walking, and crawling. Generally referred to as “move” or “movement”.
 
+<h4>Jumping Movement</h4>
 
-#### Jumping Movement
 
 Jumping movement works the same as regular movement except obstacles (such as gaps, low obstacles, or small creatures) can be avoided on the path. What can or cannot be jumped over is up to the GM’s discretion. The jump may require a roll depending on the distance or height of the jump - this will use strength and/or dexterity depending on the nature of the jump (strength for greater distance, dexterity for greater accuracy). Generally referred to as “jump” or “jumping”.
 
+<h4>Climbing Movement</h4>
 
-#### Climbing Movement
 
 Climbing movement works the same as regular movement but is done up a more vertical surface such as up a wall or a tree. What can or cannot be climbed is up to the GM’s discretion. The GM will make the creature perform a skill check based on the difficulty of the surface they are attempting to climb. If successful the creature can climb as if the surface was difficult terrain. The creature must repeat the skill check every time it wishes to move its base movement speed - it is up to the GM if and when they may need to repeat the skill check based on time spent climbing or if the difficulty of the climb significantly changes.
 
+<h4>Swimming Movement</h4>
 
-#### Swimming Movement
 
 Swimming movement works the same as regular movement but is done through a liquid such as water or slime. What can or cannot be swam through is up to the GM’s discretion. The GM will make the creature perform a skill check based on the difficulty. If successful the creature can swim as if the liquid was difficult terrain - it is up to the GM if and when they may need to repeat the skill check based on time spent swimming or if the difficulty of the swim significantly changes.
 
+<h4>Teleportation Movement</h4>
 
-#### Teleportation Movement
 
 Teleportation movement allows a creature to move to a point they can see, ignoring all obstacles between their start and end point. Teleportation movement ignores all movement restrictions the creature might have (_immobilised _or _hobbled _specifically). Teleportation movement happens instantaneously and cannot be broken up throughout a turn. A creature can teleport to a point in mid-air. Generally referred to as “teleport”, “teleportation” or “teleported”.
 
+<h4>Flying Movement</h4>
 
-#### Flying Movement
 
 Flying movement allows movement in all directions including directly and diagonally up and down. A creature can only fly if they have a flying movement speed. Some abilities or transformations can unlock a flying movement speed. 
 
 A flying creature does not have to end its movement on the ground - it does not fall or take falling damage while flying. If the creature is knocked _prone _or _stunned _they are no longer flying and will immediately fall at normal speed and take fall damage as normal - the creature becomes flying again when it spends flying movement speed. Generally referred to as “fly”, “flight” or “flying”.
 
+<h4>Voluntary Movement</h4>
 
-#### Voluntary Movement
 
 Movement is considered voluntary if the creature has a choice of how it moves and where. Most movement is considered voluntary. For example, base movement, or movement gained from a creature’s own abilities or ally’s abilities. 
 
+<h4>Involuntary Movement</h4>
 
-#### Involuntary Movement
 
 Movement is considered involuntary if the creature does not have a choice of how it moves and where. For example, a hostile pulling, pushing, or teleporting another creature, or any movement effect on a creature that it can attempt to resist. Movement due to being _taunted_, _frightened_,_ _or _dominated _is still considered voluntary movement.
 
+<h4>Push/Pull Movement</h4>
 
-#### Push/Pull Movement
 
 Push/pull movement is always involuntary and ignores difficult terrain and movement restrictions the creature might have (_immobilised_, _paralysed_,_ _or _hobbled _specifically) unless the GM deems it unreasonable. Generally referred to as “push”, “pushed”, “pull”, or “pulled”.
 
+<h2>Attacking</h2>
 
-## Attacking
 
 To attack you roll 2d12 and add 2 modifiers (such as DEX+DEX, STR+STR, or PER+PER). 
 
@@ -1815,8 +1814,8 @@ A melee INT attack would add INT+INT to the roll for example.
 
 To hit the target you must roll equal to or higher than their armour class (AC).
 
+<h3>Types of Attack Roll</h3>
 
-### Types of Attack Roll
 
 
 
@@ -1837,15 +1836,15 @@ To hit the target you must roll equal to or higher than their armour class (AC).
     * “Make an auto hit attack…”
     * “Make a versatile INT attack…”
 
+<h3>Attacks of Opportunity</h3>
 
-### Attacks of Opportunity
 
 A creature with a melee attack available may choose to spend its reaction to make a melee attack against a creature that moves out of melee range. The available melee attack can only be from an equipped weapon or core ability (such as Elemental Blast). 
 
 Movement used as part of an ability (such as Charge, Hit and Run, or Advance!), involuntary movement (such as being pushed or pulled), or teleportation movement does not trigger attacks of opportunity.
 
+<h3>Critical Hit</h3>
 
-### Critical Hit
 
 A critical success is when the 2 dice used for the roll result each have a value of 10 or more (double digits). 
 
@@ -1855,25 +1854,25 @@ If you roll a critical success on an attack roll, it is called a critical hit an
 
 Critical hits can be applied as a result of surprise or concealment or at the GM’s discretion - such as if there is some significant advantage on the attack (or special circumstances) that the GM would like to reward.
 
+<h3>Multi-Target Attacks</h3>
 
-### Multi-Target Attacks
 
 When using a multi-target ability (for example scatter shot or whirlwind) roll one attack roll as normal and compare the outcome to all targets’ AC. If you have Adv or DisAdv against one or more of the targets, roll separately for those targets and then compare to AC and apply damage as normal.
 
+<h3>Holding Attacks</h3>
 
-### Holding Attacks
 
 Sometimes you want to wait for exactly the right moment to attack, for example a dragon swooping down into range. You have the option to spend the 2AP to choose a weapon attack or core ability attack (not an expendable ability) and describe who you want it to target and when you want it to trigger. For example, “when the rat pops its head out of the hole” or “when the eagle gets within grabbing distance”, not “when I next see an enemy”. If this happens before the start of your next turn, you can choose to spend your reaction to make the attack. If you choose not to, or your trigger conditions are not met before the start of your next turn you lose the held attack.
 
+<h3>Surprise</h3>
 
-### Surprise
 
 If you attack a target from stealth that is unaware that you exist, you will have Adv (++) on the attack from being hidden and the attack may also be a critical hit due to surprise (GM’s discretion). After this, the target and other targets in the area (GM’s discretion) will become aware of your presence - such as the target shouting to their allies to warn them about you. 
 
 Also if the target is aware of you but is strongly not expecting you to attack them, this may also class as a surprise and gain Adv (++) and even be a critical hit (GM’s discretion).
 
+<h3>Concealment</h3>
 
-### Concealment
 
 A melee attack against a target you cannot see (such as when you are _blind _or the target is _invisible_) is made with DisAdv (--).
 
@@ -1881,8 +1880,8 @@ A ranged attack against a target you cannot see (such as when you are _blind _or
 
 An attack against a target that is unaware of your existence (such as when you are hidden/_invisible_ and combat hasn’t started) has Adv (++).
 
+<h2>Range</h2>
 
-## Range
 
 There are 3 classes of range:
 
@@ -1898,8 +1897,8 @@ This range extension can ONLY be done with abilities if it is specified to have 
 
 These values will be referred to throughout. If an ability has a specific range it can only be used within that range. 
 
+<h2>Damage</h2>
 
-## Damage
 
 Base weapon damage scales with level, leading you to take on stronger foes the higher level you are.
 
@@ -1976,8 +1975,8 @@ To this value you add the appropriate damage modifier. If you used DEX+DEX for t
 
 If a level 1 character had +3 to INT and was making an INT based attack that dealt Light physical damage: They would first make an attack with INT+INT bonus (2d12+3+3). If successful they would then deal Light+INT physical damage (2+3).
 
+<h3>Damage Types</h3>
 
-### Damage Types
 
 	Physical
 
@@ -1997,8 +1996,8 @@ If a level 1 character had +3 to INT and was making an INT based attack that dea
 
 	Soul
 
+<h3>Damage Resistance, Weakness, and Vulnerability</h3>
 
-### Damage Resistance, Weakness, and Vulnerability
 
 Creatures can be **resistant **to damage, this means when they take damage it is divided by 2 rounded down. Damage can never be rounded down below 1. If a creature is hit for 3 fire damage and it is resistant to fire damage it will suffer 1 fire damage.
 
@@ -2031,20 +2030,20 @@ If a creature is immune to a damage type this cannot be altered, regardless of a
 
 Vulnerable, weak, normal, and resistant work on a sliding scale, where gaining resistance to a damage type will move you one step to the right on the scale, and becoming weak to a damage type will move you one step left on the scale. Becoming vulnerable to a damage type will move you two steps to the left on the scale. You cannot be moved off this scale. Sources of damage resistance and vulnerability must be unique - they cannot both come from the same ability or source type (such as a potion), as they will not stack.
 
+<h3>Falling Damage</h3>
 
-### Falling Damage
 
 No damage up to 10ft. 5 damage if the creature falls 15ft or more. Increases by additional 5 damage for every 5ft above 15ft. You can easily calculate damage taken from falling damage by subtracting 10 from the number of ft fallen - that is the damage suffered. For example 30ft would be 20 damage, 45ft would be 35 damage etc. 
 
 When a creature suffers falling damage, it is also knocked _prone_ - unless it is immune or the GM deems it reasonable for the creature to not fall _prone_. 
 
+<h2>Death</h2>
 
-## Death
 
 If you are reduced to 0 hit points you die. There are some limited ways to be brought back to life.
 
+<h2>Conditions</h2>
 
-## Conditions
 
 Conditions are always written in _italics_. Conditions and ability effects always last until the start of the creature’s next turn that was the source of the condition (1 round), unless stated otherwise. Many positive conditions can be permanent.
 
@@ -2242,8 +2241,8 @@ If the creature is stunned during its turn it immediately spends up to 2AP. If i
 </table>
 
 
+<h2>Action List</h2>
 
-## Action List
 
 All the abilities listed below are available to all players from level 1 and have unlimited uses as they are Core abilities. Read each one carefully as many of them will be essential to play your character effectively.
 
@@ -2480,26 +2479,26 @@ All the abilities listed below are available to all players from level 1 and hav
 </table>
 
 
+<h2>Mounted Combat</h2>
 
-## Mounted Combat
 
 When mounted on a willing creature which is larger than you, you can control it by spending AP as normal using the creature’s movement speed. Attacks made while mounted are made with DisAdv (-). You cannot use movement abilities with the creature, however you can dismount as part of the ability use and leave your mount behind. More challenging manoeuvres might require a skill check (GM’s discretion) - having a relevant skill or trait might remove this requirement.
 
-
-# 
-
-
-# Class Tables
+<h1></h1>
 
 
-### Level Column Key
+<h1>Class Tables</h1>
+
+
+<h3>Level Column Key</h3>
+
 
 The number describes the level in this class at which these abilities are unlocked and possible to be gained by a character.
 
 “Core” in the level column means that the ability is a core ability and is automatically unlocked at level 1 in the class and can be used unlimited times (unless stated otherwise).
 
+<h3>Description Column Key</h3>
 
-### Description Column Key
 
 The first sentence is flavour text.
 
@@ -2509,8 +2508,8 @@ If damage type is not specified, it is physical damage.
 
 Conditions are shown in _italics_. 
 
+<h3>Target Column Key</h3>
 
-### Target Column Key
 
 This column concisely describes what and how the ability assigns targets, range, and description of AoE. These details will all still be present in the description column.
 
@@ -2550,8 +2549,8 @@ Third part is other specific descriptions:
 
 All of these parts are optional but they will appear in this order.
 
+<h3>AP Cost Column Key</h3>
 
-### AP Cost Column Key
 
 All abilities with an AP cost are limited to 3 uses, unless “Core” is written in the level column - these can be used unlimited times (unless stated otherwise).
 
@@ -8151,14 +8150,14 @@ Gain an additional 5 WILL resistance points.
 
 
 
-
-# Appendix
-
-
-## Styling Guide
+<h1>Appendix</h1>
 
 
-### Abilities
+<h2>Styling Guide</h2>
+
+
+<h3>Abilities</h3>
+
 
 Ability description should consist of:
 
@@ -8183,8 +8182,8 @@ Here are a few examples of where this is done:
 
     Create illusory bindings that lock a foe in place. Select a creature within 100ft and _immobilise _them. 2 WILL points to resist the _immobilise_, if they resist they are _hobbled_. 1 WILL point to resist the _hobble_, if they resist they suffer Light psychic damage.
 
+<h2>Ability Balance Guidelines</h2>
 
-## Ability Balance Guidelines
 
 
 
@@ -8194,19 +8193,19 @@ Here are a few examples of where this is done:
 * There should be no abilities that everyone would want. But if they are very tempting to all players (which is still likely) they should appear late in specific classes so the player must invest to gain benefit.
 * As a rough guide, each class should have a range that almost all abilities adhere to. For example Arcane abilities have 100ft range where Elemental abilities have 50ft range. This will still vary for some specific abilities.
 
+<h2>Optional Rules</h2>
 
-## Optional Rules
 
+<h3>Optional Tactician Mode: </h3>
 
-### Optional Tactician Mode: 
 
 WARNING NOT TESTED - You (the GM) may choose to have all creatures have 5AP per turn. This is currently untested and not necessarily balanced. Some boss creatures may already use this system. It works for bosses and not necessarily for players due to the wealth of abilities that the players have available - there may be exploitable combinations that were not considered when making the whole game a 3 AP system.
 
+<h2>Design Choice Explanations</h2>
 
-## Design Choice Explanations
 
+<h3>The Dice</h3>
 
-### The Dice
 
 Why a 2d12 system? Using 2d12 and summing the dice gives a centre weighted distribution of results (similar to a normal/Gaussian distribution), as opposed to a d20 or d100 system that has uniform distribution. This probability distribution makes roll results more consistent, much more like you’d expect in real life, meaning you can put greater trust in the result of your skill checks and attack rolls. 
 
@@ -8216,8 +8215,8 @@ Why add two modifiers to all rolls? This gives a more fluid system for determini
 
 Why have stacking Adv and DisAdv in this way? Because look how pretty it is. This way we can have multiple different conditions and circumstances all affecting the same action and it actually leads to something meaningful in the game. We also use it to define how proficient you are in a given skill.
 
+<h2>Banished Abilities</h2>
 
-## Banished Abilities
 
 
 
