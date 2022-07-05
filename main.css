@@ -1,3 +1,29 @@
+body, a, button {
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(233, 233, 233);
+    background-color: rgb(37, 37, 37);
+}
+
+
+.light-mode {
+    color: rgb(37, 37, 37);
+    background-color: rgb(233, 233, 233);
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+th, td {
+    padding: 7px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .fort {
     color:rgb(179, 0, 29);
 }
@@ -20,4 +46,34 @@
 .sidebar {
     width: 20%;
     position: fixed;
+    padding: 7px;
+    margin-left: 1%;
+}
+
+button, a {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 20px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 3px;
+    transition-duration: 0.3s;
+    text-align: left;
+    text-decoration: none;
+    display:block;
+}
+
+button:hover, a:hover {
+    cursor: pointer;
+    background-color: rgb(211, 211, 211);
+}
+
+a.h2 {
+    margin-left: 10%;
+}
+
+a.h3 {
+    margin-left: 20%;
 }
