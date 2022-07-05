@@ -1,6 +1,6 @@
 body, a, button {
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(233, 233, 233);
+    color: rgb(202, 202, 202);
     background-color: rgb(37, 37, 37);
 }
 
@@ -10,9 +10,78 @@ body, a, button {
     background-color: rgb(233, 233, 233);
 }
 
+.sidebar {
+    width: 20%;
+    position: fixed;
+    padding: 7px;
+    margin-left: 1%;
+}
+
+button, a {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 20px;
+    margin-top: 7px;
+    border: none;
+    border-radius: 3px;
+    transition-duration: 0.3s;
+    text-align: left;
+    text-decoration: none;
+    display:block;
+}
+
+button:hover, a:hover {
+    cursor: pointer;
+    background-color: rgb(122, 122, 122);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: rgb(245, 245, 245);
+}
+
+h1 {
+    margin-top: 50px;
+    font-size: 50px;
+}
+
+h2 {
+    margin-top: 70px;
+    font-size: 30px;
+}
+
+h3 {
+    margin-top: 40px;
+    font-size: 22px;
+}
+
+h4 {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+h5 {
+    margin-top: 30px;
+    font-size: 16px;
+}
+
+a.h2 {
+    margin-left: 10%;
+}
+
+a.h3 {
+    margin-left: 20%;
+}
+
 table, th, td {
     border-collapse: collapse;
     border: 1px solid;
+}
+
+table {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 th, td {
@@ -43,37 +112,6 @@ th, td {
     color:rgb(255, 0, 43);
 }
 
-.sidebar {
-    width: 20%;
-    position: fixed;
-    padding: 7px;
-    margin-left: 1%;
-}
-
-button, a {
-    padding-left: 7px;
-    padding-right: 7px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    font-size: 20px;
-    margin-top: 7px;
-    border: none;
-    border-radius: 3px;
-    transition-duration: 0.3s;
-    text-align: left;
-    text-decoration: none;
-    display:block;
-}
-
-button:hover, a:hover {
-    cursor: pointer;
-    background-color: rgb(211, 211, 211);
-}
-
-a.h2 {
-    margin-left: 10%;
-}
-
-a.h3 {
-    margin-left: 20%;
+.tab {
+    margin-left: 40px;
 }
