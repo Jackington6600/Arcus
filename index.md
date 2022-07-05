@@ -16,7 +16,7 @@
     }
 </style>
 
-<div style="width:25%">
+<div style="width:25%;position:fixed">
   <a href="#Introduction">Introduction</a>
   <a href="#How to Play">How to Play</a>
   <a href="#The Players">The Players</a>
@@ -25,7 +25,7 @@
   <a href="#Examples">Examples</a>
 </div>
 
-<div style="margin-left:25%;position:fixed">
+<div style="margin-left:25%">
 
 <h1 id="Introduction">Introduction</h1>
 
