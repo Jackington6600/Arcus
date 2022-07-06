@@ -149,6 +149,13 @@ th, td {
     margin-right: auto;
 }
 
+.version-text {
+    top: 100px;
+    position:absolute;
+    font-size: 12px;
+    color: rgb(94, 94, 94);
+}
+
 .fort {
     color:rgb(179, 0, 29);
 }
