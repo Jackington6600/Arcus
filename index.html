@@ -4207,7 +4207,8 @@
                </td>
                <td><strong>Move with unparalleled silence and haste. </strong>
                   <p>
-                     Move 50ft without breaking stealth or invisibility.
+                     Move 40ft without breaking stealth or invisibility. At the end of this movement 
+                     you may attempt the Hide core ability at no additional AP cost.
                </td>
                <td>Self
                </td>
@@ -5293,10 +5294,12 @@
                </td>
                <td>Stalagmite
                </td>
-               <td><strong>A large stalagmite erupts from the ground.</strong>
+               <td><strong>A large rock erupts from the ground and then explodes horizontally.</strong>
                   <p>
-                     Select a creature within 50ft that is on the ground, it suffers Light damage and
-                     is knocked <em>prone</em>. 2 REFL points to resist the <em>prone</em>.
+                     Select a point on the ground within 50ft, any creature stood on this tile is knocked 
+                     <em>prone</em>. Then all <em>prone</em> creatures within 5ft of this point, 
+                     including the initial target, suffer Light damage. 2 REFL 
+                     points to resist the <em>prone</em>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -5487,7 +5490,7 @@
                <td><strong>Unleash a swirling hurricane to throw your foes.</strong>
                   <p>
                      Select a point within 50ft, all creatures within 5ft of that point are pushed
-                     directly 10ft away from it. All creatures suffer Light+MOD damage or Medium+MOD
+                     directly 15ft away from it. All creatures suffer Light+MOD damage or Medium+MOD
                      damage if this push movement is stopped by another creature or solid object. 1
                      FORT point to resist the push.
                </td>
@@ -5614,9 +5617,11 @@
                </td>
                <td>Stone Shackles
                </td>
-               <td>Choose a point within 50ft and then choose a visible creature within 30ft
-                  of that point. Pull the creature to this point and Immobilise them. 2 FORT
-                  points to resist both effects. If they resist they suffer Light damage instead.
+               <td>
+                  Choose a point within 50ft and then choose a visible creature within 30ft
+                  of that point. Pull the creature to this point and <em>immobilise</em> and knock them 
+                  <em>prone</em>. 2 FORT points to resist <em>pull</em>, <em>immobilise</em>, 
+                  and <em>prone</em>. If they resist they suffer Light damage instead.
                </td>
                <td>All, 50ft, Single target within 30ft
                </td>
@@ -5628,8 +5633,11 @@
                </td>
                <td>Circuit Breaker
                </td>
-               <td>Auto-Hit a target within 50ft. The target suffers Heavy+MOD Lightning
-                  damage and is Silenced. 2 FORT points to resist.
+               <td>
+                  Auto-Hit a target within 50ft. The target suffers Medium+MOD lightning
+                  damage. You may either <em>silence</em> the creature or <em>mark</em> it and each time the 
+                  creature uses an ability during the <em>mark</em> it suffers Light lightning damage. 2 FORT points to resist 
+                  the <em>silence</em> or 2 WILL points to resist the <em>mark</em>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -5641,11 +5649,11 @@
                </td>
                <td>Drown on Dry Land
                </td>
-               <td>Select a creature within 50ft, they become Stunned and Immobilised as
-                  they start to drown. 2 FORT points to resist both conditions. If the creature
-                  does not spend 1AP on its next turn emptying its lungs it suffers Medium+MOD
-                  damage. This has no effect on creatures that can breathe underwater or do not
-                  need to breathe.
+               <td>
+                  Select a creature within 50ft, they become <em>stunned</em> and <em>hobbled</em> as
+                  they start to drown. If the creature does not resist these conditons, it must spend 1AP on 
+                  its next turn or suffer Medium+MOD damage. This has no effect on creatures that can breathe 
+                  underwater or do not need to breathe. 2 FORT points to resist both conditions. 
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -5670,9 +5678,10 @@
                </td>
                <td>Earthquake
                </td>
-               <td>All non-airborne creatures within 15ft suffer Light damage and are
-                  knocked Prone and Hobbled. If they are already Prone, Hobbled, or Immobilised
-                  they suffer Medium+MOD damage instead. 1 FORT point to resist both conditions.
+               <td>
+                  Select a point within 50ft and the ground within 10ft of this point begins to tremble. 
+                  At the start of your next turn, all non-airborne creatures within this area suffer 
+                  Heavy+MOD damage.
                </td>
                <td>A+E, 15ft, All within range (AoE)
                </td>
@@ -5792,12 +5801,12 @@
             <tr>
                <td>9
                </td>
-               <td>Tectonic Pulse
+               <td>Floating Stone Shrapnel
                </td>
-               <td>All non-airborne creatures within 15ft must use their reaction to jump
-                  over a shockwave of earth that emanates out from you. If they do not spend their
-                  reaction or cannot jump they suffer Medium+MOD damage, and are knocked Prone. 1
-                  FORT points to resist the Prone.
+               <td>
+                  Create a 15ft radius area around you that moves with you. Every 5ft any 
+                  creature is moved as a part of a push or pull through this area it suffers Light 
+                  damage.
                </td>
                <td>A+E, 15ft, All within range (AoE)
                </td>
@@ -5969,10 +5978,11 @@
                </td>
                <td>Soul Tether
                </td>
-               <td>Link yourself to another creature within 100ft, all damage and healing
-                  done to you is also dealt to the other and vice versa. Damage type is not
-                  transferred across the link, if one of you loses HP due to damage, the other
-                  loses the same amount.
+               <td>
+                  Link yourself to another creature within 100ft, all damage and healing 
+                  from sources other than yourself done to you is also dealt to the creature. 
+                  Damage type is not transferred across the link, if you lose HP due to damage, 
+                  the creature loses the same amount.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7036,9 +7046,10 @@
                </td>
                <td>Psychic Link
                </td>
-               <td>Link yourself to another creature within 100ft for one turn, all new
-                  conditions to you are also cast on the other and vice versa. One, both, or
-                  neither can resist as if the condition was independently cast on both of you.
+               <td>
+                  Select a creature within 100ft and link yourself to it. When you are inflicted with 
+                  a condition from a source other than yourself, both you and the creature are 
+                  inflicted with the condition and may attempt to resist it separately as normal.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7061,16 +7072,17 @@
             <tr>
                <td>1
                </td>
-               <td>Mental Shackles
+               <td>Radiating Anguish
                </td>
-               <td>Create illusory bindings that lock a foe in place. Select a creature
-                  within 100ft and <em>immobilise </em>them. 2 WILL points to resist the
-                  <em>immobilise</em>, if they resist they are <em>hobbled</em>. 1 WILL point to
-                  resist the <em>hobble</em>, if they resist they suffer Light psychic damage.
+               <td>
+                  Select a creature within 100ft and select a point within 100ft. At the start of your 
+                  next turn: If the selected creature is within 5ft of the point it suffers Heavy+MOD psychic damage. 
+                  Or if it is within 15ft of the point, it suffers Medium+MOD psychic damage. 
+                  Or if it is within 25ft of the point, it suffers Light+MOD psychic damage. 
                </td>
                <td>A+E, 100ft, Single target
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
             <tr>
