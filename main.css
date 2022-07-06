@@ -175,6 +175,10 @@ th, td {
     color:rgb(255, 0, 43);
 }
 
+.new {
+    color:rgb(97, 141, 211);
+}
+
 .tab {
     margin-left: 40px;
 }

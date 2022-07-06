@@ -3440,33 +3440,35 @@ the <em>stun</em>.
    <td>2
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>1
    </td>
    <td>Sweeping Strike
    </td>
    <td><strong>Strike low and take their feet out from under them.</strong>
-<p>
-Make a melee weapon attack against a creature. On a hit the creature is knocked
-<em>prone </em>and then <em>hobbled</em>. 2 FORT points to resist the
-<em>prone</em>, 1 FORT point to resist the <em>hobble</em>.
+   <p>
+   Select 3 connected tiles all within 5ft. Make a melee weapon attack against all 
+   creatures within these 3 tiles. All creatures hit by the attack suffer half your 
+   weapon damage (e.g. (Medium+STR)/2) are knocked <em>prone</em>. Creatures suffer full 
+   weapon damage if <em>prone</em>, <em>hobbled</em>, or <em>immobilised</em> before the attack. 1 FORT point 
+   to resist the <em>prone</em>.
+   </p>
    </td>
    <td>A+E, Melee, Single target
    </td>
    <td>2
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>1
    </td>
    <td>Overpower
    </td>
-   <td><strong>Launch an enemy over your shoulder to the other side of
-you.</strong>
-<p>
-Select a creature within 5ft and deal Light damage, pull them to another point
-within 5ft of you, and knock them <em>prone</em>. 2 FORT points to resist the
-pull and the <em>prone</em>.
+   <td><strong>Launch an enemy over your shoulder and away from you.</strong>
+   <p>
+   Select a creature within 5ft and push them to another point within 15ft of you, 
+   and knock them <em>prone</em>. 2 FORT points to resist the push and the <em>prone</em>.
+   </p>
    </td>
    <td>A+E, Melee,
 <p>
@@ -3818,15 +3820,18 @@ this effect ends.
    <td>1
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>7
    </td>
    <td>Sundering Strike
    </td>
    <td><strong>Utterly break an enemy's defences.</strong>
-<p>
-Make a melee weapon attack against a creature and on a hit the creature is
-<em>marked </em>and its AC is set to 8.
+   <p>
+   Make a melee weapon attack against a creature and on a hit the creature is
+   <em>marked </em>and its AC is set to 8. Deal additional damage equal to the 
+   AC reduction the creature suffers. For example, a reduction from 16 AC to 8 
+   AC results in 8 additional damage.
+   </p>
    </td>
    <td>A+E, Melee, Single target
    </td>
@@ -3943,6 +3948,52 @@ knocked <em>prone</em>. Costs 1 FORT point to resist the <em>prone</em>.
    <td>2
    </td>
   </tr>
+  <tr class="new">
+   <td>10
+   </td>
+   <td>Quaking Presence
+   </td>
+   <td><strong>Destabalise and break a nearby foe.</strong>
+<p>
+   Select a creature within 5ft and <em>mark</em> it. The next effect inflicted 
+   on them that requires FORT to resist cannot be resisted.
+   </td>
+   <td>A+E, 5ft, Single target
+   </td>
+   <td>1
+   </td>
+  </tr>
+  <tr class="new">
+   <td>?
+   </td>
+   <td>Unstoppable
+   </td>
+   <td><strong>Become truly unstoppable.</strong>
+<p>
+   Gain immunity to all negative conditions, and become <em>immovable</em> and 
+   <em>immutable</em>. This also removes all negative conditions currently 
+   affecting you.
+   </td>
+   <td>S
+   </td>
+   <td>0
+   </td>
+  </tr>
+  <tr class="new">
+   <td>?
+   </td>
+   <td>Rampage
+   </td>
+   <td><strong>Stampede forwards, clattering all in your path.</strong>
+<p>
+   Move up to 40ft. Each creature you move within 5ft of you may push 10ft in 
+   a direction of your choice. 1 FORT to resist the push.
+   </td>
+   <td>All, 5ft, All within range (AoE)
+   </td>
+   <td>1
+   </td>
+  </tr>
 </table>
 <p>
 </p>
@@ -4003,7 +4054,7 @@ This additional damage cannot drop below 0.
    <td>2
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>1
    </td>
    <td>Entangling Manoeuvre
@@ -4011,7 +4062,7 @@ This additional damage cannot drop below 0.
    <td><strong>Tangle your foe in rope as you move nimbly around them. </strong>
 <p>
 <em>Immobilise </em>a creature within 5ft of you, then move yourself to any
-position within 10ft of that same creature. 2 REFL points to resist the
+position within 15ft of that same creature. 2 REFL points to resist the
 <em>immobilise</em>.
    </td>
    <td>A+E, 5ft, Single target
@@ -4464,15 +4515,15 @@ maximum.
    <td>Pass
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>10
    </td>
    <td>Swift Interdiction
    </td>
    <td><strong>They will be helpless against your onslaught.</strong>
-<p>
-<em>Mark </em>a creature within 5ft. This creature cannot spend resistance
-points the next time it is subjected to a resistible effect.
+   <p>
+   Select a creature within 5ft and <em>mark</em> it. The next effect inflicted 
+   on them that requires REFL to resist cannot be resisted.
    </td>
    <td>A+E, 5ft, Single target
    </td>
@@ -5334,7 +5385,7 @@ suffer Light+MOD lightning damage, then you may jump to a point within 30ft.
    <td>2
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>3
    </td>
    <td>Stalactite
@@ -5342,7 +5393,7 @@ suffer Light+MOD lightning damage, then you may jump to a point within 30ft.
    <td><strong>Drop a large spiked rock on your foe.</strong>
 <p>
 Make a versatile MOD attack against a creature within 50ft. On a hit it suffers
-Heavy+MOD damage. This attack is a critical hit on <em>prone </em>targets.
+Medium+MOD damage. Deal an additional Heavy damage if the creature is <em>prone</em>.
    </td>
    <td>A+E, 50ft, Single target
    </td>
@@ -5529,13 +5580,13 @@ FORT points to resist the push.
    <td>1
    </td>
   </tr>
-  <tr>
+  <tr class="new">
    <td>5
    </td>
    <td>Boil Blood
    </td>
    <td>Auto-Hit a creature within 50ft and deal Heavy+MOD Fire damage. You may
-choose to suffer Medium Fire damage to Crit this attack.
+choose to suffer Heavy Fire damage to Crit this attack.
    </td>
    <td>A+E, 50ft, Single target
    </td>
