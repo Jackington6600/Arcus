@@ -98,8 +98,7 @@
       <a class="h3" href="#Range">Range</a>
       <a class="h3" href="#Damage">Damage</a>
       <a class="h4" href="#Damage Types">Damage Types</a>
-      <a class="h4" href="#Damage Resistance, Weakness, and Vulnerability">Damage Resistance, Weakness, and
-         Vulnerability</a>
+      <a class="h4" href="#Damage Resistance, Weakness, and Vulnerability">Damage Resistance, Weakness, and Vulnerability</a>
       <a class="h4" href="#Falling Damage">Falling Damage</a>
       <a class="h3" href="#Death">Death</a>
       <a class="h3" href="#Conditions">Conditions</a>
@@ -123,6 +122,9 @@
       <a class="h3" href="#Engineer">Engineer</a>
       <a class="h3" href="#Beastmaster">Beastmaster</a>
       <a class="h2" href="#Appendix">Appendix</a>
+      <a class="h3" href="#Stat Blocks">Stat Blocks</a>
+      <a class="h4" href="#Undead Creature Stats">Undead Creature Stats</a>
+      <a class="h4" href="#Beast Base Stats">Beast Base Stats</a>
       <a class="h3" href="#Styling Guide">Styling Guide</a>
       <a class="h4" href="#Ability Style">Ability Style</a>
       <a class="h3" href="#Ability Balance Guidelines">Ability Balance Guidelines</a>
@@ -5953,7 +5955,7 @@
                </td>
                <td>
                   Link yourself to another creature within 100ft, all damage and healing 
-                  from sources other than yourself done to you is also dealt to the creature. 
+                  dealt to you from sources other than yourself is also dealt to the creature. 
                   Damage type is not transferred across the link, if you lose HP due to damage, 
                   the creature loses the same amount.
                </td>
@@ -5965,14 +5967,17 @@
             <tr>
                <td>1
                </td>
-               <td>Mark For Death
+               <td>Toll The Dead
                </td>
-               <td>Mark target within 100ft. If the target dies when marked they explode
-                  with soul energy on death dealing Light+SPI Soul damage to all creatures in 5ft.
+               <td>
+                  When you reduce a creature within 100ft to 0 HP, you may spend your reaction to 
+                  make a versatile SPI attack against another creature within 10ft of the initial target. 
+                  On a hit the creature suffers Light+SPI soul damage. It must specifically be you 
+                  and your damage that reduces the creature to 0 HP.
                </td>
-               <td>A+E, 100ft, Single target
+               <td>A+E, 100ft, Single target within 10ft
                </td>
-               <td>1
+               <td>React
                </td>
             </tr>
             <tr>
@@ -6078,17 +6083,19 @@
             <tr>
                <td>3
                </td>
-               <td>You’re Mine Now
+               <td>Summon The Dead
                </td>
-               <td>After you slay a creature within 100ft, raise their spirit to attack
-                  their former allies. When you kill an enemy, you can use your reaction to raise
-                  a ghostly figure. This then makes a SPI based attack against up to two creatures
-                  within 10ft for Medium+SPI Soul damage then disappears. The enemy has to be
-                  visible when it dies.
+               <td>
+                  Suffer Heavy damage and choose 3 points within 50ft. Summon an undead creature on each of 
+                  these points - see the appendix for a relevant stat block. Each of these creatures 
+                  are fully controlled by you and may each immediately take their turn upon being summoned. 
+                  In future rounds will take turns immediately before yours. On your turn you may
+                  spend 0 AP to destroy any of these creatures. You may have a maximum of 3 undead creatures 
+                  summoned at any time, and they will persist until you take a short or long rest.
                </td>
-               <td>A+E, 100ft, 2 targets within 10ft
+               <td>-, 10ft, 3 targets
                </td>
-               <td>React
+               <td>2
                </td>
             </tr>
             <tr>
@@ -6150,14 +6157,20 @@
             <tr>
                <td>4
                </td>
-               <td>Death Ward
+               <td>Duality
                </td>
-               <td>Mark a target within 100ft, if they are reduced to 0HP they immediately
-                  regain Heavy+SPI HP and do not fall unconscious.
+               <td>
+                  Select 2 points within 100ft, create a 10ft radius zone around each, choose 
+                  one to be an area of life and the other an area of death. At the start of 
+                  your next turn enemies in the area of death each suffer Medium+SPI soul damage. 
+                  The number of creatures damaged in the area of death is multiplied by Light, and 
+                  all allies in the area of life are healed that amount (up to a maximum of 3*Light). 
+                  For example, 2 enemies damaged would result in 2*Light healing to each ally in the 
+                  area of life.
                </td>
-               <td>A+E, 100ft, Single target
+               <td>A+E, 100ft, Creatures of choice within 15ft of 2 points (AoE)
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
             <tr>
@@ -6220,14 +6233,14 @@
             <tr>
                <td>5
                </td>
-               <td>From Harm Comes Health
+               <td>Summon ???
                </td>
-               <td>Mark yourself. Every time you take damage in your next turn, heal an ally
-                  within 100ft for half the damage you recieve.
+               <td>
+                  TODO
                </td>
-               <td>A, 100ft, Single target
+               <td>???
                </td>
-               <td>1
+               <td>???
                </td>
             </tr>
             <tr>
@@ -6248,14 +6261,14 @@
             <tr>
                <td>6
                </td>
-               <td>Holy War
+               <td>From Harm Comes Health
                </td>
-               <td>Whenever you deal damage you may choose to have it be Soul damage
-                  instead.
+               <td>Mark yourself. Every time you take damage in your next turn, heal an ally
+                  within 100ft for half the damage you recieve.
                </td>
-               <td>Self
+               <td>A, 100ft, Single target
                </td>
-               <td>Pass
+               <td>1
                </td>
             </tr>
             <tr>
@@ -6288,15 +6301,14 @@
             <tr>
                <td>8
                </td>
-               <td>Spirit Tear
+               <td>Holy War
                </td>
-               <td>Shatter a creature’s soul within 100ft. Shards fly out in all directions,
-                  dealing Light+SPI Soul damage to the target and all creatures of your choosing
-                  in a 10ft radius.
+               <td>Whenever you deal damage you may choose to have it be Soul damage
+                  instead.
                </td>
-               <td>All, 100ft, Creatures of choice within 10ft (AoE)
+               <td>Self
                </td>
-               <td>2
+               <td>Pass
                </td>
             </tr>
             <tr>
@@ -7457,7 +7469,7 @@
                </td>
                <td>A+E, 100ft, Single target
                </td>
-               <td>2
+               <td>3
                </td>
             </tr>
          </table>
@@ -7493,7 +7505,7 @@
                <td>Beast Shape
                </td>
                <td>You gain the ability to shapeshift into a small animal for 1AP (See Beast
-                  Shape table). This is limited to 3 uses. You also gain the abilities associated
+                  Shape table in the Appendix). This is limited to 3 uses. You also gain the abilities associated
                   with that beast. When you shapeshift into the beast, your modifiers and damage
                   changes and you can carry across HP up to that of the max HP of the beast. When
                   you are reduced to 0HP as the beast, you revert back to your original form minus
@@ -7980,500 +7992,6 @@
                </td>
             </tr>
          </table>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Small Animal">Beast Shape - Small Animal</h4>
-                  <strong><em>For 1AP, you can transform into a small animal such as a rat, snake,
-                        or lizard. Useful for fast movement, evading damage, and poisoning.
-                     </em></strong>
-                  <p>
-                     Attack: Melee Light+Dex
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med*2
-               </td>
-               <td>Movement: 30ft
-               </td>
-               <td colspan="2">AC: 16
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 8
-               </td>
-               <td>DEX: 16
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 8
-               </td>
-               <td>PER: 18
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Nimble
-               </td>
-               <td>You ignore difficult terrain and can climb any surface at half movement
-                  speed without a skill check.
-                  <p>
-                     If you choose an amphibious creature it can swim at full movement speed.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Poison Strike
-               </td>
-               <td>Make a regular melee attack against a target. On a successful hit do
-                  Medium+DEX poison damage and hobble. 2 FORT to resist hobble
-               </td>
-               <td>E, Melee
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Scamper
-               </td>
-               <td>Move 50ft. Can climb upwards at normal speed
-               </td>
-               <td>Self
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
-         <p>
-         </p>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Medium Animal">Beast Shape - Medium Animal</h4>
-                  <strong><em>For 1AP, you can transform into a medium animal such as a wolf,
-                        leopard, or pig. Useful for team fighting and crowd control.</em></strong>
-                  <p>
-                     Attack: Melee Medium+Dex
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med*4
-               </td>
-               <td>Movement: 25ft
-               </td>
-               <td colspan="2">AC: 13
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 12
-               </td>
-               <td>DEX: 16
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 14
-               </td>
-               <td>PER: 16
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Pack Hunter
-               </td>
-               <td>Do additional Light damage for every ally adjacent to the enemy you are
-                  melee attacking
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Go for the Throat
-               </td>
-               <td>Do a regular melee attack against a target that is either Stunned, Prone,
-                  or Imobolised. On a hit do Heavy+Dex damage
-               </td>
-               <td>E, Melee
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Knock to the Floor
-               </td>
-               <td>Knock and enemy within 5ft prone. 2 Fort resist
-               </td>
-               <td>E
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Large Animal">Beast Shape - Large Animal</h4>
-                  <strong><em>For 1AP, you can transform into a large animal such as a bear,
-                        moose, or sphinx. Useful for raw melee damage or toughness. </em></strong>
-                  <p>
-                     Attack: Melee Heavy+Str
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med*10
-               </td>
-               <td>Movement: 20ft
-               </td>
-               <td colspan="2">AC: 11
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 20
-               </td>
-               <td>DEX: 8
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 16
-               </td>
-               <td>PER: 14
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Barrel
-               </td>
-               <td>Rush forward smashing all enemies in your path. Move up to 20ft in a
-                  straight line and make a regular melee attack against all targets in that line.
-                  All targets hit by the attack take your regular attack damage and are knocked
-                  prone. 1 FORT point to resist.
-               </td>
-               <td>A+E, All within 20ft straight line from self (AoE)
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Take Back to Den
-               </td>
-               <td>Bite onto an enemy within 5ft, then move and drag the enemy up to 20ft
-                  with you. 2 FORT to resist
-               </td>
-               <td>E
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</h4>
-                  <strong><em>For 1AP, you can transform into an aquatic animal such as a shark,
-                        dolphin, or small whale. Useful for water encounters</em></strong>
-                  <p>
-                     Attack: Melee Med+Dex
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med*6
-               </td>
-               <td>Movement: 5ft (Land) 45ft (Water)
-               </td>
-               <td colspan="2">AC: 15
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 12
-               </td>
-               <td>DEX: 18
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 16
-               </td>
-               <td>PER: 14
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Water Breathing
-               </td>
-               <td>When in water, you have Adv (+) on all CON checks and don’t need to hold
-                  your breath.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Water Strike
-               </td>
-               <td>Storm forward and strike with great force. Choose a point you can see
-                  within 20ft and speed to that tile, you then may immediately make a regular
-                  melee attack against a target. On a hit the target takes additional Light damage
-                  for each tile moved (distance in ft divided by 5). 15ft is equal to 3 tiles, 3
-                  additional damage is dealt. You cannot use Water Strike on a target within 5ft.
-               </td>
-               <td>A+E, 20ft/Melee, Single target
-               </td>
-               <td>3
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Circling Fins
-               </td>
-               <td>Cause fear into the heart of any non blinded enemy within 20ft. 1 WILL
-                  resist
-               </td>
-               <td>E, AOE, 20ft
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
-         <p>
-         </p>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</h4>
-                  <strong><em>For 1AP, you can transform into a small flying animal such as a
-                        hawk, eagle, or bat. Useful for scouting, crossing ravines, and against
-                        creatures without range. </em></strong>
-                  <p>
-                     Attack: Melee Light+Dex
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med
-               </td>
-               <td>Movement: 25ft - Flying
-               </td>
-               <td colspan="2">AC: 16
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 8
-               </td>
-               <td>DEX: 16
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 8
-               </td>
-               <td>PER: 18
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Go for the Eyes
-               </td>
-               <td>Swoop down on target.<br><br>Move up to 25ft and make a
-                  regular melee attack. On a successful hit deal Medium+DEX and blind the
-                  opponent. 2 REFL Points to resist the blind. Move up to 25ft away, however this
-                  will trigger attacks of opportunity.
-               </td>
-               <td>E, Melee
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Distraction
-               </td>
-               <td>Mark the target creature, giving them the marked conditions for one turn.
-                  All attacks against the marked target get Adv (++).
-               </td>
-               <td>E, 100ft, Single target
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
-         <table class="center">
-            <tr>
-               <td colspan="5">
-                  <h4 id="Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</h4>
-                  <strong><em>For 1AP, you can transform into a large flying animal such as a
-                        giant eagle, griffin, or pterodactyl. Useful for air combat, carrying creatures
-                        across ravines, and against creatures without range. </em></strong>
-                  <p>
-                     Attack: Melee Medium+Str
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">Max Health: Med*6
-               </td>
-               <td>Movement: 20ft - Flying
-               </td>
-               <td colspan="2">AC: 13
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">STR: 18
-               </td>
-               <td>DEX: 10
-               </td>
-               <td colspan="2">INT: -
-               </td>
-            </tr>
-            <tr>
-               <td colspan="2">CON: 12
-               </td>
-               <td>PER: 16
-               </td>
-               <td colspan="2">SPI: -
-               </td>
-            </tr>
-            <tr>
-               <td>Level
-               </td>
-               <td>Name
-               </td>
-               <td>Description
-               </td>
-               <td>Target
-               </td>
-               <td>AP Cost
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Pick Up and Drop
-               </td>
-               <td>Sink your talons into an enemy. Make a regular melee attack. On a
-                  successful hit deal Medium+DEX damage. Hold onto the target and fly 20ft up into
-                  the air after which the target is dropped dealing 20ft fall damage (Heavy). 2
-                  FORT to resistance being lifted into the air
-               </td>
-               <td>E, Melee
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
-               <td>Sky Fall
-               </td>
-               <td>Make a 60ft movement where you drop at least 30ft downwards. If you
-                  finish your movement on the ground all creatures within 5ft get knocked prone. 1
-                  REFL to resist being knocked prone.
-               </td>
-               <td>A+E, AOE, 5ft
-               </td>
-               <td>1
-               </td>
-            </tr>
-         </table>
          <p>
          </p>
          <table class="center">
@@ -8507,7 +8025,7 @@
                <td>Hardy constructs
                </td>
                <td>All of the engineer’s constructs persist as if they were creatures.
-                  These can be destroyed by the enemy and have an AC of 10 and HP of 2xINT. If a
+                  These can be destroyed by the enemy and have an AC of 10 and HP of 2xINT (minimum 1). If a
                   trap is destroyed it does not trigger. Only one of each type of construct
                   (read: ability) can persist at any time, and you can deconstruct them whenever
                   you want for 0 AP. If cast while hidden, the construct remains hidden until
@@ -9536,6 +9054,563 @@
                </td>
             </tr>
          </table>
+         
+         <p>
+         </p>
+         <h2 id="Appendix">Appendix</h2>
+
+         <h3 id="Stat Blocks">Stat Blocks</h3>
+
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Small Animal">Beast Shape - Small Animal</h4>
+                  <strong><em>For 1AP, you can transform into a small animal such as a rat, snake,
+                        or lizard. Useful for fast movement, evading damage, and poisoning.
+                     </em></strong>
+                  <p>
+                     Attack: Melee Light+Dex
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med*2
+               </td>
+               <td>Movement: 30ft
+               </td>
+               <td colspan="2">AC: 16
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 8
+               </td>
+               <td>DEX: 16
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 8
+               </td>
+               <td>PER: 18
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Nimble
+               </td>
+               <td>You ignore difficult terrain and can climb any surface at half movement
+                  speed without a skill check.
+                  <p>
+                     If you choose an amphibious creature it can swim at full movement speed.
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Poison Strike
+               </td>
+               <td>Make a regular melee attack against a target. On a successful hit do
+                  Medium+DEX poison damage and hobble. 2 FORT to resist hobble
+               </td>
+               <td>E, Melee
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Scamper
+               </td>
+               <td>Move 50ft. Can climb upwards at normal speed
+               </td>
+               <td>Self
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+         <p>
+         </p>
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Medium Animal">Beast Shape - Medium Animal</h4>
+                  <strong><em>For 1AP, you can transform into a medium animal such as a wolf,
+                        leopard, or pig. Useful for team fighting and crowd control.</em></strong>
+                  <p>
+                     Attack: Melee Medium+Dex
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med*4
+               </td>
+               <td>Movement: 25ft
+               </td>
+               <td colspan="2">AC: 13
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 12
+               </td>
+               <td>DEX: 16
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 14
+               </td>
+               <td>PER: 16
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Pack Hunter
+               </td>
+               <td>Do additional Light damage for every ally adjacent to the enemy you are
+                  melee attacking
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Go for the Throat
+               </td>
+               <td>Do a regular melee attack against a target that is either Stunned, Prone,
+                  or Imobolised. On a hit do Heavy+Dex damage
+               </td>
+               <td>E, Melee
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Knock to the Floor
+               </td>
+               <td>Knock and enemy within 5ft prone. 2 Fort resist
+               </td>
+               <td>E
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Large Animal">Beast Shape - Large Animal</h4>
+                  <strong><em>For 1AP, you can transform into a large animal such as a bear,
+                        moose, or sphinx. Useful for raw melee damage or toughness. </em></strong>
+                  <p>
+                     Attack: Melee Heavy+Str
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med*10
+               </td>
+               <td>Movement: 20ft
+               </td>
+               <td colspan="2">AC: 11
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 20
+               </td>
+               <td>DEX: 8
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 16
+               </td>
+               <td>PER: 14
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Barrel
+               </td>
+               <td>Rush forward smashing all enemies in your path. Move up to 20ft in a
+                  straight line and make a regular melee attack against all targets in that line.
+                  All targets hit by the attack take your regular attack damage and are knocked
+                  prone. 1 FORT point to resist.
+               </td>
+               <td>A+E, All within 20ft straight line from self (AoE)
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Take Back to Den
+               </td>
+               <td>Bite onto an enemy within 5ft, then move and drag the enemy up to 20ft
+                  with you. 2 FORT to resist
+               </td>
+               <td>E
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</h4>
+                  <strong><em>For 1AP, you can transform into an aquatic animal such as a shark,
+                        dolphin, or small whale. Useful for water encounters</em></strong>
+                  <p>
+                     Attack: Melee Med+Dex
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med*6
+               </td>
+               <td>Movement: 5ft (Land) 45ft (Water)
+               </td>
+               <td colspan="2">AC: 15
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 12
+               </td>
+               <td>DEX: 18
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 16
+               </td>
+               <td>PER: 14
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Water Breathing
+               </td>
+               <td>When in water, you have Adv (+) on all CON checks and don’t need to hold
+                  your breath.
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Water Strike
+               </td>
+               <td>Storm forward and strike with great force. Choose a point you can see
+                  within 20ft and speed to that tile, you then may immediately make a regular
+                  melee attack against a target. On a hit the target takes additional Light damage
+                  for each tile moved (distance in ft divided by 5). 15ft is equal to 3 tiles, 3
+                  additional damage is dealt. You cannot use Water Strike on a target within 5ft.
+               </td>
+               <td>A+E, 20ft/Melee, Single target
+               </td>
+               <td>3
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Circling Fins
+               </td>
+               <td>Cause fear into the heart of any non blinded enemy within 20ft. 1 WILL
+                  resist
+               </td>
+               <td>E, AOE, 20ft
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+         <p>
+         </p>
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</h4>
+                  <strong><em>For 1AP, you can transform into a small flying animal such as a
+                        hawk, eagle, or bat. Useful for scouting, crossing ravines, and against
+                        creatures without range. </em></strong>
+                  <p>
+                     Attack: Melee Light+Dex
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med
+               </td>
+               <td>Movement: 25ft - Flying
+               </td>
+               <td colspan="2">AC: 16
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 8
+               </td>
+               <td>DEX: 16
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 8
+               </td>
+               <td>PER: 18
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Go for the Eyes
+               </td>
+               <td>Swoop down on target.<br><br>Move up to 25ft and make a
+                  regular melee attack. On a successful hit deal Medium+DEX and blind the
+                  opponent. 2 REFL Points to resist the blind. Move up to 25ft away, however this
+                  will trigger attacks of opportunity.
+               </td>
+               <td>E, Melee
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Distraction
+               </td>
+               <td>Mark the target creature, giving them the marked conditions for one turn.
+                  All attacks against the marked target get Adv (++).
+               </td>
+               <td>E, 100ft, Single target
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</h4>
+                  <strong><em>For 1AP, you can transform into a large flying animal such as a
+                        giant eagle, griffin, or pterodactyl. Useful for air combat, carrying creatures
+                        across ravines, and against creatures without range. </em></strong>
+                  <p>
+                     Attack: Melee Medium+Str
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Med*6
+               </td>
+               <td>Movement: 20ft - Flying
+               </td>
+               <td colspan="2">AC: 13
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 18
+               </td>
+               <td>DEX: 10
+               </td>
+               <td colspan="2">INT: -
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 12
+               </td>
+               <td>PER: 16
+               </td>
+               <td colspan="2">SPI: -
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Pick Up and Drop
+               </td>
+               <td>Sink your talons into an enemy. Make a regular melee attack. On a
+                  successful hit deal Medium+DEX damage. Hold onto the target and fly 20ft up into
+                  the air after which the target is dropped dealing 20ft fall damage (Heavy). 2
+                  FORT to resistance being lifted into the air
+               </td>
+               <td>E, Melee
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Sky Fall
+               </td>
+               <td>Make a 60ft movement where you drop at least 30ft downwards. If you
+                  finish your movement on the ground all creatures within 5ft get knocked prone. 1
+                  REFL to resist being knocked prone.
+               </td>
+               <td>A+E, AOE, 5ft
+               </td>
+               <td>1
+               </td>
+            </tr>
+         </table>
+
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Undead Creature Stats">Undead Creature Stats</h4>
+                  <strong><em></em>Source: Summon the dead ability (Mortality).</strong>
+                  <p>
+                     <strong><em>These creatures will either have a physcical form if summoned 
+                        within 5ft of a humanoid corpse (this human corpse will be reanimated), or 
+                        it will have a ghostly form of a spirit. You can talk to your GM about the 
+                        specifics of how you want these undead creatures to look.
+                     </em></strong>
+                  <p>
+                     <strong><em></em></strong>
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max Health: Light
+               </td>
+               <td>Movement: 10ft
+               </td>
+               <td colspan="2">AC: 10
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 12
+               </td>
+               <td>DEX: 6
+               </td>
+               <td colspan="2">INT: 4
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 6
+               </td>
+               <td>PER: 6
+               </td>
+               <td colspan="2">SPI: 2
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">FORT: 0
+               </td>
+               <td>REFL: 0
+               </td>
+               <td colspan="2">WILL: 0
+               </td>
+            </tr>
+            <tr>
+               <td colspan="3">Regular Melee Attack Bonus: +2
+               </td>
+               <td colspan="2">Regular Melee Attack Damage: Light
+               </td>
+            </tr>
+         </table>
+
          <table class="center">
             <tr>
                <td colspan="5">
@@ -9584,9 +9659,7 @@
                </td>
             </tr>
          </table>
-         <p>
-         </p>
-         <h2 id="Appendix">Appendix</h2>
+
          <h3 id="Styling Guide">Styling Guide</h3>
          <h4 id="Ability Style">Ability Style</h4>
          <p>
