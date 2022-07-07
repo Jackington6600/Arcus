@@ -3685,8 +3685,8 @@
                <td><strong>Disregard your defences to make lethal attacks against your
                      foes.</strong>
                   <p>
-                     <em>Mark </em>yourself and all attacks you make gain Adv (++). <span class="wip">All
-                        attacks made against you gain Adv (+).</span>
+                     <em>Mark </em>yourself and all attacks you make gain Adv (++). All
+                        attacks made against you gain Adv (+).
                </td>
                <td>Self
                </td>
@@ -3696,13 +3696,13 @@
             <tr>
                <td>4
                </td>
-               <td>No Retaliation
+               <td>Silencing Strike
                </td>
-               <td><strong>Crush a foe’s offensive capability.</strong>
+               <td><strong>Lash out and limit an enemy’s capabilities.</strong>
                   <p>
-                     Make a melee weapon attack against a creature. On a hit the creature has DisAdv
-                     (--) on all of their attacks and loses their reaction. 2 WILL to resist the
-                     DisAdv (--).
+                     Make a melee weapon attack against a creature and on a hit the creature is
+                     <em>silenced</em> and has DisAdv (--) on all attack rolls. 2 FORT 
+                     points to resist the <em>silence</em>, 1 FORT point to resist the DisAdv (--).
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -3764,10 +3764,10 @@
                </td>
                <td><strong>Yell and disorient your foes.</strong>
                   <p>
-                     When an enemy within 10ft makes an attack against an ally, you may spend your
+                     When an enemy within 15ft makes an attack against an ally, you may spend your
                      reaction to impose DisAdv (--) on the attack.
                </td>
-               <td>A+E, 10ft, Single target
+               <td>A+E, 15ft, Single target
                </td>
                <td>React
                </td>
@@ -3858,14 +3858,16 @@
             <tr>
                <td>8
                </td>
-               <td>Silencing Strike
+               <td>Thunderous Slam
                </td>
-               <td><strong>Lash out and limit an enemy’s capabilities.</strong>
+               <td><strong>Summon an overwhelming sonic boom to bring your enemies to their
+                     knees. </strong>
                   <p>
-                     Make a melee weapon attack against a creature and on a hit the creature is
-                     <em>silenced</em>. 2 FORT points to resist the <em>silence</em>.
+                     Make a melee weapon attack against a creature. On a hit all creatures within
+                     10ft of the initial target (excluding yourself) suffer Light damage and are
+                     knocked <em>prone</em>. Costs 1 FORT point to resist the <em>prone</em>.
                </td>
-               <td>A+E, Melee, Single target
+               <td>A+E, Melee, All within 5ft of the target (AoE) excluding Self
                </td>
                <td>2
                </td>
@@ -3873,14 +3875,14 @@
             <tr>
                <td>9
                </td>
-               <td>Silencing Shout
+               <td>Rampage
                </td>
-               <td><strong>Scream with the power to inhibit nearby creatures.</strong>
+               <td><strong>Stampede forwards, clattering all in your path.</strong>
                   <p>
-                     <em>Silence </em>all enemies in 15ft. 1 WILL point to resist the
-                     <em>silence</em>.
+                     Move up to 40ft. Each creature you move within 5ft of you may push 10ft in 
+                     a direction of your choice. 1 FORT to resist the push.
                </td>
-               <td>E, 15ft, All within range (AoE)
+               <td>A+E, 5ft, All within 5ft of 40ft movement (AoE)
                </td>
                <td>1
                </td>
@@ -3932,24 +3934,7 @@
                </td>
                <td>1
                </td>
-            </tr>
-            <tr>
-               <td>10
-               </td>
-               <td>Thunderous Slam
-               </td>
-               <td><strong>Summon an overwhelming sonic boom to bring your enemies to their
-                     knees. </strong>
-                  <p>
-                     Make a melee weapon attack against a creature. On a hit all creatures within
-                     10ft of the initial target (excluding yourself) suffer Light+STR damage and are
-                     knocked <em>prone</em>. Costs 1 FORT point to resist the <em>prone</em>.
-               </td>
-               <td>A+E, Melee, All within 5ft of the target (AoE) excluding Self
-               </td>
-               <td>2
-               </td>
-            </tr>
+            </tr> 
             <tr>
                <td>10
                </td>
@@ -3966,7 +3951,7 @@
                </td>
             </tr>
             <tr>
-               <td>?
+               <td>10
                </td>
                <td>Unstoppable
                </td>
@@ -3979,21 +3964,6 @@
                <td>S
                </td>
                <td>0
-               </td>
-            </tr>
-            <tr>
-               <td>?
-               </td>
-               <td>Rampage
-               </td>
-               <td><strong>Stampede forwards, clattering all in your path.</strong>
-                  <p>
-                     Move up to 40ft. Each creature you move within 5ft of you may push 10ft in 
-                     a direction of your choice. 1 FORT to resist the push.
-               </td>
-               <td>All, 5ft, All within range (AoE)
-               </td>
-               <td>1
                </td>
             </tr>
          </table>
@@ -4648,10 +4618,12 @@
                <td><strong>Lock your target in place with pinning fire.</strong>
                   <p>
                      Make a ranged weapon attack against a creature. On a hit the creature is
-                     <em>immobilised </em>and <em>hobbled</em>. 2 FORT points to resist the
-                     <em>immobilise</em>, 1 FORT point to resist the <em>hobble</em>.
+                     <em>immobilised</em> and <em>hobbled</em>. If you successfully immobilise the 
+                     target, and there is an ally within melee range, the ally may spend their reaction 
+                     to deal Medium damage the initial target. 2 FORT points to resist the
+                     <em>immobilise</em>, the <em>hobbled</em> cannot be resisted.
                </td>
-               <td>A+E, Weapon (Ranged weapon required)
+               <td>A+E, Weapon (Ranged weapon required), Single target
                </td>
                <td>2
                </td>
@@ -4724,13 +4696,13 @@
                </td>
                <td><strong>Suppress the hostile ranged offensive.</strong>
                   <p>
-                     Select a point within 100ft and create a 10ft radius zone. All creatures within
+                     Select a point within 100ft and create a 15ft radius zone. All enemies within
                      this zone have DisAdv (--) on all ranged attack rolls. This DisAdv cannot be
-                     resisted, and if creatures leave the area the effect ends.
+                     resisted but a creature in the zone may suffer Light damage to ignore the DisAdv (--). 
+                     If creatures leave the area the DisAdv (--) effect ends.
                </td>
-               <td>E, 100ft (Ranged weapon required),
-                  <p>
-                     All enemies within a 15ft radius (AoE)
+               <td>
+                  E, 100ft (Ranged weapon required), All enemies within a 15ft radius (AoE)
                </td>
                <td>1
                </td>
@@ -5232,7 +5204,7 @@
                <td><strong>Push your foes with a forceful gust.</strong>
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit deal
-                     Medium+MOD damage and the creature is pushed 10ft in a straight line in a
+                     Medium+MOD damage and the creature is pushed 15ft in a straight line in a
                      direction of your choice. If this push movement is stopped by another creature
                      or solid object, they suffer additional Light damage and the target is knocked
                      <em>prone</em>. 2 FORT points to resist the push, 1 FORT point to resist the
@@ -5524,13 +5496,14 @@
                <td><strong>Erupt into flames and charge forward, leaving a wall of fire in
                      your path.</strong>
                   <p>
-                     Move up to 20ft in a straight line and make a melee MOD attack against all
-                     creatures in that line. On a hit, each creature suffers Light+MOD fire damage. A
-                     wall of flame persists in all tiles that you moved through (including the
-                     starting tile and excluding the ending tile) and all creatures that move onto
-                     these tiles or end their turn there suffer Medium+MOD fire damage.
+                     Move up to 30ft, including moving through tiles occupied by creatures, and 
+                     make a melee MOD attack against all creatures you move through. On a hit, 
+                     each creature suffers Light+MOD fire damage. A wall of flame persists in all 
+                     tiles that you moved through (including the starting tile and excluding the 
+                     ending tile) and all creatures that move onto these tiles or end their turn 
+                     there suffer Medium+MOD fire damage.
                </td>
-               <td>A+E, All within 20ft straight line from self (AoE)
+               <td>A+E, All within 30ft movement (AoE)
                </td>
                <td>2
                </td>
