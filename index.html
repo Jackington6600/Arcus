@@ -24,19 +24,30 @@
       }
       
       function close_nav() {
-         if (window.screen.width <= 800) {
+         if (window.innerWidth <= 800) {
             document.getElementById("nav-sidebar").style.display = "none";
             document.getElementById("open-nav-button").style.display = "block";
          }   
       }
 
       window.onload = function() {
-      var links = document.getElementsByTagName('a');
+         var links = document.getElementsByTagName('a');
          for(var i = 0; i < links.length; i++) {
             var link = links[i];
             link.onclick = close_nav
          }
       }
+
+      window.addEventListener('resize', function(event){
+         if (window.innerWidth <= 800) {
+            document.getElementById("nav-sidebar").style.display = "none";
+            document.getElementById("open-nav-button").style.display = "block";
+         }  
+         else {
+            document.getElementById("nav-sidebar").style.display = "block";
+            document.getElementById("open-nav-button").style.display = "none";
+         }
+      });
    </script>
 
    <div id="nav-sidebar" class="sidebar">
