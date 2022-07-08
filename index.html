@@ -1154,7 +1154,8 @@
                </td>
                <td>Weak to Soul damage, receives half healing from all sources. Cannot truly
                   die. When your HP is reduced to 0 you fall unconscious. You can only be woken by
-                  healing.
+                  healing. This healing may partially reconstruct your body if the detached or 
+                  broken pieces are nearby.
                </td>
                <td>
                </td>
@@ -1697,6 +1698,36 @@
                <td>3 AP - 3 Uses
                </td>
                <td>Mortality Level 5
+               </td>
+            </tr>
+            <tr>
+               <td>True Resurrection
+               </td>
+               <td>
+                  Choose a willing creature within 25ft that has died in the past hour and bring it
+                  back to life. You choose how much HP to give it by spending from your own
+                  current pool of HP. This is not without consequences, the corpse must not be
+                  desecrated and any missing limbs do not regrow. The creature has DisAdv (---) on
+                  all of it’s rolls until it takes a long rest.
+               </td>
+               <td>3 AP - 1 Use
+               </td>
+               <td>Mortality Level 10
+               </td>
+            </tr>
+            <tr>
+               <td>True Necromancy
+               </td>
+               <td>
+                  Choose a creature within 25ft that has died at any time and bring it
+                  back as an undead. You choose how much HP to give it by spending from your own
+                  current pool of HP, and this healing may partially reconstruct your body if the detached or 
+                  broken pieces are nearby. The creature has DisAdv (---) on all of it’s rolls until it 
+                  takes a long rest. The creature also gains the Undead trait permanently.
+               </td>
+               <td>3 AP - 1 Use
+               </td>
+               <td>Mortality Level 10
                </td>
             </tr>
          </table>
@@ -6089,11 +6120,11 @@
                   Suffer Heavy damage and choose 3 points within 50ft. Summon an undead creature on each of 
                   these points - see the appendix for a relevant stat block. Each of these creatures 
                   are fully controlled by you and may each immediately take their turn upon being summoned. 
-                  In future rounds will take turns immediately before yours. On your turn you may
+                  In future rounds they will take turns immediately before yours. On your turn you may
                   spend 0 AP to destroy any of these creatures. You may have a maximum of 3 undead creatures 
                   summoned at any time, and they will persist until you take a short or long rest.
                </td>
-               <td>-, 10ft, 3 targets
+               <td>-, 50ft, 3 targets
                </td>
                <td>2
                </td>
@@ -6233,14 +6264,19 @@
             <tr>
                <td>5
                </td>
-               <td>Summon ???
+               <td>Summon Soul Devourer
                </td>
                <td>
-                  TODO
+                  Suffer Heavy damage and choose a point within 50ft. Summon a soul devourer on this point 
+                  - see the appendix for a relevant stat block. This creature 
+                  is fully controlled by you and may each immediately take its turn upon being summoned. 
+                  In future rounds it will take turns immediately before yours. On your turn you may
+                  spend 0 AP to destroy this creature. You may have a maximum of 1 soul devourer 
+                  summoned at any time, and they will persist until you take a short or long rest.
                </td>
-               <td>???
+               <td>-, 50ft, Single target
                </td>
-               <td>???
+               <td>2
                </td>
             </tr>
             <tr>
@@ -6263,8 +6299,9 @@
                </td>
                <td>From Harm Comes Health
                </td>
-               <td>Mark yourself. Every time you take damage in your next turn, heal an ally
-                  within 100ft for half the damage you recieve.
+               <td>
+                  Mark yourself. Every time you take damage in your next turn, heal an ally
+                  within 15ft for half the damage you recieve.
                </td>
                <td>A, 100ft, Single target
                </td>
@@ -6329,14 +6366,14 @@
             <tr>
                <td>9
                </td>
-               <td>Healing Surge
+               <td>Damage ???
                </td>
-               <td>Choose a willing target within 25ft and heal them for double your SPI
-                  value (not Modifier).
+               <td>
+                  TODO
                </td>
-               <td>A, 25ft, Single target
+               <td>???
                </td>
-               <td>3
+               <td>???
                </td>
             </tr>
             <tr>
@@ -6358,15 +6395,13 @@
             <tr>
                <td>10
                </td>
-               <td>True Resurrection
+               <td>Healing Surge
                </td>
-               <td>Choose a creature within 25ft that has died in the past hour and bring it
-                  back to life. You choose how much HP to give it by spending from your own
-                  current pool of HP. This is not without consequences, the corpse must not be
-                  desecrated and any missing limbs do not regrow. The creature has DisAdv (---) on
-                  all of it’s rolls until it takes a long rest.
+               <td>
+                  Choose a willing target within 25ft and heal them for double your SPI
+                  value (not Modifier).
                </td>
-               <td>A+E, 25ft, Single target
+               <td>A, 25ft, Single target
                </td>
                <td>3
                </td>
@@ -6391,33 +6426,19 @@
                <td>Necromancy
                </td>
                <td>
-                  <span class="avoid">
-                     I think we do all summons roughly as so:
-                  </span>
-                  <p>
-                     <span class="avoid">
-                        Each summon type has its own stat block/abilities and you sacrifice your own HP
-                        to create it. The summon has HP equal to the amount of HP you sacrificed to
-                        create it. Then perhaps the more HP you initially sacrifice the more abilities
-                        it has unlocked? The summon would last for several hours?
-                     </span>
-                  <p>
-                     <span class="avoid">
-                        Resurrect a corpse or skeleton within 5ft. Temporarily reduce your max HP by a
-                        chosen amount, giving this to your new servant. This creature is controlled by
-                        you and takes its turn immediately after yours. It has no resistance points,
-                        treats all terrain as difficult terrain, and lasts till the creature dies or
-                        your next long rest.
-                     </span>
+                  Select a creature within 25ft that died within the last hour. You may choose 
+                  how much HP to give the creature (minimum 1) and reduce your own HP by the same amount, then 
+                  the creature is brought back to life for 1 turn only. This creature is also 
+                  <em>dominated</em> by you, and will take its only turn immediately before your next turn. 
+                  It still has all the remaining resistance points and ability uses it had just before it 
+                  died, and you may choose how to use them. The <em>domination</em> cannot be resisted.
                </td>
-               <td>?
+               <td>A+E, 25ft, Single target
                </td>
                <td>3
                </td>
             </tr>
          </table>
-         <p>
-         </p>
          <table class="center">
             <tr>
                <td colspan="5">
@@ -7328,14 +7349,24 @@
             <tr>
                <td>6
                </td>
-               <td>Feeblemind
+               <td>Psychotic Break
                </td>
-               <td>Mark a target within 100ft. The next effect on them that requires WILL to
-                  resist cannot be resisted.
+               <td>
+                  <span class="avoid">
+                     Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the
+                     target has any of the following conditions in this list (Marked, Silenced,
+                     Frightened, Dominated) choose one and also give them the next condition in the
+                     list. 2 WILL to resist additional conditions.
+                  </span>
+                  <p>
+                     <span class="avoid">
+                        This one is actually pretty bad, as a level 10 ability the best case scenario is
+                        you get to dominate a frightened creature.. lol
+                     </span>
                </td>
                <td>A+E, 100ft, Single target
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
             <tr>
@@ -7428,24 +7459,15 @@
             <tr>
                <td>10
                </td>
-               <td>Psychotic Break
+               <td>Feeblemind
                </td>
                <td>
-                  <span class="wip">
-                     Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the
-                     target has any of the following conditions in this list (Marked, Silenced,
-                     Frightened, Dominated) choose one and also give them the next condition in the
-                     list. 2 WILL to resist additional conditions.
-                  </span>
-                  <p>
-                     <span class="wip">
-                        This one is actually pretty bad, as a level 10 ability the best case scenario is
-                        you get to dominate a frightened creature.. lol
-                     </span>
+                  Select a creature within 5ft and <em>mark</em> it. The next effect inflicted on them 
+                  that requires REFL to resist cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
-               <td>2
+               <td>1
                </td>
             </tr>
             <tr>
@@ -9560,7 +9582,7 @@
             <tr>
                <td colspan="5">
                   <h4 id="Undead Creature Stats">Undead Creature Stats</h4>
-                  <strong><em></em>Source: Summon the dead ability (Mortality).</strong>
+                  <strong><em></em>Source: Summon The Dead ability (Mortality).</strong>
                   <p>
                      <strong><em>These creatures will either have a physcical form if summoned 
                         within 5ft of a humanoid corpse (this human corpse will be reanimated), or 
@@ -9568,11 +9590,13 @@
                         specifics of how you want these undead creatures to look.
                      </em></strong>
                   <p>
-                     <strong><em></em></strong>
+                     <strong><em>This creature is undead and is therefore vulnerable to 
+                        soul damage and recieves half healing from all sources.
+                     </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Light
+               <td colspan="2">Max HP: Light
                </td>
                <td>Movement: 10ft
                </td>
@@ -9606,7 +9630,87 @@
             <tr>
                <td colspan="3">Regular Melee Attack Bonus: +2
                </td>
-               <td colspan="2">Regular Melee Attack Damage: Light
+               <td colspan="2">Regular Melee Attack Damage: Light+1
+               </td>
+            </tr>
+         </table>
+
+         <table class="center">
+            <tr>
+               <td colspan="5">
+                  <h4 id="Soul Devourer Stats">Soul Devourer Stats</h4>
+                  <strong><em></em>Source: Summon Soul Devourer ability (Mortality).</strong>
+                  <p>
+                     <strong><em>This creature is undead and is therefore vulnerable to 
+                        soul damage and recieves half healing from all sources.
+                     </em></strong>
+                  <p>
+                     <strong><em></em></strong>
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">Max HP: Heavy*3
+               </td>
+               <td>Movement: 15ft
+               </td>
+               <td colspan="2">AC: 13
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">STR: 8
+               </td>
+               <td>DEX: 10
+               </td>
+               <td colspan="2">INT: 4
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">CON: 10
+               </td>
+               <td>PER: 10
+               </td>
+               <td colspan="2">SPI: 14
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">FORT: 0
+               </td>
+               <td>REFL: 0
+               </td>
+               <td colspan="2">WILL: 0
+               </td>
+            </tr>
+            <tr>
+               <td colspan="3">Regular Melee Attack Bonus: +4
+               </td>
+               <td colspan="2">Regular Melee Attack Damage: Medium soul damage
+               </td>
+            </tr>
+            <tr>
+               <td>Level
+               </td>
+               <td>Name
+               </td>
+               <td>Description
+               </td>
+               <td>Target
+               </td>
+               <td>AP Cost
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Soul Consumption
+               </td>
+               <td>
+                  This creature has Heavy HP when summoned. Every time it deals damage 
+                  to a creature it heals itself for the damage dealt. Note: This healing will then 
+                  be halved due to this creature being undead - healing will be (Medium)/2=Light.
+               </td>
+               <td>S
+               </td>
+               <td>Pass
                </td>
             </tr>
          </table>
