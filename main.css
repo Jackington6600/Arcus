@@ -20,7 +20,7 @@ html * {
 }
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(37, 37, 37);
+    background: inherit;
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -31,10 +31,17 @@ html * {
     background: rgb(255, 255, 255);
 }
 
+body {
+    background-color: rgb(37, 37, 37);
+}
+
+a, button {
+    background-color: inherit;
+}
+
 body, a, button {
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(202, 202, 202);
-    background-color: rgb(37, 37, 37);
 }
 
 .main-content {
@@ -179,14 +186,28 @@ th, td {
     margin-left: 40px;
 }
 
+#header {
+    position:absolute; 
+    top:0px; 
+    left:0px; 
+    right:0px;
+    overflow:hidden;
+    z-index: 5;
+}
+
 /* Responsive */
 @media screen and (max-width: 800px) {
     .main-content {
-        width: 70%; /* The width is 100%, when the viewport is 800px or smaller */
+        width: 95%; /* The width is 100%, when the viewport is 800px or smaller */
         overflow-x:auto;
+        margin-left: 5%;
+        z-index: 1;
     }
     .sidebar {
-        width: 25%;
+        width: 85%;
+        z-index: 2;
+        background-color: rgb(19, 19, 19);
+        display: none;
     }
 }
 
@@ -194,5 +215,9 @@ th, td {
     .main-content {
         /* width: auto; */
         width: 700px; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+
+    .hidden-desktop {
+        display: none;
     }
 }
