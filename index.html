@@ -6366,14 +6366,17 @@
             <tr>
                <td>9
                </td>
-               <td>Damage ???
+               <td>Lethal Life
                </td>
                <td>
-                  TODO
+                  Select a creature within 100ft and <em>mark</em> it. All healing that you give  
+                  that creature is dealt as soul damage instead - a maximum of Heavy+SPI damage 
+                  can be dealt on each instance of healing, any healing over this amount is ignored. 
+                  You must be the source of this healing for it to be converted to soul damage. 
                </td>
-               <td>???
+               <td>A+E, 100ft, Single target
                </td>
-               <td>???
+               <td>0
                </td>
             </tr>
             <tr>
@@ -6508,7 +6511,7 @@
                </td>
                <td>-, 50ft, Single target
                </td>
-               <td>2
+               <td>1
                </td>
             </tr>
             <tr>
@@ -6731,8 +6734,9 @@
                </td>
                <td>Unspeakable Words
                </td>
-               <td>Mark a target within 100ft. This target is silenced. 2 WILL points to
-                  resist the silence.
+               <td>
+                  Select a creature within 100ft. If this creature has 0 in any resistance 
+                  point type the are <em>silenced</em>. The <em>silence</em> cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -6742,18 +6746,16 @@
             <tr>
                <td>4
                </td>
-               <td>Levitation
+               <td>Mystic Emulation
                </td>
                <td>
-                  <span class="avoid">
-                     Levitate yourself, a creature, or an object of your choice within 50ft.
-                     You can move the target via levitation up to 30ft in any direction at a 10ft/s
-                     speed. 2 FORT to resist the levitation.
-                  </span>
+                  Select an ally within 100ft. The next time the ally uses an ability 
+                  you may gain 1 use of that ability to use on your next 
+                  turn only. This ignores any reaction or passive abilities.
                </td>
-               <td>
+               <td>A
                </td>
-               <td>2
+               <td>1
                </td>
             </tr>
             <tr>
@@ -7112,7 +7114,8 @@
                <td>Silence!
                </td>
                <td>Silence yourself and one other creature within 100ft. 2 WILL points for
-                  either of you to resist.
+                  either of you to resist. If you are silenced by this ability the other creature 
+                  suffers Light psychic damage.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7189,24 +7192,15 @@
             <tr>
                <td>3
                </td>
-               <td>Optic Separation
+               <td>Agony
                </td>
-               <td>
-                  <span class="wip">
-                     Detach your vision from your body, and your mental eye can move up to
-                     50ft (Through walls/water/lava?). You may cast any psionic ability from this
-                     position as if you were standing where the eye is. At the end of your turn your
-                     mind returns to your body.
-                  </span>
-                  <p>
-                     <span class="wip">
-                        I still kinda want this at a higher level so that people don’t have easy access
-                        to seeing through any wall etc.
-                     </span>
+               <td>Mark a target within 100ft. Every time the target gains a negative
+                  condition while marked in this way it suffers additional Light Psychic damage. 2
+                  WILL resist
                </td>
-               <td>Self
+               <td>A+E, 100ft, Single target
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
             <tr>
@@ -7349,29 +7343,6 @@
             <tr>
                <td>6
                </td>
-               <td>Psychotic Break
-               </td>
-               <td>
-                  <span class="avoid">
-                     Auto hit a target within 100ft dealing Medium+INT Psychic damage. If the
-                     target has any of the following conditions in this list (Marked, Silenced,
-                     Frightened, Dominated) choose one and also give them the next condition in the
-                     list. 2 WILL to resist additional conditions.
-                  </span>
-                  <p>
-                     <span class="avoid">
-                        This one is actually pretty bad, as a level 10 ability the best case scenario is
-                        you get to dominate a frightened creature.. lol
-                     </span>
-               </td>
-               <td>A+E, 100ft, Single target
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>7
-               </td>
                <td>Silence Will Fall
                </td>
                <td>Silence and Deafen yourself and all creatures within 25ft until the end
@@ -7380,6 +7351,20 @@
                <td>All, 25ft, All within range (AoE)
                </td>
                <td>1
+               </td>
+            </tr>
+            <tr>
+               <td>7
+               </td>
+               <td>Unstable Mind
+               </td>
+               <td>
+                  Make an auto hit attack against a creature within 100ft. For each resistance 
+                  point type that you have 0 remaining the target suffers Medium psychic damage.
+               </td>
+               <td>A+E, 100ft, Single target
+               </td>
+               <td>2
                </td>
             </tr>
             <tr>
@@ -7399,13 +7384,23 @@
             <tr>
                <td>8
                </td>
-               <td>Agony
+               <td>Optic Separation
                </td>
-               <td>Mark a target within 100ft. Every time the target gains a negative
-                  condition while marked in this way it suffers additional Light Psychic damage. 2
-                  WILL resist
+               <td>
+                  <span class="avoid">
+                     Detach your vision from your body, and your mental eye can move up to
+                     50ft including movement through all physical objects and walls. You may cast 
+                     any psionic ability from this position as if you were standing where the eye is. 
+                     At the end of your turn your mind returns to your body.
+                     <p>
+                        Still not conviced that this ability is viable - may make more sense 
+                        as a trait. A party of people with this, or even just one person standing outside 
+                        a building and can completely confuse and pre damage enemies inside, with these 
+                        enemies having no way of realising the source.
+                     </p>
+                  </span>
                </td>
-               <td>A+E, 100ft, Single target
+               <td>Self
                </td>
                <td>1
                </td>
