@@ -48,12 +48,40 @@
             document.getElementById("open-nav-button").style.display = "none";
          }
       });
+
+
+      window.onload = function() {
+         const intro = document.getElementById("Introduction");
+         const howTo = document.getElementById('How to Play');
+         const creatingChar = document.getElementById("Creating a Character");
+
+         const options = {
+            root: null,
+            threshold: [0.01, 0.02, 0.03, 0.06, 0.5],
+         }
+
+         function callbackFunction(entries) {
+            entries.forEach(entry => {
+               console.log(entry.target.id);
+               console.log(entry.intersectionRatio);
+               console.log(entry)
+            })
+         }
+
+         var observer = new IntersectionObserver(callbackFunction, options);
+
+         observer.observe(intro);
+         observer.observe(howTo);
+         observer.observe(creatingChar);
+      }
+
+
    </script>
 
    <div id="nav-sidebar" class="sidebar">
       <!-- <button style="margin-bottom: 15px;" onclick="toggleLightMode()">Toggle Light Mode</button> -->
       <button class="hidden-desktop" onclick="close_nav()">X</button>
-      <a class="h2" href="#Introduction" onclick="close_nav()">Introduction</a>
+      <a class="h2" href="#Introduction">Introduction</a>
       <a class="h2" href="#How to Play">How to Play</a>
       <a class="h3" href="#The Players">The Players</a>
       <a class="h3" href="#The Game Master">The Game Master</a>
@@ -178,9 +206,12 @@
    </div>
 
    <div class="main-content" onclick="close_nav()">
-      <h1 id="Arcus RPG">Arcus RPG</h2>
+      <div id="title">
+         <h1 id="Arcus RPG">Arcus RPG</h1>
          <a class="version-text" href="https://github.com/Jackington6600/Arcus/releases" target="_blank">Version 1.1</a>
-         <h2 id="Introduction">Introduction</h2>
+      </div>
+      <div id="Introduction">
+         <h2>Introduction</h2>
          <p>
             Arcus is a pen and paper tabletop role playing game (TTRPG). This system draws
             inspiration from a wide variety of tabletop, video game, and board game systems
@@ -203,7 +234,9 @@
             is unfinished work or ideas that need to be removed or completely reworked
             - should not be used.
          </p>
-         <h2 id="How to Play">How to Play</h2>
+      </div>
+      <div id="How to Play">
+         <h2>How to Play</h2>
          <p>
             Play runs very similarly to other TTRPG systems, the game master (GM) creates
             and describes the world, and the player characters (PCs) then say what they want
@@ -378,7 +411,9 @@
          </p>
          <p>
          </p>
-         <h2 id="Creating a Character">Creating a Character - Step by Step</h2>
+      </div>
+      <div id="Creating a Character">
+         <h2>Creating a Character - Step by Step</h2>
          <h3 id="Step 1 - Who Do You Want To Be?">Step 1 - Who Do You Want To Be?</h3>
          <p>
             There are many ways to start making your character in Arcus and the rules should
@@ -2255,6 +2290,7 @@
                <li>Damage increases - check the damage table.</li>
             </ul>
          </ul>
+      </div>
          <h2 id="Out of Combat">Out of Combat</h2>
          <h3 id="Passive Perception">Passive Perception</h3>
          <p>
