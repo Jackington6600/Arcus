@@ -17,11 +17,32 @@
          document.a.classList.toggle("light-mode");
          document.button.classList.toggle("light-mode");
       }
+      
+      function open_nav() {
+         document.getElementById("nav-sidebar").style.display = "block";
+         document.getElementById("open-nav-button").style.display = "none";
+      }
+      
+      function close_nav() {
+         if (window.screen.width <= 800) {
+            document.getElementById("nav-sidebar").style.display = "none";
+            document.getElementById("open-nav-button").style.display = "block";
+         }   
+      }
+
+      window.onload = function() {
+      var links = document.getElementsByTagName('a');
+         for(var i = 0; i < links.length; i++) {
+            var link = links[i];
+            link.onclick = close_nav
+         }
+      }
    </script>
 
-   <div class="sidebar">
+   <div id="nav-sidebar" class="sidebar">
       <!-- <button style="margin-bottom: 15px;" onclick="toggleLightMode()">Toggle Light Mode</button> -->
-      <a class="h2" href="#Introduction">Introduction</a>
+      <button class="hidden-desktop" onclick="close_nav()">X</button>
+      <a class="h2" href="#Introduction" onclick="close_nav()">Introduction</a>
       <a class="h2" href="#How to Play">How to Play</a>
       <a class="h3" href="#The Players">The Players</a>
       <a class="h3" href="#The Game Master">The Game Master</a>
@@ -141,8 +162,11 @@
 
    </div>
 
-   <div class="main-content">
+   <div id="header" class="hidden-desktop"> 
+      <button id="open-nav-button" onclick="open_nav()">&#9776;</button>
+   </div>
 
+   <div class="main-content" onclick="close_nav()">
       <h1 id="Arcus RPG">Arcus RPG</h2>
          <a class="version-text" href="https://github.com/Jackington6600/Arcus/releases" target="_blank">Version 1.1</a>
          <h2 id="Introduction">Introduction</h2>
@@ -9657,7 +9681,5 @@
             <li>PERAN
 
    </div>
-
 </body>
-
 </html>
