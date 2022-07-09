@@ -1737,7 +1737,7 @@
                <td>
                   Choose a creature within 25ft that has died at any time and bring it
                   back as an undead. You choose how much HP to give it by spending from your own
-                  current pool of HP, and this healing may partially reconstruct your body if the detached or 
+                  current pool of HP, and this healing may partially reconstruct the creature's body if the detached or 
                   broken pieces are nearby. The creature has DisAdv (---) on all of it’s rolls until it 
                   takes a long rest. The creature also gains the Undead trait permanently.
                </td>
@@ -3734,8 +3734,8 @@
                <td><strong>Disregard your defences to make lethal attacks against your
                      foes.</strong>
                   <p>
-                     <em>Mark </em>yourself and all attacks you make gain Adv (++). All
-                        attacks made against you gain Adv (+).
+                     <em>Mark </em>yourself and all attacks you make gain Adv (+++). All
+                        attacks made against you gain Adv (++).
                </td>
                <td>Self
                </td>
@@ -3880,9 +3880,9 @@
                <td><strong>Utterly break an enemy's defences.</strong>
                   <p>
                      Make a melee weapon attack against a creature and on a hit the creature is
-                     <em>marked </em>and its AC is set to 8. Deal additional damage equal to the 
-                     AC reduction the creature suffers. For example, a reduction from 16 AC to 8 
-                     AC results in 8 additional damage.
+                     <em>marked </em>and its AC is set to 8. Deal additional damage equal to half the 
+                     AC reduction the creature suffers. For example, a reduction from 15 AC to 8 is a 
+                     reduction of 7 and thereforeresults in 3 additional damage.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -3984,21 +3984,6 @@
                <td>1
                </td>
             </tr> 
-            <tr>
-               <td>10
-               </td>
-               <td>Quaking Presence
-               </td>
-               <td><strong>Destabalise and break a nearby foe.</strong>
-                  <p>
-                     Select a creature within 5ft and <em>mark</em> it. The next effect inflicted 
-                     on them that requires FORT to resist cannot be resisted.
-               </td>
-               <td>A+E, 5ft, Single target
-               </td>
-               <td>1
-               </td>
-            </tr>
             <tr>
                <td>10
                </td>
@@ -4540,16 +4525,13 @@
             <tr>
                <td>10
                </td>
-               <td>Swift Interdiction
+               <td>-
                </td>
-               <td><strong>They will be helpless against your onslaught.</strong>
-                  <p>
-                     Select a creature within 5ft and <em>mark</em> it. The next effect inflicted 
-                     on them that requires REFL to resist cannot be resisted.
+               <td>
+                  -
+               <td>-
                </td>
-               <td>A+E, 5ft, Single target
-               </td>
-               <td>1
+               <td>-
                </td>
             </tr>
             <tr>
@@ -5124,7 +5106,7 @@
                </td>
                <td><strong>Make the impossible shot.</strong>
                   <p>
-                     Your next attack roll gains Adv (+++).
+                     Your next single target attack ranged roll gains Adv (+++).
                </td>
                <td>Self
                </td>
@@ -5419,7 +5401,7 @@
                <td><strong>Drop a large spiked rock on your foe.</strong>
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit it suffers
-                     Medium+MOD damage. Deal an additional Heavy damage if the creature is <em>prone</em>.
+                     Heavy+MOD damage. This is a critical hit if the creature is <em>prone</em>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -5599,10 +5581,10 @@
                </td>
                <td><strong>Create a swirling torrent of water around you.</strong>
                   <p>
-                     You may push any number of creatures within 15ft to another point within 15ft. 1
+                     You may push any number of creatures within 10ft to another point within 10ft. 1
                      FORT points to resist the push.
                </td>
-               <td>A+E, 15ft, All within range (AoE)
+               <td>A+E, 10ft, All within range (AoE)
                </td>
                <td>1
                </td>
@@ -5656,10 +5638,10 @@
                <td>Circuit Breaker
                </td>
                <td>
-                  Auto-Hit a target within 50ft. The target suffers Medium+MOD lightning
-                  damage. You may either <em>silence</em> the creature or <em>mark</em> it and each time the 
-                  creature uses an ability during the <em>mark</em> it suffers Light lightning damage. 2 FORT points to resist 
-                  the <em>silence</em> or 2 WILL points to resist the <em>mark</em>.
+                  Auto-Hit a target within 50ft and <em>mark</em> it. The target suffers Medium+MOD lightning
+                  damage and each time the 
+                  creature uses an ability during the <em>mark</em> it suffers Light lightning damage. 
+                  2 WILL points to resist the <em>mark</em>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6002,9 +5984,9 @@
                <td>Soul Tether
                </td>
                <td>
-                  Link yourself to another creature within 100ft, all damage and healing 
-                  dealt to you from sources other than yourself is also dealt to the creature. 
-                  Damage type is not transferred across the link, if you lose HP due to damage, 
+                  Link yourself to another creature within 100ft, all damage and healing dealt 
+                  to you from sources other than yourself is also dealt to the creature. Damage 
+                  type is not transferred across the link, if you lose HP due to damage, 
                   the creature loses the same amount.
                </td>
                <td>A+E, 100ft, Single target
@@ -6019,13 +6001,13 @@
                </td>
                <td>
                   When you reduce a creature within 100ft to 0 HP, you may spend your reaction to 
-                  make a versatile SPI attack against another creature within 10ft of the initial target. 
+                  make a versatile SPI attack against another creature within 15ft of the initial target. 
                   On a hit the creature suffers Light+SPI soul damage. It must specifically be you 
                   and your damage that reduces the creature to 0 HP.
                </td>
                <td>A+E, 100ft, Single target within 10ft
                </td>
-               <td>React
+               <td>1 (React)
                </td>
             </tr>
             <tr>
@@ -6210,10 +6192,10 @@
                <td>
                   Select 2 points within 100ft, create a 10ft radius zone around each, choose 
                   one to be an area of life and the other an area of death. At the start of 
-                  your next turn enemies in the area of death each suffer Medium+SPI soul damage. 
+                  your next turn all creatures in the area of death each suffer Medium+SPI soul damage. 
                   The number of creatures damaged in the area of death is multiplied by Light, and 
                   all allies in the area of life are healed that amount (up to a maximum of 3*Light). 
-                  For example, 2 enemies damaged would result in 2*Light healing to each ally in the 
+                  For example, 2 creatures damaged would result in 2*Light healing to each ally in the 
                   area of life.
                </td>
                <td>A+E, 100ft, Creatures of choice within 15ft of 2 points (AoE)
@@ -6281,6 +6263,19 @@
             <tr>
                <td>5
                </td>
+               <td>Marked For Death
+               </td>
+               <td>
+                  <span class="avoid">Attack that marks and deals damage on its death?</span>
+               </td>
+               <td>-
+               </td>
+               <td>-
+               </td>
+            </tr>
+            <tr>
+               <td>6
+               </td>
                <td>Summon Soul Devourer
                </td>
                <td>
@@ -6292,21 +6287,6 @@
                   summoned at any time, and they will persist until you take a short or long rest.
                </td>
                <td>-, 50ft, Single target
-               </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>6
-               </td>
-               <td>Shadow Daemon
-               </td>
-               <td>Summon a large (10x10ft) shadow within 100ft, any creature you choose
-                  that ends it's turn inside the shadow suffers Heavy+SPI Soul damage, and next to
-                  the shadow suffers Medium+SPI Soul damage. This exists until it deals no damage
-                  in a turn.
-               </td>
-               <td>All, 100ft, All within 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -6386,14 +6366,12 @@
                <td>Lethal Life
                </td>
                <td>
-                  Select a creature within 100ft and <em>mark</em> it. All healing that you give  
-                  that creature is dealt as soul damage instead - a maximum of Heavy+SPI damage 
-                  can be dealt on each instance of healing, any healing over this amount is ignored. 
-                  You must be the source of this healing for it to be converted to soul damage. 
+                  Select willing ally (including self) within 100ft and <em>mark</em> it. All damage 
+                  that that creature deals to other creatures is now healing instead.
                </td>
-               <td>A+E, 100ft, Single target
+               <td>A+Self, 100ft, Single target
                </td>
-               <td>0
+               <td>1
                </td>
             </tr>
             <tr>
@@ -7073,7 +7051,7 @@
                </td>
                <td>
                   Select a creature within 100ft and link yourself to it. When you are inflicted with 
-                  a condition from a source other than yourself, both you and the creature are 
+                  a condition, both you and the creature are 
                   inflicted with the condition and may attempt to resist it separately as normal.
                </td>
                <td>A+E, 100ft, Single target
@@ -7100,10 +7078,12 @@
                <td>Radiating Anguish
                </td>
                <td>
-                  Select a creature within 100ft and select a point within 100ft. At the start of your 
-                  next turn: If the selected creature is within 5ft of the point it suffers Heavy+MOD psychic damage. 
-                  Or if it is within 15ft of the point, it suffers Medium+MOD psychic damage. 
-                  Or if it is within 25ft of the point, it suffers Light+MOD psychic damage. 
+                  Select a creature within 100ft, make note of their current position, and <em>hobble</em> them. 
+                  At the start of your next turn: 
+                  If the selected creature is within 5ft of the noted position it suffers Heavy+MOD psychic damage. 
+                  Or if it is within 20ft of the noted position it suffers Medium+MOD psychic damage. 
+                  Otherwise it suffers Light+MOD damage. 
+                  2 WILL points to resist the <em>hobble</em>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7376,8 +7356,9 @@
                <td>Unstable Mind
                </td>
                <td>
-                  Select a creature within 100ft. For each resistance 
-                  point type that you have 0 remaining the target suffers Heavy psychic damage.
+                  Make an auto hit attack against a creature within 100ft. On a hit deal Medium+INT psychic 
+                  damage. Deal additional Medium psychic damage for each resistance 
+                  point type that you have 0 remaining.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7406,14 +7387,13 @@
                <td>
                   Remove all conditions you currently have and you may apply each 
                   condition removed to another creature within 100ft. For example, if you are currently 
-                  <em>blind</em>, <em>hobbled</em>, and <em>silenced</em>, you may transfer these conditons to 
-                  3 other creatures - one will be <em>blinded</em>, one will be <em>hobbled</em>, and one will 
-                  be <em>silenced</em>. You cannot apply more than one condition to a single creature 
-                  and you may have the condition not be applied to any creature. These conditions last until 
+                  <em>blind</em>, <em>hobbled</em>, and <em>silenced</em>, you may transfer these conditons to up 
+                  to 3 other creatures. Then if you target 2 creatures, you could <em>blind</em> one creature, and <em>hobble</em> 
+                  and <em>silence</em> another. These conditions last until 
                   the start of your next turn as normal. Each of these creatures 
-                  may resist the incoming condition for 1 WILL point.
+                  may resist each incoming condition for 1 WILL point.
                </td>
-               <td>A+E, 100ft, 3 targets
+               <td>A+E, 100ft, Up to 3 targets
                </td>
                <td>1
                </td>
@@ -7467,15 +7447,14 @@
             <tr>
                <td>10
                </td>
-               <td>Feeblemind
+               <td>-
                </td>
                <td>
-                  Select a creature within 5ft and <em>mark</em> it. The next effect inflicted on them 
-                  that requires REFL to resist cannot be resisted.
+                  -
                </td>
-               <td>A+E, 100ft, Single target
+               <td>-
                </td>
-               <td>1
+               <td>-
                </td>
             </tr>
             <tr>
