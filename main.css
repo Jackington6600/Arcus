@@ -69,7 +69,12 @@ body, a, button {
     background-color: rgb(37, 37, 37);
 }
 
-button, a {
+button {
+    text-decoration: none;
+    border: none;
+}
+
+.nav-link {
     padding-left: 7px;
     padding-right: 15px;
     padding-top: 4px;
@@ -157,6 +162,11 @@ th, td {
 }
 
 .version-text {
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 4px;
+    text-decoration: none;
+    transition-duration: 0.3s;
     top: 100px;
     position:absolute;
     font-size: 12px;
@@ -186,8 +196,27 @@ th, td {
     color:rgb(97, 141, 211);
 }
 
+.condition {
+    font-style: italic;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: rgb(153, 153, 153);
+}
+
 .tab {
     margin-left: 40px;
+}
+
+.tooltip {
+	position: absolute;
+	width: 140px;
+	padding: 10px 10px;
+	border-radius: 4px;
+    font-size: 14px;
+	text-align: center;
+	color: rgb(202, 202, 202);;
+	background-color: rgba(24, 24, 24, 0.9);
+	overflow: hidden;
 }
 
 .hidden-desktop {
