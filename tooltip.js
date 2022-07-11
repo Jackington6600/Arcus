@@ -118,6 +118,7 @@ function initTooltip() {
 		}
 
 		tooltip.classList.add('tooltip');
+		tooltip.style.opacity="1";
 
 		document.body.appendChild(tooltip);
 		
