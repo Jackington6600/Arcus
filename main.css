@@ -210,15 +210,15 @@ th, td {
 
 .tooltip {
     opacity: 1;
-	position: absolute;
-	width: 140px;
-	padding: 10px 10px;
-	border-radius: 6px;
+    position: absolute;
+    width: 140px;
+    padding: 10px 10px;
+    border-radius: 6px;
     font-size: 14px;
-	text-align: center;
-	color: rgb(202, 202, 202);
-	background-color: rgba(24, 24, 24);
-	overflow: hidden;
+    text-align: center;
+    color: rgb(202, 202, 202);
+    background-color: rgba(24, 24, 24);
+    overflow: hidden;
     z-index: 5000;
 }
 
