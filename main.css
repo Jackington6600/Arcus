@@ -198,6 +198,7 @@ th, td {
 
 .condition {
     font-style: italic;
+    color: rgb(235, 235, 235);
     text-decoration-line: underline;
     text-decoration-style: dotted;
     text-decoration-color: rgb(153, 153, 153);
