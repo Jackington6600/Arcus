@@ -2,7 +2,7 @@
 
 [View the rules here!](https://jackington6600.github.io/Arcus)
 
-[View the recent change notes here!](https://github.com/Jackington6600/Arcus/releases/tag/v1.1)
+[View the recent change notes here!](https://github.com/Jackington6600/Arcus/releases)
 
 Arcus is a pen and paper tabletop role playing game (TTRPG).
 
