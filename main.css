@@ -94,6 +94,7 @@ button:hover, a:hover {
     color: rgb(255, 255, 255);
 }
 
+
 h1, h2, h3, h4, h5, h6 {
     color: rgb(245, 245, 245);
 }
@@ -224,6 +225,19 @@ th, td {
 
 .hidden-desktop {
     display: none;
+}
+
+.selected {
+    background-color: rgba(233, 233, 233);
+    color: rgba(24, 24, 24);
+
+}
+
+a:hover.selected.nav-link{
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    background-color: rgb(185, 185, 185);
+
 }
 
 #header {
