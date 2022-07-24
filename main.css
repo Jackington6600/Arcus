@@ -227,8 +227,32 @@ th, td {
     display: none;
 }
 
-.selected {
-    background-color: rgba(233, 233, 233);
+.selected.l0 {
+    background-color: rgba(240, 240, 240);
+    color: rgba(24, 24, 24);
+
+}
+
+.selected.l1 {
+    background-color: rgba(205, 205, 205);
+    color: rgba(24, 24, 24);
+
+}
+
+.selected.l2 {
+    background-color: rgba(170, 170, 170);
+    color: rgba(24, 24, 24);
+
+}
+
+.selected.l3 {
+    background-color: rgba(135, 135, 135);
+    color: rgba(24, 24, 24);
+
+}
+
+.selected.l4 {
+    background-color: rgba(100, 100, 100);
     color: rgba(24, 24, 24);
 
 }

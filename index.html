@@ -53,14 +53,15 @@
       var scrollTimer = -1;
 
       function doc_scroll() {
-         
          initTooltip();
          if (scrollTimer != -1) clearTimeout(scrollTimer);
 
-         scrollTimer = window.setTimeout("scroll_finished()", 10);
+         scrollTimer = window.setTimeout("scroll_finished()", 25);
       }
 
       function scroll_finished() {
+         console.log("scrolling finished")
+
          const mainContent = document.getElementById('content-parent');
          const headers = mainContent.querySelectorAll("h2, h3, h4, h5, h6");
          const sideBar = document.getElementById('nav-sidebar');
@@ -75,6 +76,8 @@
             6: null,
          }
 
+         let lowest_level = 2
+
 
          // instead of text content, this should really be done with IDs
          // but the logic is the same and I wasn't feeling adding 420 ids today
@@ -88,24 +91,35 @@
 
                clear_lower_selected(level, lowest);
                lowest[level] = header.textContent;
+               lowest_level = level;
             }
             else break;
          }
 
          Object.values(lowest).forEach(val => navs.getEle);
 
+         let topElement = null;
+         let botElement = null;
+
          [...navs].forEach(navLink => {
             for(i = 2; i < 7; i++) {
+               navLink.classList.remove("selected", "l1", "l2", "l3", "l4", "l0");
+
                if (navLink.textContent == lowest[i]) {
                   navLink.classList.add("selected");
+                  let selected_level = "l"+(lowest_level-i).toString();
+                  navLink.classList.add(selected_level);
+                  if (i == 2) {
+                     topElement = navLink;
+                  } 
+                  if (i == lowest_level) {
+                     botElement = navLink;
+                  } 
                   break;
-               }
-               if (i == 6) {
-                  navLink.classList.remove("selected");
-
                }
             } 
          });
+         scroll_nav_bar(topElement, botElement);
       }
 
       function clear_lower_selected(level, lowest) {
@@ -113,7 +127,24 @@
          if (level === 6) {
             return lowest;
          }
-         return clear_lower_selected(level+1, lowest)
+         return clear_lower_selected(level+1, lowest);
+      }
+
+      function scroll_nav_bar(topElement, botElement) {
+         let navBar = document.getElementById("nav-sidebar");
+         let height = window.innerHeight*0.9;
+         // both can fit on screen
+         let diff = botElement.offsetTop - topElement.offsetTop
+         if (diff < height) {
+            let offset = diff-height/2 < 0 ? 0 : diff-height/2+5;
+            navBar.scrollTop = botElement.offsetTop - height/2 - offset;
+         }
+         // only one, so line it to the middle
+         else {
+            navBar.scrollTop = botElement.offsetTop - height/2;
+         }
+
+
       }
    </script>
 
