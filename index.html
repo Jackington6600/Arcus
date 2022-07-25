@@ -114,6 +114,8 @@
                   } 
                   if (i == lowest_level) {
                      botElement = navLink;
+                     // updates the url
+                     history.pushState(null,null,'#'+navLink.textContent);
                   } 
                   break;
                }
