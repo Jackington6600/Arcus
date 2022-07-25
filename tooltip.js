@@ -61,7 +61,7 @@ function initTooltip() {
 			case "blind": case "blinded":
 				tooltip.innerText = "The creature cannot see. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (+).";
 				break;
-			case "deaf": case "deafened":
+			case "deaf": case "deafened": case "deafen":
 				tooltip.innerText = "The creature cannot hear. The creature automatically fails on all checks requiring hearing. The creature will have appropriate levels of DisAdv for other checks that partially involve hearing (DMs discretion).";
 				break;
 			case "marked": case "mark":
