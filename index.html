@@ -48,14 +48,112 @@
             document.getElementById("open-nav-button").style.display = "none";
          }
       });
+
+      // need a timeout to stop ugly flickering
+      var scrollTimer = -1;
+
+      function doc_scroll() {
+         initTooltip();
+         if (scrollTimer != -1) clearTimeout(scrollTimer);
+
+         scrollTimer = window.setTimeout("scroll_finished()", 25);
+      }
+
+      function scroll_finished() {
+         console.log("scrolling finished")
+
+         const mainContent = document.getElementById('content-parent');
+         const headers = mainContent.querySelectorAll("h2, h3, h4, h5, h6");
+         const sideBar = document.getElementById('nav-sidebar');
+
+         const navs = sideBar.getElementsByClassName("nav-link")
+
+         let lowest = {
+            2: "Introduction",
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+         }
+
+         let lowest_level = 2
+
+
+         // instead of text content, this should really be done with IDs
+         // but the logic is the same and I wasn't feeling adding 420 ids today
+         for (i = 0; i < headers.length; i++) {
+            header = headers[i];
+            navLink = navs[i];
+
+            if (header.getBoundingClientRect().y < window.innerHeight*0.1) {
+               let type = header.tagName;
+               let level = parseInt(type.charAt(1));
+
+               clear_lower_selected(level, lowest);
+               lowest[level] = header.textContent;
+               lowest_level = level;
+            }
+            else break;
+         }
+
+         Object.values(lowest).forEach(val => navs.getEle);
+
+         let topElement = null;
+         let botElement = null;
+
+         [...navs].forEach(navLink => {
+            for(i = 2; i < 7; i++) {
+               navLink.classList.remove("selected", "l1", "l2", "l3", "l4", "l0");
+
+               if (navLink.textContent == lowest[i]) {
+                  navLink.classList.add("selected");
+                  let selected_level = "l"+(lowest_level-i).toString();
+                  navLink.classList.add(selected_level);
+                  if (i == 2) {
+                     topElement = navLink;
+                  } 
+                  if (i == lowest_level) {
+                     botElement = navLink;
+                  } 
+                  break;
+               }
+            } 
+         });
+         scroll_nav_bar(topElement, botElement);
+      }
+
+      function clear_lower_selected(level, lowest) {
+         lowest[level] = null;
+         if (level === 6) {
+            return lowest;
+         }
+         return clear_lower_selected(level+1, lowest);
+      }
+
+      function scroll_nav_bar(topElement, botElement) {
+         let navBar = document.getElementById("nav-sidebar");
+         let height = window.innerHeight*0.9;
+         // both can fit on screen
+         let diff = botElement.offsetTop - topElement.offsetTop
+         if (diff < height) {
+            let offset = diff-height/2 < 0 ? 0 : diff-height/2+5;
+            navBar.scrollTop = botElement.offsetTop - height/2 - offset;
+         }
+         // only one, so line it to the middle
+         else {
+            navBar.scrollTop = botElement.offsetTop - height/2;
+         }
+
+
+      }
    </script>
 
    <div id="nav-sidebar" class="sidebar">
       <!-- <button style="margin-bottom: 15px;" onclick="toggleLightMode()">Toggle Light Mode</button> -->
       <button class="hidden-desktop" onclick="close_nav()">X</button>
-      <a class="h2 nav-link" href="#Introduction" onclick="close_nav()">Introduction</a>
+      <a class="h2 nav-link" href="#Introduction">Introduction</a>
       <a class="h2 nav-link" href="#How to Play">How to Play</a>
-      <a class="h3 nav-link" href="#The Players">The Players</a>
+      <a class="h3 nav-link selected" href="#The Players">The Players</a>
       <a class="h3 nav-link" href="#The Game Master">The Game Master</a>
       <a class="h3 nav-link" href="#Dice System">Dice System</a>
       <a class="h4 nav-link" href="#Examples">Examples</a>
@@ -157,7 +255,14 @@
       <a class="h3 nav-link" href="#Beastmaster">Beastmaster</a>
       <a class="h2 nav-link" href="#Appendix">Appendix</a>
       <a class="h3 nav-link" href="#Stat Blocks">Stat Blocks</a>
+      <a class="h4 nav-link" href="#Beast Shape - Small Animal">Beast Shape - Small Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Medium Animal">Beast Shape - Medium Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Large Animal">Beast Shape - Large Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</a>
       <a class="h4 nav-link" href="#Undead Creature Stats">Undead Creature Stats</a>
+      <a class="h4 nav-link" href="#Soul Devourer Stats">Soul Devourer Stats</a>
       <a class="h4 nav-link" href="#Beast Base Stats">Beast Base Stats</a>
       <a class="h3 nav-link" href="#Styling Guide">Styling Guide</a>
       <a class="h4 nav-link" href="#Ability Style">Ability Style</a>
@@ -167,22 +272,14 @@
       <a class="h3 nav-link" href="#Design Choice Explanations">Design Choice Explanations</a>
       <a class="h4 nav-link" href="#The Dice">The Dice</a>
       <a class="h3 nav-link" href="#Banished Abilities">Banished Abilities</a>
-      <!-- <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a> -->
-
    </div>
 
    <div id="header" class="hidden-desktop"> 
       <button id="open-nav-button" onclick="open_nav()">&#9776;</button>
    </div>
 
-   <div class="main-content" onclick="close_nav()">
-      <h1 id="Arcus RPG">Arcus RPG</h2>
+   <div id="content-parent" class="main-content" onclick="close_nav()" onscroll="doc_scroll()">
+      <h1 id="Arcus RPG">Arcus RPG</h1>
          <a class="version-text" href="https://github.com/Jackington6600/Arcus/releases" target="_blank">Version 1.2</a>
          <h2 id="Introduction">Introduction</h2>
          <p>
@@ -382,7 +479,7 @@
          </p>
          <p>
          </p>
-         <h2 id="Creating a Character">Creating a Character - Step by Step</h2>
+         <h2 id="Creating a Character">Creating a Character</h2>
          <h3 id="Step 1 - Who Do You Want To Be?">Step 1 - Who Do You Want To Be?</h3>
          <p>
             There are many ways to start making your character in Arcus and the rules should
@@ -1840,7 +1937,6 @@
                </td>
             </tr>
          </table>
-         <h3 id=""></h3>
          <h3 id="Step 7 - Equipment">Step 7 - Equipment</h3>
          <h4 id="Weapons">Weapons</h4>
          <p>
@@ -2086,7 +2182,6 @@
          <p>
             TODO
          </p>
-         <h3 id=""></h3>
          <h3 id="Step 8 - Personality and History">Step 8 - Personality and History</h3>
          <p>
             All characters have their strengths and weaknesses, and in role playing both are
@@ -2128,7 +2223,6 @@
          <p>
             TODO
          </p>
-         <h3 id=""></h3>
          <h3 id="Step 10 - Levelling Up">Step 10 - Levelling Up</h3>
          <p>
             Note: All information here is previously stated in the relevant sections. This
@@ -3409,7 +3503,6 @@
             mount behind. More challenging manoeuvres might require a skill check (GM’s
             discretion) - having a relevant skill or trait might remove this requirement.
          </p>
-         <h2 id=""></h2>
          <h2 id="Class Tables">Class Tables</h2>
          <h4 id="Level Column Key">Level Column Key</h4>
          <p>
@@ -9902,7 +9995,7 @@
             </li>
          </ul>
          <h3 id="Optional Rules">Optional Rules</h3>
-         <h4 id="Optional Tactician Mode">Optional Tactician Mode:</h4>
+         <h4 id="Optional Tactician Mode">Optional Tactician Mode</h4>
          <p>
             WARNING NOT TESTED - You (the GM) may choose to have all creatures have 5AP per
             turn. This is currently untested and not necessarily balanced. Some boss
