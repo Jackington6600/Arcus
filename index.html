@@ -228,7 +228,7 @@
       <a class="h4 nav-link" href="#Multi-Target Attacks">Multi-Target Attacks</a>
       <a class="h4 nav-link" href="#Holding Attacks">Holding Attacks</a>
       <a class="h4 nav-link" href="#Surprise">Surprise</a>
-      <a class="h4 nav-link" href="#Concealment">Concealment</a>
+      <a class="h4 nav-link" href="#Concealment">Cover & Concealment</a>
       <a class="h3 nav-link" href="#Range">Range</a>
       <a class="h3 nav-link" href="#Damage">Damage</a>
       <a class="h4 nav-link" href="#Damage Types">Damage Types</a>
@@ -1418,7 +1418,7 @@
                </td>
                <td>Spend 30 minutes giving yourself and up to 5 allies camouflage that
                   remains effective until your next short or long rest. Grants Adv (+) on all
-                  checks to sneak or hide. Can be done during a short rest.
+                  checks to sneak or <a class="condition" data-tooltip-container>hide</a>. Can be done during a short rest.
                </td>
                <td>
                </td>
@@ -2707,7 +2707,7 @@
          <h4 id="Surprise">Surprise</h4>
          <p>
             If you attack a target from stealth that is unaware that you exist, you will
-            have Adv (++) on the attack from being hidden and the attack may also be a
+            have Adv (++) on the attack from being <a class="condition" data-tooltip-container>hidden</a> and the attack may also be a
             critical hit due to surprise (GM’s discretion). After this, the target and other
             targets in the area (GM’s discretion) will become aware of your presence - such
             as the target shouting to their allies to warn them about you.
@@ -2717,7 +2717,12 @@
             them, this may also class as a surprise and gain Adv (++) and even be a critical
             hit (GM’s discretion).
          </p>
-         <h4 id="Concealment">Concealment</h4>
+         <h4 id="Concealment">Cover & Concealment</h4>
+         <p>
+            An attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered
+            by terrain or an obstacle is known as <a class="condition" data-tooltip-container>in cover</a>.  All attacks against this enemy is made with DisAdv (-).
+            Marking a target removes it's cover bonus.
+         </p>
          <p>
             A melee attack against a target you cannot see (such as when you are <a class="condition" data-tooltip-container>blind</a> 
             or the target is <a class="condition" data-tooltip-container>invisible</a>) is made with DisAdv (--).
@@ -2728,7 +2733,7 @@
          </p>
          <p>
             An attack against a target that is unaware of your existence (such as when you
-            are hidden/<a class="condition" data-tooltip-container>invisible</a> and combat hasn’t started) has Adv (++).
+            are <a class="condition" data-tooltip-container>hidden</a>/<a class="condition" data-tooltip-container>invisible</a> and combat hasn’t started) has Adv (++).
          </p>
          <h3 id="Range">Range</h3>
          <p>
@@ -2966,6 +2971,27 @@
                </td>
             </tr>
             <tr>
+               <td>
+                  <em>In Cover</em>
+               </td>
+               <td>
+                  The creature is visible, but at least 3/4 of it's body is obscured by either the
+                  terrain or an obstacle that would block the attack. You cannot cover behind creatures.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <em>Hidden</em>
+               </td>
+               <td>
+                  Unlike over conditions, a <i>hidden</i> creature describes the relationship between two creatures.
+                  To be <i>hidden</i>, the target creature has to be unaware of the <i>hider</i>.  This can be broken
+                  by causing noise or being seen.  Creatures do have object permanence.
+                  
+                  Normally achieved by the Hide core action.
+               </td>
+            </tr>
+            <tr>
                <td><em>Invisible</em>
                </td>
                <td>The creature cannot be seen with the naked eye. The creature becomes
@@ -3051,9 +3077,9 @@
                <td>The creature has a mark placed on it. The effects of this mark are
                   dependent on the ability it is associated with. Many abilities will have bonuses
                   when used against the creature (such as surprise attack). The creature cannot
-                  enter stealth or become <a class="condition" data-tooltip-container>invisible</a> while it has this condition. A hidden
+                  enter stealth or become <a class="condition" data-tooltip-container>invisible</a> while it has this condition. A <a class="condition" data-tooltip-container>hidden</a>
                   or <a class="condition" data-tooltip-container>invisible</a> creature that gains this condition immediately becomes
-                  visible.
+                  visible and a creature <a class="condition" data-tooltip-container>in cover</a> no longer imposes DisAdv (-) on its attacker.
                </td>
             </tr>
             <tr>
@@ -3381,7 +3407,7 @@
                   cannot see you as you take this action is no longer aware of where you are. Most
                   creatures still have object permanence so they may come looking for you using a
                   perception check. If they roll higher than your stealth or have direct line of
-                  sight to you, you are revealed.
+                  sight to you, you are revealed.  This makes you <a class="condition" data-tooltip-container>hidden</a>.
                </td>
                <td>S
                </td>
@@ -4410,7 +4436,8 @@
                      target.</strong>
                   <p>
                      Make an auto hit weapon attack against a creature. This attack is a critical hit
-                     if any one of the following conditions are met: 1) You are <a class="condition" data-tooltip-container>invisible</a> or hidden
+                     if any one of the following conditions are met: 1) You are <a class="condition" data-tooltip-container>invisible</a> or 
+                     <a class="condition" data-tooltip-container>hidden</a>
                      from the creature. 2) If the cureature has any of the following conditions:
                      <a class="condition" data-tooltip-container>blind</a>, <a class="condition" data-tooltip-container>prone</a>, 
                      <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>stunned</a>,
@@ -8240,7 +8267,8 @@
                   These can be destroyed by the enemy and have an AC of 10 and HP of 2xINT (minimum 1). If a
                   trap is destroyed it does not trigger. Only one of each type of construct
                   (read: ability) can persist at any time, and you can deconstruct them whenever
-                  you want for 0 AP. If cast while hidden, the construct remains hidden until
+                  you want for 0 AP. If cast while <a class="condition" data-tooltip-container>hidden</a>,
+                  the construct remains <a class="condition" data-tooltip-container>hidden</a> until
                   activated or if creatures pass a 18 Per+Per check.
                </td>
                <td>Self

@@ -36,7 +36,12 @@ function initTooltip() {
 		// let id = el.getAttribute("id");
 
 		switch (el.innerText.toLowerCase()) {
-
+			case "cover": case "in cover": 
+				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. You cannot cover behind creatures.";
+				break;
+			case "hide": case "hidden":
+				tooltip.innerText = "The target creature is unaware of this creature. This can be broken by causing noise or being seen.  Creatures do have object permanence.";
+				break;                  
 			case "invisible":
 				tooltip.innerText = "The creature cannot be seen with the naked eye. The creature becomes visible when they take damage, make an attack, deal damage or use an ability of any kind (unless stated otherwise).";
 				break;
