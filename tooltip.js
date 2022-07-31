@@ -37,12 +37,12 @@ function initTooltip() {
 
 		switch (el.innerText.toLowerCase()) {
 			case "cover": case "in cover": 
-				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. You cannot cover behind creatures.";
+				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. Attacks against this creature have DisAdv (-). You cannot cover behind creatures.";
 				break;
 			case "hide": case "hidden":
-				tooltip.innerText = "The target creature is unaware of this creature. This can be broken by causing noise or being seen.  Creatures do have object permanence.";
+				tooltip.innerText = "An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage.";
 				break;                  
-			case "invisible":
+			case "invisible": case "invisibility":
 				tooltip.innerText = "The creature cannot be seen with the naked eye. The creature becomes visible when they take damage, make an attack, deal damage or use an ability of any kind (unless stated otherwise).";
 				break;
 			case "immovable":

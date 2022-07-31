@@ -2706,22 +2706,29 @@
          </p>
          <h4 id="Surprise">Surprise</h4>
          <p>
-            If you attack a target from stealth that is unaware that you exist, you will
-            have Adv (++) on the attack from being <a class="condition" data-tooltip-container>hidden</a> and the attack may also be a
+            If you are <a class="condition" data-tooltip-container>hidden</a> from a creature and make an attack against it, you will
+            have Adv (++) on the attack roll and the attack may also be a
             critical hit due to surprise (GM’s discretion). After this, the target and other
             targets in the area (GM’s discretion) will become aware of your presence - such
-            as the target shouting to their allies to warn them about you.
+            as the target shouting to their allies to warn them about you - and you will 
+            no longer be <a class="condition" data-tooltip-container>hidden</a>.
          </p>
          <p>
             Also if the target is aware of you but is strongly not expecting you to attack
             them, this may also class as a surprise and gain Adv (++) and even be a critical
-            hit (GM’s discretion).
+            hit (GM’s discretion). For example, betraying an ally to initiate combat.
          </p>
          <h4 id="Concealment">Cover & Concealment</h4>
          <p>
-            An attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered
+            A ranged attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered
             by terrain or an obstacle is known as <a class="condition" data-tooltip-container>in cover</a>.  All attacks against this enemy is made with DisAdv (-).
             Marking a target removes it's cover bonus.
+         </p>
+         <p>
+            To be considered <a class="condition" data-tooltip-container>hidden</a> from another certain creature, the creature must not be able to see you and therefore be 
+            unaware of your presence or current location. This might come from making a successful Hide core ability, or from being <a class="condition" data-tooltip-container>invisible</a>. 
+            An attack against a creature that you are <a class="condition" data-tooltip-container>hidden</a> from has Adv (++). This grade of Adv may vary based on GM's discretion. 
+            Being <a class="condition" data-tooltip-container>hidden</a> can be broken in many ways such as by making noise, being seen, or dealing damage.
          </p>
          <p>
             A melee attack against a target you cannot see (such as when you are <a class="condition" data-tooltip-container>blind</a> 
@@ -2730,10 +2737,6 @@
          <p>
             A ranged attack against a target you cannot see (such as when you are <a class="condition" data-tooltip-container>blind</a> 
             or the target is <a class="condition" data-tooltip-container>invisible</a>) is made with DisAdv (---).
-         </p>
-         <p>
-            An attack against a target that is unaware of your existence (such as when you
-            are <a class="condition" data-tooltip-container>hidden</a>/<a class="condition" data-tooltip-container>invisible</a> and combat hasn’t started) has Adv (++).
          </p>
          <h3 id="Range">Range</h3>
          <p>
@@ -2971,27 +2974,6 @@
                </td>
             </tr>
             <tr>
-               <td>
-                  <em>In Cover</em>
-               </td>
-               <td>
-                  The creature is visible, but at least 3/4 of it's body is obscured by either the
-                  terrain or an obstacle that would block the attack. You cannot cover behind creatures.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <em>Hidden</em>
-               </td>
-               <td>
-                  Unlike over conditions, a <i>hidden</i> creature describes the relationship between two creatures.
-                  To be <i>hidden</i>, the target creature has to be unaware of the <i>hider</i>.  This can be broken
-                  by causing noise or being seen.  Creatures do have object permanence.
-                  
-                  Normally achieved by the Hide core action.
-               </td>
-            </tr>
-            <tr>
                <td><em>Invisible</em>
                </td>
                <td>The creature cannot be seen with the naked eye. The creature becomes
@@ -3077,7 +3059,8 @@
                <td>The creature has a mark placed on it. The effects of this mark are
                   dependent on the ability it is associated with. Many abilities will have bonuses
                   when used against the creature (such as surprise attack). The creature cannot
-                  enter stealth or become <a class="condition" data-tooltip-container>invisible</a> while it has this condition. A <a class="condition" data-tooltip-container>hidden</a>
+                  become <a class="condition" data-tooltip-container>hidden</a> or <a class="condition" data-tooltip-container>invisible</a> 
+                  while it has this condition. A <a class="condition" data-tooltip-container>hidden</a>
                   or <a class="condition" data-tooltip-container>invisible</a> creature that gains this condition immediately becomes
                   visible and a creature <a class="condition" data-tooltip-container>in cover</a> no longer imposes DisAdv (-) on its attacker.
                </td>
@@ -3403,11 +3386,12 @@
                </td>
                <td>Hide
                </td>
-               <td>Hide from creatures with a DEX+DEX stealth check, any creature that
-                  cannot see you as you take this action is no longer aware of where you are. Most
+               <td>Make a DEX+DEX stealth check to become <a class="condition" data-tooltip-container>hidden</a>. Any creature that
+                  cannot see you as you take this action is no longer aware of where you are 
+                  if you roll higher than their passive perception. Most
                   creatures still have object permanence so they may come looking for you using a
-                  perception check. If they roll higher than your stealth or have direct line of
-                  sight to you, you are revealed.  This makes you <a class="condition" data-tooltip-container>hidden</a>.
+                  perception check. If they roll higher than your stealth check or have direct line of
+                  sight to you, you are revealed.
                </td>
                <td>S
                </td>
@@ -4419,7 +4403,8 @@
                </td>
                <td><strong>Move with unparalleled stealth and haste. </strong>
                   <p>
-                     Move 40ft without breaking stealth or invisibility. At the end of this movement 
+                     Move 40ft without breaking <a class="condition" data-tooltip-container>hidden</a> or 
+                     <a class="condition" data-tooltip-container>invisibility</a>. At the end of this movement 
                      you may attempt the Hide core ability at no additional AP cost.
                </td>
                <td>Self
