@@ -48,14 +48,114 @@
             document.getElementById("open-nav-button").style.display = "none";
          }
       });
+
+      // need a timeout to stop ugly flickering
+      var scrollTimer = -1;
+
+      function doc_scroll() {
+         initTooltip();
+         if (scrollTimer != -1) clearTimeout(scrollTimer);
+
+         scrollTimer = window.setTimeout("scroll_finished()", 25);
+      }
+
+      function scroll_finished() {
+         console.log("scrolling finished")
+
+         const mainContent = document.getElementById('content-parent');
+         const headers = mainContent.querySelectorAll("h2, h3, h4, h5, h6");
+         const sideBar = document.getElementById('nav-sidebar');
+
+         const navs = sideBar.getElementsByClassName("nav-link")
+
+         let lowest = {
+            2: "Introduction",
+            3: null,
+            4: null,
+            5: null,
+            6: null,
+         }
+
+         let lowest_level = 2
+
+
+         // instead of text content, this should really be done with IDs
+         // but the logic is the same and I wasn't feeling adding 420 ids today
+         for (i = 0; i < headers.length; i++) {
+            header = headers[i];
+            navLink = navs[i];
+
+            if (header.getBoundingClientRect().y < window.innerHeight*0.1) {
+               let type = header.tagName;
+               let level = parseInt(type.charAt(1));
+
+               clear_lower_selected(level, lowest);
+               lowest[level] = header.textContent;
+               lowest_level = level;
+            }
+            else break;
+         }
+
+         Object.values(lowest).forEach(val => navs.getEle);
+
+         let topElement = null;
+         let botElement = null;
+
+         [...navs].forEach(navLink => {
+            for(i = 2; i < 7; i++) {
+               navLink.classList.remove("selected", "l1", "l2", "l3", "l4", "l0");
+
+               if (navLink.textContent == lowest[i]) {
+                  navLink.classList.add("selected");
+                  let selected_level = "l"+(lowest_level-i).toString();
+                  navLink.classList.add(selected_level);
+                  if (i == 2) {
+                     topElement = navLink;
+                  } 
+                  if (i == lowest_level) {
+                     botElement = navLink;
+                     // updates the url
+                     history.pushState(null,null,'#'+navLink.textContent);
+                  } 
+                  break;
+               }
+            } 
+         });
+         scroll_nav_bar(topElement, botElement);
+      }
+
+      function clear_lower_selected(level, lowest) {
+         lowest[level] = null;
+         if (level === 6) {
+            return lowest;
+         }
+         return clear_lower_selected(level+1, lowest);
+      }
+
+      function scroll_nav_bar(topElement, botElement) {
+         let navBar = document.getElementById("nav-sidebar");
+         let height = window.innerHeight*0.9;
+         // both can fit on screen
+         let diff = botElement.offsetTop - topElement.offsetTop
+         if (diff < height) {
+            let offset = diff-height/2 < 0 ? 0 : diff-height/2+5;
+            navBar.scrollTop = botElement.offsetTop - height/2 - offset;
+         }
+         // only one, so line it to the middle
+         else {
+            navBar.scrollTop = botElement.offsetTop - height/2;
+         }
+
+
+      }
    </script>
 
    <div id="nav-sidebar" class="sidebar">
       <!-- <button style="margin-bottom: 15px;" onclick="toggleLightMode()">Toggle Light Mode</button> -->
       <button class="hidden-desktop" onclick="close_nav()">X</button>
-      <a class="h2 nav-link" href="#Introduction" onclick="close_nav()">Introduction</a>
+      <a class="h2 nav-link" href="#Introduction">Introduction</a>
       <a class="h2 nav-link" href="#How to Play">How to Play</a>
-      <a class="h3 nav-link" href="#The Players">The Players</a>
+      <a class="h3 nav-link selected" href="#The Players">The Players</a>
       <a class="h3 nav-link" href="#The Game Master">The Game Master</a>
       <a class="h3 nav-link" href="#Dice System">Dice System</a>
       <a class="h4 nav-link" href="#Examples">Examples</a>
@@ -83,11 +183,13 @@
       <a class="h4 nav-link" href="#Skills">Skills</a>
       <a class="h4 nav-link" href="#Traits">Traits</a>
       <a class="h5 nav-link" href="#General Traits">General Traits</a>
+      <a class="h5 nav-link" href="#Ancestral Traits">Ancestral Traits</a>
       <a class="h5 nav-link" href="#Arcane Traits">Arcane Traits</a>
       <a class="h5 nav-link" href="#Psionic Traits">Psionic Traits</a>
       <a class="h5 nav-link" href="#Nature Traits">Nature Traits</a>
       <a class="h5 nav-link" href="#Mortality Traits">Mortality Traits</a>
       <a class="h5 nav-link" href="#Elemental Traits">Elemental Traits</a>
+      <a class="h5 nav-link" href="#Engineer Traits">Engineer Traits</a>
       <a class="h3 nav-link" href="#Step 7 - Equipment">Step 7 - Equipment</a>
       <a class="h4 nav-link" href="#Weapons">Weapons</a>
       <a class="h5 nav-link" href="#Weapon Example Table">Weapon Example Table</a>
@@ -128,7 +230,7 @@
       <a class="h4 nav-link" href="#Multi-Target Attacks">Multi-Target Attacks</a>
       <a class="h4 nav-link" href="#Holding Attacks">Holding Attacks</a>
       <a class="h4 nav-link" href="#Surprise">Surprise</a>
-      <a class="h4 nav-link" href="#Concealment">Concealment</a>
+      <a class="h4 nav-link" href="#Concealment">Cover & Concealment</a>
       <a class="h3 nav-link" href="#Range">Range</a>
       <a class="h3 nav-link" href="#Damage">Damage</a>
       <a class="h4 nav-link" href="#Damage Types">Damage Types</a>
@@ -157,7 +259,14 @@
       <a class="h3 nav-link" href="#Beastmaster">Beastmaster</a>
       <a class="h2 nav-link" href="#Appendix">Appendix</a>
       <a class="h3 nav-link" href="#Stat Blocks">Stat Blocks</a>
+      <a class="h4 nav-link" href="#Beast Shape - Small Animal">Beast Shape - Small Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Medium Animal">Beast Shape - Medium Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Large Animal">Beast Shape - Large Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</a>
       <a class="h4 nav-link" href="#Undead Creature Stats">Undead Creature Stats</a>
+      <a class="h4 nav-link" href="#Soul Devourer Stats">Soul Devourer Stats</a>
       <a class="h4 nav-link" href="#Beast Base Stats">Beast Base Stats</a>
       <a class="h3 nav-link" href="#Styling Guide">Styling Guide</a>
       <a class="h4 nav-link" href="#Ability Style">Ability Style</a>
@@ -167,22 +276,14 @@
       <a class="h3 nav-link" href="#Design Choice Explanations">Design Choice Explanations</a>
       <a class="h4 nav-link" href="#The Dice">The Dice</a>
       <a class="h3 nav-link" href="#Banished Abilities">Banished Abilities</a>
-      <!-- <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a>
-   <a class="" href="#"></a> -->
-
    </div>
 
    <div id="header" class="hidden-desktop"> 
       <button id="open-nav-button" onclick="open_nav()">&#9776;</button>
    </div>
 
-   <div class="main-content" onclick="close_nav()">
-      <h1 id="Arcus RPG">Arcus RPG</h2>
+   <div id="content-parent" class="main-content" onclick="close_nav()" onscroll="doc_scroll()">
+      <h1 id="Arcus RPG">Arcus RPG</h1>
          <a class="version-text" href="https://github.com/Jackington6600/Arcus/releases" target="_blank">Version 1.2</a>
          <h2 id="Introduction">Introduction</h2>
          <p>
@@ -384,7 +485,7 @@
          </p>
          <p>
          </p>
-         <h2 id="Creating a Character">Creating a Character - Step by Step</h2>
+         <h2 id="Creating a Character">Creating a Character</h2>
          <h3 id="Step 1 - Who Do You Want To Be?">Step 1 - Who Do You Want To Be?</h3>
          <p>
             There are many ways to start making your character in Arcus and the rules should
@@ -714,9 +815,11 @@
             character to avoid the damage/effect. It also gives the GM the opportunity, in
             some very rare cases, to deny the damage reduction if it cannot make sense for
             the damage to the character to be negated, or come to a reasonable middleground.
-            Such as if the player is paralysed and suffers damage the player cannot negate
+            Such as if the player is <a class="condition" data-tooltip-container>paralysed</a> 
+            and suffers damage the player cannot negate
             the damage, but if it would kill them the GM can let the player drop to 1 HP and
-            fall unconscious instead. Or in even rarer cases such as being crushed by a wave
+            fall <a class="condition" data-tooltip-container>unconscious</a> instead. 
+            Or in even rarer cases such as being crushed by a wave
             of magma the player might have no chance of survival and die instantly. Note to
             GMs, don’t crush your players with waves of magma - that’s mean.
          </p>
@@ -1171,155 +1274,147 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
                </td>
             </tr>
             <tr>
                <td>Dual Wield Master
                </td>
-               <td>Remove -2 debuff from dual wielding a Medium and Light weapon
+               <td>
+                  You may remove the -2 to attack rolls made when attacking with a Medium and Light weapon.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Sparring Master
                </td>
-               <td>+2 bonus to attack rolls made when wielding a 1 handed weapon with a free
-                  off-hand
+               <td>
+                  You gain a +2 bonus to attack rolls made when attacking with a 1 handed weapon and an empty
+                  off-hand.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Unarmed Combat Master
                </td>
-               <td>You can add your modifier to damage on unarmed attacks as normal. You may
-                  also be unarmed for the purpose of melee weapon attacks.
+               <td>
+                  You can add your modifier to damage on unarmed attacks.
                </td>
                <td>
                </td>
-               <td>Global Level 1
-               </td>
-            </tr>
-            <tr>
-               <td>Undead
-               </td>
-               <td>Weak to Soul damage, receives half healing from all sources. Cannot truly
-                  die. When your HP is reduced to 0 you fall unconscious. You can only be woken by
-                  healing. This healing may partially reconstruct your body if the detached or 
-                  broken pieces are nearby.
-               </td>
-               <td>
-               </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Remarkable Climber
                </td>
-               <td>Climb at normal movement speed without need for a skill check.
+               <td>
+                  Your movement speed is not halved when climbing - you instead move at full speed. 
+                  However, this climbing will still require a skill check in most cases.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Remarkable Swimmer
                </td>
-               <td>Swim at normal movement speed without need for a skill check.
+               <td>
+                  Your movement speed is not halved when swimming - you instead move at full speed. 
+                  However, this swimming will still require a skill check in some cases.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Mounted Specialist
                </td>
-               <td>Attacks made while mounted are no longer made with DisAdv.
+               <td>
+                  Attacks you make while mounted are no longer made with DisAdv (-).
                </td>
                <td>
                </td>
-               <td>Global Level 1
-               </td>
-            </tr>
-            <tr>
-               <td>Amphibious
-               </td>
-               <td>Breathe underwater.
-               </td>
-               <td>
-               </td>
-               <td>Global Level 5 or Amphibious race
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Purity of Body
                </td>
-               <td>On a short rest also regain 1 FORT and 1 REFL point.
+               <td>
+                  When you take a short rest you also regain 1 FORT and 1 REFL point.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Purity of Mind
                </td>
-               <td>On a short rest also regain 2 WILL points
+               <td>
+                  When you take a short rest you also regain 2 WILL points.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Inspirational (Speaker, Entertainer, Cook)
                </td>
-               <td>On a short rest give all allies resting with you 1 point of Inspiration.
+               <td>
+                  When you take a short rest you may give all allies resting with you 1 point of inspiration.
                   This point of inspiration can be used at any time to give Adv (+) on a roll of
                   any kind.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Master of Disguise
                </td>
-               <td>Spend 30 minutes with the relevant necessary materials and equipment
-                  disguising yourself as another person (within reason). Can be done during a
-                  short rest. Can also be used to apply a disguise to another person.
+               <td>
+                  You may spend 30 minutes with the relevant necessary materials and equipment
+                  disguising yourself as another person (within reason). This can be done during a
+                  short rest. You can also apply a disguise to another willing creature.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Mimicry
                </td>
-               <td>Gain the ability to mimic sounds, voices and creatures almost perfectly
-                  with your voice
+               <td>
+                  You gain the ability to mimic sounds, voices and creatures almost perfectly
+                  with your voice. You must hear a sound before it can be replicated accurately, and 
+                  to mimic a voice you must hear the voice in conversation for at least a minute - 
+                  up to GM's discretion.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Camouflage
                </td>
-               <td>Spend 30 minutes giving yourself and up to 5 allies camouflage that
-                  remains effective until your next short or long rest. Grants Adv (+) on all
-                  checks to sneak or hide. Can be done during a short rest.
+               <td>
+                  You may spend 30 minutes giving yourself and up to 5 allies camouflage that
+                  remains effective until your next short or long rest. This grants Adv (+) on all
+                  checks to sneak or <a class="condition" data-tooltip-container>hide</a> that are affected by vision. This can be done during a short rest.
                </td>
                <td>
                </td>
@@ -1329,44 +1424,247 @@
             <tr>
                <td>Graceful
                </td>
-               <td>Take no fall damage up to 25ft. 5 damage if the creature falls 30ft or
-                  more. Increases by additional 5 damage for every 5ft above 30ft. For example
+               <td>
+                  You suffer no falling damage up to 25ft. 5 damage if the creature falls 30ft or
+                  more. Increases by an additional 5 damage for every 5ft above 30ft. For example
                   40ft would be 10, 65ft would be 40 etc.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Multiclass Master
                </td>
-               <td>Gain 2 additional attribute points to assign. Cannot be spent increasing
+               <td>
+                  You gain 2 additional attribute points to assign. Cannot be spent increasing
                   any attribute that is already 18 or higher.
                </td>
                <td>
                </td>
-               <td>2 Levels in a Physical Class and 2 Levels in a Magical Class
+               <td>3 Levels in a Physical Class and 3 Levels in a Magical Class
                </td>
             </tr>
             <tr>
                <td>Linguist
                </td>
-               <td>Learn a new language (can be taken multiple times)
+               <td>
+                  You learn a new language (can be taken multiple times).
                </td>
                <td>
                </td>
-               <td>Global Lvl 1
+               <td>None
                </td>
             </tr>
             <tr>
                <td>Perceptive
                </td>
-               <td>Very good recall of visual memory and passive perception increased by 6.
+               <td>
+                  You have very good recall of visual memory and your passive perception is increased by 6.
                </td>
                <td>
                </td>
-               <td>Global Level 1
+               <td>None
+               </td>
+            </tr>
+            <tr>
+               <td>Field Medic
+               </td>
+               <td>
+                  When taking a short rest, you may instead heal a creature for 1/4 of you HP rounded down 
+                  instead of healing yourself for that amount.
+               </td>
+               <td>
+               </td>
+               <td>None
+               </td>
+            </tr>
+            <tr>
+               <td>Test for Poison
+               </td>
+               <td>
+                  You can check food, drink, and affected creatures for signs of poisons. 
+                  This tells you what poison has been used and what the cure might be.
+               </td>
+               <td>
+                  3AP - 3 Uses
+               </td>
+               <td>Global Level 3 or Nature Level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Cowardice
+               </td>
+               <td>
+                  If a willing creature is adjacent to you, you can take <a class="condition" data-tooltip-container>cover</a>
+                  behind them.
+
+                  If the creature is not willing, they have to be either
+                  <a class="condition" data-tooltip-container>restrained</a>,
+                  <a class="condition" data-tooltip-container>incapacitated</a>,
+                  <a class="condition" data-tooltip-container>paralysed</a>, or
+                  <a class="condition" data-tooltip-container>unconscious</a>.  
+
+                  Normal coverage rules apply, so if a creature is smaller than you or unable to cover you, 
+                  you cannot take cover behind them.
+               </td>
+               <td>
+                  1AP - 3 Uses
+               </td>
+               <td>None
+               </td>
+            </tr>
+         </table>
+         <h5 id="Ancestral Traits">Ancestral Traits</h5>
+         <p>
+            These are a collection of traits which are specific to certain species inside of Arcus.
+            These are optional to take like other traits, but have to make sense for your character.
+            Get GM approval before taking any of these traits, just because they are options does
+            not mean they are suitable for all campaigns.
+         </p>
+         <table class="center">
+            <tr>
+               <td><strong>Name</strong>
+               </td>
+               <td><strong>Desc</strong>
+               </td>
+               <td><strong>Notes</strong>
+               </td>
+               <td><strong>Requirements</strong>
+               </td>
+            </tr>
+            <tr>
+               <td>Long-lived
+               </td>
+               <td>
+                  You live significantly longer than most. Where most might live 80 years, you 
+                  could live much longer - such as 300 years. You should discuss with your GM how 
+                  long and why you have a higher life expectancy.
+               </td>
+               <td>
+               </td>
+               <td>Suitable Ancenstry
+               </td>
+            </tr>
+            <tr>
+               <td>Amphibious
+               </td>
+               <td>
+                  You may breathe underwater.
+               </td>
+               <td>
+               </td>
+               <td>Suitable Ancenstry
+               </td>
+            </tr>
+            <tr>
+               <td>Poison Glands
+               </td>
+               <td>
+                  Damage you deal from unarmed attacks may be dealt as poison damage instead.
+               </td>
+               <td>
+               </td>
+               <td>Suitable Ancenstry
+               </td>
+            </tr>
+            <tr>
+               <td>Minimal Sustenance
+               </td>
+               <td>
+                  You require little to no food and/or water to survive and thrive. For example,  
+                  a plant creature might gain all the nourishment they need through photosynthesis, 
+                  rooting themselves in earth with viable nutrients overnight, and a litre or two 
+                  of water a day.
+               </td>
+               <td>
+               </td>
+               <td>Suitable Ancenstry
+               </td>
+            </tr>
+            <tr>
+               <td>Tiny
+               </td>
+               <td>
+                  You are incredibly small. This means you can be pushed with ease. Any successful push/pull
+                  movement can affect you by up to an additional 10ft - caster's choice.  
+
+                  Due to your size, you find it easier to take <a class="condition" data-tooltip-container>cover</a>. 
+
+                  You may also reduce your maximum FORT points by up to 4 to increase your REFL points by the
+                  same amount. You cannot have negative resistance points.
+               </td>
+               <td>
+               </td>
+               <td>Max size 1ft in the largest dimension
+               </td>
+            </tr>
+            <tr>
+               <td>Small
+               </td>
+               <td>
+                  You are small. This means you can be pushed with ease. Any successful push/pull
+                  movement can affect you by up to an additional 5ft - caster's choice.
+
+                  Due to your size, you find it easier to take <a class="condition" data-tooltip-container>cover</a>. 
+
+                  You may also reduce your maximum FORT points by up to 2 to increase your REFL points by the
+                  same amount. You cannot have negative resistance points.
+               </td>
+               <td>
+               </td>
+               <td>Max size 3ft in the largest dimension
+               </td>
+            </tr>
+            <tr>
+               <td>Large
+               </td>
+               <td>
+                  You are large. This makes it harder to move you. The maximum distance of push/pull movement
+                  inflicted on you by a creature smaller than you is reduced by 5ft.
+
+                  Due to your size, you find it harder to take <a class="condition" data-tooltip-container>cover</a>. 
+
+                  You may also reduce your maximum REFL points by up to 2 to increase your FORT points by the
+                  same amount. You cannot have negative resistance points.
+               </td>
+               <td>
+               </td>
+               <td>At least 9ft in one dimension
+               </td>
+            </tr>
+            <tr>
+               <td>Giant
+               </td>
+               <td>
+                  You are giant. This makes it harder to move you. The maximum distance of push/pull movement
+                  inflicted on you by a creature smaller than you is reduced by 5ft if the creature pushing you is large,
+                  and 10ft if the creature is medium sized or smaller.
+
+                  Due to your size, you find it harder to take <a class="condition" data-tooltip-container>cover</a>. 
+
+                  You may also reduce your maximum REFL points by up to 4 to increase your FORT points by the
+                  same amount. You cannot have negative resistance points.
+               </td>
+               <td>
+               </td>
+               <td>At least 14ft in one dimension
+               </td>
+            </tr>
+            <tr>
+               <td>Undead
+               </td>
+               <td>
+                  You become <a class="condition" data-tooltip-container>weak</a> to soul damage  
+                  and receive half healing from all sources. You do not die when you are reduced to 0 HP 
+                  and you instead fall <a class="condition" data-tooltip-container>unconscious</a>. You can then only be woken by
+                  healing. This healing may partially reconstruct the creature's body if 
+                  the detached or broken pieces are nearby.
+               </td>
+               <td>
+               </td>
+               <td>None
                </td>
             </tr>
          </table>
@@ -1379,13 +1677,15 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
                </td>
             </tr>
             <tr>
                <td>Arcane Light
                </td>
-               <td>Create a small source of light within 100ft - It spreads light in a 25ft
+               <td>
+                  You may create a small source of light within 100ft that floats and persists until you create a new 
+                  arcane light, or you move more than 100ft away from the light. The light spreads in a 25ft
                   radius.
                </td>
                <td>0 AP - No Use Limit
@@ -1396,9 +1696,11 @@
             <tr>
                <td>Spectral Hand
                </td>
-               <td>Create a spectral hand that can move and mimics your own hand within
-                  25ft. It has an AC of 14, Light HP, no resistance points, and a base movement
-                  speed of 5ft.
+               <td>
+                  You may create a spectral hand that can float, move, and mimics your own hand within
+                  25ft. It has an AC of 14, Light HP, no resistance points, a STR value of 2 (-4 modifier), and a 
+                  base movement speed of 5ft. You can make INT+DEX checks to perform more challenging dexterous 
+                  actions with the hand using your own modifiers. The hand persists for 6 seconds before disappearing.
                </td>
                <td>1 AP - 3 Uses
                </td>
@@ -1408,10 +1710,12 @@
             <tr>
                <td>Arcane Repair
                </td>
-               <td>Attempt to repair a damaged non magical object using magic - takes a long
-                  time on a larger and more damaged object.
+               <td>
+                  You may repair a damaged non magical object using magic. You can repair approximately 
+                  1 cubic foot of material per minute of using this ability, though this will be longer 
+                  if the item/material is more complex.
                </td>
-               <td>No Use Limit
+               <td>3 AP - No Use Limit
                </td>
                <td>Arcane Level 1
                </td>
@@ -1419,8 +1723,11 @@
             <tr>
                <td>Detect Magic
                </td>
-               <td>Sense areas and vague sources of magic within 25ft. Also learn which
-                  schools of magic they might relate to.
+               <td>
+                  You may sense areas and vague sources of magic within 15ft. You learn the direction, vague 
+                  level of power, and which schools of magic they might relate to - 
+                  Arcane, Elemental, Psionic, Mortality or Nature. GM's discretion as to how specifically 
+                  these are described.
                </td>
                <td>1 AP - 3 Uses
                </td>
@@ -1430,8 +1737,11 @@
             <tr>
                <td>Create Sanctuary
                </td>
-               <td>Take 10 minutes to create a sanctuary when you take a long rest that
-                  other creatures cannot enter.
+               <td>
+                  You may take 10 minutes to create a sanctuary in a 10ft radius which only creatures you choose may enter. 
+                  Within it maintains a comfortable temperature, a dim source of ambient light, and 
+                  shields all within from bad weather such as rain wind and snow. Creatures may spend 4 WILL 
+                  points to force their way into the sanctuary if they have not been permitted entry.
                </td>
                <td>1 Use
                </td>
@@ -1441,8 +1751,11 @@
             <tr>
                <td>Identify
                </td>
-               <td>Identify the more specific nature and capability of a magical object.
-                  Some objects, areas or creatures may still remain unidentifiable.
+               <td>
+                  You may touch and identify the specific nature and capability of a magical object or area.
+                  This might include learning all of the magical properties of an enchanted item or weapon, 
+                  or learning all of the magical effects that affect the area you are specifically and 
+                  currently stood in. In very rare cases, some objects or areas may still remain unidentifiable.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1450,26 +1763,24 @@
                </td>
             </tr>
             <tr>
-               <td>Dispel Magic
+               <td>Lesser Dispel Magic
                </td>
                <td>
-                  <span class="wip">
-                     Dispel the magic properties from a magical item. This will need more
-                     specification on what it can work on and how - not everything will be able to be
-                     dispelled.
-                  </span>
+                  You may dispel the magic properties from a lesser magical item or area of weak magic. 
+                  This might include a lesser magical scroll or potion, a very simple weapon enchantment, 
+                  a lesser magical trap or rune, or an area cursed or empowered by a weak source of magic. 
+                  The specific capabilities of this ability will be up to the GM's discretion.
                </td>
                <td>3 AP - 3 Uses
                </td>
-               <td>Identify?
-                  <p>
-                     Arcane Level 5
+               <td>Arcane Level 5
                </td>
             </tr>
             <tr>
                <td>Flight
                </td>
-               <td>Grant yourself 25ft of flying movement for 2AP. This movement speed is
+               <td>
+                  You may grant yourself 25ft of flying movement for 2AP. This movement speed is
                   separate from your other movement speed. You may recast this for 2AP each turn
                   after the initial cast without expending more uses of the ability. If you do not
                   recast in the following turn the effect ends and you must spend another use of
@@ -1481,15 +1792,44 @@
                </td>
             </tr>
             <tr>
-               <td>Long Range Teleport
+               <td>Teleportation Symbol
                </td>
                <td>
-                  <span class="wip">
-                     Maybe worth adding for other campaigns but I won’t use it for mine. 10
-                     minutes to cast a multi-person teleport to a known location within X miles.
-                  </span>
+                  This is an optional ability that is not used by default in all campaigns. It 
+                  is not a part of the Arcus lore but GM's may still wish to use it for other 
+                  campaigns.
+                  <p>
+                  You may spend an hour creating a magical symbol on the ground that is 10ft in diameter. 
+                  This symbol will have a unique set of markings to identify it so it can be reused, as the symbol 
+                  will remain until removed through magical means. It also remains visibly etched into the floor.
+                  On completion you may immediately open a gateway to another teleportation symbol 
+                  by using the target's teleportation symbol's unique markings. 
+                  The gateway is open for 6 seconds and any number of creatures may pass through it in 
+                  either direction - so long as they can fit through the 10ft gateway. 
+                  You may alternatively use this ability to use a preexisting teleportation symbol and open a gateway, 
+                  skipping the creation step. Using this ability in this way only takes 3 AP (6 seconds) to cast.
+                  </p>
                </td>
                <td>1 Use
+               </td>
+               <td>Arcane Level 10
+               </td>
+            </tr>
+            <tr>
+               <td>Greater Dispel Magic
+               </td>
+               <td>
+                  This is an optional ability that is not used by default in all campaigns. It 
+                  is not a part of the Arcus lore but GM's may still wish to use it for other 
+                  campaigns.
+                  <p>
+                  You may dispel the magic properties from a greater magical item or area of stronger magic. 
+                  This might include most magical scroll or potion, a more complex weapon enchantment, 
+                  most magical traps or runes, or most areas cursed or empowered by a stronger source of magic. 
+                  The specific capabilities of this ability will be up to the GM's discretion.
+                  </p>
+               </td>
+               <td>3 AP - 3 Uses
                </td>
                <td>Arcane Level 10
                </td>
@@ -1498,9 +1838,10 @@
                <td>Phase Shift
                </td>
                <td>
-                  <span class="wip">
-                     Pass through walls for a short while, continue like you can with flight?
-                  </span>
+                  You may grant yourself 25ft of special movement for 2AP which can be used to pass through walls, 
+                  creatures, and other solid objects without harm - you are also immune to attacks of 
+                  opportunity while using this movement. This movement cannot be broken up and must be used immediately 
+                  after using the ability.
                </td>
                <td>2 AP - 3 Uses
                </td>
@@ -1517,16 +1858,18 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
                </td>
             </tr>
             <tr>
                <td>Charm Person
                </td>
-               <td>Charm a creature within 50ft to treat you as a close friend for 10
-                  minutes. The target must be currently not aggressive towards you. 3 WILL points
-                  to resist. If they resist the effect, and/or when the effect ends, they are
-                  aware something tried to control their thoughts.
+               <td>
+                  You may <a class="condition" data-tooltip-container>charm</a> a creature within 50ft to treat you as a close friend for 10
+                  minutes. The target must be currently not aggressive towards you. 2 WILL points
+                  to resist. If they successfully resist the effect the target creature will be 
+                  aware something tried to control their thoughts, but will not know the source unless you cast the 
+                  ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1536,9 +1879,11 @@
             <tr>
                <td>Minor Illusion
                </td>
-               <td>Create a small visual and auditory illusion (1ft x 1ft) within 50ft. This
+               <td>
+                  You may create a small visual and auditory illusion (1ft x 1ft) within 50ft. This
                   illusion cannot be animated. A creature within 25ft can inspect the illusion
-                  with a PER+INT check, realising it is an illusion on a roll of 16 or higher.
+                  with a PER+INT check, realising it is an illusion on a roll which is 
+                  the same as your INT value or higher.
                </td>
                <td>1 AP - No Use Limit
                </td>
@@ -1548,8 +1893,10 @@
             <tr>
                <td>Telepathy
                </td>
-               <td>Gain the ability to communicate telepathically to other creatures within
-                  50ft. They must still understand the language you communicate in.
+               <td>
+                  You gain the ability to communicate telepathically to other creatures within
+                  50ft. They must still understand the language you communicate in. They cannot 
+                  respond telepathically, only you may communicate to them.
                </td>
                <td>No Use Limit
                </td>
@@ -1559,10 +1906,11 @@
             <tr>
                <td>Telekinesis
                </td>
-               <td>Gain the ability to move small objects with your mind at will (up to 1kg
-                  at a rate of 5ft per AP).
+               <td>
+                  You gain the ability to move small objects with your mind at will (up to 1kg
+                  at a rate of 5ft per AP - 15ft total movement per use).
                </td>
-               <td>No Use Limit
+               <td>3 AP - 3 Uses
                </td>
                <td>Psionic Level 1
                </td>
@@ -1570,12 +1918,13 @@
             <tr>
                <td>Disguise Self
                </td>
-               <td>Create an illusory image around yourself to make yourself appear like
+               <td>
+                  You may create an illusory image around yourself to make yourself appear like
                   another humanoid creature for 10 minutes. Your physical attributes do not
-                  change. It can be dispelled for 0AP. A creature within 25ft can inspect the
-                  illusion with a PER+INT check, realising it is an illusion on a roll of 16 or
-                  higher. You can use this on a willing ally within 25ft but the effect will only
-                  last 1 minute.
+                  change. You may end this effect at any time for 0AP. A creature within 25ft can inspect the
+                  illusion with a PER+INT check, realising it is an illusion on a roll which is 
+                  the same as your INT value or higher. You can use this on a willing ally
+                  within 25ft but the effect will only last 1 minute.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1586,12 +1935,12 @@
                <td>Compel Truth
                </td>
                <td>
-                  <span class="wip">
-                     Ask a creature a question and compel them to answer truthfully. They must
-                     still be able to understand the question to be able to answer. They may still
-                     choose to avoid the question or not answer. <br><br>If they can
-                     choose not to answer feels a bit useless - will resist maybe?
-                  </span>
+                  You may ask a creature a question and compel them to answer truthfully if they fail to resist. They must
+                  still be able to understand the question to be able to answer. The creature may still 
+                  choose to remain silent if they fail to resist. 2 WILL points to resist. You will always know 
+                  if the creature resisted the effect or not. If they successfully resist the effect the target creature will be 
+                  aware something tried to control their thoughts, but will not know the source unless you cast the 
+                  ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
                <td>1 AP - 3 Uses
                </td>
@@ -1601,7 +1950,8 @@
             <tr>
                <td>Invisibility
                </td>
-               <td>Become Invisible for 10 minutes. You can use this on a willing ally
+               <td>
+                  You may become <a class="condition" data-tooltip-container>invisible</a> for 10 minutes. You can use this on a willing ally
                   within 25ft but the effect will only last 1 minute.
                </td>
                <td>2 AP - 3 Uses
@@ -1612,11 +1962,15 @@
             <tr>
                <td>Sleep
                </td>
-               <td>Send a target within 50ft to sleep until your next turn. They receive the
-                  Unconscious condition, but if they receive any damage or negative status effect
-                  they instantly wake up and are no longer Unconscious. This lasts for up to 8
+               <td>
+                  You may send a target within 50ft to sleep until the start of your next turn. They receive the
+                  <a class="condition" data-tooltip-container>unconscious</a> condition, but if they receive any damage or negative status effect
+                  they instantly wake up and are no longer <a class="condition" data-tooltip-container>unconscious</a>. This lasts for up to 8
                   hours (or however long the creature would normally sleep). A creature that
-                  cannot sleep is unaffected by this ability. 3 WILL to resist.
+                  cannot sleep is unaffected by this ability. 2 WILL points to resist. 
+                  If they successfully resist the effect the target creature will be 
+                  aware something tried to control their thoughts, but will not know the source unless you cast the 
+                  ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1626,10 +1980,12 @@
             <tr>
                <td>Modify Memory
                </td>
-               <td>Modify any 10 minutes of memory from a creature from the last week. The
-                  creature must have an intelligence of 6 or more. The change in memory lasts
+               <td>
+                  You may modify any 10 minutes of memory from a creature from the last week. The change in memory lasts
                   until their next long rest - at which point they do not realise they have been
-                  affected. 3 WILL points to resist.
+                  affected. 2 WILL points to resist. If they successfully resist the effect the target creature will be 
+                  aware something tried to control their thoughts, but will not know the source unless you cast the 
+                  ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1639,9 +1995,13 @@
             <tr>
                <td>Insight
                </td>
-               <td>Cast on a creature within 25ft to gain insight into their deepest
-                  desires. You learn whatever primary motivations they might have - if any. 3 WILL
-                  points to resist.
+               <td>
+                  You may select a creature within 25ft to gain insight into their deepest
+                  desires. You learn whatever primary motivations they might have - if any. 
+                  GM's discretion as to how specifically these are described. 2 WILL
+                  points to resist. If they successfully resist the effect the target creature will be 
+                  aware something tried to control their thoughts, but will not know the source unless you cast the 
+                  ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1652,12 +2012,15 @@
                <td>Optic Separation
                </td>
                <td>
-                  <wip>
-                     Detach your vision from your body, and your mental eye can move up to
-                     50ft including movement through all physical objects and walls. 
-                     You may continue to move this eye for 1 AP on subsequent turns without 
-                     spending additional ability uses.
-                  </wip>
+                  You may detach your vision from your body, and your mental eye can move up to
+                  25ft including movement through all physical objects and walls. It is 
+                  partially transparent and glows ever so slightly. A creature within 25ft can make a 
+                  PER+INT check, spotting the eye on a roll which is the same as your INT value or higher.
+                  They will automatically notice it if their passive perception is higher than your INT value 
+                  and see it in their peripheral vision.
+                  You may continue to move this eye for 1 AP on this and subsequent turns without 
+                  spending additional ability uses. The eye will be dispelled if you are more 
+                  than 100ft from it at any time. 
                </td>
                <td>1 AP - 3 Uses
                </td>
@@ -1674,14 +2037,79 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
+               </td>
+            </tr>
+            <tr>
+               <td>Commune with Nature
+               </td>
+               <td>
+                  You may take 10 minutes to commune with the nature of the area. Learn about the
+                  local wildlife and plantlife - anything that may be of interest. Also learn
+                  about some of what the wildlife has witnessed in the last 7 days.
+                  GM's discretion as to how specifically these are described. 
+               </td>
+               <td>1 Use
+               </td>
+               <td>Nature Level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Clean water
+               </td>
+               <td>
+                  You may convert a cup of muddy, undrinkable water into clean drinking water.
+               </td>
+               <td>1 AP - No Use Limit
+               </td>
+               <td>Nature Level 1 or Mortality level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Decompose
+               </td>
+               <td>
+                  You gain the ability to touch and decompose a dead creature, causing it to rot
+                  and sprout maggots. The longer you spend on the spell, the more complete the
+                  decomposition. You can entirely decompose a body in approximately 5 minutes.
+               </td>
+               <td>1 AP - No Use Limit
+               </td>
+               <td>Nature Level 1 or Mortality level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Fertility Rites
+               </td>
+               <td>
+                  You gain the ability to accelerate the growth of small plants, vines and vegetation in areas
+                  within 25ft. The longer you spend on the spell, the more significant the changes.
+               </td>
+               <td>No Use Limit
+               </td>
+               <td>Nature Level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Speak with Animals
+               </td>
+               <td>
+                  You gain the ability to speak with animals for 10 minutes. The
+                  animal’s intelligence remains the same, so they may not be able to communicate
+                  very effectively. You can use this on a willing ally within 25ft but the effect
+                  will only last 1 minute.
+               </td>
+               <td>3 AP - 3 Uses
+               </td>
+               <td>Nature Level 1
                </td>
             </tr>
             <tr>
                <td>Spider Climb
                </td>
-               <td>Grant any number of willing creatures within 25ft the ability to climb at
-                  full speed without need for a skill check. This lasts 10min.
+               <td>
+                  you may grant any number of willing creatures within 25ft the ability to climb at
+                  full speed with advantage (+) on their skill check. This lasts 10 minutes.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1691,48 +2119,13 @@
             <tr>
                <td>Webbed Feet
                </td>
-               <td>Grant any number of willing creatures within 25ft the ability to swim at
-                  full speed without need for a skill check. This lasts 10min
+               <td>
+                  You may grant any number of willing creatures within 25ft the ability to swim at
+                  full speed with advantage (+) on their skill check. This lasts 10 minutes.
                </td>
                <td>3 AP - 3 Uses
                </td>
                <td>Nature Level 5
-               </td>
-            </tr>
-            <tr>
-               <td>Commune with Nature
-               </td>
-               <td>Take 10 minutes to commune with the nature of the area. Learn about the
-                  local wildlife and plantlife - anything that may be of interest. Also learn
-                  about some of what the wildlife has witnessed in the last 7 days.
-               </td>
-               <td>1 Use
-               </td>
-               <td>Nature Level 1
-               </td>
-            </tr>
-            <tr>
-               <td>Druidcraft
-               </td>
-               <td>Gain the ability to conjure small plants, vines and vegetation in areas
-                  within 25ft.
-               </td>
-               <td>1 AP - No Use Limit
-               </td>
-               <td>Nature Level 1
-               </td>
-            </tr>
-            <tr>
-               <td>Speak with Animals
-               </td>
-               <td>Cast this to gain the ability to speak with animals for 10 minutes. The
-                  animal’s intelligence remains the same, so they may not be able to communicate
-                  very effectively. You can use this on a willing ally within 25ft but the effect
-                  will only last 1 minute.
-               </td>
-               <td>3 AP - 3 Uses
-               </td>
-               <td>Nature Level 1
                </td>
             </tr>
          </table>
@@ -1745,13 +2138,14 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
                </td>
             </tr>
             <tr>
                <td>Mind Over Soul
                </td>
-               <td>You may use INT instead of SPI for all Mortality based abilities.
+               <td>
+                  You may use INT instead of SPI for all Mortality abilities.
                </td>
                <td>
                </td>
@@ -1759,14 +2153,38 @@
                </td>
             </tr>
             <tr>
+               <td>Clean water
+               </td>
+               <td>
+                  You may convert a cup of muddy, undrinkable water into clean drinking water.
+               </td>
+               <td>1 AP - No Use Limit
+               </td>
+               <td>Nature Level 1 or Mortality level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Decompose
+               </td>
+               <td>
+                  You gain the ability to touch and decompose a dead creature, causing it to rot
+                  and sprout maggots. The longer you spend on the spell, the more complete the
+                  decomposition. You can entirely decompose a body in approximately 5 minutes.
+               </td>
+               <td>1 AP - No Use Limit
+               </td>
+               <td>Nature Level 1 or Mortality level 1
+               </td>
+            </tr>
+            <tr>
                <td>Speak With Dead
                </td>
-               <td>Cast this on a dead creature within 25ft to be able to talk to it for up
-                  to 10 minutes. The creature’s intelligence remains the same, and the amount of
+               <td>
+                  You may talk to a single dead creature within 25ft for up to 10 minutes. 
+                  The creature’s intelligence remains the same, and the amount of
                   time they’ve been dead will cause their memory to decay and reduce their ability
                   to communicate effectively. They must still be able to understand the language
-                  you speak to them. You can use this on a willing ally within 25ft but the effect
-                  will only last 1 minute.
+                  you speak to them.
                </td>
                <td>3 AP - 3 Uses
                </td>
@@ -1777,7 +2195,7 @@
                <td>True Resurrection
                </td>
                <td>
-                  Choose a willing creature within 25ft that has died in the past hour and bring it
+                  You may choose a willing creature within 25ft that has died in the past hour and bring it
                   back to life. You choose how much HP to give it by spending from your own
                   current pool of HP. This is not without consequences, the corpse must not be
                   desecrated and any missing limbs do not regrow. The creature has DisAdv (---) on
@@ -1792,7 +2210,7 @@
                <td>True Necromancy
                </td>
                <td>
-                  Choose a creature within 25ft that has died at any time and bring it
+                  You may choose a creature within 25ft that has died at any time and bring it
                   back as an undead. You choose how much HP to give it by spending from your own
                   current pool of HP, and this healing may partially reconstruct the creature's body if the detached or 
                   broken pieces are nearby. The creature has DisAdv (---) on all of it’s rolls until it 
@@ -1813,35 +2231,102 @@
                </td>
                <td><strong>Notes</strong>
                </td>
-               <td><strong>Req</strong>
+               <td><strong>Requirements</strong>
                </td>
             </tr>
             <tr>
                <td>Frost Walker
                </td>
                <td>
-                  <span class="avoid">
-                     You can choose to turn water to ice strong enough to walk over. This
-                     melts 1 minute after you’re no longer touching it
-                  </span>
+                  You may turn water to ice that is strong enough to walk over. This can be used to freeze 
+                  any water that you touch. You can convert approximately 5ft cubed of water into ice per 
+                  3 AP spent. This ice will naturally melt after you no longer touch it based on the 
+                  surrounding temperature.
                </td>
-               <td>
+               <td>3 AP - No Use Limit
                </td>
                <td>Elemental Level 1
                </td>
             </tr>
             <tr>
+               <td>Shape Element
+               </td>
+               <td>
+                  You may control a small amount of an element (water, fire, air, electricty) 
+                  to move and take a form of your will within 25ft. Think fire dancing in your palm, 
+                  smoke rings, or puddles avoiding your foot.
+               </td>
+               <td>1 AP - No Use Limit
+               </td>
+               <td>Elemental Level 3
+               </td>
+            </tr>
+            <tr>
                <td>Control Weather
                </td>
-               <td>You can summon localised weather, making it rain or sunny on command. The
-                  weather reverts to normal after 10 min
+               <td>
+                  You may summon localised weather, such as making it rain or sunny on command. The
+                  weather reverts to normal after 10 minutes. This weather cannot be extreme or harmful.
                </td>
                <td>3 AP - no use limit
                </td>
                <td>Elemental Level 5
                </td>
             </tr>
-         </table>
+            </table>
+            <h5 id="Engineer Traits">Engineer Traits</h5>
+            <table class="center">
+               <tr>
+                  <td><strong>Name</strong>
+                  </td>
+                  <td><strong>Desc</strong>
+                  </td>
+                  <td><strong>Notes</strong>
+                  </td>
+                  <td><strong>Requirements</strong>
+                  </td>
+               </tr>
+               <tr>
+                  <td>Better sights
+                  </td>
+                  <td>
+                     You can use your INT instead of PER when using ranged weapons such as a bow 
+                     or a crossbow.
+                  </td>
+                  <td>
+                  </td>
+                  <td>Engineer Level 1
+                  </td>
+               </tr>
+               <tr>
+                  <td>Repair
+                  </td>
+                  <td>
+                     You may repair a damaged non magical object. You can repair approximately 
+                     1 cubic foot of material per minute of using this ability, though this will be longer 
+                     if the item/material is more complex.
+                  </td>
+                  <td>3 AP - No Use Limit
+                  </td>
+                  <td>Engineer Level 1
+                  </td>
+               </tr>
+               <tr>
+                  <td>Mechanical Modification
+                  </td>
+                  <td>
+                     You may slightly modify or increase the efficiency of a mechanical object permanently. 
+                     Such as modifying a lock to make it pick resistant or not work with the original key, or 
+                     spend some time increasing the efficiency of a lumber mill. 
+                     This doesn't work on the engineer’s own constructs, as they are already
+                     at the best of their ability.
+                  </td>
+                  <td>3 AP - 3 Uses
+                  </td>
+                  <td>Engineer Level 3
+                  </td>
+               </tr>
+            </table>
          <h3 id=""></h3>
          <h3 id="Step 7 - Equipment">Step 7 - Equipment</h3>
          <h4 id="Weapons">Weapons</h4>
@@ -2088,7 +2573,6 @@
          <p>
             TODO
          </p>
-         <h3 id=""></h3>
          <h3 id="Step 8 - Personality and History">Step 8 - Personality and History</h3>
          <p>
             All characters have their strengths and weaknesses, and in role playing both are
@@ -2130,7 +2614,6 @@
          <p>
             TODO
          </p>
-         <h3 id=""></h3>
          <h3 id="Step 10 - Levelling Up">Step 10 - Levelling Up</h3>
          <p>
             Note: All information here is previously stated in the relevant sections. This
@@ -2474,7 +2957,8 @@
          </p>
          <p>
             A flying creature does not have to end its movement on the ground - it does not
-            fall or take falling damage while flying. If the creature is knocked <a class="condition" data-tooltip-container>prone</a> or <a class="condition" data-tooltip-container>stunned</a> 
+            fall or take falling damage while flying. If the creature is knocked <a class="condition" data-tooltip-container>prone</a> 
+            or <a class="condition" data-tooltip-container>stunned</a> 
             they are no longer flying and will immediately fall at 
             normal speed and take fall damage as normal - the creature becomes flying again
             when it spends flying movement speed. Generally referred to as “fly”, “flight”
@@ -2584,7 +3068,7 @@
             hit.
          </p>
          <p>
-            Critical hits can be applied as a result of surprise or concealment or at the
+            Critical hits can be applied as a result of surprise or at the
             GM’s discretion - such as if there is some significant advantage on the attack
             (or special circumstances) that the GM would like to reward.
          </p>
@@ -2609,18 +3093,34 @@
          </p>
          <h4 id="Surprise">Surprise</h4>
          <p>
-            If you attack a target from stealth that is unaware that you exist, you will
-            have Adv (++) on the attack from being hidden and the attack may also be a
-            critical hit due to surprise (GM’s discretion). After this, the target and other
-            targets in the area (GM’s discretion) will become aware of your presence - such
-            as the target shouting to their allies to warn them about you.
+            If you are <a class="condition" data-tooltip-container>hidden</a> from a creature 
+            and make an attack against it, you will
+            have Adv (++) on the attack roll and the attack may also be a
+            critical hit due to surprise. An attack can be considered as a surprise 
+            when a creature that is not expecting a violent threat of any kind, such as 
+            not being involved in combat of any kind and unaware of your presence. 
+            After this, the attacked creature and other
+            creatures in the area will become aware of your presence - such
+            as the target shouting to their allies to warn them about you - and you will 
+            no longer be <a class="condition" data-tooltip-container>hidden</a>.
          </p>
          <p>
             Also if the target is aware of you but is strongly not expecting you to attack
-            them, this may also class as a surprise and gain Adv (++) and even be a critical
-            hit (GM’s discretion).
+            them, this may also class as a surprise in some circumstances, gaining Adv (++) 
+            and becoming a critical hit. For example, betraying an ally stood beside you to initiate combat.
          </p>
-         <h4 id="Concealment">Concealment</h4>
+         <h4 id="Concealment">Cover & Concealment</h4>
+         <p>
+            A ranged attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered
+            by terrain or an obstacle is known as <a class="condition" data-tooltip-container>in cover</a>.  All attacks against this enemy is made with DisAdv (-).
+            Marking a target removes it's cover bonus.
+         </p>
+         <p>
+            To be considered <a class="condition" data-tooltip-container>hidden</a> from another certain creature, the creature must not be able to see you and therefore be 
+            unaware of your presence or current location. This might come from making a successful Hide core ability, or from being <a class="condition" data-tooltip-container>invisible</a>. 
+            An attack against a creature that you are <a class="condition" data-tooltip-container>hidden</a> from has Adv (++). This grade of Adv may vary based on GM's discretion. 
+            Being <a class="condition" data-tooltip-container>hidden</a> can be broken in many ways such as by making noise, being seen, or dealing damage.
+         </p>
          <p>
             A melee attack against a target you cannot see (such as when you are <a class="condition" data-tooltip-container>blind</a> 
             or the target is <a class="condition" data-tooltip-container>invisible</a>) is made with DisAdv (--).
@@ -2628,10 +3128,6 @@
          <p>
             A ranged attack against a target you cannot see (such as when you are <a class="condition" data-tooltip-container>blind</a> 
             or the target is <a class="condition" data-tooltip-container>invisible</a>) is made with DisAdv (---).
-         </p>
-         <p>
-            An attack against a target that is unaware of your existence (such as when you
-            are hidden/<a class="condition" data-tooltip-container>invisible</a> and combat hasn’t started) has Adv (++).
          </p>
          <h3 id="Range">Range</h3>
          <p>
@@ -2773,27 +3269,28 @@
          </div>
          <h4 id="Damage Resistance, Weakness, and Vulnerability">Damage Resistance, Weakness, and Vulnerability</h4>
          <p>
-            Creatures can be <strong>resistant </strong>to damage, this means when they take
+            Creatures can be <strong>resistant</strong> to damage, this means when they take
             damage it is divided by 2 rounded down. Damage can never be rounded down below
             1. If a creature is hit for 3 fire damage and it is resistant to fire damage it
             will suffer 1 fire damage.
          </p>
          <p>
-            If a creature is <strong>weak </strong>to a damage type then they suffer the
+            If a creature is <strong>weak</strong> to a damage type then they suffer the
             total damage plus 50% (half the damage, round down, and add it to the total
             damage).
          </p>
          <p>
-            If a creature is <strong>vulnerable </strong>to a damage type then they suffer
+            If a creature is <strong>vulnerable</strong> to a damage type then they suffer
             double the total damage.
          </p>
          <p>
-            If a creature is <strong>immune </strong>to a damage type then they suffer no
+            If a creature is <strong>immune</strong> to a damage type then they suffer no
             damage at all.
          </p>
          <p>
             If a creature is immune to a damage type this cannot be altered, regardless of
-            abilities that might try to make them weak or vulnerable to a damage type. There
+            abilities that might try to make them <a class="condition" data-tooltip-container>weak</a> 
+            or <a class="condition" data-tooltip-container>vulnerable</a> to a damage type. There
             may still be some abilities that can temporarily overcome this damage immunity -
             such as Poisoned Strike.
          </p>
@@ -2815,10 +3312,10 @@
             </tr>
          </table>
          <p>
-            Vulnerable, weak, normal, and resistant work on a sliding scale, where gaining
+            <a class="condition" data-tooltip-container>Vulnerable</a>, <a class="condition" data-tooltip-container>weak</a>, normal, and resistant work on a sliding scale, where gaining
             resistance to a damage type will move you one step to the right on the scale,
-            and becoming weak to a damage type will move you one step left on the scale.
-            Becoming vulnerable to a damage type will move you two steps to the left on the
+            and becoming <a class="condition" data-tooltip-container>weak</a> to a damage type will move you one step left on the scale.
+            Becoming <a class="condition" data-tooltip-container>vulnerable</a> to a damage type will move you two steps to the left on the
             scale. You cannot be moved off this scale. Sources of damage resistance and
             vulnerability must be unique - they cannot both come from the same ability or
             source type (such as a potion), as they will not stack.
@@ -2833,7 +3330,7 @@
          </p>
          <p>
             When a creature suffers falling damage, it is also knocked <a class="condition" data-tooltip-container>prone</a> -
-            unless it is immune or the GM deems it reasonable for the creature to not fall
+            unless it is <a class="condition" data-tooltip-container>immune</a> or the GM deems it reasonable for the creature to not fall
             <a class="condition" data-tooltip-container>prone</a>.
          </p>
          <h3 id="Death">Death</h3>
@@ -2952,10 +3449,11 @@
                </td>
                <td>The creature has a mark placed on it. The effects of this mark are
                   dependent on the ability it is associated with. Many abilities will have bonuses
-                  when used against the creature (such as surprise attack). The creature cannot
-                  enter stealth or become <a class="condition" data-tooltip-container>invisible</a> while it has this condition. A hidden
+                  when used against the creature. The creature cannot
+                  become <a class="condition" data-tooltip-container>hidden</a> or <a class="condition" data-tooltip-container>invisible</a> 
+                  while it has this condition. A <a class="condition" data-tooltip-container>hidden</a>
                   or <a class="condition" data-tooltip-container>invisible</a> creature that gains this condition immediately becomes
-                  visible.
+                  visible and a creature <a class="condition" data-tooltip-container>in cover</a> no longer imposes DisAdv (-) on its attacker.
                </td>
             </tr>
             <tr>
@@ -3033,8 +3531,8 @@
                   <p>
                      If the creature is stunned during its turn it immediately spends up to 2AP. If
                      it now has 0 AP remaining its turn instantly ends, otherwise it may continue to
-                     act. In all cases the stun still lasts until the start of the creature’s turn
-                     that was the source of the stun as normal.
+                     act. In all cases the <a class="condition" data-tooltip-container>stun</a> still lasts until the start of the creature’s turn
+                     that was the source of the <a class="condition" data-tooltip-container>stun</a> as normal.
                </td>
             </tr>
             <tr>
@@ -3084,7 +3582,7 @@
             <tr>
                <td><em>Unconscious</em>
                </td>
-               <td>The creature falls limp and Prone and cannot do anything while
+               <td>The creature falls limp and <a class="condition" data-tooltip-container>prone</a> and cannot do anything while
                   unconscious. It is unaware of its surroundings and all attacks against the
                   creature have Adv (++). Any attack that hits the creature is a critical hit if
                   the attacker is within 5ft of the creature. The creature remains unconscious
@@ -3279,10 +3777,11 @@
                </td>
                <td>Hide
                </td>
-               <td>Hide from creatures with a DEX+DEX stealth check, any creature that
-                  cannot see you as you take this action is no longer aware of where you are. Most
+               <td>Make a DEX+DEX stealth check to become <a class="condition" data-tooltip-container>hidden</a>. Any creature that
+                  cannot see you as you take this action is no longer aware of where you are 
+                  if you roll higher than their passive perception. Most
                   creatures still have object permanence so they may come looking for you using a
-                  perception check. If they roll higher than your stealth or have direct line of
+                  perception check. If they roll higher than your stealth check or have direct line of
                   sight to you, you are revealed.
                </td>
                <td>S
@@ -3296,7 +3795,7 @@
                <td>Help
                </td>
                <td>Help a creature within 5ft. This might be to wake them from being
-                  unconscious, give them Adv (+) in a skill check, or to help them by removing a
+                  <a class="condition" data-tooltip-container>unconscious</a>, give them Adv (+) in a skill check, or to help them by removing a
                   condition from them (specifically <a class="condition" data-tooltip-container>hobbled</a>, 
                   <a class="condition" data-tooltip-container>prone</a>, <a class="condition" data-tooltip-container>immobilised</a>, 
                   <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>frightened</a>,
@@ -3319,6 +3818,20 @@
                   point to resist the push/pull.
                </td>
                <td>A+E
+               </td>
+               <td>1
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Stand Up
+               </td>
+               <td>If you are currently <a class="condition" data-tooltip-container>prone</a>
+                  you may remove the <a class="condition" data-tooltip-container>prone</a> condition 
+                  and stand up again.
+               </td>
+               <td>S
                </td>
                <td>1
                </td>
@@ -3364,6 +3877,20 @@
             <tr>
                <td>Core
                </td>
+               <td>Pick Up Item
+               </td>
+               <td>Pick up one or more items from the floor within 5ft into one or more free hands. 
+                  All of these items must fit in your free hands to all be picked up in 
+                  one ability use, otherwise this ability must be used multiple times.
+               </td>
+               <td>S
+               </td>
+               <td>1
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
                <td>Drink Potion
                </td>
                <td>Drink a potion from your inventory or hand.
@@ -3390,6 +3917,24 @@
             <tr>
                <td>Core
                </td>
+               <td>Improvise
+               </td>
+               <td>
+                  Describe something you do with extra flair or improvise a fun way to use your 
+                  abilities, allies, and/or surroundings to your advantage. Your GM may choose to reward you with 
+                  bonuses or Adv on your actions depending on what you describe. Bear in mind that 
+                  this should not be a consistent source of advantage, damage, or conditions for any player, 
+                  and should primarily reward creativity. This should not be something you're doing every round 
+                  and you should not be rewarded for the same creative action or description more than once. 
+               </td>
+               <td>-
+               </td>
+               <td>-
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
                <td>Other
                </td>
                <td>The GM will allow you to do other actions on your turn, just say what you
@@ -3411,7 +3956,6 @@
             mount behind. More challenging manoeuvres might require a skill check (GM’s
             discretion) - having a relevant skill or trait might remove this requirement.
          </p>
-         <h2 id=""></h2>
          <h2 id="Class Tables">Class Tables</h2>
          <h4 id="Level Column Key">Level Column Key</h4>
          <p>
@@ -4030,7 +4574,7 @@
                   <p>
                      When you hit with a melee weapon attack of opportunity, the creature becomes
                      <a class="condition" data-tooltip-container>immobilised</a> until the start of your next turn. This <a class="condition" data-tooltip-container>immobilise</a>
-                     cannot be resisted unless the creature is immune.
+                     cannot be resisted unless the creature is <a class="condition" data-tooltip-container>immune</a> to being <a class="condition" data-tooltip-container>immobilised</a>.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -4294,9 +4838,10 @@
                </td>
                <td>Shadow Step
                </td>
-               <td><strong>Move with unparalleled silence and haste. </strong>
+               <td><strong>Move with unparalleled stealth and haste. </strong>
                   <p>
-                     Move 40ft without breaking stealth or invisibility. At the end of this movement 
+                     Move 40ft without breaking <a class="condition" data-tooltip-container>hidden</a> or 
+                     <a class="condition" data-tooltip-container>invisibility</a>. At the end of this movement 
                      you may attempt the Hide core ability at no additional AP cost.
                </td>
                <td>Self
@@ -4313,7 +4858,8 @@
                      target.</strong>
                   <p>
                      Make an auto hit weapon attack against a creature. This attack is a critical hit
-                     if any one of the following conditions are met: 1) You are invisible or hidden
+                     if any one of the following conditions are met: 1) You are <a class="condition" data-tooltip-container>invisible</a> or 
+                     <a class="condition" data-tooltip-container>hidden</a>
                      from the creature. 2) If the cureature has any of the following conditions:
                      <a class="condition" data-tooltip-container>blind</a>, <a class="condition" data-tooltip-container>prone</a>, 
                      <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>stunned</a>,
@@ -4495,7 +5041,7 @@
                      <a class="condition" data-tooltip-container>prone</a>, <a class="condition" data-tooltip-container>immobilised</a>, 
                      and/or <a class="condition" data-tooltip-container>incapacitated</a>, remove all
                      of the above conditions and immediately jump to a point you can see within 20ft.
-                     You also become immune to these conditions until the start of your next turn.
+                     You also become <a class="condition" data-tooltip-container>immune</a> to these conditions until the start of your next turn.
                </td>
                <td>Self
                </td>
@@ -4742,7 +5288,7 @@
                   <p>
                      Make a ranged weapon attack against a creature. On a hit the creature is
                      <a class="condition" data-tooltip-container>immobilised</a> and <a class="condition" data-tooltip-container>hobbled</a>. 
-                     If you successfully immobilise the 
+                     If you successfully <a class="condition" data-tooltip-container>immobilise</a> the 
                      target, and there is an ally within melee range, the ally may spend their reaction 
                      to deal Medium damage the initial target. 2 FORT points to resist the
                      <a class="condition" data-tooltip-container>immobilise</a>, the 
@@ -5526,7 +6072,7 @@
                <td><strong>These elements were made for fighting, and that’s just what
                      they’ll do.</strong>
                   <p>
-                     You become weak to all damage types. After you damage a creature with an
+                     You become <a class="condition" data-tooltip-container>weak</a> to all damage types. After you damage a creature with an
                      Elemental ability, gain Heavy+MOD temporary HP. This can only happen once per
                      round and any remaining temporary HP is removed at the start of each of your
                      turns as normal.
@@ -5849,7 +6395,8 @@
                   <p>
                      Make a MOD attack against a creature within 10ft, then up to 4 additional
                      unique creatures (each one must be within 10ft of the previously selected target).
-                     On a hit, deal Light+MOD lightning damage to each creature and <a class="condition" data-tooltip-container>stun</a> them. 1 REFL point to resist.
+                     On a hit, deal Light+MOD lightning damage to each creature and <a class="condition" data-tooltip-container>stun</a> them. 
+                     1 REFL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>All, 10ft, 5 targets
                </td>
@@ -5978,24 +6525,25 @@
                <td>Take the form of one of the four elements until the end of your next
                   turn.
                   <p>
-                     <strong>Earth</strong>: Become resistant to Physical damage and automatically
+                     <strong>Earth</strong>: Become <a class="condition" data-tooltip-container>resistant</a> to Physical damage and automatically
                      resist all FORT based effects at no cost.
                   <p>
                      <strong>Air</strong>: Your base movement speed increases by 20ft. Gain 1 AP
-                     worth of free movement on using this ability. You are immune to Lightning
+                     worth of free movement on using this ability. You are <a class="condition" data-tooltip-container>immune</a> to Lightning
                      damage, attacks of opportunity, and automatically resist all REFL based effects
                      at no cost.
                   <p>
                      <strong>Water</strong>: Whenever a creature starts its turn within 15ft of you,
-                     you can choose to encase it in ice (Immobilise - 1 FORT point to resist) or push
+                     you can choose to encase it in ice (<a class="condition" data-tooltip-container>Immobilise</a>
+                      - 1 FORT point to resist) or push
                      the creature with water in a direction of your choice (move 10ft - 1 FORT point
                      to resist) dealing Light damage if this movement is stopped by another object of
-                     creature. You are immune to Frost damage and automatically resist all WILL based
+                     creature. You are <a class="condition" data-tooltip-container>immune</a> to Frost damage and automatically resist all WILL based
                      effects at no cost.
                   <p>
                      <strong>Fire</strong>: All creatures that start their turn within 5ft of you
                      suffer Medium Fire damage and must spend 1 WILL resistance point or become
-                     Frightened of you. You are immune to Fire damage.
+                     <a class="condition" data-tooltip-container>frightened</a> of you. You are <a class="condition" data-tooltip-container>immune</a> to Fire damage.
                </td>
                <td>Self
                </td>
@@ -6007,7 +6555,7 @@
                </td>
                <td>Rock Flurry
                </td>
-               <td>Immobilise yourself and fire a total of 9 shards of rock at any number of
+               <td><a class="condition" data-tooltip-container>Immobilise</a> yourself and fire a total of 9 shards of rock at any number of
                   targets within 50ft. Each deals Light damage.
                </td>
                <td>A+E, 50ft, 1-9 targets
@@ -6136,7 +6684,7 @@
                </td>
                <td>Soul Cage
                </td>
-               <td>Trap the target’s soul in place for one turn. Mark a target and deal
+               <td>Trap the target’s soul in place for one turn. <a class="condition" data-tooltip-container>Mark</a> a target and deal
                   Light Soul damage for every 5ft away they are from when this ability is used to
                   when they end their next turn. Max range 100ft. 2 Will Points to resist
                </td>
@@ -6177,7 +6725,7 @@
                </td>
                <td>Cursed Aura
                </td>
-               <td>Mark a target within 100ft. All other creatures that are within 5ft of
+               <td><a class="condition" data-tooltip-container>Mark</a> a target within 100ft. All other creatures that are within 5ft of
                   this creature at any point before the start of your next turn immediately suffer
                   Light Soul damage. Any given creature can only suffer damage from this ability
                   once. Cannot be cast on a target already under the effect of this ability.
@@ -6193,7 +6741,7 @@
                <td>Don’t Die On Me!
                </td>
                <td>When a creature within 25ft suffers damage that would reduce it to 0HP,
-                  you can have it reduced to 1HP instead and it becomes Unconscious. On your next
+                  you can have it reduced to 1HP instead and it becomes <a class="condition" data-tooltip-container>unconscious</a>. On your next
                   turn you start with 1 fewer AP.
                </td>
                <td>A+E, 25ft, Single target
@@ -6206,7 +6754,7 @@
                </td>
                <td>Tormented Soul
                </td>
-               <td>Mark a target within 100ft. For one turn half of all damage that this
+               <td><a class="condition" data-tooltip-container>Mark</a> a target within 100ft. For one turn half of all damage that this
                   target deals to other creatures is also dealt to themselves. Costs 2 WILL points
                   to resist the damage effect. Cannot be cast on a target already under the effect
                   of this ability.
@@ -6221,7 +6769,7 @@
                </td>
                <td>Blessed Aura
                </td>
-               <td>Mark yourself for one turn. You emit a glowing white light, any willing
+               <td><a class="condition" data-tooltip-container>Mark</a> yourself for one turn. You emit a glowing white light, any willing
                   creature you choose that moves within 5ft of you in the next turn heals them and
                   you for Light+SPI damage. This can only happen 3 times, and only once per
                   creature.
@@ -6329,9 +6877,9 @@
                </td>
                <td>Doom
                </td>
-               <td>Mark a target within 100ft. This target can’t be healed/regain health for
-                  the duration of the mark and is inflicted with Fear. 2 WILL Point to resist the
-                  Fear.
+               <td><a class="condition" data-tooltip-container>Mark</a> a target within 100ft. This target can’t be healed/regain health for
+                  the duration of the mark and is inflicted with <a class="condition" data-tooltip-container>fear</a>. 2 WILL Point to resist the
+                  <a class="condition" data-tooltip-container>fear</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -6347,7 +6895,7 @@
                   allies that end their turn or step onto these tiles for the first time receive
                   Medium+SPI healing, an ally can only receive healing from this ability once.
                   Excludes self. All enemies that end their turn or move into these tiles become
-                  immediately Stunned. 2 WILL points to resist.
+                  immediately <a class="condition" data-tooltip-container>stunned</a>. 2 WILL points to resist.
                </td>
                <td>A+E, 100ft, 5 targets
                </td>
@@ -6418,7 +6966,7 @@
                <td>From Harm Comes Health
                </td>
                <td>
-                  Mark yourself. Every time you take damage in your next turn, heal an ally
+                  <a class="condition" data-tooltip-container>Mark</a> yourself. Every time you take damage in your next turn, heal an ally
                   within 15ft for half the damage you recieve.
                </td>
                <td>A, 100ft, Single target
@@ -6433,7 +6981,7 @@
                </td>
                <td>Encase a creature within 100ft with a glowing light, immobilising them
                   and either healing for Crit Heavy+SPI or dealing Heavy+SPI Soul damage. 2 WILL
-                  to resist immobilisation.
+                  to resist the <a class="condition" data-tooltip-container>immobilise</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -6471,7 +7019,7 @@
                </td>
                <td>Life Pool
                </td>
-               <td>Mark a target within 100ft, deal Light+SPI Soul damage to all creatures
+               <td><a class="condition" data-tooltip-container>Mark</a> a target within 100ft, deal Light+SPI Soul damage to all creatures
                   within 5ft of the target. Heal the target for Light+SPI damage if there is one
                   creature within 5ft, Medium+SPI if two creatures, and Heavy+SPI if there’s 3 or
                   more creatures within 5ft.
@@ -6531,7 +7079,7 @@
                <td>Martyrdom
                </td>
                <td>Deal damage equal to your half current HP to all creatures within 5ft.
-                  Your current HP is then set to 1 and you’re unconscious. This change in HP to
+                  Your current HP is then set to 1 and you’re <a class="condition" data-tooltip-container>unconscious</a>. This change in HP to
                   self does not count as damage or healing.
                </td>
                <td>A+E, 5ft, All within range (AoE)
@@ -6678,7 +7226,7 @@
                <td>Shuffle
                </td>
                <td>Choose a point within 100ft. All enemies within 5ft of this point are
-                  Immobilised. 1 WILL point to resist. Then all allies within this same area may
+                  <a class="condition" data-tooltip-container>immobilised</a>. 1 WILL point to resist. Then all allies within this same area may
                   teleport up to 5ft to an unoccupied space they can see.
                </td>
                <td>A+E, 100ft, All within 5ft (AoE)
@@ -6693,7 +7241,7 @@
                </td>
                <td>Summon armour for 1 turn on yourself and an ally of your choice within
                   100ft, when a creature hits the target with a Physical attack they are knocked
-                  prone after the damage is dealt. 1 FORT point to resist.
+                  <a class="condition" data-tooltip-container>prone</a> after the damage is dealt. 1 FORT point to resist.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
@@ -7084,8 +7632,8 @@
                </td>
                <td>Stasis
                </td>
-               <td>Select a target within 100ft to trap in stasis, they become Paralysed and
-                  Invincible until the end of your next turn. Cannot be resisted, also bypasses
+               <td>Select a target within 100ft to trap in stasis, they become <a class="condition" data-tooltip-container>paralysed</a> and
+                  <a class="condition" data-tooltip-container>invincible</a> until the end of your next turn. Cannot be resisted, also bypasses
                   any immunity. Cannot be cast on a target already under the effect of this
                   ability.
                </td>
@@ -7155,9 +7703,9 @@
                </td>
                <td>Force Neglection
                </td>
-               <td>Mark a creature within 100ft. This creature cannot select you as a target
+               <td><a class="condition" data-tooltip-container>Mark</a> a creature within 100ft. This creature cannot select you as a target
                   until your next turn, unless you are the only hostile remaining. If you are also
-                  taunting the target it simply ignores the taunt. You can still be affected by
+                  taunting the target it simply ignores the <a class="condition" data-tooltip-container>taunt</a>. You can still be affected by
                   AoE abilities. Cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
@@ -7218,7 +7766,7 @@
                </td>
                <td>Your harsh words bring their world crashing down upon them. Auto hit a
                   target within 100ft dealing Medium+INT Psychic damage. Auto crit if the target
-                  has a negative condition. The target is then also Taunted by you. 2 WILL points
+                  has a negative condition. The target is then also <a class="condition" data-tooltip-container>taunted</a> by you. 2 WILL points
                   to resist.
                </td>
                <td>A+E, 100ft, Single target
@@ -7231,8 +7779,8 @@
                </td>
                <td>Silence!
                </td>
-               <td>Silence yourself and one other creature within 100ft. 2 WILL points for
-                  either of you to resist. If you are silenced by this ability the other creature 
+               <td><a class="condition" data-tooltip-container>Silence</a> yourself and one other creature within 100ft. 2 WILL points for
+                  either of you to resist. If you are <a class="condition" data-tooltip-container>silenced</a> by this ability the other creature 
                   suffers Light psychic damage.
                </td>
                <td>A+E, 100ft, Single target
@@ -7247,7 +7795,7 @@
                </td>
                <td>Create a visage of yourself within 100ft. It has Heavy+INT HP, 10 AC, no
                   resistance points, and doesn’t have a turn. This Taunts all creatures of your
-                  choice within 10ft of its placement, the Taunt ends if the visage is destroyed.
+                  choice within 10ft of its placement, the <a class="condition" data-tooltip-container>taunt</a> ends if the visage is destroyed.
                   1 WILL point to resist.
                </td>
                <td>E, 100ft, All within 10ft (AoE)
@@ -7260,8 +7808,9 @@
                </td>
                <td>Nerve Blight
                </td>
-               <td>All creatures of your choice within 25ft become Marked, Hobbled and
-                  Deafened. 1 WILL point to resist the Hobbled.
+               <td>All creatures of your choice within 25ft become <a class="condition" data-tooltip-container>marked</a>, 
+                  <a class="condition" data-tooltip-container>hobbled</a> and
+                  <a class="condition" data-tooltip-container>deafened</a>. 1 WILL point to resist the <a class="condition" data-tooltip-container>hobbled</a>.
                </td>
                <td>E, 25ft, All within range (AoE)
                </td>
@@ -7273,8 +7822,8 @@
                </td>
                <td>Sensory Overload
                </td>
-               <td>Choose a creature within 100ft, they become Blind and Deafened. 2 WILL
-                  points to resist the Blind, the Deaf condition cannot be resisted.
+               <td>Choose a creature within 100ft, they become <a class="condition" data-tooltip-container>blind</a> and <a class="condition" data-tooltip-container>deafened</a>. 2 WILL
+                  points to resist the <a class="condition" data-tooltip-container>blind</a>, the <a class="condition" data-tooltip-container>deaf</a> condition cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7312,8 +7861,8 @@
                </td>
                <td>Agony
                </td>
-               <td>Mark a target within 100ft. Every time the target gains a negative
-                  condition while marked in this way it suffers additional Light Psychic damage. 2
+               <td><a class="condition" data-tooltip-container>Mark</a> a target within 100ft. Every time the target gains a negative
+                  condition while <a class="condition" data-tooltip-container>marked</a> in this way it suffers additional Light Psychic damage. 2
                   WILL resist
                </td>
                <td>A+E, 100ft, Single target
@@ -7368,7 +7917,7 @@
                <td>Psychic Shriek
                </td>
                <td>Auto hit up to 3 creatures within 50ft. This does Light+INT damage and
-                  Stuns. 1 WILL to resist the Stun.
+                  Stuns. 1 WILL to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 50ft, 3 targets
                </td>
@@ -7394,7 +7943,7 @@
                <td>Apathy
                </td>
                <td>Force a creature within 100ft to spend all AP on its turn doing nothing.
-                  It also cannot use its reaction. No paralysis, just do nothing. 2 WILL to
+                  It also cannot use its reaction. No <a class="condition" data-tooltip-container>paralysis</a>, just do nothing. 2 WILL to
                   resist.
                </td>
                <td>A+E, 100ft, Single target
@@ -7461,12 +8010,16 @@
             <tr>
                <td>6
                </td>
-               <td>Silence Will Fall
+               <td>Void
                </td>
-               <td>Silence and Deafen yourself and all creatures within 25ft until the end
-                  of your next turn. Cannot be resisted unless immune.
+               <td>
+                  Select a point within 100ft and all tiles within 10ft of this point become filled with magical darkness. 
+                  All creatures within this area are <a class="condition" data-tooltip-container>silenced</a>, 
+                  <a class="condition" data-tooltip-container>blinded</a>, <a class="condition" data-tooltip-container>deafened</a>, 
+                  and no sound can be created within this area. These conditions cannot be resisted unless creatures are immune. 
+                  Leaving this area of darkness immediately removes all of the above conditions. This area also blocks line of sight.
                </td>
-               <td>All, 25ft, All within range (AoE)
+               <td>All, 100ft, All within 10ft (AoE)
                </td>
                <td>1
                </td>
@@ -7491,8 +8044,8 @@
                </td>
                <td>Mental Devastation
                </td>
-               <td>Inflict a target within 100ft with the following conditions: Blind,
-                  Stunned, Silenced, and Frightened. 1 WILL point to resist each separate
+               <td>Inflict a target within 100ft with the following conditions: <a class="condition" data-tooltip-container>blind</a>,
+                  <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>silenced</a>, and <a class="condition" data-tooltip-container>frightened</a>. 1 WILL point to resist each separate
                   condition.
                </td>
                <td>A+E, 100ft, Single target
@@ -7540,7 +8093,7 @@
                </td>
                <td>Induce Rage
                </td>
-               <td>Auto hit a creature within 100ft dealing Medium+INT Psychic damage, Taunt
+               <td>Auto hit a creature within 100ft dealing Medium+INT Psychic damage, <a class="condition" data-tooltip-container>taunt</a>
                   them to attack a second creature of your choosing within 100ft. 2 WILL points to
                   resist.
                </td>
@@ -7596,7 +8149,7 @@
                </td>
                <td>Dominate
                </td>
-               <td>Inflict the Dominated condition on a target. 2 WILL points to resist.
+               <td>Inflict the <a class="condition" data-tooltip-container>dominated</a> condition on a target. 2 WILL points to resist.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7753,7 +8306,7 @@
                </td>
                <td>Pure as Nature
                </td>
-               <td>You become resistant to Poison and Soul damage.
+               <td>You become <a class="condition" data-tooltip-container>resistant</a> to Poison and Soul damage.
                </td>
                <td>Self
                </td>
@@ -7825,8 +8378,8 @@
                <td>Geese!
                </td>
                <td>Call upon birds to swarm a target. Make a regular SPI based attack roll
-                  against a target dealing Heavy+SPI physical damage. The target is also Hobbled
-                  and Blinded. 1 REFL to resist each affect
+                  against a target dealing Heavy+SPI physical damage. The target is also <a class="condition" data-tooltip-container>hobbled</a>
+                  and <a class="condition" data-tooltip-container>blinded</a>. 1 REFL to resist each affect
                </td>
                <td>A+E, 100ft,
                   <p>
@@ -7881,7 +8434,7 @@
                </td>
                <td>Vigor
                </td>
-               <td>Choose a willing creature to become immune to negative conditions for one
+               <td>Choose a willing creature to become <a class="condition" data-tooltip-container>immune</a> to negative conditions for one
                   turn.
                </td>
                <td>A, 50ft,
@@ -7910,10 +8463,10 @@
                <td>Turn to wood
                </td>
                <td>Make an SPI based range attack against a target. This attack deals
-                  Medium+SPI damage and the target is Immobilised as they turn to wood. 2 WILL to
-                  resist the immobilisation. If they don’t move before the end of their next turn,
-                  the wood encases their body and they’re Paralysed until the end of their
-                  subsequent turn. 2 WILL to resist the paralysed.
+                  Medium+SPI damage and the target is <a class="condition" data-tooltip-container>immobilised</a> as they turn to wood. 2 WILL to
+                  resist the <a class="condition" data-tooltip-container>immobilise</a>. If they don’t move before the end of their next turn,
+                  the wood encases their body and they’re <a class="condition" data-tooltip-container>paralysed</a> until the end of their
+                  subsequent turn. 2 WILL to resist the <a class="condition" data-tooltip-container>paralysed</a>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -7939,7 +8492,7 @@
                <td>Summon Spirit of Summer
                </td>
                <td>Summon a summer spirit within 100ft, any creature that is within 15ft of
-                  the spirit becomes resistant to Fire damage and within 5ft deals an additional
+                  the spirit becomes <a class="condition" data-tooltip-container>resistant</a> to Fire damage and within 5ft deals an additional
                   Light Fire damage when they successfully damage an enemy. This persists until
                   the resistance or damage bonus is not used for a turn.
                </td>
@@ -7955,7 +8508,7 @@
                </td>
                <td>Calming Spirit
                </td>
-               <td>Neither you and your allies within 50ft can be Frightened unless you are
+               <td>Neither you and your allies within 50ft can be <a class="condition" data-tooltip-container>frightened</a> unless you are
                   affected by a different negative condition.
                </td>
                <td>A+Self, 50ft, All within range (AoE)
@@ -8041,7 +8594,7 @@
                </td>
                <td>Summon a swarm of spiders to fill a 15ft radius area with entangling
                   webs. All creatures in the area must spend 1 FORT resistance point or become
-                  immobilised. On your next turn, just before the webs are destroyed, all
+                  <a class="condition" data-tooltip-container>immobilised</a>. On your next turn, just before the webs are destroyed, all
                   creatures in the web’s are suffer Light+SPI poison damage as spiders swarm
                   across biting them.
                </td>
@@ -8098,7 +8651,7 @@
                <td>Summon Spirit of Winter
                </td>
                <td>Summon a winter spirit within 100ft, any creature that is within 15ft of
-                  the creature at any point within their turn is hobbled (1 FORT resist) and
+                  the creature at any point within their turn is <a class="condition" data-tooltip-container>hobbled</a> (1 FORT resist) and
                   within 5ft takes Medium+SPI frost damage. This persists until it no longer
                   hobbles or damages a creature.
                </td>
@@ -8159,7 +8712,8 @@
                   These can be destroyed by the enemy and have an AC of 10 and HP of 2xINT (minimum 1). If a
                   trap is destroyed it does not trigger. Only one of each type of construct
                   (read: ability) can persist at any time, and you can deconstruct them whenever
-                  you want for 0 AP. If cast while hidden, the construct remains hidden until
+                  you want for 0 AP. If cast while <a class="condition" data-tooltip-container>hidden</a>,
+                  the construct remains <a class="condition" data-tooltip-container>hidden</a> until
                   activated or if creatures pass a 18 Per+Per check.
                </td>
                <td>Self
@@ -8223,7 +8777,7 @@
                </td>
                <td>Corrosive Acid Vial
                </td>
-               <td>Throw a vial of corrosive acid at a group of enemies. Mark them and
+               <td>Throw a vial of corrosive acid at a group of enemies. <a class="condition" data-tooltip-container>Mark</a> them and
                   reduce their AC by 2+INT, 1 REFL to resist.
                </td>
                <td>All
@@ -8286,7 +8840,7 @@
                <td>Long lasting trap
                </td>
                <td>Set up to 4 connected traps, where the closest is within 5ft of you.
-                  These hobble / immobilise / stun the next creature to enter the tile (no
+                  These <a class="condition" data-tooltip-container>hobble</a> / <a class="condition" data-tooltip-container>immobilise</a> / <a class="condition" data-tooltip-container>stun</a> the next creature to enter the tile (no
                   resist). This is a construct
                </td>
                <td>4 tiles, 5ft.
@@ -8428,7 +8982,7 @@
                </td>
                <td>Choose a tile within 50ft. This and all tiles within a 5ft radius are
                   coated in a net trap. You can use a reaction to activate this trap at any time
-                  within 50ft and silence and immobilise all those standing in the marked tiles. 1
+                  within 50ft and <a class="condition" data-tooltip-container>silence</a> and <a class="condition" data-tooltip-container>immobilise</a> all those standing in the marked tiles. 1
                   REFL to resist. This is a construct.
                </td>
                <td>All
@@ -8457,7 +9011,7 @@
                <td>
                   <span class="avoid">
                      Cast a variable AP cost ability at level 3, and another variable AP cost
-                     ability at level 2. At the start of your next turn, you become Stunned.
+                     ability at level 2. At the start of your next turn, you become <a class="condition" data-tooltip-container>stunned</a>.
                   </span>
                </td>
                <td>Self
@@ -8595,7 +9149,7 @@
                </td>
                <td>Potion of Damage Control
                </td>
-               <td>Become immune to one damage type for the next turn. Instead, heal for
+               <td>Become <a class="condition" data-tooltip-container>immune</a> to one damage type for the next turn. Instead, heal for
                   the damage you would have received.
                </td>
                <td>Self
@@ -8610,12 +9164,12 @@
                </td>
                <td>
                   <span class="wip">
-                     Build a bot within 5ft of you and mark a target. This bot will
-                     immediately move 15ft closer to the marked target. The bot then acts before each
-                     of your turns moving 15ft closer to the marked target. When this bot is within
+                     Build a bot within 5ft of you and <a class="condition" data-tooltip-container>mark</a> a target. This bot will
+                     immediately move 15ft closer to the <a class="condition" data-tooltip-container>marked</a> target. The bot then acts before each
+                     of your turns moving 15ft closer to the <a class="condition" data-tooltip-container>marked</a> target. When this bot is within
                      5ft of the target at any time it immediately explodes, dealing Heavy+INT damage
                      in a 10ft radius. This bot also detonates in the same way if the bot is
-                     destroyed, or if the marked target dies. This is a construct, but with twice
+                     destroyed, or if the <a class="condition" data-tooltip-container>marked</a> target dies. This is a construct, but with twice
                      the normal construct HP.
                   </span>
                </td>
@@ -8721,7 +9275,7 @@
                </td>
                <td>Play dead
                </td>
-               <td>When the beast would take fatal damage, it is instead knocked unconscious
+               <td>When the beast would take fatal damage, it is instead knocked <a class="condition" data-tooltip-container>unconscious</a>
                   and its health is set to 1. If it takes any further damage in this state it
                   dies, and it can only be woken up after 1 minute of helping.
                </td>
@@ -8774,7 +9328,7 @@
                </td>
                <td>Get that one
                </td>
-               <td>Mark a target. This becomes your beast’s focus until it dies or the
+               <td><a class="condition" data-tooltip-container>Mark</a> a target. This becomes your beast’s focus until it dies or the
                   beast’s stance is changed. All allies (incl beast) gain advantage (+) in all
                   attacks against that creature in the next turn.
                </td>
@@ -8788,8 +9342,8 @@
                </td>
                <td>Sic ‘em
                </td>
-               <td>Mark a target and either you or your beast can make a regular attack
-                  against the marked target. You or your beast (the one that didn’t attack) can
+               <td><a class="condition" data-tooltip-container>Mark</a> a target and either you or your beast can make a regular attack
+                  against the <a class="condition" data-tooltip-container>marked</a> target. You or your beast (the one that didn’t attack) can
                   then move 1AP worth of movement at no cost towards the same target.
                </td>
                <td>E, 100ft
@@ -8815,7 +9369,8 @@
                <td>Go for the Eyes
                </td>
                <td>Your or the beast can make a regular attack. On a successful hit deal
-                  Medium+DEX and blind the opponent. 2 REFL Points to resist the blind. The
+                  Medium+DEX and <a class="condition" data-tooltip-container>blind</a> the opponent. 
+                  2 REFL Points to resist the <a class="condition" data-tooltip-container>blind</a>. The
                   creature that attacked now may take one 1AP of free movement.
                </td>
                <td>E
@@ -8884,7 +9439,7 @@
                </td>
                <td>Your beast charges forward, knocking over everyone in their path. Move
                   up to 20ft making a regular attack against everyone in their path. Deal regular
-                  damage and knock prone on a successful hit. 1 FORT to resist.
+                  damage and knock <a class="condition" data-tooltip-container>prone</a> on a successful hit. 1 FORT to resist.
                </td>
                <td>E, 20ft
                </td>
@@ -8962,7 +9517,7 @@
                </td>
                <td>Poisoned Fang
                </td>
-               <td>Your Beast’s next attack will paralyse its target. 2 FORT resist.
+               <td>Your Beast’s next attack will <a class="condition" data-tooltip-container>paralyse</a> its target. 2 FORT resist.
                </td>
                <td>E
                </td>
@@ -9100,7 +9655,7 @@
                </td>
                <td>Assisted Attack
                </td>
-               <td>Mark the target your beast just attacked. Gain Adv(+++) on your next
+               <td><a class="condition" data-tooltip-container>Mark</a> the target your beast just attacked. Gain Adv(+++) on your next
                   attack against this target.
                </td>
                <td>E
@@ -9114,7 +9669,7 @@
                <td>Go for the throat
                </td>
                <td>Your beast makes a melee attack against a creature. If the target is
-                  Marked/Hobbled/Immobilised/Stunned/Paralyzed, deal an additional Medium damage
+                  <a class="condition" data-tooltip-container>marked</a>/<a class="condition" data-tooltip-container>hobbled</a>/<a class="condition" data-tooltip-container>immobilised</a>/<a class="condition" data-tooltip-container>stunned</a>/Paralyzed, deal an additional Medium damage
                </td>
                <td>E, 50ft
                </td>
@@ -9260,7 +9815,7 @@
                <td>Poison Strike
                </td>
                <td>Make a regular melee attack against a target. On a successful hit do
-                  Medium+DEX poison damage and hobble. 2 FORT to resist hobble
+                  Medium+DEX poison damage and <a class="condition" data-tooltip-container>hobble</a>. 2 FORT to resist <a class="condition" data-tooltip-container>hobble</a>
                </td>
                <td>E, Melee
                </td>
@@ -9346,7 +9901,7 @@
                </td>
                <td>Go for the Throat
                </td>
-               <td>Do a regular melee attack against a target that is either Stunned, Prone,
+               <td>Do a regular melee attack against a target that is either <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
                   or Imobolised. On a hit do Heavy+Dex damage
                </td>
                <td>E, Melee
@@ -9359,7 +9914,7 @@
                </td>
                <td>Knock to the Floor
                </td>
-               <td>Knock and enemy within 5ft prone. 2 Fort resist
+               <td>Knock and enemy within 5ft <a class="condition" data-tooltip-container>prone</a>. 2 Fort resist
                </td>
                <td>E
                </td>
@@ -9421,7 +9976,7 @@
                <td>Rush forward smashing all enemies in your path. Move up to 20ft in a
                   straight line and make a regular melee attack against all targets in that line.
                   All targets hit by the attack take your regular attack damage and are knocked
-                  prone. 1 FORT point to resist.
+                  <a class="condition" data-tooltip-container>prone</a>. 1 FORT point to resist.
                </td>
                <td>A+E, All within 20ft straight line from self (AoE)
                </td>
@@ -9522,7 +10077,7 @@
                </td>
                <td>Circling Fins
                </td>
-               <td>Cause fear into the heart of any non blinded enemy within 20ft. 1 WILL
+               <td>Cause <a class="condition" data-tooltip-container>fear</a> into the heart of any non <a class="condition" data-tooltip-container>blinded</a> enemy within 20ft. 1 WILL
                   resist
                </td>
                <td>E, AOE, 20ft
@@ -9586,8 +10141,8 @@
                <td>Go for the Eyes
                </td>
                <td>Swoop down on target.<br><br>Move up to 25ft and make a
-                  regular melee attack. On a successful hit deal Medium+DEX and blind the
-                  opponent. 2 REFL Points to resist the blind. Move up to 25ft away, however this
+                  regular melee attack. On a successful hit deal Medium+DEX and <a class="condition" data-tooltip-container>blind</a> the
+                  opponent. 2 REFL Points to resist the <a class="condition" data-tooltip-container>blind</a>. Move up to 25ft away, however this
                   will trigger attacks of opportunity.
                </td>
                <td>E, Melee
@@ -9600,8 +10155,8 @@
                </td>
                <td>Distraction
                </td>
-               <td>Mark the target creature, giving them the marked conditions for one turn.
-                  All attacks against the marked target get Adv (++).
+               <td><a class="condition" data-tooltip-container>Mark</a> the target creature, giving them the <a class="condition" data-tooltip-container>marked</a> conditions for one turn.
+                  All attacks against the <a class="condition" data-tooltip-container>marked</a> target get Adv (++).
                </td>
                <td>E, 100ft, Single target
                </td>
@@ -9677,8 +10232,8 @@
                <td>Sky Fall
                </td>
                <td>Make a 60ft movement where you drop at least 30ft downwards. If you
-                  finish your movement on the ground all creatures within 5ft get knocked prone. 1
-                  REFL to resist being knocked prone.
+                  finish your movement on the ground all creatures within 5ft get knocked <a class="condition" data-tooltip-container>prone</a>. 1
+                  REFL to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, AOE, 5ft
                </td>
@@ -9699,7 +10254,7 @@
                         specifics of how you want these undead creatures to look.
                      </em></strong>
                   <p>
-                     <strong><em>This creature is undead and is therefore vulnerable to 
+                     <strong><em>This creature is undead and is therefore <a class="condition" data-tooltip-container>vulnerable</a> to 
                         soul damage and recieves half healing from all sources.
                      </em></strong>
                </td>
@@ -9750,7 +10305,7 @@
                   <h4 id="Soul Devourer Stats">Soul Devourer Stats</h4>
                   <strong><em></em>Source: Summon Soul Devourer ability (Mortality).</strong>
                   <p>
-                     <strong><em>This creature is undead and is therefore vulnerable to 
+                     <strong><em>This creature is undead and is therefore <a class="condition" data-tooltip-container>vulnerable</a> to 
                         soul damage and recieves half healing from all sources.
                      </em></strong>
                   <p>
@@ -9926,7 +10481,7 @@
             </li>
          </ul>
          <h3 id="Optional Rules">Optional Rules</h3>
-         <h4 id="Optional Tactician Mode">Optional Tactician Mode:</h4>
+         <h4 id="Optional Tactician Mode">Optional Tactician Mode</h4>
          <p>
             WARNING NOT TESTED - You (the GM) may choose to have all creatures have 5AP per
             turn. This is currently untested and not necessarily balanced. Some boss

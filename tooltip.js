@@ -36,8 +36,13 @@ function initTooltip() {
 		// let id = el.getAttribute("id");
 
 		switch (el.innerText.toLowerCase()) {
-
-			case "invisible":
+			case "cover": case "in cover": 
+				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. Ranged attacks against this creature have DisAdv (-). You cannot cover behind creatures.";
+				break;
+			case "hide": case "hidden":
+				tooltip.innerText = "An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage.";
+				break;                  
+			case "invisible": case "invisibility":
 				tooltip.innerText = "The creature cannot be seen with the naked eye. The creature becomes visible when they take damage, make an attack, deal damage or use an ability of any kind (unless stated otherwise).";
 				break;
 			case "immovable":
@@ -61,7 +66,7 @@ function initTooltip() {
 			case "blind": case "blinded":
 				tooltip.innerText = "The creature cannot see. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (+).";
 				break;
-			case "deaf": case "deafened":
+			case "deaf": case "deafened": case "deafen":
 				tooltip.innerText = "The creature cannot hear. The creature automatically fails on all checks requiring hearing. The creature will have appropriate levels of DisAdv for other checks that partially involve hearing (DMs discretion).";
 				break;
 			case "marked": case "mark":
