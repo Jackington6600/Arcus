@@ -37,7 +37,7 @@ function initTooltip() {
 
 		switch (el.innerText.toLowerCase()) {
 			case "cover": case "in cover": 
-				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. Attacks against this creature have DisAdv (-). You cannot cover behind creatures.";
+				tooltip.innerText = "The creature is visible, but at least 3/4 of it's body is obscured by either the terrain or an obstacle that would block the attack. Ranged attacks against this creature have DisAdv (-). You cannot cover behind creatures.";
 				break;
 			case "hide": case "hidden":
 				tooltip.innerText = "An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage.";
