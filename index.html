@@ -1345,28 +1345,6 @@
                </td>
             </tr>
             <tr>
-               <td>Purity of Body
-               </td>
-               <td>
-                  When you take a short rest you also regain 1 FORT and 1 REFL point.
-               </td>
-               <td>
-               </td>
-               <td>None
-               </td>
-            </tr>
-            <tr>
-               <td>Purity of Mind
-               </td>
-               <td>
-                  When you take a short rest you also regain 2 WILL points.
-               </td>
-               <td>
-               </td>
-               <td>None
-               </td>
-            </tr>
-            <tr>
                <td>Inspirational (Speaker, Entertainer, Cook)
                </td>
                <td>
@@ -1489,6 +1467,29 @@
                   3AP - 3 Uses
                </td>
                <td>Global Level 3 or Nature Level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Purity of Body
+               </td>
+               <td>
+                  When you take a short rest you can regain 5 resistance points of your choice instead of healing.
+               </td>
+               <td>
+               </td>
+               <td>Global Level 3
+               </td>
+            </tr>
+            <tr>
+               <td>Purity of Mind
+               </td>
+               <td>
+                  You can spend 5 resistance points of your choice to gain another 3AP this turn.
+               </td>
+               <td>
+                  1 AP, 1 Use.
+               </td>
+               <td>Global Level 10
                </td>
             </tr>
             <tr>
@@ -1693,19 +1694,6 @@
                </td>
             </tr>
             <tr>
-               <td>Arcane Repair
-               </td>
-               <td>
-                  You may repair a damaged non magical object using magic. You can repair approximately 
-                  1 cubic foot of material per minute of using this ability, though this will be longer 
-                  if the item/material is more complex.
-               </td>
-               <td>3 AP - No Use Limit
-               </td>
-               <td>Arcane Level 1
-               </td>
-            </tr>
-            <tr>
                <td>Detect Magic
                </td>
                <td>
@@ -1727,6 +1715,21 @@
                   25ft. It has an AC of 14, Light HP, no resistance points, a STR value of 2 (-4 modifier), and a 
                   base movement speed of 5ft. You can make INT+DEX checks to perform more challenging dexterous 
                   actions with the hand using your own modifiers. The hand persists for 6 seconds before disappearing.
+               </td>
+               <td>1 AP - 3 Uses
+               </td>
+               <td>Arcane Level 3
+               </td>
+            </tr>
+            <tr>
+               <td>Spectral Object
+               </td>
+               <td>
+                  You may create a spectral object that occupies up to a 5*5*5ft cube.  This object is solid, 
+                  takes a form of your desire (e.g. chair, ramp, barricade), and can support a weight of up to 200kg
+                  without breaking.  It has an AC of 6 and Light HP.
+                  
+                  You can dismiss this at any time for 0AP, and it persists till the end of your next long rest.
                </td>
                <td>1 AP - 3 Uses
                </td>
@@ -2005,14 +2008,14 @@
                <td>Occupy
                </td>
                <td>
-                  You may touch a creature to occupy it's head. You see through it's eyes and can communicate with it via thoughts.
-                  While this is happening are and are <a class="condition" data-tooltip-container>immobilised</a> and only slightly 
+                  You may touch a creature to occupy it's head. You share its senses and can communicate with it via thoughts.
+                  While this is happening are and are <a class="condition" data-tooltip-container>paralysed</a> and only slightly 
                   aware of your surrondings.  You can influence this creature, giving it either adv (+) or dis (-) on each of its skill 
                   checks.  You can end this at any time and it automatically ends if you take damage.
 
-                  2 WILL resist, and a further 1 WILL resist check every 5 minutes.
+                  2 WILL resist, and a further 1 WILL resist check every 5 minutes.  This can last up to 1 hour.
                </td>
-               <td>3 AP - 3 Uses
+               <td>3 AP - 1 Use
                </td>
                <td>Psionic Level 7
                </td>
@@ -2043,7 +2046,7 @@
                   aware something tried to control their thoughts, but will not know the source unless you cast the 
                   ability right in front of them or they are very knowledgeable in psionic magic.
                </td>
-               <td>3 AP - 3 Uses
+               <td>3 AP - 1 Use
                </td>
                <td>Psionic Level 10
                </td>
@@ -2072,13 +2075,16 @@
                </td>
                <td>
                   You may touch a creature to walk through it's mind, glimpsing memories of its past. 
-                  You can direct what you see by asking to recall specific events.
-                  You and the creature are <a class="condition" data-tooltip-container>immobilised</a>
+                  You can direct what you see by asking to recall specific events.  These memories may
+                  be imperfect, hazy, or nonexistant.   
+                  You and the creature are <a class="condition" data-tooltip-container>paralysed</a>
+                  and <a class="condition" data-tooltip-container>blind</a>
                   for the duration of this trait.  You are free to end this at any time.
 
-                  2 WILL resist, and a further 1 WILL resist check every 6 seconds.
+                  2 WILL resist, and a further 1 WILL resist check every 6 seconds.  
+                  This can last up to 1 minute.  
                </td>
-               <td>3 AP - 3 Uses
+               <td>3 AP - 1 Use
                </td>
                <td>Psionic Level 10
                </td>
@@ -2342,34 +2348,19 @@
                </td>
             </tr>
             <tr>
-               <td>Elemental Aspect
-               </td>
-               <td>
-                  When you use non-magical weapons you can channel elemental energy, causing them to deal 
-                  either fire, frost, or lightning damage instead of physical.  You can only 
-                  select one type of damage when taking this trait.
-
-                  You can take this trait multiple times to unlock the other types of damage.
-               </td>
-               <td>
-               </td>
-               <td>Elemental Level 3
-               </td>
-            </tr>
-            <tr>
                <td>Elemental Weapons
                </td>
                <td>
-                  You can summon an weapon made out of elemental energy, causing them to deal 
-                  either fire, frost, or lightning damage instead of physical.  You can only 
-                  select one type of damage when taking this trait.  These are still wielded
-                  using the rules of their physical couterparts - e.g. STR is used for a heavy
-                  weapon.
+                  You may weild a weapon made out of the elements, either by summoning a new weapon
+                  or coating an existing weapon with the elemental of your choice for 1AP. This causes them to deal 
+                  either fire, frost, or lightning damage instead of the weapon's normal damage type.  
+                  You can only select one type of damage when taking this trait.  These are still wielded
+                  using the modifiers (STR or DEX) of their normal counterparts.  
 
                   You can take this trait multiple times to unlock the other types of damage.
 
-                  You can dismiss this at any time, and the weapon disappears when you let go of it, 
-                  rest, or are <a class="condition" data-tooltip-container>silenced</a> or
+                  You can dismiss this at any time, and the element disappears when you let go of it, 
+                  rest, are <a class="condition" data-tooltip-container>silenced</a> or
                   <a class="condition" data-tooltip-container>unconscious</a>.
                </td>
                <td>
@@ -2421,11 +2412,13 @@
                   </td>
                   <td>
                      You may place a tripwire across 15ft.  When these are crossed by a creature, 
-                     you are aware they've been set off and the size of the creature which triggered them.
+                     you are aware they've been set off and the size of the creature which triggered them
+                     or they create a loud noise, your choice.
                      This wakes you up if during a long rest, and they persist until you deconstruct them,
                      they are triggered, or till the end of a long rest.
 
-                     These can be bypassed by a creature which is intelligent and perceptive enough.
+                     These can be spotted by a creature who's Passive Perception passes your INT value,
+                     and disarmed by a creature with an INT+DEX check with a DC of your INT value.
                   </td>
                   <td>1 AP - 3 Uses
                   </td>
