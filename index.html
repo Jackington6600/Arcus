@@ -8892,7 +8892,7 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h3 id="Engineer"><span class="avoid">Engineer - Do Not Use</span></h3>
+                  <h3 id="Engineer"><span class="wip">Engineer - Use with Caution</span></h3>
                   Alternate names: Alchemist, Artificer, Tinker, Mechanic, Technomancer
                   <p>
                      <strong><em>Type: Physical</em></strong>
@@ -8925,7 +8925,7 @@
                   (read: ability) can persist at any time, and you can deconstruct them whenever
                   you want for 0 AP. If cast while <a class="condition" data-tooltip-container>hidden</a>,
                   the construct remains <a class="condition" data-tooltip-container>hidden</a> until
-                  activated or if creatures pass a 18 Per+Per check.
+                  activated or if creatures pass an INT value Per+Per check.
                </td>
                <td>Self
                </td>
@@ -8939,7 +8939,7 @@
                </td>
                <td>A lot of the engineer’s abilities can be cast with a varying AP cost to
                   have a different level of power. All of these take 1 use of the ability as
-                  normal
+                  normal.
                </td>
                <td>Self
                </td>
@@ -8972,7 +8972,7 @@
                <td><strong>Throw a number of grenades which explode in an area.</strong>
                   <p>
                      Choose 1/2/3 tiles to throw a grenade into. At the start of your next turn,
-                     these explode dealing Light damage to all creatures including self in a 5ft AOE
+                     these explode dealing Light damage to all creatures including self in a 5ft AOE.
                </td>
                <td>All
                   <p>
@@ -9020,7 +9020,7 @@
                <td>Splash potion of harming
                </td>
                <td>Throw a potion. Make a Dex based ranged attack. This deals Light+Int
-                  damage in a 5FT AOE
+                  damage in a 5FT AOE.
                </td>
                <td>All
                   <p>
@@ -9052,7 +9052,7 @@
                </td>
                <td>Set up to 4 connected traps, where the closest is within 5ft of you.
                   These <a class="condition" data-tooltip-container>hobble</a> / <a class="condition" data-tooltip-container>immobilise</a> / <a class="condition" data-tooltip-container>stun</a> the next creature to enter the tile (no
-                  resist). This is a construct
+                  resist). This is a construct.
                </td>
                <td>4 tiles, 5ft.
                </td>
@@ -9065,7 +9065,7 @@
                <td>Black hole grenade
                </td>
                <td>Throw a grenade within 50ft. This sucks everyone within 15/20/25ft up to
-                  5/10/15ft closer to the grenade. 1/2/3 Fort to resist the movement
+                  5/10/15ft closer to the grenade. 1/2/3 Fort to resist the movement.
                </td>
                <td>A+E, 50ft
                </td>
@@ -9077,7 +9077,7 @@
                </td>
                <td>Speed potion
                </td>
-               <td>Double your base movement speed for this turn
+               <td>Double your base movement speed for this turn.
                </td>
                <td>Self
                </td>
@@ -9107,7 +9107,7 @@
                <td>Potion of power
                </td>
                <td>Drink a potion. This boosts your STR, DEX, or PER by +10 for your next
-                  attack roll (not damage) or ability check
+                  attack roll (not damage) or ability check.
                </td>
                <td>Self
                </td>
@@ -9217,22 +9217,6 @@
             <tr>
                <td>5
                </td>
-               <td>Shot of ‘spresso.
-               </td>
-               <td>
-                  <span class="avoid">
-                     Cast a variable AP cost ability at level 3, and another variable AP cost
-                     ability at level 2. At the start of your next turn, you become <a class="condition" data-tooltip-container>stunned</a>.
-                  </span>
-               </td>
-               <td>Self
-               </td>
-               <td>3
-               </td>
-            </tr>
-            <tr>
-               <td>5
-               </td>
                <td>Exploding potato
                </td>
                <td>Stick a small bomb to an enemy. The next time this enemy takes damage,
@@ -9246,7 +9230,7 @@
                </td>
             </tr>
             <tr>
-               <td>6
+               <td>5
                </td>
                <td>Shooty Bot
                </td>
@@ -9270,6 +9254,19 @@
                <td>All, 15ft. 10ft radius (AoE)
                </td>
                <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>6
+               </td>
+               <td>Prepared
+               </td>
+               <td>
+                  Next round, go first in the initiative order and have 1AP of free movement.
+               </td>
+               <td>Self
+               </td>
+               <td>1
                </td>
             </tr>
             <tr>
@@ -9341,18 +9338,16 @@
             <tr>
                <td>9
                </td>
-               <td>Prepared
+               <td>Shot of ‘spresso.
                </td>
                <td>
-                  <span class="wip">
-                     Next round, go first in the initiative
-                     order.<br><br>OR<br><br>Get 1 AP of free movement
-                     this turn.
-                  </span>
+                  Cast a variable AP cost ability at level 3, and another variable AP cost
+                  ability at level 1. This does not take their normal ability uses, and at the start of your next
+                  turn you start with 1 less AP.
                </td>
                <td>Self
                </td>
-               <td>0
+               <td>3
                </td>
             </tr>
             <tr>
@@ -9374,15 +9369,13 @@
                <td>Self Destruct Bot
                </td>
                <td>
-                  <span class="wip">
-                     Build a bot within 5ft of you and <a class="condition" data-tooltip-container>mark</a> a target. This bot will
-                     immediately move 15ft closer to the <a class="condition" data-tooltip-container>marked</a> target. The bot then acts before each
-                     of your turns moving 15ft closer to the <a class="condition" data-tooltip-container>marked</a> target. When this bot is within
-                     5ft of the target at any time it immediately explodes, dealing Heavy+INT damage
-                     in a 10ft radius. This bot also detonates in the same way if the bot is
-                     destroyed, or if the <a class="condition" data-tooltip-container>marked</a> target dies. This is a construct, but with twice
-                     the normal construct HP.
-                  </span>
+                  Build a bot within 5ft of you and <a class="condition" data-tooltip-container>mark</a> a target. Immediately before your next turn, 
+                  the bot arms itself and then this and every subsequent turn the bot will move 15ft closer to the
+                  <a class="condition" data-tooltip-container>marked</a> target. When this bot is within
+                  5ft of the target at any time it immediately explodes, dealing Heavy+INT damage
+                  in a 10ft radius. This bot also detonates in the same way if the bot is
+                  destroyed, or if the <a class="condition" data-tooltip-container>marked</a> target dies. This is a construct, but with twice
+                  the normal construct HP.
                </td>
                <td>
                </td>
