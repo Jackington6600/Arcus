@@ -259,11 +259,11 @@
       <a class="h3 nav-link" href="#Beastmaster">Beastmaster</a>
       <a class="h2 nav-link" href="#Appendix">Appendix</a>
       <a class="h3 nav-link" href="#Stat Blocks">Stat Blocks</a>
-      <a class="h4 nav-link" href="#Beast Shape - Small Animal">Beast Shape - Small Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Tiny Animal">Beast Shape - Tiny Animal</a>
       <a class="h4 nav-link" href="#Beast Shape - Medium Animal">Beast Shape - Medium Animal</a>
       <a class="h4 nav-link" href="#Beast Shape - Large Animal">Beast Shape - Large Animal</a>
       <a class="h4 nav-link" href="#Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</a>
+      <a class="h4 nav-link" href="#Beast Shape - Tiny Flying Animal">Beast Shape - Tiny Flying Animal</a>
       <a class="h4 nav-link" href="#Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</a>
       <a class="h4 nav-link" href="#Undead Creature Stats">Undead Creature Stats</a>
       <a class="h4 nav-link" href="#Soul Devourer Stats">Soul Devourer Stats</a>
@@ -2181,6 +2181,32 @@
                <td>3 AP - 3 Uses
                </td>
                <td>Nature Level 1
+               </td>
+            </tr>
+            <tr>
+               <td>Anthropomorphic Beast
+               </td>
+               <td>
+                  Your Beast Shape is more anthropomorphic and can stand on hind legs. 
+                  While in Beast Shape, you can manipulate objects and weild weapons.  
+                  This still uses your Beast's stats, and you can't weild a weapon which is
+                  disporportionate for the beast (e.g. a Tiny Animal can't wield a Medium or Heavy weapon).
+               </td>
+               <td>Passive
+               </td>
+               <td>Nature Level 3
+               </td>
+            </tr>
+            <tr>
+               <td>Ridable Beast
+               </td>
+               <td>
+                  While in Beast Shape, a creature the same size or smaller than you can mount you
+                  without causing you any disadvantages.  They follow normal mounted combat rules.
+               </td>
+               <td>Passive
+               </td>
+               <td>Nature Level 3
                </td>
             </tr>
             <tr>
@@ -8341,24 +8367,44 @@
                </td>
                <td>Beast Shape
                </td>
-               <td>You gain the ability to shapeshift into a small animal for 1AP (See Beast
-                  Shape table in the Appendix). This is limited to 3 uses. You also gain the abilities associated
-                  with that beast. When you shapeshift into the beast, your modifiers and damage
-                  changes and you can carry across HP up to that of the max HP of the beast. When
-                  you are reduced to 0HP as the beast, you revert back to your original form minus
-                  the HP you transferred to the beast - any additional damage is also carried
-                  over. You still have/use your pool of resistance points as normal while in your
-                  Beast Shape, and you can still cast Nature abilities. You still use your own INT
-                  and SPI attributes while in the Beast Shape.
-                  <p>
-                     You can voluntarily leave the Beast Shape at any time on your turn for 0AP, and
-                     any remaining HP gets returned to your normal health pool.
+               <td><p>
+                  You gain the ability to shapeshift into your unlocked animals for 1AP (See Beast
+                  Shape table in the Appendix).  When in the animal form, you can use all the animal abilites.
+                  Core abilities have unlimited uses as normal, and all the level 1 abilities are automatically 
+                  unlocked and are limited to 3 uses every long rest as normal.  By default, the Tiny Animal
+                  Beast Shape is unlocked, and you can unlock others with further levels in the Nature class.
+                  You can use Nature abilities while in Beast Shape, but abilities from other classes are 
+                  unavailable.
+               </p><p>
+                  When you shapeshift into the beast, your physical attributes and AC change, but your Spirit
+                  and Intelligence remains the same. You can carry across HP up to that of the max HP of the beast,
+                  specified in the Beast table. When you are reduced to 0HP as the beast, you instantly revert back to 
+                  your original form minus any HP that you had transferred to the beast - any additional damage is also carried
+                  over.  In the Beast Shape, you still have and can use your standard pool of resistance points as normal,
+                  No further resistance points are gained or lost from the changing attributes in Beast Shape.
+               </p><p>
+                  You can voluntarily leave the Beast Shape at any time on your turn for 0AP, and
+                  any remaining HP gets returned to your normal health pool.
+               </p>
                </td>
                <td>Self
                </td>
-               <td>1
-                  <p>
-                     0
+               <td>
+                  1
+                  <br><br>
+                  0
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Poison Ivy Whip
+               </td>
+               <td>Do a regular SPI based ranged attack dealing Medium+SPI Poison damage to an enemy within 100ft.
+               </td>
+               <td>A+E, 50ft, Single target
+               </td>
+               <td>2
                </td>
             </tr>
             <tr>
@@ -8367,11 +8413,11 @@
                <td>Medium Animal
                </td>
                <td>Unlocks the ability to transform into the Medium Animal and all
-                  associated abilities.
+                  associated abilities when you use Beast Shape.
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>Passive
                </td>
             </tr>
             <tr>
@@ -8379,7 +8425,7 @@
                </td>
                <td>Barkskin
                </td>
-               <td>Deal Light damage to any creature within 50ft and grant them Heavy+SPI
+               <td>Deal Light damage to any creature within 50ft and grant them Medium+Medium+SPI
                   Temp HP.
                </td>
                <td>A+E, 50ft, Single target
@@ -8448,8 +8494,8 @@
                   place of another creature within 50ft spending points.
                </td>
                <td>A+E, 15ft,
-                  <p>
-                     Single target
+                  <br><br>
+                  Single target
                </td>
                <td>React
                </td>
@@ -8476,8 +8522,8 @@
                <td>Self
                </td>
                <td>0
-                  <p>
-                     React
+                  <br><br>
+                  React
                </td>
             </tr>
             <tr>
@@ -8486,11 +8532,11 @@
                <td>Large Animal
                </td>
                <td>Unlocks the ability to transform into the Large Animal and all associated
-                  abilities
+                  abilities when you use Beast Shape.
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>Passive
                </td>
             </tr>
             <tr>
@@ -8501,9 +8547,10 @@
                <td>Use a reaction to halve and absorb the damage of any creature within
                   10ft.
                </td>
-               <td>A+E, 10ft,
-                  <p>
-                     Single target
+               <td>
+                  A+E, 10ft,
+                  <br><br>
+                  Single target
                </td>
                <td>React
                </td>
@@ -8513,14 +8560,17 @@
                </td>
                <td>Summon Spirit of Spring
                </td>
-               <td>Summon a spring spirit within 100ft, any creature that is within 15ft of
+               <td>Summon a spring spirit within 100ft, any ally that is within 15ft of
                   the spirit at any point within their turn can take 10ft of free movement on that
-                  turn and within 5ft can take an additional distinct reaction in that round. This
-                  persists until the free movement or additional reaction isn’t used.
+                  turn and within 5ft can take an additional distinct reaction in that round. 
+                  <br><br>
+                  This spirit has Medium+SPI HP and an AC of 12 and persists until the free movement 
+                  or additional reaction isn’t used.  
                </td>
-               <td>A+Self, 100ft,
-                  <p>
-                     All within 15ft and 5ft (AoE)
+               <td>
+                  A+Self, 100ft,
+                  <br><br>
+                  All within 15ft and 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -8636,7 +8686,7 @@
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>Passive
                </td>
             </tr>
             <tr>
@@ -8644,9 +8694,11 @@
                </td>
                <td>Summon Spirit of Summer
                </td>
-               <td>Summon a summer spirit within 100ft, any creature that is within 15ft of
+               <td>Summon a summer spirit within 100ft, any ally that is within 15ft of
                   the spirit becomes <a class="condition" data-tooltip-container>resistant</a> to Fire damage and within 5ft deals an additional
-                  Light Fire damage when they successfully damage an enemy. This persists until
+                  Light Fire damage when they successfully damage an enemy. 
+                  <br><br>
+                  This spirit has Medium+SPI HP and an AC of 12 and persists until
                   the resistance or damage bonus is not used for a turn.
                </td>
                <td>A+E, 100ft,
@@ -8688,7 +8740,7 @@
                </td>
                <td>Rejuvenation
                </td>
-               <td>An ally within 25ft regains up to 2 resistance points of your choice.
+               <td>An ally within 25ft regains up to 3 resistance points of your choice.
                </td>
                <td>A, 25ft,
                   <p>
@@ -8700,14 +8752,14 @@
             <tr>
                <td>7
                </td>
-               <td>Small Flying Animal
+               <td>Tiny Flying Animal
                </td>
-               <td>Unlocks the ability to transform into the Small Flying Animal and all
+               <td>Unlocks the ability to transform into the Tiny Flying Animal and all
                   associated abilities
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>Passive
                </td>
             </tr>
             <tr>
@@ -8715,12 +8767,12 @@
                </td>
                <td>Tree of Life
                </td>
-               <td>Heal all allies within 25ft as much as you decide, then suffer half the
+               <td>Heal all allies within 20ft as much as you decide, then suffer half the
                   damage healed.
                </td>
                <td>A, 25ft, All within range (AoE)
                </td>
-               <td>2
+               <td>3
                </td>
             </tr>
             <tr>
@@ -8728,9 +8780,11 @@
                </td>
                <td>Summon Spirit of Autumn
                </td>
-               <td>Summon an autumn spirit within 100ft, any creature that is within 15ft of
+               <td>Summon an autumn spirit within 100ft, any ally that is within 15ft of
                   the spirit can resist negative conditions for 1 point less and any creature
-                  within 5ft automatically resists negative conditions. This persists until no
+                  within 5ft automatically resists negative conditions. 
+                  <br><br>
+                  This spirit has Medium+SPI HP and an AC of 12 and persists until no
                   creature resists in its area.
                </td>
                <td>A+E, 100ft,
@@ -8783,7 +8837,7 @@
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>Passive
                </td>
             </tr>
             <tr>
@@ -8820,12 +8874,12 @@
                </td>
                <td>Parasitic Coating
                </td>
-               <td>Every time an ally within 25ft damages a distinct enemy they heal for
+               <td>Every time an ally within 20ft damages a distinct enemy they heal for
                   Light HP.
                </td>
                <td>A, 25ft, All within range (AoE)
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
          </table>
@@ -9903,16 +9957,15 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Small Animal">Beast Shape - Small Animal</h4>
-                  <strong><em>For 1AP, you can transform into a small animal such as a rat, snake,
-                        or lizard. Useful for fast movement, evading damage, and poisoning.
-                     </em></strong>
-                  <p>
-                     Attack: Melee Light+Dex
+                  <h4 id="Beast Shape - Tiny Animal">Beast Shape - Tiny Animal</h4>
+                  <strong><em>
+                     For 1AP, you can transform into a tiny animal such as a rat, snake,
+                     or lizard. Useful for fast movement, evading damage, and poisoning.
+                  </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Med*2
+               <td colspan="2">Max Health: Heavy*2
                </td>
                <td>Movement: 30ft
                </td>
@@ -9952,10 +10005,11 @@
                </td>
                <td>Nimble
                </td>
-               <td>You ignore difficult terrain and can climb any surface at half movement
-                  speed without a skill check.
-                  <p>
-                     If you choose an amphibious creature it can swim at full movement speed.
+               <td>
+                  You ignore difficult terrain and can climb any surface at half movement
+                  speed with advantage (+++).
+                  <br><br>
+                  If you choose an amphibious creature it can swim at full movement speed.
                </td>
                <td>Self
                </td>
@@ -9965,10 +10019,10 @@
             <tr>
                <td>Core
                </td>
-               <td>Poison Strike
+               <td>Ankle Bite
                </td>
                <td>Make a regular melee attack against a target. On a successful hit do
-                  Medium+DEX poison damage and <a class="condition" data-tooltip-container>hobble</a>. 2 FORT to resist <a class="condition" data-tooltip-container>hobble</a>
+                  Light+DEX poison damage.
                </td>
                <td>E, Melee
                </td>
@@ -9976,11 +10030,24 @@
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
+               </td>
+               <td>Poison Strike
+               </td>
+               <td>Make a regular melee attack against a target. On a successful hit do
+                  Light+DEX poison damage and <a class="condition" data-tooltip-container>stun</a>. 2 FORT to resist <a class="condition" data-tooltip-container>stun</a>
+               </td>
+               <td>E, Melee
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>1
                </td>
                <td>Scamper
                </td>
-               <td>Move 50ft. Can climb upwards at normal speed
+               <td>Move 40ft. Can climb upwards at normal speed
                </td>
                <td>Self
                </td>
@@ -9994,14 +10061,14 @@
             <tr>
                <td colspan="5">
                   <h4 id="Beast Shape - Medium Animal">Beast Shape - Medium Animal</h4>
-                  <strong><em>For 1AP, you can transform into a medium animal such as a wolf,
-                        leopard, or pig. Useful for team fighting and crowd control.</em></strong>
-                  <p>
-                     Attack: Melee Medium+Dex
+                  <strong><em>
+                     For 1AP, you can transform into a medium animal such as a wolf,
+                     leopard, or pig. Useful for team fighting and crowd control.
+                  </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Med*4
+               <td colspan="2">Max Health: Heavy*6
                </td>
                <td>Movement: 25ft
                </td>
@@ -10039,23 +10106,13 @@
             <tr>
                <td>Core
                </td>
-               <td>Pack Hunter
-               </td>
-               <td>Do additional Light damage for every ally adjacent to the enemy you are
-                  melee attacking
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
                <td>Go for the Throat
                </td>
-               <td>Do a regular melee attack against a target that is either <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
-                  or Imobolised. On a hit do Heavy+Dex damage
+               <td>Do a Medium+Dex melee attack against a creature.  
+                  If the creature is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
+                  <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
+                  <a class="condition" data-tooltip-container>paralysed</a>
+                  this deals Heavy+Dex damage.
                </td>
                <td>E, Melee
                </td>
@@ -10063,11 +10120,23 @@
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
+               </td>
+               <td>Pack Hunter
+               </td>
+               <td>Do an additional Light damage for every ally adjacent to the next enemy you damage with single target melee attack this turn.
+               </td>
+               <td>Self
+               </td>
+               <td>1
+               </td>
+            </tr>
+            <tr>
+               <td>1
                </td>
                <td>Knock to the Floor
                </td>
-               <td>Knock and enemy within 5ft <a class="condition" data-tooltip-container>prone</a>. 2 Fort resist
+               <td>Knock an enemy within 5ft <a class="condition" data-tooltip-container>prone</a>. 2 Fort resist
                </td>
                <td>E
                </td>
@@ -10079,14 +10148,14 @@
             <tr>
                <td colspan="5">
                   <h4 id="Beast Shape - Large Animal">Beast Shape - Large Animal</h4>
-                  <strong><em>For 1AP, you can transform into a large animal such as a bear,
-                        moose, or sphinx. Useful for raw melee damage or toughness. </em></strong>
-                  <p>
-                     Attack: Melee Heavy+Str
+                  <strong><em>
+                     For 1AP, you can transform into a large animal such as a bear,
+                       moose, or sphinx. Useful for raw melee damage or toughness. 
+                  </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Med*10
+               <td colspan="2">Max Health: Heavy*10
                </td>
                <td>Movement: 20ft
                </td>
@@ -10096,7 +10165,7 @@
             <tr>
                <td colspan="2">STR: 20
                </td>
-               <td>DEX: 8
+               <td>DEX: 10
                </td>
                <td colspan="2">INT: -
                </td>
@@ -10124,25 +10193,41 @@
             <tr>
                <td>Core
                </td>
-               <td>Barrel
+               <td>Savage Bite
                </td>
-               <td>Rush forward smashing all enemies in your path. Move up to 20ft in a
-                  straight line and make a regular melee attack against all targets in that line.
-                  All targets hit by the attack take your regular attack damage and are knocked
-                  <a class="condition" data-tooltip-container>prone</a>. 1 FORT point to resist.
+               <td>Make a melee attack against a creature, dealing Heavy+Str damage.
                </td>
-               <td>A+E, All within 20ft straight line from self (AoE)
+               <td>E
                </td>
                <td>2
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
+               </td>
+               <td>Barrel
+               </td>
+               <td>Rush forward smashing all enemies in your path. Move up to 20ft
+                  and make a regular melee attack against all targets in that line.
+                  All targets hit by the attack take Light+Str damage and are knocked
+                  <a class="condition" data-tooltip-container>prone</a>. 1 FORT point to resist.
+
+                  You cannot hit the same enemy twice.
+               </td>
+               <td>A+E, All within 20ft of movement from self (AoE)
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>1
                </td>
                <td>Take Back to Den
                </td>
-               <td>Bite onto an enemy within 5ft, then move and drag the enemy up to 20ft
-                  with you. 2 FORT to resist
+               <td>Bite onto an enemy within 5ft that is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
+                  <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
+                  <a class="condition" data-tooltip-container>paralysed</a> then move and drag the enemy up to 20ft
+                  with you. 2 FORT to resist.
                </td>
                <td>E
                </td>
@@ -10154,10 +10239,10 @@
             <tr>
                <td colspan="5">
                   <h4 id="Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</h4>
-                  <strong><em>For 1AP, you can transform into an aquatic animal such as a shark,
-                        dolphin, or small whale. Useful for water encounters</em></strong>
-                  <p>
-                     Attack: Melee Med+Dex
+                  <strong><em>
+                     For 1AP, you can transform into an aquatic animal such as a shark,
+                     dolphin, or small whale. Useful for water encounters
+                  </em></strong>
                </td>
             </tr>
             <tr>
@@ -10165,13 +10250,13 @@
                </td>
                <td>Movement: 5ft (Land) 45ft (Water)
                </td>
-               <td colspan="2">AC: 15
+               <td colspan="2">AC: 14
                </td>
             </tr>
             <tr>
                <td colspan="2">STR: 12
                </td>
-               <td>DEX: 18
+               <td>DEX: 16
                </td>
                <td colspan="2">INT: -
                </td>
@@ -10202,38 +10287,63 @@
                <td>Water Breathing
                </td>
                <td>When in water, you have Adv (+) on all CON checks and don’t need to hold
+                  your breath.  On land, you have DisAdv (-) on all CON checks and need to hold
                   your breath.
                </td>
                <td>Self
                </td>
-               <td>Pass
+               <td>Passive
                </td>
             </tr>
             <tr>
                <td>Core
+               </td>
+               <td>Creature from the Depths
+               </td>
+               <td>When in water, all attacks of opportunity against you have DisAdv (--).
+               </td>
+               <td>Self
+               </td>
+               <td>Passive
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Bite and Tear
+               </td>
+               <td>Make a melee attack against a creature, dealing Medium+Dex damage. 
+               </td>
+               <td>E, Melee, Single target
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>1
                </td>
                <td>Water Strike
                </td>
-               <td>Storm forward and strike with great force. Choose a point you can see
-                  within 20ft and speed to that tile, you then may immediately make a regular
-                  melee attack against a target. On a hit the target takes additional Light damage
-                  for each tile moved (distance in ft divided by 5). 15ft is equal to 3 tiles, 3
-                  additional damage is dealt. You cannot use Water Strike on a target within 5ft.
+               <td>Storm forward and strike with great force. Choose a creature you can see
+                  within 20ft and speed directly to them and make a regular
+                  melee attack against the creature dealing DEX damage. On a hit the creature takes additional Light damage
+                  for each tile moved (distance in ft divided by 5). 15ft is equal to 3 tiles, 3*Light (Heavy)
+                  additional damage is dealt. 
                </td>
-               <td>A+E, 20ft/Melee, Single target
+               <td>A+E, 30ft/Melee, Single target
                </td>
-               <td>3
+               <td>2
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
                </td>
                <td>Circling Fins
                </td>
-               <td>Cause <a class="condition" data-tooltip-container>fear</a> into the heart of any non <a class="condition" data-tooltip-container>blinded</a> enemy within 20ft. 1 WILL
-                  resist
+               <td>Cause <a class="condition" data-tooltip-container>fear</a> into the heart of a non <a class="condition" data-tooltip-container>blinded</a> enemy within 20ft. 2 WILL
+                  resist.
                </td>
-               <td>E, AOE, 20ft
+               <td>E, Singel Target, 20ft
                </td>
                <td>1
                </td>
@@ -10244,18 +10354,18 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Small Flying Animal">Beast Shape - Small Flying Animal</h4>
-                  <strong><em>For 1AP, you can transform into a small flying animal such as a
-                        hawk, eagle, or bat. Useful for scouting, crossing ravines, and against
-                        creatures without range. </em></strong>
-                  <p>
-                     Attack: Melee Light+Dex
+                  <h4 id="Beast Shape - Tiny Flying Animal">Beast Shape - Tiny Flying Animal</h4>
+                  <strong><em>
+                     For 1AP, you can transform into a Tiny flying animal such as a
+                     hawk, eagle, or bat. Useful for scouting, crossing ravines, and against
+                     creatures without range. 
+                  </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Med
+               <td colspan="2">Max Health: Heavy
                </td>
-               <td>Movement: 25ft - Flying
+               <td>Movement: 35ft - Flying
                </td>
                <td colspan="2">AC: 16
                </td>
@@ -10291,11 +10401,23 @@
             <tr>
                <td>Core
                </td>
+               <td>Peck
+               </td>
+               <td>Make a melee attack against a creature, dealing Light+Dex damage.
+               </td>
+               <td>E
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>1
+               </td>
                <td>Go for the Eyes
                </td>
                <td>Swoop down on target.<br><br>Move up to 25ft and make a
-                  regular melee attack. On a successful hit deal Medium+DEX and <a class="condition" data-tooltip-container>blind</a> the
-                  opponent. 2 REFL Points to resist the <a class="condition" data-tooltip-container>blind</a>. Move up to 25ft away, however this
+                  regular melee attack. On a successful hit deal Light+DEX and <a class="condition" data-tooltip-container>blind</a> the
+                  opponent. 2 REFL Points to resist the <a class="condition" data-tooltip-container>blind</a>. You may then move up to 25ft away, however this
                   will trigger attacks of opportunity.
                </td>
                <td>E, Melee
@@ -10304,14 +10426,14 @@
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
                </td>
                <td>Distraction
                </td>
-               <td><a class="condition" data-tooltip-container>Mark</a> the target creature, giving them the <a class="condition" data-tooltip-container>marked</a> conditions for one turn.
-                  All attacks against the <a class="condition" data-tooltip-container>marked</a> target get Adv (++).
+               <td><a class="condition" data-tooltip-container>Mark</a> an adjacent creature.
+                  The creature has DisAdv (--) on any attack this turn.  2 REFL to resist.
                </td>
-               <td>E, 100ft, Single target
+               <td>E, melee, Single target
                </td>
                <td>1
                </td>
@@ -10321,17 +10443,17 @@
             <tr>
                <td colspan="5">
                   <h4 id="Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</h4>
-                  <strong><em>For 1AP, you can transform into a large flying animal such as a
-                        giant eagle, griffin, or pterodactyl. Useful for air combat, carrying creatures
-                        across ravines, and against creatures without range. </em></strong>
-                  <p>
-                     Attack: Melee Medium+Str
+                  <strong><em>
+                     For 1AP, you can transform into a large flying animal such as a
+                     giant eagle, griffin, or pterodactyl. Useful for air combat, carrying creatures
+                     across ravines, and against creatures without range. 
+                  </em></strong>
                </td>
             </tr>
             <tr>
-               <td colspan="2">Max Health: Med*6
+               <td colspan="2">Max Health: Heavy*6
                </td>
-               <td>Movement: 20ft - Flying
+               <td>Movement: 25ft - Flying
                </td>
                <td colspan="2">AC: 13
                </td>
@@ -10367,12 +10489,25 @@
             <tr>
                <td>Core
                </td>
+               <td>Razor Talons
+               </td>
+               <td>Make a melee attack against a creature, dealing Medium+Str damage.
+               </td>
+               <td>E
+               </td>
+               <td>2
+               </td>
+            </tr>
+            <tr>
+               <td>1
+               </td>
                <td>Pick Up and Drop
                </td>
                <td>Sink your talons into an enemy. Make a regular melee attack. On a
-                  successful hit deal Medium+DEX damage. Hold onto the target and fly 20ft up into
-                  the air after which the target is dropped dealing 20ft fall damage (Heavy). 2
-                  FORT to resistance being lifted into the air
+                  successful hit deal Light+STR damage. You may then chose to hold onto the target 
+                  and fly 20ft up into the air after which the target is dropped dealing 20ft fall damage 
+                  (Normally 10, normal rules apply). 
+                  2 FORT to resistance being lifted into the air.
                </td>
                <td>E, Melee
                </td>
@@ -10380,13 +10515,12 @@
                </td>
             </tr>
             <tr>
-               <td>Core
+               <td>1
                </td>
                <td>Sky Fall
                </td>
-               <td>Make a 60ft movement where you drop at least 30ft downwards. If you
-                  finish your movement on the ground all creatures within 5ft get knocked <a class="condition" data-tooltip-container>prone</a>. 1
-                  REFL to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
+               <td>Fly directly down to the ground. If you started at least 20ft up, all creatures within 5ft get knocked <a class="condition" data-tooltip-container>prone</a>. 
+                  1 FORT to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, AOE, 5ft
                </td>
