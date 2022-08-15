@@ -53,7 +53,6 @@
       var scrollTimer = -1;
 
       function doc_scroll() {
-         // initTooltip();
          if (scrollTimer != -1) clearTimeout(scrollTimer);
 
          scrollTimer = window.setTimeout("scroll_finished()", 25);
