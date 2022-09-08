@@ -5,11 +5,25 @@
 <head>
    <link rel="stylesheet" href="main.css">
    <title>Arcus</title>
-   <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
-   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
+   <link rel="icon" type="image/x-icon" href="./favicon-black.ico?v=2" id="faviconTag">
+   <link rel="shortcut icon" type="image/x-icon" href="./favicon-black.ico?v=2" id="faviconTag">
 </head>
 
 <body>
+
+   <script>
+      const faviconTag = document.getElementById("faviconTag");
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+      const changeFavicon = () => {
+         if (isDark.matches) faviconTag.href = "./favicon-white.ico?v=2";
+         else faviconTag.href = "./favicon-black.ico?v=2";
+      };
+
+      changeFavicon();
+
+      setInterval(changeFavicon, 1000);
+   </script>
 
    <script>
       function toggleLightMode() {
@@ -10830,7 +10844,7 @@
 
    <script src="https://unpkg.com/@popperjs/core@2"></script>
    <script src="https://unpkg.com/tippy.js@6"></script>
-   <script src="./tooltip.js"></script>
+   <script src="./tooltip.js?n=1"></script>
    
 </body>
 
