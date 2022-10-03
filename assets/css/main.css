@@ -80,11 +80,15 @@ input, select, textarea {
     border-radius: 6px;
     font-size: 14px;
     text-align: center;
-    color: rgb(202, 202, 202);
-    background-color: rgba(24, 24, 24);
     overflow: hidden;
     z-index: 5000;
+	font-size: larger;
 }
+
+.condition {
+    font-style: italic;
+}
+
 
 /* Basic */
 
