@@ -1,0 +1,624 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Marksman</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<a href="index.html" class="logo">Adventure Awaits</a>
+				</header>
+
+				<!-- Nav -->
+				<nav id="nav">
+					<ul class="links">
+						<li><a href="index.html">HOME</a></li>
+						<li class="active"><a href="warrior.html">The Rules</a></li>
+						<li><a href="elements.html">The World</a></li>
+						<li><a href="corrupted_mines.html">One Shots</a></li>
+					</ul>
+				</nav>
+
+				<!-- Main -->
+				<div id="main">
+					<!-- Post -->
+					<section class="post">
+						<header class="major">
+							<h1>Marksman</h1>
+							<p>A physcial class based around long ranged single and multi-target damage and shot calling.</br>
+								Suggested attributes: Perception or Dexterity.
+							</p>
+						</header>
+						<div class="image main"><img src="images/guard_wide.png" alt="" /></div>
+						<table>
+						<tr>
+							<td>Level
+							</td>
+							<td>Name
+							</td>
+							<td>Description
+							</td>
+							<td>Target
+							</td>
+							<td>AP Cost
+							</td>
+						 </tr>
+						 <tr>
+							<td>Core
+							</td>
+							<td>Ranger
+							</td>
+							<td><strong>You are accurate even at the greatest ranges.</strong>
+							   <p>
+								  For each level in Marksman, increase the range of all short range weapons by 5ft
+								  (max bonus 50ft) and all long range weapons by 10ft (max bonus 100ft).
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>1
+							</td>
+							<td>Aim!
+							</td>
+							<td><strong>Command your allies to take aim at the weak points.</strong>
+							   <p>
+								  <a class="condition" data-tooltip-container>Mark</a> a creature within 100ft. All attacks against the 
+								  <a class="condition" data-tooltip-container>marked</a>
+								  creature also add 2 + your PER modifier to attack rolls.
+							</td>
+							<td>A+E, 100ft, Single target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>1
+							</td>
+							<td>Point Blank Shot
+							</td>
+							<td><strong>Push back your enemies with a projectile of great force.
+							   </strong>
+							   <p>
+								  Make a ranged weapon attack against a creature within 10ft ignoring any
+								  disadvantage due to being within 5ft. On a hit the creature is pushed 20ft
+								  directly away from you. If this push movement is stopped by another creature or
+								  solid object, the initial target suffers additional Light damage and is knocked
+								  <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT point to resist the
+								  <a class="condition" data-tooltip-container>prone</a>.
+							</td>
+							<td>A+E, 10ft (Ranged weapon required), Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>1
+							</td>
+							<td>Pinning Shot
+							</td>
+							<td><strong>Lock your target in place with pinning fire.</strong>
+							   <p>
+								  Make a ranged weapon attack against a creature. On a hit the creature is
+								  <a class="condition" data-tooltip-container>immobilised</a> and <a class="condition" data-tooltip-container>hobbled</a>. 
+								  If you successfully <a class="condition" data-tooltip-container>immobilise</a> the 
+								  target, and there is an ally within melee range, the ally may spend their reaction 
+								  to deal Medium damage the initial target. 2 FORT points to resist the
+								  <a class="condition" data-tooltip-container>immobilise</a>, the 
+								  <a class="condition" data-tooltip-container>hobbled</a> cannot be resisted.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>1
+							</td>
+							<td>Advance!
+							</td>
+							<td><strong>Command your allies to press the attack.</strong>
+							   <p>
+								  All allies within 50ft may immediately spend their reaction to move up to 40ft
+								  closer to a target within 100ft. They must take the shortest path possible -
+								  avoiding any intentional self harm/endangerment.
+							</td>
+							<td>A, 50ft/100ft, Single target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>1
+							</td>
+							<td>Expeditious Retreat
+							</td>
+							<td><strong>Move away from engagements with flawless grace.</strong>
+							   <p>
+								  Attacks of opportunity have DisAdv (--) against you.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>2
+							</td>
+							<td>Reactive Retreat
+							</td>
+							<td><strong>You can escape danger better than most.</strong>
+							   <p>
+								  If you are hit and damaged by a melee attack, you may spend your reaction to
+								  immediately move up to 10ft.
+							</td>
+							<td>Self, Melee
+							</td>
+							<td>React
+							</td>
+						 </tr>
+						 <tr>
+							<td>2
+							</td>
+							<td>Piercing Shot
+							</td>
+							<td><strong>Strike through foes with a piercing projectile.</strong>
+							   <p>
+								  Make a ranged weapon attack against all creatures in a 30ft line originating
+								  from you. This attack ignores any disadvantage due to being within 5ft.
+							</td>
+							<td>A+E, All within 40ft straight line from self (AoE) (Ranged weapon
+							   required)
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>2
+							</td>
+							<td>Suppressive Fire
+							</td>
+							<td><strong>Suppress the hostile ranged offensive.</strong>
+							   <p>
+								  Select a point within 100ft and create a 15ft radius zone. All enemies within
+								  this zone have DisAdv (--) on all ranged attack rolls. This DisAdv cannot be
+								  resisted but a creature in the zone may suffer Light damage to ignore the DisAdv (--). 
+								  If creatures leave the area the DisAdv (--) effect ends.
+							</td>
+							<td>
+							   E, 100ft (Ranged weapon required), All enemies within a 15ft radius (AoE)
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>2
+							</td>
+							<td>Fire!
+							</td>
+							<td><strong>Command your allies to open fire.</strong>
+							   <p>
+								  Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. 
+								  Each time the <a class="condition" data-tooltip-container>marked</a>
+								  target suffers damage, it also suffers your PER modifier as additional
+								  damage. A creature can only be <a class="condition" data-tooltip-container>marked</a> by one "Fire!" ability at a time.
+							</td>
+							<td>A+E, 100ft, Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Ricochet
+							</td>
+							<td><strong>Bounce a deadly projectile between foes.</strong>
+							   <p>
+								  Make a ranged weapon attack against a creature. On a hit you may select a second
+								  creature within 15ft of the initial target, and a third creature within 15ft of
+								  the second. The second and third creatures both suffer half your weapon damage
+								  (e.g. (Medium+PER)/2).
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), 3 targets
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Long Shot
+							</td>
+							<td><strong>The greater the range, the more devastating the shot.</strong>
+							   <p>
+								  Make a ranged weapon attack against a creature. On a hit deal an additional
+								  Light damage for every 20ft past 50ft the creature is away from you (up to a
+								  maximum of 5 x Light additional damage at 150ft). For example, 95ft deals an
+								  additional 2 x Light damage, and 60ft would result in no additional damage.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Opportunist
+							</td>
+							<td><strong>Seize every opportunity to strike.</strong>
+							   <p>
+								  When an ally within weapon range makes an attack of opportunity against a
+								  creature, you may spend your reaction to make a ranged weapon attack against the
+								  same creature.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>React
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>In Position
+							</td>
+							<td><strong>Lay prone for greater stability and accuracy.</strong>
+							   <p>
+								  You now gain Adv (+) instead of DisAdv (-) while attacking with ranged weapons
+								  when <a class="condition" data-tooltip-container>prone</a>. This does not include thrown weapon attacks.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Bear’s Fortitude
+							</td>
+							<td><strong>Your fortitude resembles that of a bear.</strong>
+							   <p>
+								  Gain an additional 5 FORT resistance points.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Cat’s Reflexes
+							</td>
+							<td><strong>Your reflexes resemble that of a cat. </strong>
+							   <p>
+								  Gain an additional 5 REFL resistance points.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>3
+							</td>
+							<td>Bull’s Will
+							</td>
+							<td><strong>Your will power resembles that of a bull.</strong>
+							   <p>
+								  Gain an additional 5 WILL resistance points.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>4
+							</td>
+							<td>Back Up!
+							</td>
+							<td><strong>Call upon your allies for reinforcement.</strong>
+							   <p>
+								  Select an ally within 50ft. This ally may use up to 75ft of regular movement to
+								  reach an unoccupied point within 5ft of you. They must take the shortest path
+								  possible - avoiding any intentional self harm/endangerment.
+							</td>
+							<td>A+E, 50ft, Single target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>4
+							</td>
+							<td>Running Shot
+							</td>
+							<td><strong>Rapidly reposition and open fire.</strong>
+							   <p>
+								  Move up to 75ft and make a ranged weapon attack against a creature. This
+								  movement may be broken up by the attack. On a hit the creature is
+								  <a class="condition" data-tooltip-container>hobbled</a>. 2 FORT points to resist the <a class="condition" data-tooltip-container>hobble</a>.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>3
+							</td>
+						 </tr>
+						 <tr>
+							<td>4
+							</td>
+							<td>Alert
+							</td>
+							<td><strong>Your sensitive senses never fail you.</strong>
+							   <p>
+								  Gain a +5 bonus to your initiative rolls. Any levels of DisAdv you have on
+								  attack rolls from not being able to see your target is reduced by 1 level (e.g.
+								  from (---) to (--)). You still require line of sight.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>5
+							</td>
+							<td>Rapid Shot
+							</td>
+							<td><strong>Unleash a rapid close range volley.</strong>
+							   <p>
+								  Make a ranged weapon attack against up to 3 creatures within 15ft. The same
+								  creature cannot be hit twice.
+							</td>
+							<td>A+E, 15ft (Ranged weapon required), 3 targets
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>5
+							</td>
+							<td>Covering Fire
+							</td>
+							<td><strong>You’ve got your friends covered.</strong>
+							   <p>
+								  When an ally within weapon range provokes an attack of opportunity, use your
+								  reaction to impose DisAdv (--) on the attack.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>React
+							</td>
+						 </tr>
+						 <tr>
+							<td>5
+							</td>
+							<td>Demoralise
+							</td>
+							<td><strong>Demoralise a foe and extinguish their strength.</strong>
+							   <p>
+								  Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. All damage on their next
+								  attack or ability is halved. 2 WILL points to resist the damage reduction.
+							</td>
+							<td>A+E, 100ft, Single target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>6
+							</td>
+							<td>Commanding Shout
+							</td>
+							<td><strong>Command your allies to seize the advantage.</strong>
+							   <p>
+								  Select an ally within 50ft. This ally may spend their reaction to move up to
+								  25ft in a way of their choice, or make a melee weapon attack. You also cannot
+								  use your reaction this turn.
+							</td>
+							<td>A, 50ft, Single target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>6
+							</td>
+							<td>Overwatch
+							</td>
+							<td><strong>Stand vigilant over a protected area.</strong>
+							   <p>
+								  Select a point within weapon range and create a 5ft radius zone. You may make a
+								  ranged weapon attack against creatures of your choice that enter or end their
+								  turn within this zone. The same creature cannot be attacked twice in one turn
+								  and you must have line of sight to the creature when attacking.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>7
+							</td>
+							<td>Clear Focus
+							</td>
+							<td><strong>Your deft focus grants you deadly accuracy.</strong>
+							   <p>
+								  Gain Adv (+) on all attacks this turn if you did not suffer any damage since the
+								  end of your last turn. If you suffer any damage during your turn this effect
+								  ends.
+							</td>
+							<td>Self
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>7
+							</td>
+							<td>Barrage
+							</td>
+							<td><strong>Unleash a barrage of falling projectiles.</strong>
+							   <p>
+								  Select a point within weapon range. All creatures within a 15ft radius suffer
+								  Light+(DEX or PER) damage.
+							</td>
+							<td>All, Weapon (Ranged weapon required), All within 20ft radius (AoE)
+							</td>
+							<td>2
+							</td>
+						 </tr>
+						 <tr>
+							<td>8
+							</td>
+							<td>Power Draw
+							</td>
+							<td><strong>Sacrifice accuracy for immense power.</strong>
+							   <p>
+								  You may impose DisAdv (-) on your next single target ranged weapon attack and
+								  add Light bonus damage if it hits. You may impose DisAdv (--) to add Medium
+								  bonus damage instead. You may impose DisAdv (---) to add Heavy bonus damage
+								  instead.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>8
+							</td>
+							<td>Relentless Strike
+							</td>
+							<td><strong>Press the offence as your foes fall.</strong>
+							   <p>
+								  When you kill a creature, you may spend your reaction to make a ranged weapon
+								  attack against another creature.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single
+							</td>
+							<td>React
+							</td>
+						 </tr>
+						 <tr>
+							<td>9
+							</td>
+							<td>Ranged Duelist
+							</td>
+							<td><strong>Return fire and assert your ranged dominance.</strong>
+							   <p>
+								  When you are hit by ranged attack you may spend your reaction to make a ranged
+								  weapon attack against the source of the attack.
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>React
+							</td>
+						 </tr>
+						 <tr>
+							<td>9
+							</td>
+							<td>Achilles’ Heel
+							</td>
+							<td><strong>Brand a target with a new weakness.</strong>
+							   <p>
+								  Select a creature within 100ft, <a class="condition" data-tooltip-container>mark</a> it, and choose one resistance
+								  point type (e.g. REFL). The next time the creature chooses to spend this
+								  resistance point type it suffers Heavy damage. This does not include resistance
+								  point drain.
+							</td>
+							<td>A+E, 100ft, Single Target
+							</td>
+							<td>1
+							</td>
+						 </tr>
+						 <tr>
+							<td>10
+							</td>
+							<td>Close Quarters Specialist
+							</td>
+							<td><strong>Your attacks at close range are exceptionally lethal.</strong>
+							   <p>
+								  <span class="wip">
+									 You no longer have DisAdv (-) for ranged attacks when there is a hostile
+									 creature within 5ft. You also gain Adv (+) on all ranged attacks made against a
+									 creature within 30ft.
+								  </span>
+							</td>
+							<td>Self, 5ft/30ft
+							</td>
+							<td>Pass
+							</td>
+						 </tr>
+						 <tr>
+							<td>10
+							</td>
+							<td>Sharpshot
+							</td>
+							<td><strong>Make the impossible shot.</strong>
+							   <p>
+								  Your next single target attack ranged roll gains Adv (+++).
+							</td>
+							<td>Self
+							</td>
+							<td>0
+							</td>
+						 </tr>
+						 <tr>
+							<td>10
+							</td>
+							<td>Leading Strike
+							</td>
+							<td><strong>Strike first, strike hard.</strong>
+							   <p>
+								  Make a ranged weapon attack against a creature with full health. You deal
+								  additional damage equal to your DEX or PER value (not Modifier).
+							</td>
+							<td>A+E, Weapon (Ranged weapon required), Single target
+							</td>
+							<td>2
+							</td>
+						 </tr>
+					  </table>
+						</section>
+				</div>
+
+				<!-- Copyright -->
+				<div id="copyright">
+					<ul><li>&copy; The Spires Of Arcus</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+				</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://unpkg.com/@popperjs/core@2"></script>
+			<script src="https://unpkg.com/tippy.js@6"></script>
+		 <script src="./tooltip.js?n=1"></script>
+
+	</body>
+</html>
