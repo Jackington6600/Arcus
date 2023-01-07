@@ -41,19 +41,29 @@ function ThemeToggle() {
   const { theme, setTheme } = useContext(ThemeContext)
 
   return (
-    <InnerMoon
-      className={`btn shadow rounded-circle text-center ${theme == Theme.Light ? 'btn-dark' : 'btn-light'} position-fixed top-0 end-0`}
-      style={{
-        margin: '1rem',
-        width: '45px',
-        height: '45px',
-        fontSize: 20,
-        padding: 0,
-        backgroundColor: 'var(--bs-btn-bg)',
-      }}
-      duration={750}
-      toggled={theme == Theme.Light}
-      onToggle={(toggled) => setTheme(toggled ? Theme.Light : Theme.Dark)} />
+    <>
+      <style jsx global>{`
+        button.theme-toggle.inner-moon svg {
+          position:absolute;
+          left:50%;
+          top:50%;
+          transform:translate(-50%, -50%);
+        }
+        `}</style>
+      <InnerMoon
+        className={`btn shadow rounded-circle text-center ${theme == Theme.Light ? 'btn-dark' : 'btn-light'} inner-moon position-fixed top-0 end-0`}
+        style={{
+          margin: '1rem',
+          width: '45px',
+          height: '45px',
+          fontSize: 20,
+          padding: 0,
+          backgroundColor: 'var(--bs-btn-bg)',
+        }}
+        duration={750}
+        toggled={theme == Theme.Light}
+        onToggle={(toggled) => setTheme(toggled ? Theme.Light : Theme.Dark)} />
+    </>
   )
 }
 
@@ -104,20 +114,3 @@ class CharacterCreator extends React.Component<{}, { character: Character }> {
     )
   }
 }
-
-// function CharacterCreator() {
-//   const [characterName, setCharacterName] = useState('')
-
-
-
-//   return (
-//     <div className='container'>
-//       <div className='row'>
-//         <div className='col'><input type='text' value='abc' onChange={}/><h3>Character Name</h3>Character Name: </div>
-//         <div className='col'>&lt;name&gt;</div>
-//         <div className='col'>Level</div>
-//         <div className='col'>&lt;level&gt;</div>
-//       </div>
-//     </div>
-//   )
-// }
