@@ -9,7 +9,7 @@ import faviconWhite from '../public/favicon-white.ico';
 import { InnerMoon } from "@theme-toggles/react"
 
 import { Theme, ThemeContext } from './_theme';
-import { ThemeProvider } from 'react-bootstrap';
+import { Form, ThemeProvider } from 'react-bootstrap';
 
 
 export default function Home() {
@@ -81,16 +81,17 @@ class CharacterCreator extends React.Component<{}, { character: Character }> {
           <div className='container'>
             <div className='row'>
               <div className='col'>
-                <style jsx>{`
+                {/* <style jsx>{`
                   input {
                     border: none;
                   }
                   input:focus {
                     outline: none;
                   }
-                `}</style>
-                <input
+                `}</style> */}
+                <Form.Control
                   type='text'
+                  placeholder='Name'
                   value={this.state.character.name}
                   onChange={(event) => this.setState({ character: { name: event.target.value } })}
                 />
