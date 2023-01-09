@@ -1,7 +1,8 @@
 import React, { Component, PropsWithChildren, useEffect, useState } from "react";
-import { cookies } from 'next/headers';
+import cookie from 'cookie'
 
-export const COOKIE_NAME_THEME = 'THEME_NAME';
+export const COOKIE_NAME_THEME = 'THEME';
+const COOKIE_NAME_BROWSER_THEME = 'BROWSER_PREFERRED_THEME';
 
 // Theme values must conform to the bootstrap theme names
 // https://getbootstrap.com/docs/5.3/customize/color-modes/#dark-mode
@@ -14,18 +15,35 @@ export const ThemeContext = React.createContext(Theme.Light);
 export const SetThemeContext = React.createContext<(theme: Theme) => void>(((_: Theme) => { throw new Error("ThemeContext.Provider not set"); }));
 
 type Props = PropsWithChildren<{
-  initialTheme?: string;
+  initialTheme?: Theme;
 }>;
 
 type State = {
   theme: Theme;
+  browserTheme?: Theme;
 };
 
+const prefersDarkModeMediaQuery = typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : undefined
+
+function getBrowserTheme(): Theme | undefined {
+  if (prefersDarkModeMediaQuery) {
+    if (prefersDarkModeMediaQuery.matches) {
+      return Theme.Dark;
+    } else {
+      return Theme.Light;
+    }
+  }
+}
+
+
 export class ThemeComponent extends Component<Props, State> {
+  private _darkModeEventListener?: (e: Event) => void = undefined
+
   constructor(props: Props) {
     super(props);
 
-    var initialTheme: Theme = this.props.initialTheme && Theme[this.props.initialTheme] || Theme.Light;
+    const initialTheme: Theme = this.props.initialTheme || Theme.Light;
+
     this.state = {
       theme: initialTheme
     }
@@ -33,16 +51,40 @@ export class ThemeComponent extends Component<Props, State> {
 
   private updateTheme() {
     document.documentElement.dataset['bsTheme'] = this.state.theme.toLowerCase();
-    document.cookie = `${COOKIE_NAME_THEME}=${this.state.theme}; SameSite=Strict`;
+    document.cookie = cookie.serialize(COOKIE_NAME_THEME, this.state.theme, { path: '/', sameSite: 'strict' })
+    document.cookie = cookie.serialize(COOKIE_NAME_BROWSER_THEME, this.state.browserTheme || '', { path: '/', sameSite: 'strict' })
   }
 
   componentDidMount(): void {
+    const cookieBrowserTheme = Theme[cookie.parse(document.cookie)[COOKIE_NAME_BROWSER_THEME]]
+    const browserTheme = getBrowserTheme()
+
+    const theme = (this.props.initialTheme && cookieBrowserTheme !== browserTheme && this.props.initialTheme === browserTheme ? undefined : this.props.initialTheme) || browserTheme || Theme.Light;
+
+    this.setState({
+      theme,
+      browserTheme
+    })
     this.updateTheme();
+
+    if (prefersDarkModeMediaQuery) {
+      this._darkModeEventListener = (_) => this.setState({ browserTheme: getBrowserTheme() })
+      prefersDarkModeMediaQuery.addEventListener("change", this._darkModeEventListener)
+    }
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
-    if (this.state.theme !== prevState.theme) {
+    if (prevState.browserTheme && this.state.browserTheme && prevState.browserTheme !== this.state.browserTheme) {
+      this.setState({ theme: this.state.browserTheme })
+    }
+    if (prevState.theme !== this.state.theme) {
       this.updateTheme();
+    }
+  }
+
+  componentWillUnmount(): void {
+    if (prefersDarkModeMediaQuery && this._darkModeEventListener) {
+      prefersDarkModeMediaQuery.removeEventListener("change", this._darkModeEventListener)
     }
   }
 

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import React, { useContext } from 'react';
+import React, { CSSProperties, useContext } from 'react';
 
 import faviconBlack from '../public/favicon-black.ico';
 import faviconWhite from '../public/favicon-white.ico';
@@ -12,15 +12,15 @@ import { Form } from 'react-bootstrap';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types';
 
 
-export default function Home(props: { initialTheme?: string }) {
+type Props = {
+  initialTheme?: Theme;
+}
+
+export default function Home(props: Props) {
   return (
     <ThemeComponent initialTheme={props.initialTheme}>
       <div>
-        <Head>
-          <title>Arcus</title>
-          <Favicon />
-        </Head>
-
+        <AppHead />
         <main>
           <ThemeToggle />
           <CharacterCreator />
@@ -30,14 +30,26 @@ export default function Home(props: { initialTheme?: string }) {
   )
 }
 
-export function getServerSideProps(context: GetServerSidePropsContext): GetServerSidePropsResult<{ [key: string]: any }> {
-  return { props: { initialTheme: context.req.cookies[COOKIE_NAME_THEME] } };
+function AppHead() {
+  var theme = useContext(ThemeContext);
+  return (
+    <Head>
+      <title>Character Creator - Arcus</title>
+      <link rel='shortcut icon' href={theme == Theme.Light ? faviconWhite.src : faviconBlack.src} />
+    </Head>
+  )
+}
+
+export function getServerSideProps(context: GetServerSidePropsContext): GetServerSidePropsResult<Props> {
+  const initialThemeName = context.req.cookies[COOKIE_NAME_THEME];
+  const initialTheme: Theme | undefined = initialThemeName ? Theme[initialThemeName] : undefined;
+  const props: Props = {};
+  if (initialTheme) {
+    props.initialTheme = initialTheme
+  }
+  return { props };
 };
 
-function Favicon() {
-  var theme = useContext(ThemeContext);
-  return <link rel='shortcut icon' href={theme == Theme.Light ? faviconWhite.src : faviconBlack.src} />;
-}
 
 function ThemeToggle() {
   const theme = useContext(ThemeContext)
@@ -101,20 +113,22 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
   }
 
   render(): React.ReactNode {
+    const labelStyle: CSSProperties = { fontWeight: 'bold' };
+
     return (
       <>
-        <div className='container'>
+        <style jsx global>{`
+          .character-creator .label {
+            font-weight: bold;
+          }
+          `}</style>
+        <div className='container character-creator'>
           <h1>Character Creator</h1>
           <hr />
           <div className='grid'>
             <div className='g-col-8'>
-              <style jsx>{`
-                .container :global(.form-label) {
-                  font-weight: bold;
-                }
-                `}</style>
               <Form.Group className='mb-3' controlId='name'>
-                <Form.Label>Character Name</Form.Label>
+                <Form.Label style={labelStyle}>Character Name</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder='Royax ThunderBlaster'
@@ -125,7 +139,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
             </div>
             <div className='g-col-3'>
               <Form.Group className='mb-3' controlId='playerName'>
-                <Form.Label>Player Name</Form.Label>
+                <Form.Label style={labelStyle}>Player Name</Form.Label>
                 <Form.Control
                   type='text'
                   placeholder='Lucy Hall'
@@ -136,7 +150,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
             </div>
             <div className='g-col-1'>
               <Form.Group className='mb-3' controlId='level'>
-                <Form.Label>Level</Form.Label>
+                <Form.Label style={labelStyle}>Level</Form.Label>
                 <Form.Control
                   type='numeric'
                   value={this.state.level}
@@ -148,7 +162,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
           <div className='grid'>
             <div className='g-col-12'>
               <Form.Group className='mb-3' controlId='description'>
-                <Form.Label>Description</Form.Label>
+                <Form.Label style={labelStyle}>Description</Form.Label>
                 <Form.Control
                   as='textarea'
                   value={this.state.description}
