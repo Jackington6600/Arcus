@@ -66,8 +66,8 @@ select {
 }
 
 $enable-shadows: true;
-// $enable-gradients: true;
-// $enable-cssgrid: true;
+$enable-gradients: true;
+$enable-cssgrid: true;
 
 @import 'bootstrap/scss/bootstrap.scss';
 
