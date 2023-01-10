@@ -50,22 +50,25 @@ export class ThemeComponent extends Component<Props, State> {
   }
 
   private updateTheme() {
+    console.log('updateTheme', this.state)
     document.documentElement.dataset['bsTheme'] = this.state.theme.toLowerCase();
-    document.cookie = cookie.serialize(COOKIE_NAME_THEME, this.state.theme, { path: '/', sameSite: 'strict' })
-    document.cookie = cookie.serialize(COOKIE_NAME_BROWSER_THEME, this.state.browserTheme || '', { path: '/', sameSite: 'strict' })
+    const options = { path: '/', sameSite: 'strict', maxAge: 60 * 60 * 24 * 365 } as const;
+    document.cookie = cookie.serialize(COOKIE_NAME_THEME, this.state.theme, options)
+    document.cookie = cookie.serialize(COOKIE_NAME_BROWSER_THEME, this.state.browserTheme || '', options)
   }
 
   componentDidMount(): void {
     const cookieBrowserTheme = Theme[cookie.parse(document.cookie)[COOKIE_NAME_BROWSER_THEME]]
     const browserTheme = getBrowserTheme()
 
-    const theme = (this.props.initialTheme && cookieBrowserTheme !== browserTheme && this.props.initialTheme === browserTheme ? undefined : this.props.initialTheme) || browserTheme || Theme.Light;
+    console.log(this.props.initialTheme, cookieBrowserTheme, browserTheme, cookieBrowserTheme !== browserTheme, this.props.initialTheme === cookieBrowserTheme)
+    const theme = (this.props.initialTheme && cookieBrowserTheme !== browserTheme && this.props.initialTheme === cookieBrowserTheme ? undefined : this.props.initialTheme) || browserTheme || Theme.Light;
+    console.log(theme)
 
     this.setState({
       theme,
       browserTheme
     })
-    this.updateTheme();
 
     if (prefersDarkModeMediaQuery) {
       this._darkModeEventListener = (_) => this.setState({ browserTheme: getBrowserTheme() })
@@ -74,10 +77,10 @@ export class ThemeComponent extends Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any): void {
-    if (prevState.browserTheme && this.state.browserTheme && prevState.browserTheme !== this.state.browserTheme) {
+    if (prevState.browserTheme && this.state.browserTheme && prevState.browserTheme !== this.state.browserTheme && this.state.theme === prevState.browserTheme) {
       this.setState({ theme: this.state.browserTheme })
     }
-    if (prevState.theme !== this.state.theme) {
+    if (prevState.theme !== this.state.theme || prevState.browserTheme !== this.state.browserTheme) {
       this.updateTheme();
     }
   }
