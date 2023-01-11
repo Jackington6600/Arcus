@@ -35,7 +35,7 @@ function AppHead() {
   return (
     <Head>
       <title>Character Creator - Arcus</title>
-      <link rel='shortcut icon' href={theme == Theme.Light ? faviconWhite.src : faviconBlack.src} />
+      <link rel='shortcut icon' href={theme == Theme.Light ? faviconBlack.src : faviconWhite.src} />
     </Head>
   )
 }
@@ -66,7 +66,7 @@ function ThemeToggle() {
         }
         `}</style>
       <InnerMoon
-        className={`btn shadow rounded-circle ${theme == Theme.Light ? 'btn-dark' : 'btn-light'} inner-moon position-fixed top-0 end-0`}
+        className={`btn shadow rounded-circle ${theme == Theme.Light ? 'btn-dark' : 'btn-light'} inner-moon position-absolute top-0 end-0 z-1`}
         style={{
           margin: '1rem',
           width: '45px',
@@ -126,7 +126,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
           <h1>Character Creator</h1>
           <hr />
           <div className='grid'>
-            <div className='g-col-8'>
+            <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8'>
               <Form.Group className='mb-3' controlId='name'>
                 <Form.Label style={labelStyle}>Character Name</Form.Label>
                 <Form.Control
@@ -137,7 +137,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
                 />
               </Form.Group>
             </div>
-            <div className='g-col-3'>
+            <div className='g-col-8 g-col-sm-4 g-col-md-3'>
               <Form.Group className='mb-3' controlId='playerName'>
                 <Form.Label style={labelStyle}>Player Name</Form.Label>
                 <Form.Control
@@ -148,11 +148,11 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
                 />
               </Form.Group>
             </div>
-            <div className='g-col-1'>
+            <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1'>
               <Form.Group className='mb-3' controlId='level'>
                 <Form.Label style={labelStyle}>Level</Form.Label>
                 <Form.Control
-                  type='numeric'
+                  type='number'
                   value={this.state.level}
                   onChange={(event) => this.setLevel(+event.target.value)}
                 />
