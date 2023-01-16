@@ -50,7 +50,6 @@ export class ThemeComponent extends Component<Props, State> {
   }
 
   private updateTheme() {
-    console.log('updateTheme', this.state)
     document.documentElement.dataset['bsTheme'] = this.state.theme.toLowerCase();
     const options = { path: '/', sameSite: 'strict', maxAge: 60 * 60 * 24 * 365 } as const;
     document.cookie = cookie.serialize(COOKIE_NAME_THEME, this.state.theme, options)
@@ -61,9 +60,7 @@ export class ThemeComponent extends Component<Props, State> {
     const cookieBrowserTheme = Theme[cookie.parse(document.cookie)[COOKIE_NAME_BROWSER_THEME]]
     const browserTheme = getBrowserTheme()
 
-    console.log(this.props.initialTheme, cookieBrowserTheme, browserTheme, cookieBrowserTheme !== browserTheme, this.props.initialTheme === cookieBrowserTheme)
     const theme = (this.props.initialTheme && cookieBrowserTheme !== browserTheme && this.props.initialTheme === cookieBrowserTheme ? undefined : this.props.initialTheme) || browserTheme || Theme.Light;
-    console.log(theme)
 
     this.setState({
       theme,

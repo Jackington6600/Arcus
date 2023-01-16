@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-import React, { CSSProperties, useContext } from 'react';
+import React, { CSSProperties, EventHandler, useContext } from 'react';
 
 import faviconBlack from '../public/favicon-black.ico';
 import faviconWhite from '../public/favicon-white.ico';
 
-import { InnerMoon } from "@theme-toggles/react"
+import { InnerMoon } from '@theme-toggles/react'
 
 import { COOKIE_NAME_THEME, SetThemeContext, Theme, ThemeComponent, ThemeContext } from './_theme';
 import { Form } from 'react-bootstrap';
@@ -85,7 +85,7 @@ function ThemeToggle() {
 interface Character {
   name: string,
   playerName: string,
-  level: number,
+  level: number | null,
   description: string,
 }
 
@@ -100,79 +100,127 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
     this.state = {
       name: '',
       playerName: '',
-      level: 0,
+      level: null,
       description: '',
     } satisfies CharacterCreatorState
-
-    this.setLevel = this.setLevel.bind(this)
-  }
-
-  setLevel(level: number) {
-    // TODO: When implementing classes, update them (remove levels / add levels accordingly)
-    this.setState({ level })
   }
 
   render(): React.ReactNode {
-    const labelStyle: CSSProperties = { fontWeight: 'bold' };
-
     return (
       <>
-        <style jsx global>{`
-          .character-creator .label {
-            font-weight: bold;
-          }
-          `}</style>
         <div className='container character-creator'>
           <h1>Character Creator</h1>
           <hr />
           <div className='grid'>
-            <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8'>
-              <Form.Group className='mb-3' controlId='name'>
-                <Form.Label style={labelStyle}>Character Name</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Royax ThunderBlaster'
-                  value={this.state.name}
-                  onChange={(event) => this.setState({ name: event.target.value })}
-                />
-              </Form.Group>
+            <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8 mb-3'>
+              <Input
+                type='text'
+                label='Character Name'
+                id='name'
+                value={this.state.name}
+                onChange={(value) => this.setState({ name: value })}
+              />
             </div>
-            <div className='g-col-8 g-col-sm-4 g-col-md-3'>
-              <Form.Group className='mb-3' controlId='playerName'>
-                <Form.Label style={labelStyle}>Player Name</Form.Label>
-                <Form.Control
-                  type='text'
-                  placeholder='Lucy Hall'
-                  value={this.state.playerName}
-                  onChange={(event) => this.setState({ playerName: event.target.value })}
-                />
-              </Form.Group>
+            <div className='g-col-8 g-col-sm-4 g-col-md-3 mb-3'>
+              <Input
+                type='text'
+                label='Player Name'
+                id='player-name'
+                value={this.state.playerName}
+                onChange={(value) => this.setState({ playerName: value })}
+              />
             </div>
-            <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1'>
-              <Form.Group className='mb-3' controlId='level'>
-                <Form.Label style={labelStyle}>Level</Form.Label>
-                <Form.Control
-                  type='number'
-                  value={this.state.level}
-                  onChange={(event) => this.setLevel(+event.target.value)}
-                />
-              </Form.Group>
+            <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1 mb-3'>
+              <Input
+                type='number'
+                label='Level'
+                id='level'
+                min={0}
+                value={this.state.level}
+                onChange={(value) => this.setState({ level: value })}
+              />
             </div>
           </div>
           <div className='grid'>
-            <div className='g-col-12'>
-              <Form.Group className='mb-3' controlId='description'>
-                <Form.Label style={labelStyle}>Description</Form.Label>
-                <Form.Control
-                  as='textarea'
-                  value={this.state.description}
-                  onChange={(event) => this.setState({ description: event.target.value })}
-                />
-              </Form.Group>
+            <div className='g-col-12 mb-3'>
+              <Input
+                type='textarea'
+                label='Description'
+                id='description'
+                value={this.state.description}
+                onChange={(value) => this.setState({ description: value })}
+              />
             </div>
           </div>
         </div>
       </>
     )
   }
+}
+
+
+type InputProps =
+  TextInputProps |
+  TextAreaInputProps |
+  NumberInputProps;
+
+type CommonInputProps<T> = {
+  label: string
+  id: string
+  value: T
+  disabled?: boolean,
+  onChange: (value: T) => void
+}
+
+type CommonTextInputProps = {
+  // TODO
+} & CommonInputProps<string>;
+
+type TextInputProps = {
+  type: 'text'
+} & CommonTextInputProps;
+
+type TextAreaInputProps = {
+  type: 'textarea'
+} & CommonTextInputProps;
+
+type NumberInputProps = {
+  type: 'number'
+  min?: number
+} & CommonInputProps<number | null>;
+
+function Input(props: InputProps) {
+  switch (props.type) {
+    case 'text':
+      break;
+    case 'textarea':
+      break;
+    case 'number':
+      break;
+    default:
+      throw new Error(`Unknown type: '${props['type']}'`)
+  }
+  const onChange: EventHandler<React.ChangeEvent<HTMLInputElement>> = (event) => {
+    if (props.type === 'text' || props.type === 'textarea') {
+      props.onChange(event.target.value);
+    } else if (props.type === 'number') {
+      // TODO
+      props.onChange(+event.target.value);
+    }
+  }
+
+  return (
+    <>
+      <div className='form-group'>
+        <input
+          className={`form-control${props.value || props.value === 0 ? ' non-empty' : ''}`}
+          type={props.type}
+          id={props.id}
+          onChange={onChange}
+          value={`${props.value}`}
+          disabled={props.disabled} />
+        <label htmlFor={props.id}>{props.label}</label>
+      </div>
+    </>
+  )
 }
