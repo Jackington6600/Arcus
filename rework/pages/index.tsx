@@ -181,7 +181,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
       onChange={(value) => this.setStateMutable(state => state.attributes[name] = value)} />;
 
     const getAttributeDiv = (name: AttributeName) =>
-      <div className='attribute g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2'>
+      <div className={`attribute attribute-${name} attribute-from-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
         {getAttribute(name)}
       </div>;
 
@@ -202,7 +202,7 @@ class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
       } />;
 
     const getResistancePointsDiv = (name: ResistancePointsTypeName) =>
-      <div className='resistance-points g-col-4 g-col-md-4'>
+      <div className={`resistance-points resistance-points-${name} g-col-12 g-col-md-4`}>
         {getResistancePoints(name)}
       </div>;
 

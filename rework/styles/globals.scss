@@ -148,19 +148,71 @@ input[type=number].form-control {
 }
 
 .character-creator {
-  .grid>div.attribute {
-    order: 1;
-  }
+  /* Cool, but breaks tab order (and no pure CSS fix it seems!) https://adrianroselli.com/2015/10/html-source-order-vs-css-display-order.html
+  @include media-breakpoint-between(xs, sm) {
+    .grid>div.attribute-from-fortitude {
+      order: 1;
+    }
 
-  .grid>div.resistance-points {
-    order: 2;
-  }
+    .grid>div.resistance-points-fortitude {
+      order: 2;
+    }
 
-  .grid>div.resistance-points~div:not(.resistance-points) {
-    order: 3;
-  }
+    .grid>div.attribute-from-reflex {
+      order: 3;
+    }
 
-  @include media-breakpoint-up(sm) {}
+    .grid>div.resistance-points-reflex {
+      order: 4;
+    }
+
+    .grid>div.attribute-from-will {
+      order: 5;
+    }
+
+    .grid>div.resistance-points-will {
+      order: 6;
+    }
+
+    .grid>div.resistance-points~div:not(.resistance-points) {
+      order: 7;
+    }
+  }
+  */
+
+  @include media-breakpoint-between(sm, md) {
+    .grid>div.attribute-strength {
+      order: 1;
+    }
+
+    .grid>div.attribute-dexterity {
+      order: 2;
+    }
+
+    .grid>div.attribute-intelligence {
+      order: 3;
+    }
+
+    .grid>div.attribute-constitution {
+      order: 4;
+    }
+
+    .grid>div.attribute-perception {
+      order: 5;
+    }
+
+    .grid>div.attribute-spirit {
+      order: 6;
+    }
+
+    .grid>div.resistance-points {
+      order: 7;
+    }
+
+    .grid>div.resistance-points~div:not(.resistance-points) {
+      order: 8;
+    }
+  }
 
   .resistance-points-total {
     min-width: 3.3rem;
