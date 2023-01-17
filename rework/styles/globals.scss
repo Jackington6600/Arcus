@@ -1,3 +1,7 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/breakpoints";
+
 html,
 body {
   margin: 0;
@@ -65,7 +69,8 @@ select {
   }
 }
 
-:root, [data-bs-theme="light"] {
+:root,
+[data-bs-theme="light"] {
   --form-control-label-focus-color: #316ecf;
 }
 
@@ -77,31 +82,101 @@ select {
   position: relative;
 }
 
-.form-group>label {
-  position: absolute;
-  top: .3rem;
-  left: .8rem;
-  padding: 0 .4rem 0 0;
-  border-radius: .3rem;
-  transition: top .2s ease, left .2s ease, padding .2s ease, transform .2s ease, color .2s ease;
-  color: var(--bs-secondary-color);
-  transform: scale(1);
-  pointer-events: none;
+.form-group>,
+.form-group .input-group> {
+  .form-control~label {
+    position: absolute;
+    top: 0.45rem;
+    left: .8rem;
+    padding: 0 .4rem 0 0;
+    border-radius: .3rem;
+    transition: top .2s ease, left .2s ease, padding .2s ease, transform .2s ease, color .2s ease;
+    color: var(--bs-secondary-color);
+    transform: scale(1);
+    pointer-events: none;
+  }
+
+  .form-control:focus~label,
+  .form-control.non-empty~label {
+    top: -.85rem;
+    left: 0;
+    padding-left: .4rem;
+    transform: scale(.8);
+    background-color: var(--bs-form-control-bg);
+  }
+
+  .form-control:focus~label {
+    color: var(--form-control-label-focus-color);
+  }
+
+  .form-control:disabled~label {
+    background-color: var(--bs-form-control-disabled-bg);
+  }
 }
 
-.form-group>.form-control:focus~label,
-.form-group>.form-control.non-empty~label {
-  top: -.85rem;
-  left: 0;
-  padding-left: .4rem;
-  transform: scale(.8);
-  background-color: var(--bs-form-control-bg);
+.form-group .input-group>.form-control~label {
+  // Bring above input (see bootstrap/scss/forms/_input-group.scss line 25)
+  z-index: 6;
 }
 
-.form-group>.form-control:focus~label {
-  color: var(--form-control-label-focus-color);
+.was-validated .form-group>.form-control:valid:focus~label,
+.form-group>.form-control.is-valid:focus~label,
+.was-validated .form-group>.form-control:valid.non-empty~label,
+.form-group>.form-control.is-valid.non-empty~label {
+  color: var(--bs-success);
 }
 
-.form-group>.form-control:disabled~label {
-  background-color: var(--bs-form-control-disabled-bg);
+.was-validated .form-group>.form-control:invalid:focus~label,
+.form-group>.form-control.is-invalid:focus~label,
+.was-validated .form-group>.form-control:invalid.non-empty~label,
+.form-group>.form-control.is-invalid.non-empty~label {
+  color: var(--bs-danger);
+}
+
+// Removes number pickers
+// TODO: Add new ones
+input[type=number].form-control::-webkit-outer-spin-button,
+input[type=number].form-control::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number].form-control {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+.character-creator {
+  .grid>div.attribute {
+    order: 1;
+  }
+
+  .grid>div.resistance-points {
+    order: 2;
+  }
+
+  .grid>div.resistance-points~div:not(.resistance-points) {
+    order: 3;
+  }
+
+  @include media-breakpoint-up(sm) {}
+
+  .resistance-points-total {
+    min-width: 3.3rem;
+    flex-grow: .2;
+    text-overflow: ellipsis;
+  }
+
+  // @include media-breakpoint-up(md) {
+  //   .resistance-points-total {
+  //     flex-grow: .2;
+  //   }
+  // }
+
+  // @include media-breakpoint-up(lg) {
+  //   .resistance-points-total {
+  //     flex-grow: .1;
+  //   }
+  // }
 }
