@@ -278,6 +278,10 @@ input[type=number].form-control {
     }
   }
 
+  .attribute-modifier {
+    max-width: 3rem;
+  }
+
   // @include media-breakpoint-up(md) {
   //   .resistance-points-total {
   //     flex-grow: .2;

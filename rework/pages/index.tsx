@@ -123,6 +123,12 @@ function getAttributeModifier(attribute: number | null): number | null {
   return Math.floor((attribute - 10) / 2);
 }
 
+function formatAttributeModifier(attributeModifier: number | null): string | null {
+  if (attributeModifier === null)
+    return null;
+  return attributeModifier >= 0 ? `+${attributeModifier}` : attributeModifier.toString()
+}
+
 function getTotalResistancePoints(resistancePointsType: ResistancePointsTypeName, attributes: Record<AttributeName, number | null>): number | null {
   return Math.max(0, lodash.sum(RESISTANCE_POINTS_TYPES[resistancePointsType].attributes.map(a => attributes[a]).filter(a => a !== null).map(a => a as any - 10)));
 }
@@ -167,7 +173,10 @@ function CharacterCreator() {
 
   const getAttributeDiv = (name: AttributeName) =>
     <div className={`attribute attribute-${name} attribute-resistance-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
-      {getAttribute(name)}
+      <InputGroup>
+        {getAttribute(name)}
+        <Input type='text' className='attribute-modifier' /* label='Modifier' */ id={`${name}-total`} readOnly disabled value={formatAttributeModifier(attributeModifiers[name]) ?? ''} />
+      </InputGroup>
     </div>;
 
   const getResistancePoints = (name: ResistancePointsTypeName) => <Input
@@ -184,7 +193,7 @@ function CharacterCreator() {
       <InputGroup>
         {getResistancePoints(name)}
         <span className="input-group-text">/</span>
-        <Input type='text' className='resistance-points-total' label='Total' id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]?.toString() || ''} />
+        <Input type='number' className='resistance-points-total' label='Total' id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]} />
       </InputGroup>
     </div>;
 
@@ -241,51 +250,6 @@ function CharacterCreator() {
           {getResistancePointsDiv('fortitude')}
           {getResistancePointsDiv('reflex')}
           {getResistancePointsDiv('will')}
-          <div className='g-col-12'>
-            <Input
-              type='text'
-              label='Description2'
-              id='description2'
-              value={description}
-              onChange={(value) => setDescription(value)}
-            />
-          </div>
-          <div className='g-col-12'>
-            <div className="input-group">
-              <span className="input-group-text">@</span>
-              <div className="form-floating thin">
-                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' readOnly value='█m█__█_' />
-                <label htmlFor="floatingInputGroup1">█m███_Usernameeeeeeeeeeeeeeeeeeeeeeeeee█eeeeeeeeeeeeeeeeeeeeeemmmmmm█mmmmmmmmmmmmmmmmmmmmmmmmmmmm||█</label>
-              </div>
-            </div>
-          </div>
-          <div className='g-col-12'>
-            <div className="input-group">
-              <span className="input-group-text">@</span>
-              <div className="form-floating thin">
-                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' />
-                <label htmlFor="floatingInputGroup1">█||Usernameeeeeeeeeeeeeeeeeeeeeeeeee█eeeeeeeeeeeeeeeeeeeeeemmmmmm█mmmmmmmmmmmmmmmmmmmmmmmmmmmm||█</label>
-              </div>
-            </div>
-          </div>
-          <div className='g-col-12'>
-            <div className="input-group">
-              <span className="input-group-text">@</span>
-              <div className="form-floating thin">
-                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' readOnly value='█m█__█_' />
-                <label htmlFor="floatingInputGroup1">Username</label>
-              </div>
-            </div>
-          </div>
-          <div className='g-col-12'>
-            <div className="input-group">
-              <span className="input-group-text">@</span>
-              <div className="form-floating thin">
-                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' />
-                <label htmlFor="floatingInputGroup1">Username</label>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
@@ -298,7 +262,7 @@ type InputProps =
   NumberInputProps;
 
 type CommonInputProps<T> = {
-  label: string
+  label?: string
   id: string
   className?: string
   value: T
@@ -348,10 +312,12 @@ function Input(props: InputProps) {
     }
   }
 
+  const labelExcluded = props.label === undefined;
+
   const inputProps = {
-    className: `form-control`,
+    className: `form-control ${labelExcluded ? props.className ?? '' : ''}`,
     id: props.id,
-    placeholder: '',
+    placeholder: '', // Required to get CSS selectors to work
     onChange: onChange,
     value: props.value ?? '',
     readOnly: props.readOnly,
@@ -360,13 +326,17 @@ function Input(props: InputProps) {
     max: props.type === 'number' ? props.max : undefined
   };
 
+  const input = props.type === 'textarea'
+    ? <textarea {...inputProps} />
+    : <input type={props.type} {...inputProps} />;
+
   return (
-    <div className={`form-floating thin ${props.className ?? ''}`}>
-      {props.type === 'textarea'
-        ? <textarea {...inputProps} />
-        : <input type={props.type} {...inputProps} />}
-      <label htmlFor={props.id}>{props.label}</label>
-    </div>
+    labelExcluded
+      ? input
+      : <div className={`form-floating thin ${props.className ?? ''}`}>
+        {input}
+        <label htmlFor={props.id}>{props.label}</label>
+      </div>
   );
 }
 
