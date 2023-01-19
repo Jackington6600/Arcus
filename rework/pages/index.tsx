@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import React, { CSSProperties, EventHandler, ReactNode, useContext } from 'react';
+import React, { CSSProperties, EventHandler, PropsWithChildren, ReactNode, useContext, useEffect, useRef, useState } from 'react';
 
 import faviconBlack from '../public/favicon-black.ico';
 import faviconWhite from '../public/favicon-white.ico';
@@ -12,7 +12,8 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types'
 
 import lodash from 'lodash';
 import produce from 'immer';
-import { WritableDraft } from 'immer/dist/internal';
+import { current, WritableDraft } from 'immer/dist/internal';
+import { InputGroup } from 'react-bootstrap';
 
 
 type Props = {
@@ -127,154 +128,179 @@ function getTotalResistancePoints(resistancePointsType: ResistancePointsTypeName
   return Math.max(0, lodash.sum(RESISTANCE_POINTS_TYPES[resistancePointsType].attributes.map(a => attributes[a]).filter(a => a !== null).map(a => a as any - 10)));
 }
 
-interface CharacterCreatorState extends Character {
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
 }
 
-class CharacterCreator extends React.Component<{}, CharacterCreatorState> {
-  constructor(props: {}) {
-    super(props)
+function CharacterCreator() {
+  const [name, setName] = useState<string>('');
+  const [playerName, setPlayerName] = useState<string>('');
+  const [level, setLevel] = useState<number | null>(null);
+  const [description, setDescription] = useState<string>('');
 
-    this.state = {
-      name: '',
-      playerName: '',
-      level: null,
-      description: '',
-      attributes: lodash.fromPairs(ATTRIBUTE_NAMES.map(a => [a, 10])) as any,
-      attributeModifiers: lodash.fromPairs(ATTRIBUTE_NAMES.map(a => [a, null])) as any,
-      currentResistancePoints: lodash.fromPairs(RESISTANCE_POINTS_TYPE_NAMES.map(n => [n, null])) as any,
-      totalResistancePoints: lodash.fromPairs(RESISTANCE_POINTS_TYPE_NAMES.map(n => [n, null])) as any,
-    } satisfies CharacterCreatorState;
-
-    this.calculateAttributeDerivedValues(true);
+  function createRecord<TKey extends string, TValue>(keys: TKey[], value: TValue): Record<TKey, TValue> {
+    return lodash.chain(keys).mapKeys().mapValues(_ => value).value() as any;
   }
 
-  private calculateAttributeDerivedValues(shouldSetStateDirectly?: boolean) {
-    const attributeModifiers: Record<AttributeName, number | null> = lodash.fromPairs(ATTRIBUTE_NAMES.map(a => [a, getAttributeModifier(this.state.attributes[a])])) as any;
-    const totalResistancePoints: Record<ResistancePointsTypeName, number | null> = lodash.fromPairs(RESISTANCE_POINTS_TYPE_NAMES.map(n => [n, getTotalResistancePoints(n, this.state.attributes)])) as any;
-    const newState = { attributeModifiers, totalResistancePoints };
-    if (shouldSetStateDirectly) {
-      lodash.assign(this.state, newState)
-    }
-    else {
-      this.setState(newState)
-    }
-  }
+  const [attributes, setAttributes] = useState(createRecord<AttributeName, number | null>(ATTRIBUTE_NAMES, 10));
+  const [attributeModifiers, setAttributeModifiers] = useState(createRecord<AttributeName, number | null>(ATTRIBUTE_NAMES, null));
+  const [currentResistancePoints, setCurrentResistancePoints] = useState(createRecord<ResistancePointsTypeName, number | null>(RESISTANCE_POINTS_TYPE_NAMES, 0));
+  const [totalResistancePoints, setTotalResistancePoints] = useState(createRecord<ResistancePointsTypeName, number | null>(RESISTANCE_POINTS_TYPE_NAMES, 0));
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<CharacterCreatorState>, snapshot?: any): void {
-    if (prevState.attributes !== this.state.attributes) {
-      this.calculateAttributeDerivedValues()
-    }
-  }
+  useEffect(() => {
+    setAttributeModifiers(lodash.chain(ATTRIBUTE_NAMES).mapKeys().mapValues(n => getAttributeModifier(attributes[n])).value() as any);
+    setTotalResistancePoints(lodash.chain(RESISTANCE_POINTS_TYPE_NAMES).mapKeys().mapValues(n => getTotalResistancePoints(n, attributes)).value() as any);
+  }, [attributes]);
 
-  private setStateMutable(stateModifier: (state: WritableDraft<Readonly<CharacterCreatorState>>) => void) {
-    this.setState(state => produce(state, stateDraft => { stateModifier(stateDraft) }));
-  }
+  const prevTotalResistancePoints = usePrevious(totalResistancePoints);
+  useEffect(() => {
+    if (prevTotalResistancePoints === undefined)
+      return;
 
-  render(): React.ReactNode {
-    const getAttribute = (name: AttributeName) => <Input
-      type='number'
-      id={name}
-      label={ATTRIBUTES[name].name}
-      value={this.state.attributes[name]}
-      min={0}
-      max={20}
-      onChange={(value) => this.setStateMutable(state => state.attributes[name] = value)} />;
+    const namesToUpdate = RESISTANCE_POINTS_TYPE_NAMES.filter(n => prevTotalResistancePoints[n] !== totalResistancePoints[n] && currentResistancePoints[n] === prevTotalResistancePoints[n]);
+    setCurrentResistancePoints({ ...currentResistancePoints, ...lodash.chain(namesToUpdate).mapKeys().mapValues(n => totalResistancePoints[n]).value() });
+  }, [totalResistancePoints]);
 
-    const getAttributeDiv = (name: AttributeName) =>
-      <div className={`attribute attribute-${name} attribute-from-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
-        {getAttribute(name)}
-      </div>;
+  const getAttribute = (name: AttributeName) => <Input
+    type='number'
+    id={name}
+    label={ATTRIBUTES[name].name}
+    value={attributes[name]}
+    min={0}
+    max={20}
+    onChange={(value) => setAttributes({ ...attributes, [name]: value })} />;
 
-    const getResistancePoints = (name: ResistancePointsTypeName) => <Input
-      type='number'
-      id={name}
-      label={RESISTANCE_POINTS_TYPES[name].name}
-      value={this.state.currentResistancePoints[name]}
-      min={0}
-      max={20}
-      onChange={(value) => this.setStateMutable(state => state.currentResistancePoints[name] = value)}
-      after={
-        <>
-          <span className="input-group-text">/</span>
-          {/* TODO: Change so that value is the total resistance points */}
-          <input className='form-control resistance-points-total' readOnly disabled value={this.state.totalResistancePoints[name]?.toString() || ''} />
-        </>
-      } />;
+  const getAttributeDiv = (name: AttributeName) =>
+    <div className={`attribute attribute-${name} attribute-resistance-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
+      {getAttribute(name)}
+    </div>;
 
-    const getResistancePointsDiv = (name: ResistancePointsTypeName) =>
-      <div className={`resistance-points resistance-points-${name} g-col-12 g-col-md-4`}>
+  const getResistancePoints = (name: ResistancePointsTypeName) => <Input
+    type='number'
+    id={name}
+    label={RESISTANCE_POINTS_TYPES[name].name}
+    value={currentResistancePoints[name]}
+    min={0}
+    max={20}
+    onChange={(value) => setCurrentResistancePoints({ ...currentResistancePoints, [name]: value })} />;
+
+  const getResistancePointsDiv = (name: ResistancePointsTypeName) =>
+    <div className={`resistance-points resistance-points-${name} g-col-12 g-col-md-4`}>
+      <InputGroup>
         {getResistancePoints(name)}
-      </div>;
+        <span className="input-group-text">/</span>
+        {/* TODO: Change so that value is the total resistance points */}
+        <Input type='text' className='resistance-points-total' label='Total' id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]?.toString() || ''} />
+      </InputGroup>
+    </div>;
 
-    return (
-      <>
-        <div className='container character-creator'>
-          <h1>Character Creator</h1>
-          <hr />
-          <div className='grid'>
-            <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8'>
-              <Input
-                type='text'
-                label='Character Name'
-                id='name'
-                value={this.state.name}
-                onChange={(value) => this.setState({ name: value })}
-              />
+  return (
+    <>
+      <div className='container character-creator'>
+        <h1>Character Creator</h1>
+        <hr />
+        <div className='grid'>
+          <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8'>
+            <Input
+              type='text'
+              label='Character Name'
+              id='name'
+              value={name}
+              onChange={(value) => setName(value)}
+            />
+          </div>
+          <div className='g-col-8 g-col-sm-4 g-col-md-3'>
+            <Input
+              type='text'
+              label='Player Name'
+              id='player-name'
+              value={playerName}
+              onChange={(value) => setPlayerName(value)}
+            />
+          </div>
+          <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1'>
+            <Input
+              type='number'
+              label='Level'
+              id='level'
+              min={0}
+              max={20}
+              value={level}
+              onChange={(value) => setLevel(value)}
+            />
+          </div>
+          <div className='g-col-12'>
+            <Input
+              type='textarea'
+              label='Description'
+              id='description'
+              value={description}
+              onChange={(value) => setDescription(value)}
+            />
+          </div>
+          {getAttributeDiv('strength')}
+          {getAttributeDiv('constitution')}
+          {getAttributeDiv('dexterity')}
+          {getAttributeDiv('perception')}
+          {getAttributeDiv('intelligence')}
+          {getAttributeDiv('spirit')}
+          {getResistancePointsDiv('fortitude')}
+          {getResistancePointsDiv('reflex')}
+          {getResistancePointsDiv('will')}
+          <div className='g-col-12'>
+            <Input
+              type='text'
+              label='Description2'
+              id='description2'
+              value={description}
+              onChange={(value) => setDescription(value)}
+            />
+          </div>
+          <div className='g-col-12'>
+            <div className="input-group">
+              <span className="input-group-text">@</span>
+              <div className="form-floating thin">
+                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' readOnly value='█m█__█_' />
+                <label htmlFor="floatingInputGroup1">█m███_Usernameeeeeeeeeeeeeeeeeeeeeeeeee█eeeeeeeeeeeeeeeeeeeeeemmmmmm█mmmmmmmmmmmmmmmmmmmmmmmmmmmm||█</label>
+              </div>
             </div>
-            <div className='g-col-8 g-col-sm-4 g-col-md-3'>
-              <Input
-                type='text'
-                label='Player Name'
-                id='player-name'
-                value={this.state.playerName}
-                onChange={(value) => this.setState({ playerName: value })}
-              />
+          </div>
+          <div className='g-col-12'>
+            <div className="input-group">
+              <span className="input-group-text">@</span>
+              <div className="form-floating thin">
+                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' />
+                <label htmlFor="floatingInputGroup1">█||Usernameeeeeeeeeeeeeeeeeeeeeeeeee█eeeeeeeeeeeeeeeeeeeeeemmmmmm█mmmmmmmmmmmmmmmmmmmmmmmmmmmm||█</label>
+              </div>
             </div>
-            <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1'>
-              <Input
-                type='number'
-                label='Level'
-                id='level'
-                min={0}
-                max={20}
-                value={this.state.level}
-                onChange={(value) => this.setState({ level: value })}
-              />
+          </div>
+          <div className='g-col-12'>
+            <div className="input-group">
+              <span className="input-group-text">@</span>
+              <div className="form-floating thin">
+                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' readOnly value='█m█__█_' />
+                <label htmlFor="floatingInputGroup1">Username</label>
+              </div>
             </div>
-            <div className='g-col-12'>
-              <Input
-                type='textarea'
-                label='Description'
-                id='description'
-                value={this.state.description}
-                onChange={(value) => this.setState({ description: value })}
-              />
-            </div>
-            {getAttributeDiv('strength')}
-            {getAttributeDiv('constitution')}
-            {getAttributeDiv('dexterity')}
-            {getAttributeDiv('perception')}
-            {getAttributeDiv('intelligence')}
-            {getAttributeDiv('spirit')}
-            {getResistancePointsDiv('fortitude')}
-            {getResistancePointsDiv('reflex')}
-            {getResistancePointsDiv('will')}
-            <div className='g-col-12'>
-              <Input
-                type='text'
-                label='Description2'
-                id='description2'
-                value={this.state.description}
-                onChange={(value) => this.setState({ description: value })}
-              />
+          </div>
+          <div className='g-col-12'>
+            <div className="input-group">
+              <span className="input-group-text">@</span>
+              <div className="form-floating thin">
+                <input type="text" className="form-control" id="floatingInputGroup1" placeholder='' />
+                <label htmlFor="floatingInputGroup1">Username</label>
+              </div>
             </div>
           </div>
         </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  )
 }
-
 
 type InputProps =
   TextInputProps |
@@ -284,10 +310,11 @@ type InputProps =
 type CommonInputProps<T> = {
   label: string
   id: string
+  className?: string
   value: T
+  readOnly?: boolean
   disabled?: boolean,
-  after?: ReactNode,
-  onChange: (value: T) => void
+  onChange?: (value: T) => void
 }
 
 type CommonTextInputProps = {
@@ -320,6 +347,9 @@ function Input(props: InputProps) {
       throw new Error(`Unknown type: '${props['type']}'`)
   }
   const onChange: EventHandler<React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>> = (event) => {
+    if (props.onChange === undefined)
+      return;
+
     if (props.type === 'text' || props.type === 'textarea') {
       props.onChange(event.target.value);
     } else if (props.type === 'number') {
@@ -329,30 +359,24 @@ function Input(props: InputProps) {
   }
 
   const inputProps = {
-    className: `form-control${props.value || props.value === 0 ? ' non-empty' : ''}`,
+    className: `form-control ${props.className ?? ''}`,
     id: props.id,
+    placeholder: '',
     onChange: onChange,
-    value: `${props.value}`,
+    value: props.value ?? '',
+    readOnly: props.readOnly,
     disabled: props.disabled,
     min: props.type === 'number' ? props.min : undefined,
     max: props.type === 'number' ? props.max : undefined
-  }
-
-  const inputs = <>
-    {props.type === 'textarea'
-      ? <textarea {...inputProps} />
-      : <input type={props.type} {...inputProps} />}
-    <label htmlFor={props.id}>{props.label}</label>
-    {props.after}
-  </>;
-
-  const isInputGroup = typeof props.after !== 'undefined';
+  };
 
   return (
-    <div className='form-group'>
-      {isInputGroup
-        ? <div className='input-group'>{inputs}</div>
-        : inputs}
+    <div className='form-floating thin'>
+      {props.type === 'textarea'
+        ? <textarea {...inputProps} />
+        : <input type={props.type} {...inputProps} />}
+      <label htmlFor={props.id}>{props.label}</label>
     </div>
   );
 }
+
