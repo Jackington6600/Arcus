@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import React, { CSSProperties, EventHandler, PropsWithChildren, ReactNode, useContext, useEffect, useRef, useState } from 'react';
+import React, { EventHandler, useContext, useEffect, useState } from 'react';
 
 import faviconBlack from '../public/favicon-black.ico';
 import faviconWhite from '../public/favicon-white.ico';
@@ -11,9 +11,8 @@ import { COOKIE_NAME_THEME, SetThemeContext, Theme, ThemeComponent, ThemeContext
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types';
 
 import lodash from 'lodash';
-import produce from 'immer';
-import { current, WritableDraft } from 'immer/dist/internal';
 import { InputGroup } from 'react-bootstrap';
+import { usePrevious } from './_utils';
 
 
 type Props = {
@@ -128,14 +127,6 @@ function getTotalResistancePoints(resistancePointsType: ResistancePointsTypeName
   return Math.max(0, lodash.sum(RESISTANCE_POINTS_TYPES[resistancePointsType].attributes.map(a => attributes[a]).filter(a => a !== null).map(a => a as any - 10)));
 }
 
-function usePrevious<T>(value: T): T | undefined {
-  const ref = useRef<T>();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-}
-
 function CharacterCreator() {
   const [name, setName] = useState<string>('');
   const [playerName, setPlayerName] = useState<string>('');
@@ -193,7 +184,6 @@ function CharacterCreator() {
       <InputGroup>
         {getResistancePoints(name)}
         <span className="input-group-text">/</span>
-        {/* TODO: Change so that value is the total resistance points */}
         <Input type='text' className='resistance-points-total' label='Total' id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]?.toString() || ''} />
       </InputGroup>
     </div>;
@@ -359,7 +349,7 @@ function Input(props: InputProps) {
   }
 
   const inputProps = {
-    className: `form-control ${props.className ?? ''}`,
+    className: `form-control`,
     id: props.id,
     placeholder: '',
     onChange: onChange,
@@ -371,7 +361,7 @@ function Input(props: InputProps) {
   };
 
   return (
-    <div className='form-floating thin'>
+    <div className={`form-floating thin ${props.className ?? ''}`}>
       {props.type === 'textarea'
         ? <textarea {...inputProps} />
         : <input type={props.type} {...inputProps} />}

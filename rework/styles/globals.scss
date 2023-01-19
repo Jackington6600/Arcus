@@ -71,25 +71,6 @@ select {
 }
 
 
-.form-group .input-group>.form-control~label {
-  // Bring above input (see bootstrap/scss/forms/_input-group.scss line 25)
-  z-index: 6;
-}
-
-.was-validated .form-group>.form-control:valid:focus~label,
-.form-group>.form-control.is-valid:focus~label,
-.was-validated .form-group>.form-control:valid.non-empty~label,
-.form-group>.form-control.is-valid.non-empty~label {
-  color: var(--bs-success);
-}
-
-.was-validated .form-group>.form-control:invalid:focus~label,
-.form-group>.form-control.is-invalid:focus~label,
-.was-validated .form-group>.form-control:invalid.non-empty~label,
-.form-group>.form-control.is-invalid.non-empty~label {
-  color: var(--bs-danger);
-}
-
 // Removes number pickers
 // TODO: Add new ones
 input[type=number].form-control::-webkit-outer-spin-button,
@@ -289,9 +270,12 @@ input[type=number].form-control {
   }
 
   .resistance-points-total {
-    min-width: 3.3rem;
-    flex-grow: .2;
-    text-overflow: ellipsis;
+    max-width: 5rem;
+    flex-grow: .5;
+
+    input {
+      text-overflow: ellipsis;
+    }
   }
 
   // @include media-breakpoint-up(md) {
