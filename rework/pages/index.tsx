@@ -85,37 +85,26 @@ function ThemeToggle() {
   )
 }
 
-type AttributeName = 'strength' | 'constitution' | 'dexterity' | 'perception' | 'intelligence' | 'spirit';
+type AttributeName = 'str' | 'con' | 'dex' | 'per' | 'int' | 'spi';
 
-const ATTRIBUTES: Record<AttributeName, { name: string, resistancePointsType: ResistancePointsTypeName }> = {
-  strength: { name: 'Strength', resistancePointsType: 'fortitude' },
-  constitution: { name: 'Constitution', resistancePointsType: 'fortitude' },
-  dexterity: { name: 'Dexterity', resistancePointsType: 'reflex' },
-  perception: { name: 'Perception', resistancePointsType: 'reflex' },
-  intelligence: { name: 'Intelligence', resistancePointsType: 'will' },
-  spirit: { name: 'Spirit', resistancePointsType: 'will' },
+const ATTRIBUTES: Record<AttributeName, { shortName: string, name: string, resistancePointsType: ResistancePointsTypeName }> = {
+  str: { shortName: 'STR', name: 'Strength', resistancePointsType: 'fort' },
+  con: { shortName: 'CON', name: 'Constitution', resistancePointsType: 'fort' },
+  dex: { shortName: 'DEX', name: 'Dexterity', resistancePointsType: 'refl' },
+  per: { shortName: 'PER', name: 'Perception', resistancePointsType: 'refl' },
+  int: { shortName: 'INT', name: 'Intelligence', resistancePointsType: 'will' },
+  spi: { shortName: 'SPI', name: 'Spirit', resistancePointsType: 'will' },
 };
 const ATTRIBUTE_NAMES: AttributeName[] = lodash.keys(ATTRIBUTES) as any;
 
-type ResistancePointsTypeName = 'fortitude' | 'reflex' | 'will';
+type ResistancePointsTypeName = 'fort' | 'refl' | 'will';
 
-const RESISTANCE_POINTS_TYPES: Record<ResistancePointsTypeName, { name: string, attributes: [AttributeName, AttributeName] }> = {
-  fortitude: { name: 'Fortitude', attributes: ['strength', 'constitution'] },
-  reflex: { name: 'Reflex', attributes: ['dexterity', 'perception'] },
-  will: { name: 'Will', attributes: ['intelligence', 'spirit'] },
+const RESISTANCE_POINTS_TYPES: Record<ResistancePointsTypeName, { shortName: string, name: string, attributes: [AttributeName, AttributeName] }> = {
+  fort: { shortName: 'FORT', name: 'Fortitude', attributes: ['str', 'con'] },
+  refl: { shortName: 'REFL', name: 'Reflex', attributes: ['dex', 'per'] },
+  will: { shortName: 'WILL', name: 'Will', attributes: ['int', 'spi'] },
 };
 const RESISTANCE_POINTS_TYPE_NAMES: ResistancePointsTypeName[] = lodash.keys(RESISTANCE_POINTS_TYPES) as any;
-
-type Character = {
-  name: string,
-  playerName: string,
-  level: number | null,
-  description: string,
-  attributes: Record<AttributeName, number | null>,
-  attributeModifiers: Record<AttributeName, number | null>,
-  currentResistancePoints: Record<ResistancePointsTypeName, number | null>,
-  totalResistancePoints: Record<ResistancePointsTypeName, number | null>,
-};
 
 function getAttributeModifier(attribute: number | null): number | null {
   if (attribute === null)
@@ -165,7 +154,9 @@ function CharacterCreator() {
   const getAttribute = (name: AttributeName) => <Input
     type='number'
     id={name}
-    label={ATTRIBUTES[name].name}
+    // TODO
+    // label={ATTRIBUTES[name].name}
+    label={ATTRIBUTES[name].shortName}
     value={attributes[name]}
     min={0}
     max={20}
@@ -182,7 +173,9 @@ function CharacterCreator() {
   const getResistancePoints = (name: ResistancePointsTypeName) => <Input
     type='number'
     id={name}
-    label={RESISTANCE_POINTS_TYPES[name].name}
+    // TODO
+    // label={RESISTANCE_POINTS_TYPES[name].name}
+    label={RESISTANCE_POINTS_TYPES[name].shortName}
     value={currentResistancePoints[name]}
     min={0}
     max={20}
@@ -193,7 +186,7 @@ function CharacterCreator() {
       <InputGroup>
         {getResistancePoints(name)}
         <span className="input-group-text">/</span>
-        <Input type='number' className='resistance-points-total' label='Total' id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]} />
+        <Input type='number' className='resistance-points-total' /* label='Total' */ id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]} />
       </InputGroup>
     </div>;
 
@@ -241,14 +234,14 @@ function CharacterCreator() {
               onChange={(value) => setDescription(value)}
             />
           </div>
-          {getAttributeDiv('strength')}
-          {getAttributeDiv('constitution')}
-          {getAttributeDiv('dexterity')}
-          {getAttributeDiv('perception')}
-          {getAttributeDiv('intelligence')}
-          {getAttributeDiv('spirit')}
-          {getResistancePointsDiv('fortitude')}
-          {getResistancePointsDiv('reflex')}
+          {getAttributeDiv('str')}
+          {getAttributeDiv('con')}
+          {getAttributeDiv('dex')}
+          {getAttributeDiv('per')}
+          {getAttributeDiv('int')}
+          {getAttributeDiv('spi')}
+          {getResistancePointsDiv('fort')}
+          {getResistancePointsDiv('refl')}
           {getResistancePointsDiv('will')}
         </div>
       </div>
