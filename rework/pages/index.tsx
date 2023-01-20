@@ -1,17 +1,27 @@
 import Head from 'next/head'
+import Image from 'next/image'
+import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types';
 
 import React, { EventHandler, useContext, useEffect, useState } from 'react';
+import { InputGroup } from 'react-bootstrap';
+
+import { InnerMoon } from '@theme-toggles/react'
+
+import lodash from 'lodash';
 
 import faviconBlack from '../public/favicon-black.ico';
 import faviconWhite from '../public/favicon-white.ico';
 
-import { InnerMoon } from '@theme-toggles/react'
+import connor1 from '../public/connor1.png'
+import connor2 from '../public/connor2.png'
+import connor3 from '../public/connor3.png'
+import connor4 from '../public/connor4.png'
+import connor5 from '../public/connor5.png'
+import connor6 from '../public/connor6.png'
+import connor7 from '../public/connor7.png'
+const CONNOR_IMAGES = [connor1, connor2, connor3, connor4, connor5, connor6, connor7]
 
 import { COOKIE_NAME_THEME, SetThemeContext, Theme, ThemeComponent, ThemeContext } from './_theme';
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types';
-
-import lodash from 'lodash';
-import { InputGroup } from 'react-bootstrap';
 import { usePrevious } from './_utils';
 
 
@@ -106,7 +116,7 @@ const RESISTANCE_POINTS_TYPES: Record<ResistancePointsTypeName, { shortName: str
 };
 const RESISTANCE_POINTS_TYPE_NAMES: ResistancePointsTypeName[] = lodash.keys(RESISTANCE_POINTS_TYPES) as any;
 
-function getAttributeModifier(attribute: number | null): number | null {
+function calculateAttributeModifier(attribute: number | null): number | null {
   if (attribute === null)
     return null;
   return Math.floor((attribute - 10) / 2);
@@ -118,30 +128,50 @@ function formatAttributeModifier(attributeModifier: number | null): string | nul
   return attributeModifier >= 0 ? `+${attributeModifier}` : attributeModifier.toString()
 }
 
-function getTotalResistancePoints(resistancePointsType: ResistancePointsTypeName, attributes: Record<AttributeName, number | null>): number | null {
-  return Math.max(0, lodash.sum(RESISTANCE_POINTS_TYPES[resistancePointsType].attributes.map(a => attributes[a]).filter(a => a !== null).map(a => a as any - 10)));
+function calculateTotalResistancePoints(resistancePointsType: ResistancePointsTypeName, attributes: Record<AttributeName, number | null>): number | null {
+  return Math.max(0, lodash.sum(RESISTANCE_POINTS_TYPES[resistancePointsType].attributes.map(a => attributes[a]).filter(a => a !== null).map(a => Math.max(0, a as number - 10))));
+}
+
+function calculateMaxHp(level: number | null, constitution: number | null, constitutionModifier: number | null): number | null {
+  if (constitution === null || constitutionModifier == null || level === null || level <= 0)
+    return null;
+
+  return constitution * 2 + (10 + constitutionModifier) * Math.floor((level - 1) / 2);
+}
+
+function calculatePassivePerception(perception: number | null) {
+  if (perception === null)
+    return null;
+
+  return 10 + perception + perception;
 }
 
 function CharacterCreator() {
-  const [name, setName] = useState<string>('');
-  const [playerName, setPlayerName] = useState<string>('');
-  const [level, setLevel] = useState<number | null>(null);
-  const [description, setDescription] = useState<string>('');
-
   function createRecord<TKey extends string, TValue>(keys: TKey[], value: TValue): Record<TKey, TValue> {
     return lodash.chain(keys).mapKeys().mapValues(_ => value).value() as any;
   }
 
+  // State
+  const [name, setName] = useState<string>('');
+  const [playerName, setPlayerName] = useState<string>('');
+  const [level, setLevel] = useState<number | null>(null);
+  const [description, setDescription] = useState<string>('');
   const [attributes, setAttributes] = useState(createRecord<AttributeName, number | null>(ATTRIBUTE_NAMES, 10));
   const [attributeModifiers, setAttributeModifiers] = useState(createRecord<AttributeName, number | null>(ATTRIBUTE_NAMES, null));
   const [currentResistancePoints, setCurrentResistancePoints] = useState(createRecord<ResistancePointsTypeName, number | null>(RESISTANCE_POINTS_TYPE_NAMES, 0));
   const [totalResistancePoints, setTotalResistancePoints] = useState(createRecord<ResistancePointsTypeName, number | null>(RESISTANCE_POINTS_TYPE_NAMES, 0));
+  const [currentHp, setCurrentHp] = useState<number | null>(null);
+  const [maxHp, setMaxHp] = useState<number | null>(null);
+  const [tempHp, setTempHp] = useState<number | null>(0);
+  const [passivePerception, setPassivePerception] = useState<number | null>(calculatePassivePerception(attributeModifiers['per']));
 
+  // Calculate attribute modifiers and total resistance points
   useEffect(() => {
-    setAttributeModifiers(lodash.chain(ATTRIBUTE_NAMES).mapKeys().mapValues(n => getAttributeModifier(attributes[n])).value() as any);
-    setTotalResistancePoints(lodash.chain(RESISTANCE_POINTS_TYPE_NAMES).mapKeys().mapValues(n => getTotalResistancePoints(n, attributes)).value() as any);
+    setAttributeModifiers(lodash.chain(ATTRIBUTE_NAMES).mapKeys().mapValues(n => calculateAttributeModifier(attributes[n])).value() as any);
+    setTotalResistancePoints(lodash.chain(RESISTANCE_POINTS_TYPE_NAMES).mapKeys().mapValues(n => calculateTotalResistancePoints(n, attributes)).value() as any);
   }, [attributes]);
 
+  // Update resistance points if max resistance points change, and they were equal
   const prevTotalResistancePoints = usePrevious(totalResistancePoints);
   useEffect(() => {
     if (prevTotalResistancePoints === undefined)
@@ -151,44 +181,24 @@ function CharacterCreator() {
     setCurrentResistancePoints({ ...currentResistancePoints, ...lodash.chain(namesToUpdate).mapKeys().mapValues(n => totalResistancePoints[n]).value() });
   }, [totalResistancePoints]);
 
-  const getAttribute = (name: AttributeName) => <Input
-    type='number'
-    id={name}
-    // TODO
-    // label={ATTRIBUTES[name].name}
-    label={ATTRIBUTES[name].shortName}
-    value={attributes[name]}
-    min={0}
-    max={20}
-    onChange={(value) => setAttributes({ ...attributes, [name]: value })} />;
+  // Calculate max HP
+  useEffect(() => {
+    setMaxHp(calculateMaxHp(level, attributes['con'], attributeModifiers['con']));
+  }, [level, attributes, attributeModifiers]);
 
-  const getAttributeDiv = (name: AttributeName) =>
-    <div className={`attribute attribute-${name} attribute-resistance-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
-      <InputGroup>
-        {getAttribute(name)}
-        <Input type='text' className='attribute-modifier' /* label='Modifier' */ id={`${name}-total`} readOnly disabled value={formatAttributeModifier(attributeModifiers[name]) ?? ''} />
-      </InputGroup>
-    </div>;
+  // Update HP if max HP changes, and they were equal
+  const prevMaxHp = usePrevious(maxHp);
+  useEffect(() => {
+    if (prevMaxHp === undefined)
+      return;
 
-  const getResistancePoints = (name: ResistancePointsTypeName) => <Input
-    type='number'
-    id={name}
-    // TODO
-    // label={RESISTANCE_POINTS_TYPES[name].name}
-    label={RESISTANCE_POINTS_TYPES[name].shortName}
-    value={currentResistancePoints[name]}
-    min={0}
-    max={20}
-    onChange={(value) => setCurrentResistancePoints({ ...currentResistancePoints, [name]: value })} />;
+    if (prevMaxHp !== maxHp && currentHp === prevMaxHp) {
+      setCurrentHp(maxHp);
+    }
+  }, [maxHp]);
 
-  const getResistancePointsDiv = (name: ResistancePointsTypeName) =>
-    <div className={`resistance-points resistance-points-${name} g-col-12 g-col-md-4`}>
-      <InputGroup>
-        {getResistancePoints(name)}
-        <span className="input-group-text">/</span>
-        <Input type='number' className='resistance-points-total' /* label='Total' */ id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]} />
-      </InputGroup>
-    </div>;
+  // Calculate passive perception
+  useEffect(() => setPassivePerception(calculatePassivePerception(attributeModifiers['per'])), [attributeModifiers]);
 
   return (
     <>
@@ -198,51 +208,72 @@ function CharacterCreator() {
         <div className='grid'>
           <div className='g-col-12 g-col-sm-5 g-col-md-7 g-col-xl-8'>
             <Input
-              type='text'
-              label='Character Name'
-              id='name'
-              value={name}
+              type='text' label='Character Name' id='name' value={name}
               onChange={(value) => setName(value)}
             />
           </div>
           <div className='g-col-8 g-col-sm-4 g-col-md-3'>
             <Input
-              type='text'
-              label='Player Name'
-              id='player-name'
-              value={playerName}
+              type='text' label='Player Name' id='player-name' value={playerName}
               onChange={(value) => setPlayerName(value)}
             />
           </div>
           <div className='g-col-4 g-col-sm-3 g-col-md-2 g-col-xl-1'>
             <Input
-              type='number'
-              label='Level'
-              id='level'
-              min={0}
-              max={20}
-              value={level}
+              type='number' label='Level' id='level' min={0} max={20} value={level}
               onChange={(value) => setLevel(value)}
             />
           </div>
           <div className='g-col-12'>
             <Input
-              type='textarea'
-              label='Description'
-              id='description'
-              value={description}
+              type='textarea' label='Description' id='description' value={description}
               onChange={(value) => setDescription(value)}
             />
           </div>
-          {getAttributeDiv('str')}
-          {getAttributeDiv('con')}
-          {getAttributeDiv('dex')}
-          {getAttributeDiv('per')}
-          {getAttributeDiv('int')}
-          {getAttributeDiv('spi')}
-          {getResistancePointsDiv('fort')}
-          {getResistancePointsDiv('refl')}
-          {getResistancePointsDiv('will')}
+
+          {ATTRIBUTE_NAMES.map(name =>
+            <div className={`attribute attribute-${name} attribute-resistance-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
+              <InputGroup>
+                <Input
+                  type='number' className='overflow-label' id={name} label={ATTRIBUTES[name].shortName} min={0} max={20} value={attributes[name]}
+                  onChange={(value) => setAttributes({ ...attributes, [name]: value })} />
+                <Input
+                  type='text' className='attribute-modifier' /* label='Modifier' */ id={`${name}-total`} readOnly disabled
+                  value={formatAttributeModifier(attributeModifiers[name]) ?? ''} />
+              </InputGroup>
+            </div>
+          )}
+          {RESISTANCE_POINTS_TYPE_NAMES.map(name =>
+            <div className={`resistance-points resistance-points-${name} g-col-12 g-col-md-4`}>
+              <InputGroup>
+                <Input
+                  type='number' className='overflow-label' id={name} label={RESISTANCE_POINTS_TYPES[name].shortName}
+                  min={0} max={totalResistancePoints[name] ?? undefined} value={currentResistancePoints[name]}
+                  onChange={(value) => setCurrentResistancePoints({ ...currentResistancePoints, [name]: value })} />
+                <span className="input-group-text">/</span>
+                <Input type='number' className='resistance-points-total' /* label='Total' */ id={`${name}-total`} readOnly disabled value={totalResistancePoints[name]} />
+              </InputGroup>
+            </div>
+          )}
+          <div className='g-col-4'>
+            <InputGroup>
+              <Input
+                type='number' className='overflow-label' label='HP' id='current-hp' min={0} max={maxHp ?? undefined} value={currentHp}
+                onChange={(value) => setCurrentHp(value)} />
+              <span className="input-group-text">/</span>
+              <Input type='number' /* label='Max' */ id='max-hp' readOnly disabled value={maxHp} />
+            </InputGroup>
+          </div>
+          <div className='g-col-4'>
+            <Input type='number' label='Temp HP' id='temp-hp' min={0} value={tempHp}
+              onChange={(value) => setTempHp(value)} />
+          </div>
+          <div className='g-col-4'>
+            <Input type='number' label='Passive Perception' id='passive-perception' readOnly disabled value={passivePerception} />
+          </div>
+          <div className='g-col-12'>
+            {CONNOR_IMAGES.map(img => <Image src={img} alt='' />)}
+          </div>
         </div>
       </div>
     </>

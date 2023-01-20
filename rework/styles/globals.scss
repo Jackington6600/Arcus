@@ -115,7 +115,7 @@ input[type=number].form-control {
     max-width: calc(100% - $input-padding-x * 2);
     background-color: var(--bs-form-control-bg);
     // background-color: red;
-    border-radius: .25rem;
+    border-radius: .5rem;
     $transition-time: .15s;
     $transition-method: ease-in-out;
     $transition-options: $transition-time $transition-method;
@@ -146,8 +146,12 @@ input[type=number].form-control {
 
   .form-control:disabled~label {
     background-color: var(--bs-form-control-disabled-bg);
-    border-top: var(--bs-border-width) solid var(--bs-border-color);
     color: var(--bs-body-color);
+  }
+
+  .form-control:disabled:focus~label,
+  .form-control:disabled:not(:placeholder-shown)~label {
+    border-top: var(--bs-border-width) solid var(--bs-border-color);
     box-shadow: $input-box-shadow;
   }
 
@@ -162,6 +166,16 @@ input[type=number].form-control {
   }
 }
 
+.input-group>.thin.form-floating.overflow-label {
+
+  .form-control:focus~label,
+  .form-control:not(:placeholder-shown)~label,
+  .form-control-plaintext~label,
+  .form-select~label {
+    // Temporary solution to fix case where first label gets cut off
+    max-width: initial;
+  }
+}
 
 // :root,
 // [data-bs-theme="light"] {
@@ -279,6 +293,14 @@ input[type=number].form-control {
   }
 
   .attribute-modifier {
+    max-width: 3rem;
+  }
+
+  .resistance-points-total {
+    max-width: 4rem;
+  }
+
+  #max-hp {
     max-width: 3rem;
   }
 
