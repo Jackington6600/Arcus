@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next/types';
+import { GetServerSideProps } from 'next/types';
 
 import React, { useContext } from 'react';
 
@@ -8,7 +8,7 @@ import { InnerMoon } from '@theme-toggles/react'
 import faviconBlack from '../../public/static/favicon-black.ico';
 import faviconWhite from '../../public/static/favicon-white.ico';
 
-import { COOKIE_NAME_THEME, SetThemeContext, Theme, ThemeComponent, ThemeContext } from './_theme';
+import ThemeComponent, { COOKIE_NAME_THEME, SetThemeContext, Theme, ThemeContext } from './_theme';
 import CharacterSheet from '../components/CharacterSheet';
 
 

@@ -36,7 +36,7 @@ function getBrowserTheme(): Theme | undefined {
 }
 
 
-export class ThemeComponent extends Component<Props, State> {
+export default class ThemeComponent extends Component<Props, State> {
   private _darkModeEventListener?: (e: Event) => void = undefined
 
   constructor(props: Props) {
