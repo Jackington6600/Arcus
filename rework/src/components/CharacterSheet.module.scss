@@ -1,0 +1,131 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/mixins/breakpoints";
+
+// :root,
+// [data-bs-theme="light"] {
+//   .sheet {
+//     .attribute-resistance-fortitude input,
+//     .resistance-points-fortitude input {
+//       border-color: #F00;
+//     }
+
+//     .attribute-resistance-reflex input,
+//     .resistance-points-reflex input {
+//       border-color: #0F0;
+//     }
+
+//     .attribute-resistance-will input,
+//     .resistance-points-will input {
+//       border-color: #00F;
+//     }
+//   }
+// }
+
+// [data-bs-theme="dark"] {
+//   .sheet {
+//     .attribute-resistance-fortitude input,
+//     .resistance-points-fortitude input {
+//       border-color: #F00;
+//     }
+
+//     .attribute-resistance-reflex input,
+//     .resistance-points-reflex input {
+//       border-color: #0F0;
+//     }
+
+//     .attribute-resistance-will input,
+//     .resistance-points-will input {
+//       border-color: #00F;
+//     }
+//   }
+// }
+
+.sheet {
+
+  .resistance-points-total,
+  .attribute-modifier,
+  #max-hp {
+    flex-grow: 0.5;
+    max-width: 3rem;
+  }
+
+  /* Cool, but breaks tab order (and no pure CSS fix it seems!) https://adrianroselli.com/2015/10/html-source-order-vs-css-display-order.html
+    @include media-breakpoint-between(xs, sm) {
+      .grid>div.attribute-resistance-fortitude {
+        order: 1;
+      }
+
+      .grid>div.resistance-points-fortitude {
+        order: 2;
+      }
+
+      .grid>div.attribute-resistance-reflex {
+        order: 3;
+      }
+
+      .grid>div.resistance-points-reflex {
+        order: 4;
+      }
+
+      .grid>div.attribute-resistance-will {
+        order: 5;
+      }
+
+      .grid>div.resistance-points-will {
+        order: 6;
+      }
+
+      .grid>div.resistance-points~div:not(.resistance-points) {
+        order: 7;
+      }
+    }
+    */
+
+  @include media-breakpoint-between(sm, md) {
+    .grid>div.attribute-strength {
+      order: 1;
+    }
+
+    .grid>div.attribute-dexterity {
+      order: 2;
+    }
+
+    .grid>div.attribute-intelligence {
+      order: 3;
+    }
+
+    .grid>div.attribute-constitution {
+      order: 4;
+    }
+
+    .grid>div.attribute-perception {
+      order: 5;
+    }
+
+    .grid>div.attribute-spirit {
+      order: 6;
+    }
+
+    .grid>div.resistance-points {
+      order: 7;
+    }
+
+    .grid>div.resistance-points~div:not(.resistance-points) {
+      order: 8;
+    }
+  }
+
+  // @include media-breakpoint-up(md) {
+  //   .resistance-points-total {
+  //     flex-grow: .2;
+  //   }
+  // }
+
+  // @include media-breakpoint-up(lg) {
+  //   .resistance-points-total {
+  //     flex-grow: .1;
+  //   }
+  // }
+}

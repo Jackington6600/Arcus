@@ -1,5 +1,6 @@
 import '../styles/libraries.scss'
 import '../styles/globals.scss'
+import '../styles/thinInput.scss'
 
 import { config as fontAwesomeConfig } from '@fortawesome/fontawesome-svg-core'
 fontAwesomeConfig.autoAddCss = false
