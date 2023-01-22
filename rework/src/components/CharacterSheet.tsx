@@ -21,6 +21,8 @@ import connor6 from '../../public/static/connor6.png'
 import connor7 from '../../public/static/connor7.png'
 const CONNOR_IMAGES = [connor1, connor2, connor3, connor4, connor5, connor6, connor7]
 
+import characterSheetDesignImage from '../../public/static/characterSheetDesign.png'
+
 
 function formatAttributeModifier(attributeModifier: number | null): string | null {
   if (attributeModifier === null)
@@ -110,7 +112,7 @@ export default function CharacterSheet() {
             <div key={name} className={`attribute attribute-${name} attribute-resistance-${ATTRIBUTES[name].resistancePointsType} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
               <InputGroup>
                 <ThinInput
-                  type='number' className='' id={name} label={ATTRIBUTES[name].shortName} min={0} max={20} value={attributes[name]}
+                  type='number' className='overflow-label' id={name} label={ATTRIBUTES[name].shortName} min={0} max={20} value={attributes[name]}
                   onChange={(value) => setAttributes({ ...attributes, [name]: value })} />
                 <ThinInput
                   type='text' className='attribute-modifier' /* label='Modifier' */ id={`${name}-total`} readOnly disabled
@@ -145,6 +147,9 @@ export default function CharacterSheet() {
           </div>
           <div className='g-col-4'>
             <ThinInput type='number' label='Passive Perception' id='passive-perception' readOnly disabled value={passivePerception} />
+          </div>
+          <div className='g-col-12'>
+            <Image src={characterSheetDesignImage} alt=''/>
           </div>
           <div className='g-col-12'>
             {CONNOR_IMAGES.map(img => <Image key={img.src} src={img} alt='' />)}
