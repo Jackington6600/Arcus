@@ -91,12 +91,13 @@
 }
 
 .input-group>.thin.form-floating.overflow-label {
+  z-index: 1;
 
   .form-control:focus~label,
   .form-control:not(:placeholder-shown)~label,
   .form-control-plaintext~label,
   .form-select~label {
-    // Temporary solution to fix case where first label gets cut off
+    // Fix case where first label gets cut off
     max-width: initial;
   }
 }

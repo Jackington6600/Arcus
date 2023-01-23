@@ -126,7 +126,7 @@ export default function CharacterSheet() {
             </div>
           )}
           {ResistancePoint.values.map(rp =>
-            <div key={rp} className={`resistance-points resistance-points-${rp} g-col-12 g-col-md-4`}>
+            <div key={rp} className={`resistance-points resistance-points-${rp} g-col-12 g-col-sm-4 g-col-md-4`}>
               <InputGroup>
                 <ThinInput
                   type='number' className='overflow-label' id={rp} label={ResistancePoint.getShortDisplayName(rp)}
@@ -137,7 +137,7 @@ export default function CharacterSheet() {
               </InputGroup>
             </div>
           )}
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <InputGroup>
               <ThinInput
                 type='number' className='overflow-label' label='HP' id='current-hp' min={0} max={maxHp ?? undefined} value={currentHp}
@@ -146,26 +146,26 @@ export default function CharacterSheet() {
               <ThinInput type='number' /* label='Max' */ id='max-hp' readOnly disabled value={maxHp} />
             </InputGroup>
           </div>
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <ThinInput type='number' label='Temp HP' id='temp-hp' min={0} value={tempHp}
               onChange={(value) => setTempHp(value)} />
           </div>
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <ThinInput type='number' label='Passive Perception' id='passive-perception' readOnly disabled value={passivePerception} />
           </div>
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <ThinInput type='select' label='Armor Type' id='armor-type' values={ArmorType.values} value={armorType} getValue={v => v as string} getDisplayName={ArmorType.getDisplayName} onChange={(value) => setArmorType(value)} />
           </div>
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <InputGroup>
               <ThinInput type='number' label='Armor Class' id='armor-class' className='overflow-label' readOnly disabled value={armorClass} />
               <span className="input-group-text">AC</span>
             </InputGroup>
           </div>
-          <div className='g-col-4'>
+          <div className='g-col-6 g-col-sm-4'>
             <InputGroup>
               <ThinInput type='number' label='Movement Speed' id='movement-speed' className='overflow-label' readOnly disabled value={formatMovementSpeedAsFeet(movementSpeed)} />
-              <span className="input-group-text">ft / AP</span>
+              <span className="input-group-text">ft</span>
             </InputGroup>
           </div>
           <div className='g-col-12'>
