@@ -15,6 +15,7 @@
 
 .thin.form-floating> {
 
+  .form-select,
   .form-control,
   .form-control-plaintext {
     padding: 0.375rem 0.75rem;
@@ -57,28 +58,34 @@
     opacity: 1;
   }
 
-  .form-control:focus~label {
-    color: var(--thin-form-floating-label-focus-color);
-  }
+  .form-control,.form-select {
+    &:focus~label {
+      color: var(--thin-form-floating-label-focus-color);
+    }
 
-  .form-control:disabled~label {
-    background-color: var(--bs-form-control-disabled-bg);
-    color: var(--bs-body-color);
-  }
+    &:disabled~label {
+      background-color: var(--bs-form-control-disabled-bg);
+      color: var(--bs-body-color);
+    }
 
-  .form-control:disabled:focus~label,
-  .form-control:disabled:not(:placeholder-shown)~label {
-    border-top: var(--bs-border-width) solid var(--bs-border-color);
-    box-shadow: $input-box-shadow;
+    &:disabled:focus~label,
+    &:disabled:not(:placeholder-shown)~label {
+      border-top: var(--bs-border-width) solid var(--bs-border-color);
+      box-shadow: $input-box-shadow;
+    }
   }
 
   .was-validated .form-control:disabled:valid~label,
-  .form-control:disabled.is-valid~label {
+  .form-control:disabled.is-valid~label,
+  .was-validated .form-select:disabled:valid~label,
+  .form-select:disabled.is-valid~label {
     border-top-color: var(--bs-success);
   }
 
   .was-validated .form-control:disabled:invalid~label,
-  .form-control:disabled.is-invalid~label {
+  .form-control:disabled.is-invalid~label,
+  .was-validated .form-select:disabled:valid~label,
+  .form-select:disabled.is-valid~label {
     border-top-color: var(--bs-danger);
   }
 }

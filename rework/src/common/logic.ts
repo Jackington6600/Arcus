@@ -1,4 +1,5 @@
 import { sum as lodashSum } from 'lodash';
+import ArmorType from './armor-type';
 
 import { Attribute } from './attribute';
 import { ResistancePoint } from './resistance-point';
@@ -26,4 +27,31 @@ export function calculatePassivePerception(perception: number | null) {
         return null;
 
     return 10 + perception + perception;
+}
+
+export function calculateArmorClass(armorType: ArmorType, dexterityModifier: number | null): number | null {
+    switch (armorType) {
+        case ArmorType.None:
+            return dexterityModifier == null ? null : 11 + Math.min(5, dexterityModifier);
+        case ArmorType.Light:
+            return dexterityModifier == null ? null : 13 + Math.min(3, dexterityModifier);
+        case ArmorType.Heavy:
+            return 16;
+    }
+}
+
+// Movement speed in squares/AP
+export function calculateMovementSpeed(armorType: ArmorType): number {
+    switch (armorType) {
+        case ArmorType.None:
+            return 5;
+        case ArmorType.Light:
+            return 4;
+        case ArmorType.Heavy:
+            return 3;
+    }
+}
+
+export function formatMovementSpeedAsFeet(movementSpeed: number): number {
+    return movementSpeed * 5
 }

@@ -60,3 +60,5 @@ export namespace Attribute {
         }
     }
 }
+
+export default Attribute;

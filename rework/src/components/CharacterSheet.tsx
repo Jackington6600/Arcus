@@ -5,7 +5,7 @@ import { InputGroup } from 'react-bootstrap';
 
 import { useDependentState, usePrevState } from '../common/react-utils';
 import { chain as lodashChain } from 'lodash';
-import { calculateAttributeModifier, calculateMaxHp, calculatePassivePerception, calculateTotalResistancePoints } from '../common/logic';
+import { calculateArmorClass, calculateAttributeModifier, calculateMaxHp, calculateMovementSpeed, calculatePassivePerception, calculateTotalResistancePoints, formatMovementSpeedAsFeet } from '../common/logic';
 import ThinInput from './ThinInput';
 
 import styles from './CharacterSheet.module.scss';
@@ -20,8 +20,9 @@ import connor7 from '../../public/static/connor7.png'
 const CONNOR_IMAGES = [connor1, connor2, connor3, connor4, connor5, connor6, connor7]
 
 import characterSheetDesignImage from '../../public/static/characterSheetDesign.png'
-import { Attribute } from '../common/attribute';
-import { ResistancePoint } from '../common/resistance-point';
+import Attribute from '../common/attribute';
+import ResistancePoint from '../common/resistance-point';
+import ArmorType from '../common/armor-type';
 
 
 function formatAttributeModifier(attributeModifier: number | null): string | null {
@@ -55,6 +56,10 @@ export default function CharacterSheet() {
   const [tempHp, setTempHp] = useState<number | null>(0);
 
   const passivePerception = useDependentState(() => calculatePassivePerception(attributeModifiers['per']), [attributeModifiers]);
+
+  const [armorType, setArmorType] = useState<ArmorType>(ArmorType.values[0]);
+  const armorClass = useDependentState(() => calculateArmorClass(armorType, attributeModifiers['dex']), [armorType, attributeModifiers]);
+  const movementSpeed = useDependentState(() => calculateMovementSpeed(armorType), [armorType]);
 
   // Update resistance points if max resistance points change, and they were equal
   const prevTotalResistancePoints = usePrevState(totalResistancePoints);
@@ -148,8 +153,23 @@ export default function CharacterSheet() {
           <div className='g-col-4'>
             <ThinInput type='number' label='Passive Perception' id='passive-perception' readOnly disabled value={passivePerception} />
           </div>
+          <div className='g-col-4'>
+            <ThinInput type='select' label='Armor Type' id='armor-type' values={ArmorType.values} value={armorType} getValue={v => v as string} getDisplayName={ArmorType.getDisplayName} onChange={(value) => setArmorType(value)} />
+          </div>
+          <div className='g-col-4'>
+            <InputGroup>
+              <ThinInput type='number' label='Armor Class' id='armor-class' className='overflow-label' readOnly disabled value={armorClass} />
+              <span className="input-group-text">AC</span>
+            </InputGroup>
+          </div>
+          <div className='g-col-4'>
+            <InputGroup>
+              <ThinInput type='number' label='Movement Speed' id='movement-speed' className='overflow-label' readOnly disabled value={formatMovementSpeedAsFeet(movementSpeed)} />
+              <span className="input-group-text">ft / AP</span>
+            </InputGroup>
+          </div>
           <div className='g-col-12'>
-            <Image src={characterSheetDesignImage} alt=''/>
+            <Image src={characterSheetDesignImage} alt='' />
           </div>
           <div className='g-col-12'>
             {CONNOR_IMAGES.map(img => <Image key={img.src} src={img} alt='' />)}

@@ -44,11 +44,15 @@
 
 .character-sheet :global {
 
-  .resistance-points-total,
-  .attribute-modifier,
-  #max-hp {
+  .attribute-modifier {
     flex-grow: 0.5;
     max-width: 3rem;
+  }
+
+  .resistance-points-total,
+  #max-hp {
+    flex-grow: 0.5;
+    max-width: 4rem;
   }
 
   /* Cool, but breaks tab order (and no pure CSS fix it seems!) https://adrianroselli.com/2015/10/html-source-order-vs-css-display-order.html

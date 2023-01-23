@@ -42,3 +42,5 @@ export namespace ResistancePoint {
         }
     }
 }
+
+export default ResistancePoint;
