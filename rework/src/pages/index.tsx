@@ -40,15 +40,23 @@ function AppHead() {
   )
 }
 
-export function getServerSideProps(context: GetServerSidePropsContext): GetServerSidePropsResult<Props> {
-  const initialThemeName = context.req.cookies[COOKIE_NAME_THEME];
-  const initialTheme: Theme | undefined = initialThemeName ? Theme[initialThemeName] : undefined;
-  const props: Props = {};
-  if (initialTheme) {
-    props.initialTheme = initialTheme
+let getServerSidePropsConditional: GetServerSideProps | undefined
+if (process.env.npm_lifecycle_event === 'export') {
+  // Disable getServerSideProps if exporting for a static site
+  getServerSidePropsConditional = undefined;
+} else {
+  getServerSidePropsConditional = async (context) => {
+    const initialThemeName = context.req.cookies[COOKIE_NAME_THEME];
+    const initialTheme: Theme | undefined = initialThemeName ? Theme[initialThemeName] : undefined;
+    const props: Props = {};
+    if (initialTheme) {
+      props.initialTheme = initialTheme
+    }
+    return { props };
   }
-  return { props };
-};
+}
+
+export const getServerSideProps = getServerSidePropsConditional
 
 
 function ThemeToggleButton() {
