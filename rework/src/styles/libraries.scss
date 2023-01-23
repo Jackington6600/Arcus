@@ -1,0 +1,9 @@
+@use 'bootstrap/scss/bootstrap.scss' as bootstrap with (
+    $enable-shadows: true,
+    $enable-gradients: true,
+    $enable-cssgrid: true,
+    // $input-transition: (border-color .15s ease-in-out, box-shadow .15s ease-in-out),
+);
+
+@import '@theme-toggles/react/css/InnerMoon.css';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
