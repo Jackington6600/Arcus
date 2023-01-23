@@ -30,6 +30,7 @@
     transform: translate($input-padding-x, $input-padding-y);
     width: unset;
     height: unset;
+    color: var(--bs-secondary-color);
     max-width: calc(100% - $input-padding-x * 2);
     background-color: var(--bs-form-control-bg);
     // background-color: red;
@@ -65,7 +66,7 @@
 
     &:disabled~label {
       background-color: var(--bs-form-control-disabled-bg);
-      color: var(--bs-body-color);
+      color: var(--bs-secondary-color);
     }
 
     &:disabled:focus~label,
