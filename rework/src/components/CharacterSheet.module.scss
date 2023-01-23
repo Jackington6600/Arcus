@@ -3,44 +3,44 @@
 @import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/mixins/breakpoints";
 
-// :root,
-// [data-bs-theme="light"] {
-//   .sheet {
-//     .attribute-resistance-fortitude input,
-//     .resistance-points-fortitude input {
-//       border-color: #F00;
-//     }
+:root,
+[data-bs-theme="light"] {
+  .character-sheet :global {
+    .attribute-resistance-fort,
+    .resistance-points-fort {
+      --bs-border-color: rgb(255, 190, 190);
+    }
 
-//     .attribute-resistance-reflex input,
-//     .resistance-points-reflex input {
-//       border-color: #0F0;
-//     }
+    .attribute-resistance-refl,
+    .resistance-points-refl {
+      --bs-border-color: rgb(160, 255, 160);
+    }
 
-//     .attribute-resistance-will input,
-//     .resistance-points-will input {
-//       border-color: #00F;
-//     }
-//   }
-// }
+    .attribute-resistance-will,
+    .resistance-points-will {
+      --bs-border-color: rgb(173, 173, 255);
+    }
+  }
+}
 
-// [data-bs-theme="dark"] {
-//   .sheet {
-//     .attribute-resistance-fortitude input,
-//     .resistance-points-fortitude input {
-//       border-color: #F00;
-//     }
+[data-bs-theme="dark"] {
+  .character-sheet :global {
+    .attribute-resistance-fort,
+    .resistance-points-fort {
+      --bs-border-color: rgb(121, 0, 0);
+    }
 
-//     .attribute-resistance-reflex input,
-//     .resistance-points-reflex input {
-//       border-color: #0F0;
-//     }
+    .attribute-resistance-refl,
+    .resistance-points-refl {
+      --bs-border-color: rgb(1, 108, 1);
+    }
 
-//     .attribute-resistance-will input,
-//     .resistance-points-will input {
-//       border-color: #00F;
-//     }
-//   }
-// }
+    .attribute-resistance-will,
+    .resistance-points-will {
+      --bs-border-color: rgb(0, 0, 168);
+    }
+  }
+}
 
 .character-sheet :global {
 
@@ -57,19 +57,19 @@
 
   /* Cool, but breaks tab order (and no pure CSS fix it seems!) https://adrianroselli.com/2015/10/html-source-order-vs-css-display-order.html
     @include media-breakpoint-between(xs, sm) {
-      .grid>div.attribute-resistance-fortitude {
+      .grid>div.attribute-resistance-fort {
         order: 1;
       }
 
-      .grid>div.resistance-points-fortitude {
+      .grid>div.resistance-points-fort {
         order: 2;
       }
 
-      .grid>div.attribute-resistance-reflex {
+      .grid>div.attribute-resistance-refl {
         order: 3;
       }
 
-      .grid>div.resistance-points-reflex {
+      .grid>div.resistance-points-refl {
         order: 4;
       }
 
