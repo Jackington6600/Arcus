@@ -1,7 +1,7 @@
 import { sum as lodashSum } from 'lodash';
 
-import { EAttribute } from './attribute';
-import { EResistancePoint } from './resistance-point';
+import { Attribute } from './attribute';
+import { ResistancePoint } from './resistance-point';
 
 
 export function calculateAttributeModifier(attribute: number | null): number | null {
@@ -10,8 +10,8 @@ export function calculateAttributeModifier(attribute: number | null): number | n
     return Math.floor((attribute - 10) / 2);
 }
 
-export function calculateTotalResistancePoints(resistancePoint: EResistancePoint, attributes: Record<EAttribute, number | null>): number | null {
-    return Math.max(0, lodashSum(EResistancePoint.getAttributes(resistancePoint).map(a => attributes[a]).filter(a => a !== null).map(a => Math.max(0, a as number - 10))));
+export function calculateTotalResistancePoints(resistancePoint: ResistancePoint, attributes: Record<Attribute, number | null>): number | null {
+    return Math.max(0, lodashSum(ResistancePoint.getAttributes(resistancePoint).map(a => attributes[a]).filter(a => a !== null).map(a => Math.max(0, a as number - 10))));
 }
 
 export function calculateMaxHp(level: number | null, constitution: number | null, constitutionModifier: number | null): number | null {

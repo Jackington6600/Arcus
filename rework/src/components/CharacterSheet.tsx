@@ -20,8 +20,8 @@ import connor7 from '../../public/static/connor7.png'
 const CONNOR_IMAGES = [connor1, connor2, connor3, connor4, connor5, connor6, connor7]
 
 import characterSheetDesignImage from '../../public/static/characterSheetDesign.png'
-import { EAttribute } from '../common/attribute';
-import { EResistancePoint } from '../common/resistance-point';
+import { Attribute } from '../common/attribute';
+import { ResistancePoint } from '../common/resistance-point';
 
 
 function formatAttributeModifier(attributeModifier: number | null): string | null {
@@ -42,13 +42,13 @@ export default function CharacterSheet() {
 
   const [description, setDescription] = useState<string>('');
 
-  const [attributes, setAttributes] = useState(createRecord<EAttribute, number | null>(EAttribute.values, 10));
-  const attributeModifiers = useDependentState<Record<EAttribute, number | null>>(() =>
-    lodashChain(EAttribute.values).mapKeys().mapValues(a => calculateAttributeModifier(attributes[a])).value() as any, [attributes]);
+  const [attributes, setAttributes] = useState(createRecord<Attribute, number | null>(Attribute.values, 10));
+  const attributeModifiers = useDependentState<Record<Attribute, number | null>>(() =>
+    lodashChain(Attribute.values).mapKeys().mapValues(a => calculateAttributeModifier(attributes[a])).value() as any, [attributes]);
 
-  const totalResistancePoints = useDependentState<Record<EResistancePoint, number | null>>(() =>
-    lodashChain(EResistancePoint.values).mapKeys().mapValues(rp => calculateTotalResistancePoints(rp, attributes)).value() as any, [attributes]);
-  const [currentResistancePoints, setCurrentResistancePoints] = useState(createRecord<EResistancePoint, number | null>(EResistancePoint.values, 0));
+  const totalResistancePoints = useDependentState<Record<ResistancePoint, number | null>>(() =>
+    lodashChain(ResistancePoint.values).mapKeys().mapValues(rp => calculateTotalResistancePoints(rp, attributes)).value() as any, [attributes]);
+  const [currentResistancePoints, setCurrentResistancePoints] = useState(createRecord<ResistancePoint, number | null>(ResistancePoint.values, 0));
 
   const [currentHp, setCurrentHp] = useState<number | null>(null);
   const maxHp = useDependentState(() => calculateMaxHp(level, attributes['con'], attributeModifiers['con']), [level, attributes, attributeModifiers]);
@@ -62,7 +62,7 @@ export default function CharacterSheet() {
     if (prevTotalResistancePoints === undefined)
       return;
 
-    const namesToUpdate = EResistancePoint.values.filter(n => prevTotalResistancePoints[n] !== totalResistancePoints[n] && currentResistancePoints[n] === prevTotalResistancePoints[n]);
+    const namesToUpdate = ResistancePoint.values.filter(n => prevTotalResistancePoints[n] !== totalResistancePoints[n] && currentResistancePoints[n] === prevTotalResistancePoints[n]);
     setCurrentResistancePoints({ ...currentResistancePoints, ...lodashChain(namesToUpdate).mapKeys().mapValues(n => totalResistancePoints[n]).value() });
   }, [totalResistancePoints]);
 
@@ -108,11 +108,11 @@ export default function CharacterSheet() {
             />
           </div>
 
-          {EAttribute.values.map(attribute =>
-            <div key={attribute} className={`attribute attribute-${attribute} attribute-resistance-${EAttribute.getResistancePoint(attribute)} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
+          {Attribute.values.map(attribute =>
+            <div key={attribute} className={`attribute attribute-${attribute} attribute-resistance-${Attribute.getResistancePoint(attribute)} g-col-6 g-col-xs-4 g-col-sm-4 g-col-md-2`}>
               <InputGroup>
                 <ThinInput
-                  type='number' className='overflow-label' id={attribute} label={EAttribute.getShortDisplayName(attribute)} min={0} max={20} value={attributes[attribute]}
+                  type='number' className='overflow-label' id={attribute} label={Attribute.getShortDisplayName(attribute)} min={0} max={20} value={attributes[attribute]}
                   onChange={(value) => setAttributes({ ...attributes, [attribute]: value })} />
                 <ThinInput
                   type='text' className='attribute-modifier' /* label='Modifier' */ id={`${attribute}-total`} readOnly disabled
@@ -120,11 +120,11 @@ export default function CharacterSheet() {
               </InputGroup>
             </div>
           )}
-          {EResistancePoint.values.map(rp =>
+          {ResistancePoint.values.map(rp =>
             <div key={rp} className={`resistance-points resistance-points-${rp} g-col-12 g-col-md-4`}>
               <InputGroup>
                 <ThinInput
-                  type='number' className='overflow-label' id={rp} label={EResistancePoint.getShortDisplayName(rp)}
+                  type='number' className='overflow-label' id={rp} label={ResistancePoint.getShortDisplayName(rp)}
                   min={0} max={totalResistancePoints[rp] ?? undefined} value={currentResistancePoints[rp]}
                   onChange={(value) => setCurrentResistancePoints({ ...currentResistancePoints, [rp]: value })} />
                 <span className="input-group-text">/</span>

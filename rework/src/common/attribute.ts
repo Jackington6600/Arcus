@@ -1,6 +1,6 @@
-import { EResistancePoint } from "./resistance-point";
+import { ResistancePoint } from "./resistance-point";
 
-export enum EAttribute {
+export enum Attribute {
     Strength = 'str',
     Constitution = 'con',
     Dexterity = 'dex',
@@ -9,54 +9,54 @@ export enum EAttribute {
     Spirit = 'spi',
 }
 
-export namespace EAttribute {
-    export const values: readonly EAttribute[] = [EAttribute.Strength, EAttribute.Constitution, EAttribute.Dexterity, EAttribute.Perception, EAttribute.Intelligence, EAttribute.Spirit];
+export namespace Attribute {
+    export const values: readonly Attribute[] = [Attribute.Strength, Attribute.Constitution, Attribute.Dexterity, Attribute.Perception, Attribute.Intelligence, Attribute.Spirit];
 
-    export function getShortDisplayName(attribute: EAttribute) {
+    export function getShortDisplayName(attribute: Attribute) {
         switch (attribute) {
-            case EAttribute.Strength:
+            case Attribute.Strength:
                 return 'STR';
-            case EAttribute.Constitution:
+            case Attribute.Constitution:
                 return 'CON';
-            case EAttribute.Dexterity:
+            case Attribute.Dexterity:
                 return 'DEX';
-            case EAttribute.Perception:
+            case Attribute.Perception:
                 return 'PER';
-            case EAttribute.Intelligence:
+            case Attribute.Intelligence:
                 return 'INT';
-            case EAttribute.Spirit:
+            case Attribute.Spirit:
                 return 'SPI';
         }
     }
 
-    export function getLongDisplayName(attribute: EAttribute) {
+    export function getLongDisplayName(attribute: Attribute) {
         switch (attribute) {
-            case EAttribute.Strength:
+            case Attribute.Strength:
                 return 'Strength';
-            case EAttribute.Constitution:
+            case Attribute.Constitution:
                 return 'Constitution';
-            case EAttribute.Dexterity:
+            case Attribute.Dexterity:
                 return 'Dexterity';
-            case EAttribute.Perception:
+            case Attribute.Perception:
                 return 'Perception';
-            case EAttribute.Intelligence:
+            case Attribute.Intelligence:
                 return 'Intelligence';
-            case EAttribute.Spirit:
+            case Attribute.Spirit:
                 return 'Spirit';
         }
     }
 
-    export function getResistancePoint(attribute: EAttribute) {
+    export function getResistancePoint(attribute: Attribute) {
         switch (attribute) {
-            case EAttribute.Strength:
-            case EAttribute.Constitution:
-                return EResistancePoint.Fortitude;
-            case EAttribute.Dexterity:
-            case EAttribute.Perception:
-                return EResistancePoint.Reflex;
-            case EAttribute.Intelligence:
-            case EAttribute.Spirit:
-                return EResistancePoint.Will;
+            case Attribute.Strength:
+            case Attribute.Constitution:
+                return ResistancePoint.Fortitude;
+            case Attribute.Dexterity:
+            case Attribute.Perception:
+                return ResistancePoint.Reflex;
+            case Attribute.Intelligence:
+            case Attribute.Spirit:
+                return ResistancePoint.Will;
         }
     }
 }

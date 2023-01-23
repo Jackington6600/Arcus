@@ -1,44 +1,44 @@
-import { EAttribute } from "./attribute";
+import { Attribute } from "./attribute";
 
-export enum EResistancePoint {
+export enum ResistancePoint {
     Fortitude = 'fort',
     Reflex = 'refl',
     Will = 'will',
 }
 
-export namespace EResistancePoint {
-    export const values: readonly EResistancePoint[] = [EResistancePoint.Fortitude, EResistancePoint.Reflex, EResistancePoint.Will];
+export namespace ResistancePoint {
+    export const values: readonly ResistancePoint[] = [ResistancePoint.Fortitude, ResistancePoint.Reflex, ResistancePoint.Will];
 
-    export function getShortDisplayName(resistancePoint: EResistancePoint) {
+    export function getShortDisplayName(resistancePoint: ResistancePoint) {
         switch (resistancePoint) {
-            case EResistancePoint.Fortitude:
+            case ResistancePoint.Fortitude:
                 return 'FORT';
-            case EResistancePoint.Reflex:
+            case ResistancePoint.Reflex:
                 return 'REFL';
-            case EResistancePoint.Will:
+            case ResistancePoint.Will:
                 return 'WILL';
         }
     }
 
-    export function getLongDisplayName(resistancePoint: EResistancePoint) {
+    export function getLongDisplayName(resistancePoint: ResistancePoint) {
         switch (resistancePoint) {
-            case EResistancePoint.Fortitude:
+            case ResistancePoint.Fortitude:
                 return 'Fortitude';
-            case EResistancePoint.Reflex:
+            case ResistancePoint.Reflex:
                 return 'Reflex';
-            case EResistancePoint.Will:
+            case ResistancePoint.Will:
                 return 'Will';
         }
     }
 
-    export function getAttributes(resistancePoint: EResistancePoint) {
+    export function getAttributes(resistancePoint: ResistancePoint) {
         switch (resistancePoint) {
-            case EResistancePoint.Fortitude:
-                return [EAttribute.Strength, EAttribute.Constitution];
-            case EResistancePoint.Reflex:
-                return [EAttribute.Dexterity, EAttribute.Perception];
-            case EResistancePoint.Will:
-                return [EAttribute.Intelligence, EAttribute.Spirit];
+            case ResistancePoint.Fortitude:
+                return [Attribute.Strength, Attribute.Constitution];
+            case ResistancePoint.Reflex:
+                return [Attribute.Dexterity, Attribute.Perception];
+            case ResistancePoint.Will:
+                return [Attribute.Intelligence, Attribute.Spirit];
         }
     }
 }
