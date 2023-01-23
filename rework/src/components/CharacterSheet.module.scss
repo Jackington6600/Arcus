@@ -88,27 +88,27 @@
     */
 
   @include media-breakpoint-between(sm, md) {
-    .grid>div.attribute-strength {
+    .grid>div.attribute-str {
       order: 1;
     }
 
-    .grid>div.attribute-dexterity {
+    .grid>div.attribute-dex {
       order: 2;
     }
 
-    .grid>div.attribute-intelligence {
+    .grid>div.attribute-int {
       order: 3;
     }
 
-    .grid>div.attribute-constitution {
+    .grid>div.attribute-con {
       order: 4;
     }
 
-    .grid>div.attribute-perception {
+    .grid>div.attribute-per {
       order: 5;
     }
 
-    .grid>div.attribute-spirit {
+    .grid>div.attribute-spi {
       order: 6;
     }
 
