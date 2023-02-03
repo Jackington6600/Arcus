@@ -1,3 +1,5 @@
+import { keys } from 'ts-transformer-keys';
+
 import Image from 'next/image'
 
 import { useEffect, useState } from 'react';
@@ -31,6 +33,33 @@ function formatAttributeModifier(attributeModifier: number | null): string | nul
   return attributeModifier >= 0 ? `+${attributeModifier}` : attributeModifier.toString()
 }
 
+type EditTracker<T = string> = { stringValue: string, value: T | string, editValue: string, modified: boolean }
+
+type AttackBonus = string | { numberDamage: number } // TODO: Change: number | 'autohit'
+
+type AttackDamage = string | { numberDamage: number } // TODO: Change
+
+type AttackInfoProps = {
+  name: string
+  notes: string
+  attackBonus: AttackBonus
+  damage: AttackDamage
+}
+
+type AttackInfo = {
+  key: string
+} & AttackInfoProps;
+
+type AttackInfoPropsEditable = {
+  [Property in keyof AttackInfoProps]: EditTracker<AttackInfoProps[Property]>
+}
+
+// function createAttackInfo(args: AttackInfoEditableProps): AttackInfo {
+//   // const a = keys<AttackInfoEditableProps>();
+//   console.log(a);
+
+// }
+
 export default function CharacterSheet() {
   function createRecord<TKey extends string, TValue>(keys: readonly TKey[], value: TValue): Record<TKey, TValue> {
     return lodashChain(keys).mapKeys().mapValues(_ => value).value() as any;
@@ -60,6 +89,11 @@ export default function CharacterSheet() {
   const [armorType, setArmorType] = useState<ArmorType>(ArmorType.values[0]);
   const armorClass = useDependentState(() => calculateArmorClass(armorType, attributeModifiers['dex']), [armorType, attributeModifiers]);
   const movementSpeed = useDependentState(() => calculateMovementSpeed(armorType), [armorType]);
+
+  const [attackList, setAttackList] = useState<AttackInfo[]>([
+    { key: '1', name: 'Arcane Blip', notes: '1AP, within 100ft', attackBonus: 'Auto Hit', damage: 'Light(3) = 3' },
+    { key: '2', name: 'Arcane Bolt', notes: '2AP, within 100ft', attackBonus: 'INT (+6)', damage: 'Medium(6) + INT(3) = 9' }
+  ]);
 
   // Update resistance points if max resistance points change, and they were equal
   const prevTotalResistancePoints = usePrevState(totalResistancePoints);
@@ -167,6 +201,42 @@ export default function CharacterSheet() {
               <ThinInput type='number' label='Movement Speed' id='movement-speed' className='overflow-label' readOnly disabled value={formatMovementSpeedAsFeet(movementSpeed)} />
               <span className="input-group-text">ft</span>
             </InputGroup>
+          </div>
+          <div className='g-col-12'>
+            <table className='table table-striped table-hover'>
+              <thead>
+                <tr>
+                  <th scope="col">Attack Name</th>
+                  <th scope="col">Notes</th>
+                  <th scope="col">Attack Bonus</th>
+                  <th scope="col">Damage</th>
+                </tr>
+              </thead>
+              <tbody className='table-group-divider'>
+                {attackList.map((attackInfo, i) => <tr key={attackInfo.key}>
+                  <td>{(keys<AttackInfo>())}</td>
+                  <td>{attackInfo.notes}</td>
+                  <td>{attackInfo.attackBonus.toString()}</td>
+                  <td>{attackInfo.damage.toString()}</td>
+                </tr>)}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>
+                    <input type='text' className='form-control' placeholder='Attack Name' />
+                  </td>
+                  <td>
+                    <input type='text' className='form-control' placeholder='Notes' />
+                  </td>
+                  <td>
+                    <input type='text' className='form-control' placeholder='Attack Bonus' />
+                  </td>
+                  <td>
+                    <input type='text' className='form-control' placeholder='Damage' />
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
           <div className='g-col-12'>
             <Image src={characterSheetDesignImage} alt='' />
