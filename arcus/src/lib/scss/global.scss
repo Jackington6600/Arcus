@@ -1,0 +1,101 @@
+
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/variables-dark";
+@import "../../../node_modules/bootstrap/scss/mixins/breakpoints";
+
+:root,
+[data-bs-theme="light"] {
+  --thin-form-floating-label-focus-color: #316ecf;
+}
+
+[data-bs-theme="dark"] {
+  --thin-form-floating-label-focus-color: #6da7ff;
+}
+
+.thin.form-floating > {
+  .form-select,
+  .form-control,
+  .form-control-plaintext {
+    padding: 0.375rem 0.75rem;
+    line-height: 1.5;
+    height: unset;
+  }
+
+  label {
+    padding: 0;
+    top: 0;
+    left: 0;
+    transform: translate($input-padding-x, $input-padding-y);
+    width: unset;
+    height: unset;
+    color: var(--bs-secondary-color);
+    max-width: calc(100% - $input-padding-x * 2);
+    background-color: var(--bs-form-control-bg);
+    // background-color: red;
+    border-radius: 0.5rem;
+    $transition-time: 0.15s;
+    $transition-method: ease-in-out;
+    $transition-options: $transition-time $transition-method;
+    transition: transform $transition-options, padding $transition-options,
+      max-width $transition-options, color $transition-options;
+  }
+
+  .form-control:focus ~ label,
+  .form-control:not(:placeholder-shown) ~ label,
+  .form-control-plaintext ~ label,
+  .form-select ~ label {
+    $space-left: 0.55rem;
+    $space-right: 0.75rem;
+    padding: 0 0.4rem;
+    top: 0;
+    left: 0;
+    max-width: calc((100%) / 0.85 - ($space-left + $space-right));
+    transform: translateY(-0.725em) translateX($space-left) scale(0.85);
+    opacity: 1;
+  }
+
+  .form-control,
+  .form-select {
+    &:focus ~ label {
+      color: var(--thin-form-floating-label-focus-color);
+    }
+
+    &:disabled ~ label {
+      background-color: var(--bs-form-control-disabled-bg);
+      color: var(--bs-secondary-color);
+    }
+
+    &:disabled:focus ~ label,
+    &:disabled:not(:placeholder-shown) ~ label {
+      border-top: var(--bs-border-width) solid var(--bs-border-color);
+      box-shadow: $input-box-shadow;
+    }
+  }
+
+  .was-validated .form-control:disabled:valid ~ label,
+  .form-control:disabled.is-valid ~ label,
+  .was-validated .form-select:disabled:valid ~ label,
+  .form-select:disabled.is-valid ~ label {
+    border-top-color: var(--bs-success);
+  }
+
+  .was-validated .form-control:disabled:invalid ~ label,
+  .form-control:disabled.is-invalid ~ label,
+  .was-validated .form-select:disabled:valid ~ label,
+  .form-select:disabled.is-valid ~ label {
+    border-top-color: var(--bs-danger);
+  }
+}
+
+.input-group > .thin.form-floating.overflow-label {
+  z-index: 1;
+
+  .form-control:focus ~ label,
+  .form-control:not(:placeholder-shown) ~ label,
+  .form-control-plaintext ~ label,
+  .form-select ~ label {
+    // Fix case where first label gets cut off
+    max-width: initial;
+  }
+}
