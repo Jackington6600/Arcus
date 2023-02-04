@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Input, InputGroup } from "sveltestrap";
+  import { Input, InputGroup, InputGroupText } from "sveltestrap";
   import { chain as lodashChain } from "lodash";
 
   import ThinFormGroup from "$lib/components/ThinFormGroup.svelte";
@@ -43,6 +43,10 @@
 
   export let totalResistancePoints: Record<ResistancePoint, number | null>;
   $: totalResistancePoints = lodashChain(ResistancePoint.values).mapKeys().mapValues(rp => calculateTotalResistancePoints(rp, attributes)).value();
+  export let currentResistancePoints = createRecord<ResistancePoint, number | null>(
+    ResistancePoint.values,
+    0
+  );
 </script>
 
 <div class="container">
@@ -94,6 +98,34 @@
               disabled
               readonly
               value={formatAttributeModifier(attributeModifiers[attribute])}
+            />
+          </ThinFormGroup>
+        </InputGroup>
+      </div>
+    {/each}
+    {#each ResistancePoint.values as rp (rp)}
+      <div
+        class="resistance-points resistance-points-{rp} g-col-12 g-col-sm-4 g-col-md-4"
+      >
+        <InputGroup>
+          <ThinFormGroup
+            class="overflow-label"
+            label={ResistancePoint.getShortDisplayName(rp)}
+          >
+            <Input
+              type="number"
+              min={0}
+              max={totalResistancePoints[rp] ?? undefined}
+              bind:value={currentResistancePoints[rp]}
+            />
+          </ThinFormGroup>
+          <InputGroupText>/</InputGroupText>
+          <ThinFormGroup class="resistance-points-total">
+            <Input
+              type="number"
+              disabled
+              readonly
+              value={totalResistancePoints[rp]}
             />
           </ThinFormGroup>
         </InputGroup>
