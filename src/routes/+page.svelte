@@ -3,9 +3,37 @@
   import { chain as lodashChain } from "lodash";
 
   import ThinFormGroup from "$lib/components/ThinFormGroup.svelte";
-  import { calculateAttributeModifier, calculateTotalResistancePoints } from "$lib/logic";
+  import {
+    calculateArmorClass,
+    calculateAttributeModifier,
+    calculateMaxHp,
+    calculateMovementSpeed,
+    calculatePassivePerception,
+    calculateTotalResistancePoints,
+    formatMovementSpeedAsFeet,
+  } from "$lib/logic";
   import Attribute from "$lib/attribute";
   import ResistancePoint from "$lib/resistance-point";
+  import ArmorType from "$lib/armor-type";
+
+  import connor1 from "$lib/img/connor1.png";
+  import connor2 from "$lib/img/connor2.png";
+  import connor3 from "$lib/img/connor3.png";
+  import connor4 from "$lib/img/connor4.png";
+  import connor5 from "$lib/img/connor5.png";
+  import connor6 from "$lib/img/connor6.png";
+  import connor7 from "$lib/img/connor7.png";
+  const CONNOR_IMAGES = [
+    connor1,
+    connor2,
+    connor3,
+    connor4,
+    connor5,
+    connor6,
+    connor7,
+  ];
+
+  import characterSheetDesignImage from "$lib/img/characterSheetDesign.png";
 
   function formatAttributeModifier(
     attributeModifier: number | null
@@ -42,11 +70,46 @@
     .value();
 
   export let totalResistancePoints: Record<ResistancePoint, number | null>;
-  $: totalResistancePoints = lodashChain(ResistancePoint.values).mapKeys().mapValues(rp => calculateTotalResistancePoints(rp, attributes)).value();
-  export let currentResistancePoints = createRecord<ResistancePoint, number | null>(
-    ResistancePoint.values,
-    0
-  );
+  $: totalResistancePoints = lodashChain(ResistancePoint.values)
+    .mapKeys()
+    .mapValues((rp) => calculateTotalResistancePoints(rp, attributes))
+    .value();
+  export let currentResistancePoints = createRecord<
+    ResistancePoint,
+    number | null
+  >(ResistancePoint.values, 0);
+
+  export let currentHp: number | null = null;
+  export let maxHp: number | null;
+  $: maxHp = calculateMaxHp(level, attributes.con, attributeModifiers.con);
+
+  export let tempHp: number | null = null;
+
+  export let passivePerception;
+  $: passivePerception = calculatePassivePerception(attributes.per);
+
+  export let armorType = ArmorType.None;
+  export let armorClass: number | null;
+  $: armorClass = calculateArmorClass(armorType, attributeModifiers.dex);
+  export let movementSpeed: number;
+  $: movementSpeed = calculateMovementSpeed(armorType);
+
+  export let attackList = [
+    {
+      key: "1",
+      name: "Arcane Blip",
+      notes: "1AP, within 100ft",
+      attackBonus: "Auto Hit",
+      damage: "Light(3) = 3",
+    },
+    {
+      key: "2",
+      name: "Arcane Bolt",
+      notes: "2AP, within 100ft",
+      attackBonus: "INT (+6)",
+      damage: "Medium(6) + INT(3) = 9",
+    },
+  ];
 </script>
 
 <div class="container">
@@ -131,6 +194,110 @@
         </InputGroup>
       </div>
     {/each}
+    <div class="g-col-6 g-col-sm-4">
+      <InputGroup>
+        <ThinFormGroup label="HP" class="overflow-label">
+          <Input
+            type="number"
+            min={0}
+            max={maxHp ?? undefined}
+            bind:value={currentHp}
+          />
+        </ThinFormGroup>
+        <InputGroupText>/</InputGroupText>
+        <ThinFormGroup class="max-hp">
+          <Input type="number" readonly disabled value={maxHp} />
+        </ThinFormGroup>
+      </InputGroup>
+    </div>
+    <div class="g-col-6 g-col-sm-4">
+      <ThinFormGroup label="Temp HP">
+        <Input type="number" min={0} bind:value={tempHp} />
+      </ThinFormGroup>
+    </div>
+    <div class="g-col-6 g-col-sm-4">
+      <ThinFormGroup label="Passive Perception">
+        <Input type="number" readonly disabled value={passivePerception} />
+      </ThinFormGroup>
+    </div>
+    <div class="g-col-6 g-col-sm-4">
+      <ThinFormGroup label="Armor Type">
+        <Input type="select" bind:value={armorType}>
+          {#each ArmorType.values as armorTypeOption}
+            <option value={armorTypeOption}
+              >{ArmorType.getDisplayName(armorTypeOption)}</option
+            >
+          {/each}
+        </Input>
+      </ThinFormGroup>
+    </div>
+    <div class="g-col-6 g-col-sm-4">
+      <InputGroup>
+        <ThinFormGroup label="Armor Class" class="overflow-label">
+          <Input type="number" readonly disabled value={armorClass} />
+        </ThinFormGroup>
+        <InputGroupText>AC</InputGroupText>
+      </InputGroup>
+    </div>
+    <div class="g-col-6 g-col-sm-4">
+      <InputGroup>
+        <ThinFormGroup label="Movement Speed" class="overflow-label">
+          <Input
+            type="number"
+            readonly
+            disabled
+            value={formatMovementSpeedAsFeet(movementSpeed)}
+          />
+        </ThinFormGroup>
+        <InputGroupText>ft</InputGroupText>
+      </InputGroup>
+    </div>
+    <div class="g-col-12">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Attack Name</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Attack Bonus</th>
+            <th scope="col">Damage</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          {#each attackList as attack (attack.key)}
+            <tr>
+              <td>{attack.name}</td>
+              <td>{attack.notes}</td>
+              <td>{attack.attackBonus.toString()}</td>
+              <td>{attack.damage.toString()}</td>
+            </tr>
+          {/each}
+        </tbody>
+        <!-- <tfoot>
+          <tr>
+            <td>
+              <Input type='text' placeholder='Attack Name' />
+            </td>
+            <td>
+              <Input type='text' placeholder='Notes' />
+            </td>
+            <td>
+              <Input type='text' placeholder='Attack Bonus' />
+            </td>
+            <td>
+              <Input type='text' placeholder='Damage' />
+            </td>
+          </tr>
+        </tfoot> -->
+      </table>
+    </div>
+    <div class="g-col-12">
+      <img src={characterSheetDesignImage} alt="" />
+    </div>
+    <div class="g-col-12">
+      {#each CONNOR_IMAGES as img (img)}
+        <img src={img} alt="" />
+      {/each}
+    </div>
   </div>
 </div>
 
@@ -181,7 +348,7 @@
   }
 
   .resistance-points-total,
-  #max-hp {
+  .max-hp {
     flex-grow: 0.5;
     max-width: 4rem;
   }
