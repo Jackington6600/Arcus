@@ -247,6 +247,8 @@
       <a class="h4 nav-link" href="#Concealment">Cover & Concealment</a>
       <a class="h3 nav-link" href="#Range">Range</a>
       <a class="h3 nav-link" href="#Damage">Damage</a>
+      <a class="h4 nav-link" href="#Critical Damage">Critical Damage</a>
+      <a class="h4 nav-link" href="#Glancing Damage">Glancing Damage</a>
       <a class="h4 nav-link" href="#Damage Types">Damage Types</a>
       <a class="h4 nav-link" href="#Damage Resistance, Weakness, and Vulnerability">Damage Resistance, Weakness, and Vulnerability</a>
       <a class="h4 nav-link" href="#Falling Damage">Falling Damage</a>
@@ -478,11 +480,14 @@
             of 3 or less.
          </p>
          <p>
-            Critical successes generally mean a success with some additional bonus - such as
-            additional damage or beneficial results. Critical failures generally mean you
-            fail the check regardless of the modifiers added and the DC. However, it is up
-            to the GM to decide how they wish to handle it in their game - it should be
-            consistent.
+            Critical successes will often result a success with some additional bonus (GM may rule some checks as 
+            impossible even with a critical success). Critical failures will always fail the check regardless of 
+            the modifiers added and the DC. It is up to the GM to decide how they wish to handle critical 
+            success and failure in their game - it should be consistent. 
+         </p>
+         <p>
+            See Attacking section for rules on critical successes and failures when 
+            attacking. 
          </p>
          <h4 id="Inspiration">Inspiration</h4>
          <p>
@@ -820,20 +825,21 @@
          </p>
          <h5 id="Resisting Incoming Damage">Resisting Incoming Damage</h5>
          <p>
-            You may half a single instance of incoming damage by spending any 4 of your
-            remaining resistance points. You can do this at any time and it does not cost a
-            reaction.  If you are reduced to 0 HP when this is used, you are instead set to 1 HP
-            and fall unconcious until you receive 1min of healing.
+            You may spend 4 resistance points of any type or multiple types to make yourself resistant to 
+            a single instance of incoming damage (half damage) - this resistance ignores any other vulnerabilities
+            or weaknesses you have affecting you and enforces resistance. You can do this at any time and it does not cost a
+            reaction. If you are reduced to 0 HP when this is used, you are instead set to 1 HP
+            and fall unconscious until another creature uses the help action for 1 minute on you.
          </p>
          <p>
-            However, the GM may ask you to describe how you negate the damage. This gives
+            However, the GM may ask you to describe how you resist the damage. This gives
             the player an opportunity to describe the cool and heroic actions of their
             character to avoid the damage/effect. It also gives the GM the opportunity, in
             some very rare cases, to deny the damage reduction if it cannot make sense for
-            the damage to the character to be negated, or come to a reasonable middleground.
+            the damage to the character to be resisted, or come to a reasonable middleground.
             Such as if the player is <a class="condition" data-tooltip-container>paralysed</a> 
-            and suffers damage the player cannot negate
-            the damage, but if it would kill them the GM can let the player drop to 1 HP and
+            and suffers damage the player cannot resist
+            the damage, but if it would kill them the GM can still let the player drop to 1 HP and
             fall <a class="condition" data-tooltip-container>unconscious</a> instead. 
             Or in even rarer cases such as being crushed by a wave
             of magma the player might have no chance of survival and die instantly. Note to
@@ -3310,10 +3316,13 @@
          </p>
          <p>
             To hit the target you must roll equal to or higher than their armour class (AC).
+            If you use any ability which requires an attack roll you still hit if you roll lower than
+            the target's AC, and deal half damage (glancing damage) instead - you still always miss
+            if you critically fail the attack roll.
          </p>
          <h4 id="Types of Attack Roll">Types of Attack Roll</h4>
          <ul>
-            <li><strong>Weapon, melee, ranged, basic, or auto hit.</strong>
+            <li><strong>Weapon, melee, ranged, or auto hit.</strong>
                <ul>
                   <li><strong>Weapon attack</strong> uses your equipped weapon to make the attack
                      roll.
@@ -3343,7 +3352,16 @@
                      described as MOD if there are multiple attribute modifiers that could be used.
                   </li>
                </ul>
-            <li>For example:
+            </li>
+            <li><strong>Regular attack.</strong>
+               <ul>
+                  <li>An attack is considered a regular attack if it can be made with unlimited uses, 
+                     such as attacking with an equipped weapon or using a class core ability. See
+                     Regular Attack in the Core Abilities section.
+                  </li>
+               </ul>
+            </li>
+            <li>Attack examples:
                <ul>
                   <li>“Make a ranged INT attack…”
                   <li>“Make a melee weapon attack…”
@@ -3368,23 +3386,26 @@
          </p>
          <h4 id="Critical Hit">Critical Hit</h4>
          <p>
-            A critical success is when the 2 dice used for the roll result each have a value
+            A critical success (critical hit) is when the 2 dice used for the roll result each have a value
             of 10 or more (double digits).
          </p>
          <p>
-            A critical failure is when the 2 dice used for the roll result each have a value
+            A critical failure (critical miss) is when the 2 dice used for the roll result each have a value
             of 3 or less.
          </p>
          <p>
-            If you roll a critical success on an attack roll, it is called a critical hit
-            and you deal double base damage damage (Light, Medium, or Heavy), but only add
-            modifier once. Bonus damage from abilities is also not doubled on a critical
-            hit.
+            A critical hit on an attack roll always hits the target regardless 
+            of modifiers and AC, and you deal critical damage 
+            - take the total attack damage and add 50% 
+            (half the damage, round down, and add it to the total damage).
+            Additional damage from abilities is also not multiplied on a critical
+            hit - this will always be described as "additional" damage. Critical damage does not stack and 
+            cannot be multiplied more than once.
+
          </p>
          <p>
-            Critical hits can be applied as a result of surprise or at the
-            GM’s discretion - such as if there is some significant advantage on the attack
-            (or special circumstances) that the GM would like to reward.
+            A critical miss always misses the target regardless of the modifiers and AC, and therefore deal 
+            no damage. Additional damage from abilities will also not be applied on a critical miss.
          </p>
          <h4 id="Multi-Target Attacks">Multi-Target Attacks</h4>
          <p>
@@ -3409,8 +3430,8 @@
          <p>
             If you are <a class="condition" data-tooltip-container>hidden</a> from a creature 
             and make an attack against it, you will
-            have Adv (++) on the attack roll and the attack may also be a
-            critical hit due to surprise. An attack can be considered as a surprise 
+            have Adv (++) on the attack roll and the attack may also deal critical damage due to surprise.
+            An attack can be considered as a surprise 
             when a creature that is not expecting a violent threat of any kind, such as 
             not being involved in combat of any kind and unaware of your presence. 
             After this, the attacked creature and other
@@ -3421,7 +3442,7 @@
          <p>
             Also if the target is aware of you but is strongly not expecting you to attack
             them, this may also class as a surprise in some circumstances, gaining Adv (++) 
-            and becoming a critical hit. For example, betraying an ally stood beside you to initiate combat.
+            and dealing critical damage. For example, betraying an ally stood beside you to initiate combat.
          </p>
          <h4 id="Concealment">Cover & Concealment</h4>
          <p>
@@ -3548,9 +3569,36 @@
             the attack, you add DEX (once) to the damage.
          </p>
          <p>
-            If a level 1 character had +3 to INT and was making an INT based attack that
+            If a level 1 character had +2 to INT and was making an INT based attack that
             dealt Light physical damage: They would first make an attack with INT+INT bonus
-            (2d12+3+3). If successful they would then deal Light+INT physical damage (2+3).
+            (2d12+2+2). If successful they would then deal Light+INT physical damage (2+2).
+         </p>
+         <h4 id="Critical Damage">Critical Damage</h4>
+         <p>
+            Critical damage is equal to the total attack damage plus 50% (half the damage, round down, and add it to the total
+            damage). 
+         </p>
+         <p>
+            Critically hitting a target will result in the target suffering critical damage 
+            (there are some abilities that will also deal critical damage). 
+            Additional damage from abilities is also not multiplied on a critical
+            hit - this will always be described as "additional" damage. Critical damage does not stack and 
+            cannot be multiplied more than once. If damage is both glancing and critical, it is considered as normal 
+            damage and is not multiplied.
+         </p>
+         <h4 id="Glancing Damage">Glancing Damage</h4>
+         <p>
+            Glancing damage is equal to half the total attack damage. 
+         </p>
+         <p>
+            Glancing damage can occur when you make an attack as part of an ability and roll lower than the AC but 
+            do not critically miss. The attack is still a hit but will deal half attack damage. Additional damage is 
+            again not affected by glancing and is applied as normal.
+         </p>
+         <p>
+            Other abilities and conditions can also cause glancing damage, but glancing damage does not stack and cannot be 
+            multiplied more than once. If damage is both glancing and critical, it is considered as normal 
+            damage and is not multiplied.
          </p>
          <h4 id="Damage Types">Damage Types</h4>
          <div class="tab">
@@ -3611,29 +3659,40 @@
          </p>
          <table class="center">
             <tr>
-               <td colspan="4"><strong>Damage Vulnerability, Weakness, and Resistance
+               <td colspan="4"><strong>Damage Resistance, Weakness, and Vulnerability
                      Scale</strong>
                </td>
             </tr>
             <tr>
-               <td>Vulnerable
+               <td>Resistant (0.5x)
                </td>
-               <td>Weak
+               <td>Normal (1x)
                </td>
-               <td>Normal
+               <td>Weak (1.5x)
                </td>
-               <td>Resistant
+               <td>Vulnerable (2x)
                </td>
             </tr>
          </table>
          <p>
+            After total damage has been calculated by the attacker, the damage can still be reduced or increased
+            once with a multiplier using the scale above. You always start at "Normal" and step left and right based
+            on your resistances, weaknesses, and vulnerabilities. If there are both resistances and weaknesses the steps 
+            cancel each other out as much as they can and use the resulting multiplier.
+         </p>
+         <p>
             <a class="condition" data-tooltip-container>Vulnerable</a>, <a class="condition" data-tooltip-container>weak</a>, normal, and resistant work on a sliding scale, where gaining
-            resistance to a damage type will move you one step to the right on the scale,
-            and becoming <a class="condition" data-tooltip-container>weak</a> to a damage type will move you one step left on the scale.
-            Becoming <a class="condition" data-tooltip-container>vulnerable</a> to a damage type will move you two steps to the left on the
+            resistance to a damage type will move you one step to the left on the scale,
+            and becoming <a class="condition" data-tooltip-container>weak</a> to a damage type will move you one step right on the scale.
+            Becoming <a class="condition" data-tooltip-container>vulnerable</a> to a damage type will move you two steps to the right on the
             scale. You cannot be moved off this scale. Sources of damage resistance and
             vulnerability must be unique - they cannot both come from the same ability or
             source type (such as a potion), as they will not stack.
+         </p>
+         <p>
+            For example, if a creature is being hit by 23 fire damage and is vulnerable to fire damage, but has resistance to all damage because of an ability 
+            it has used, there are two steps right due to vulnerability and one step left due to the resistance, resulting in 
+            one step to the right. Therefore, the creature suffers 34 fire damage (23 + (23/2) = 34).
          </p>
          <h4 id="Falling Damage">Falling Damage</h4>
          <p>
@@ -3875,7 +3934,7 @@
                </td>
                <td>The creature becomes rigid and cannot do anything while paralysed. All
                   attack rolls against the creature have Adv (++). Any attack that hits the
-                  creature is a critical hit if the attacker is within 5ft of the creature.
+                  creature deals critical damage if the attacker is within 5ft of the creature.
                </td>
             </tr>
             <tr>
@@ -3899,7 +3958,7 @@
                </td>
                <td>The creature falls limp and <a class="condition" data-tooltip-container>prone</a> and cannot do anything while
                   unconscious. It is unaware of its surroundings and all attacks against the
-                  creature have Adv (++). Any attack that hits the creature is a critical hit if
+                  creature have Adv (++). Any attack that hits the creature deals critical damage if
                   the attacker is within 5ft of the creature. The creature remains unconscious
                   until it is helped by another creature.
                </td>
@@ -4058,9 +4117,11 @@
                <td>Heroic Resistance
                </td>
                <td>
-                  You may negate a single instance of incoming damage by spending any 5 of
-                  your remaining resistance points. You can do this at any time and it does not
-                  cost a reaction.
+                  You may spend 4 resistance points of any type or multiple types to make yourself resistant to 
+                  a single instance of incoming damage (half damage) - this resistance ignores any other vulnerabilities
+                  or weaknesses you have affecting you and enforces resistance. You can do this at any time and it does not cost a
+                  reaction. If you are reduced to 0 HP when this is used, you are instead set to 1 HP
+                  and fall unconscious until another creature uses the help action for 1 minute on you.
                </td>
                <td>S
                </td>
@@ -4619,9 +4680,8 @@
                   <p>
                      Make a melee weapon attack against a creature. On a hit the creature is
                      <a class="condition" data-tooltip-container>immobilised</a> or <a class="condition" data-tooltip-container>stunned</a> (your choice). If the creature already
-                     has the condition you chose, the attack is a critical hit. 2 FORT points to
-                     resist the <a class="condition" data-tooltip-container>immobilise</a> or <a class="condition" data-tooltip-container>stun</a> - the critical hit cannot be
-                     resisted.
+                     has the condition you chose, the attack deals critical damage. 2 FORT points to
+                     resist the <a class="condition" data-tooltip-container>immobilise</a> or <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -5173,7 +5233,7 @@
                <td><strong>Execute the perfect critical strike against a defenceless
                      target.</strong>
                   <p>
-                     Make an auto hit weapon attack against a creature. This attack is a critical hit
+                     Make an auto hit weapon attack against a creature. This attack deals critical damage
                      if any one of the following conditions are met: 1) You are <a class="condition" data-tooltip-container>invisible</a> or 
                      <a class="condition" data-tooltip-container>hidden</a>
                      from the creature. 2) If the cureature has any of the following conditions:
@@ -6359,7 +6419,7 @@
                <td><strong>Drop a large spiked rock on your foe.</strong>
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit it suffers
-                     Heavy+MOD damage. This is a critical hit if the creature is <a class="condition" data-tooltip-container>prone</a>.
+                     Heavy+MOD damage. This attack deals critical damage if the creature is <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6556,7 +6616,7 @@
                <td><strong>Burn a creature from the inside out. Harm yourself in the process.</strong>
                   <p>
                      Make an auto hit attack against a creature within 50ft and deal Heavy+MOD fire damage. You may
-                     suffer Heavy fire damage make this attack a critical hit.
+                     suffer Heavy fire damage make this attack deal critical damage.
                </td>
                <td>A+E, 50ft, Single target
                </td>
