@@ -482,8 +482,8 @@
          <p>
             Critical successes will often result a success with some additional bonus (GM may rule some checks as 
             impossible even with a critical success). Critical failures will always fail the check regardless of 
-            the modifiers added and the DC. It is up to the GM to decide how they wish to handle critical 
-            success and failure in their game - it should be consistent. 
+            the modifiers added and the DC, sometimes with some additional negative effect. It is up to the GM 
+            to decide how they wish to handle critical success and failure in their game - it should be consistent. 
          </p>
          <p>
             See Attacking section for rules on critical successes and failures when 
@@ -564,7 +564,8 @@
          <p>
             <strong><span class="fort">Constitution (CON)</span></strong> - a combination of the character's overall
             health and endurance. In addition to constitution based skill checks, your starting Hit Points are four times your
-            consitution value. Later on, you can increase your HP further by your constitution value.
+            consitution value. Later on, your HP will increase by a small amount every odd level and even more if you take the 
+            Legendary Trait Enduring.
          </p>
          <p>
             <strong><span class="refl">Dexterity (DEX)</span></strong> - a character's hand-eye coordination, balance,
@@ -587,7 +588,7 @@
             additional modifier grants you an additional resistance point of your choice.
          </p>
          <p>
-            Attribute values commonly range from 10 to 20, where 12 roughly describes the
+            Attribute values commonly range from 10 to 24, where 12 roughly describes the
             average human capability, but can range from 1 to 30 in some creatures. The
             value of the attribute will generate a modifier that can be added to dice rolls.
          </p>
@@ -699,10 +700,35 @@
                <td>+5
                </td>
             </tr>
+            <tr>
+               <td>21
+               </td>
+               <td>+5
+               </td>
+            </tr>
+            <tr>
+               <td>22
+               </td>
+               <td>+6
+               </td>
+            </tr>
+            <tr>
+               <td>23
+               </td>
+               <td>+6
+               </td>
+            </tr>
+            <tr>
+               <td>24
+               </td>
+               <td>+7
+               </td>
+            </tr>
          </table>
          <p>
-            Every even level (2, 4, 6, 8, 10…) you gain 2 additional attribute points to put into two different attributes (one each). 
-            Increasing an attribute value past 20 will cost both the additional point.
+            Every even level (2, 4, 6, 8, 10…) you gain 2 additional attribute points to put into two different attributes (one each) -  
+            they must be used in 2 different attributes.
+            If you want to increase an attribute above 20, you may choose to spend both points to increase the attribute by 1.
          </p>
          <table class="center">
             <tr>
@@ -759,7 +785,7 @@
          <h3 id="Step 3 - Resistance Points">Step 3 - Resistance Points</h3>
          <p>
             Resistance points are a resource that you will spend to prevent incoming
-            negative effects, negate damage, and empower your abilities. You regain them all after a long rest.
+            negative effects, resist damage, and empower your abilities. You regain them all after a long rest.
          </p>
          <p>
             <strong><span class="fort">Fortitude (FORT)</span></strong> - the ability to resist negative effects using
@@ -798,8 +824,8 @@
             value -10.
          </p>
          <p>
-            For example, a character with 16 STR and 12 CON has 6 points in STR and 2 in
-            CON, so has (6+2) 8 FORT resistance points.
+            For example, a character with 15 STR and 12 CON has 5 points in STR and 2 in
+            CON, so has (5+2) 7 FORT resistance points.
          </p>
          <p>
             You also gain additional resistance points to assign as you wish equal to your
@@ -814,18 +840,30 @@
          </p>
          <h5 id="Resisting Incoming Effects">Resisting Incoming Effects</h5>
          <p>
-            The GM will tell you the recommended cost of resisting an incoming effect. To
-            resist it you will choose how many resistance points to spend and then roll
-            1d12. If you spend the recommended resistance points, reduce your current
-            resistance points by the cost. If you spend one less than recommended you
-            successfully resist on a 8 or higher, if you spend equal to the recommended you
-            successfully resist on a 3 or higher, if you spend one more than recommended you
-            automatically succeed. If you spend two less than the recommended resistance
-            points or fail the roll you are inflicted with the condition.
+            The GM will tell you the type (FORT, REFL, or WILL) and a difficulty rating (DR) of resisting an incoming effect (commonly 1 or 2). To
+            resist it you will need to roll a number of successes equal to or greater than the DR.
+            You may then choose to spend as many resistance points as you wish and then roll
+            a number of d12s equal to the number of resistance points spent. 
+            You get 1 success for rolling 4 or higher on a d12, and 2 successes for rolling 10 or higher on a d12 (double digits).
+            Therefore you get no successes for rolling 3 or lower. Simply add the number of successes on the d12s rolled and 
+            compare to the DR - completely resisting the effect described if you roll successes equal to or higher than the DR, 
+            or being inflicted with the effect if you roll fewer.
+         </p>
+         <p>
+            The expected result of rolling 1d12 will be 1 success, with a small chance of getting 0 successes, and the same small chance to
+            get 2 successes. 
+         </p>
+         <p>
+            Spending resistance points equal to the DR is normally recommended. 
+            Spending one extra resistance point is recommended if you really want to resist the incoming effect at an extra cost.
+            Spending 1 fewer is risky, but recommended if you care less about being inflicted with the effect and don't want to automatically 
+            fail the roll. If you have no resistance points to spend, or simply don't want to spend any, you cannot attempt to resist  
+            and are inflicted with the effect without a roll. It may be wise to save resistance points to avoid nastier effects and 
+            to be able to resist incoming damage to avoid death.
          </p>
          <h5 id="Resisting Incoming Damage">Resisting Incoming Damage</h5>
          <p>
-            You may spend 4 resistance points of any type or multiple types to make yourself resistant to 
+            You may spend 4 resistance points of any types to make yourself resistant to 
             a single instance of incoming damage (half damage) - this resistance ignores any other vulnerabilities
             or weaknesses you have affecting you and enforces resistance. You can do this at any time and it does not cost a
             reaction. If you are reduced to 0 HP when this is used, you are instead set to 1 HP
@@ -877,8 +915,9 @@
             GM's monsters and NPCs always spend the recommend resistance point cost -  
             if they have fewer available than the recommended cost they should still 
             always spend their resistance points even if it would have no effect. For example, 
-            if the ability costs 5 FORT to resist, and the creature has 3 FORT remaining, it should 
-            still spend all 3 FORT points as it fails to resist the effect. The creatures 
+            if the ability costs 5 FORT to resist, and the creature has 2 FORT remaining, it should 
+            still spend all 2 FORT points as it fails to resist the effect (the max number of successes 
+            from 2d12 is 4). The creatures 
             may spend 1 extra resistance point to automatically succeed. This is done to 
             allow players to spend their abilities to weaken enemies by forcing them to 
             spend their resistance points and to avoid GM creatures metagaming, and avoid 
@@ -913,7 +952,7 @@
          </p>
          <p>
             Every odd level after first (3, 5, 7, 9 etc.) you gain 4 additional Hit Points.  
-            You can increase your Hit Points further every 5 levels with Legendary Traits
+            You can increase your Hit Points further every 5 levels with the Legendary Trait Enduring.
          </p>
          <h4 id="Temporary Hit Points">Temporary Hit Points</h4>
          <p>
@@ -2560,7 +2599,7 @@
                </td>
             </tr>
             <tr>
-               <td>Healthy
+               <td>Enduring
                </td>
                <td>
                   Increase your max HP by additional CON value.  
@@ -2569,7 +2608,7 @@
                </td>
             </tr>
             <tr>
-               <td>Focused
+               <td>Powerful
                </td>
                <td>
                   Light / Medium / Heavy values increase by 1 / 2 / 3 respectively.  
@@ -2578,7 +2617,7 @@
                </td>
             </tr>
             <tr>
-               <td>Well Trained
+               <td>Practised 
                </td>
                <td>
                   Gain 1 additional use of each ability 
@@ -2587,7 +2626,7 @@
                </td>
             </tr>
             <tr>
-               <td>Quick Healer
+               <td>Restorative
                </td>
                <td>
                   Heal an additional Light HP or gain addtional Light Temp HP whenever you are healed or gain HP respectively.
@@ -2608,7 +2647,7 @@
             </tr>
             <tr>
                <td>
-                  Unslowable
+                  Unimpeded
                </td>
                <td>
                   +1 AC when wearing Heavy Armour and remove -5ft of the speed buff.
@@ -3495,7 +3534,7 @@
          <h3 id="Damage">Damage</h3>
          <p>
             Base weapon damage depends on the class of attack or ability you use.  Light, Medium, and Heavy
-            damage deal 2, 4, and 6 damage respectively.  You can increase these values with Legendary Traits
+            damage deal 3, 6, and 9 damage respectively.  You can increase these values with Legendary Traits
             every 5 levels.
          </p>
          <table class="center">
@@ -3504,7 +3543,7 @@
                </td>
             </tr>
             <tr>
-               <td><strong>Global Level</strong>
+               <td><strong>Legendary Damage Trait Level</strong>
                </td>
                <td><strong>Light</strong>
                </td>
@@ -3514,17 +3553,7 @@
                </td>
             </tr>
             <tr>
-               <td>1
-               </td>
-               <td>2
-               </td>
-               <td>4
-               </td>
-               <td>6
-               </td>
-            </tr>
-            <tr>
-               <td>5
+               <td>0
                </td>
                <td>3
                </td>
@@ -3534,7 +3563,7 @@
                </td>
             </tr>
             <tr>
-               <td>10
+               <td>1
                </td>
                <td>4
                </td>
@@ -3544,7 +3573,7 @@
                </td>
             </tr>
             <tr>
-               <td>15
+               <td>2
                </td>
                <td>5
                </td>
@@ -3554,13 +3583,23 @@
                </td>
             </tr>
             <tr>
-               <td>20
+               <td>3
                </td>
                <td>6
                </td>
                <td>12
                </td>
                <td>18
+               </td>
+            </tr>
+            <tr>
+               <td>4
+               </td>
+               <td>7
+               </td>
+               <td>14
+               </td>
+               <td>21
                </td>
             </tr>
          </table>
@@ -3571,7 +3610,7 @@
          <p>
             If a level 1 character had +2 to INT and was making an INT based attack that
             dealt Light physical damage: They would first make an attack with INT+INT bonus
-            (2d12+2+2). If successful they would then deal Light+INT physical damage (2+2).
+            (2d12+2+2). If successful they would then deal Light+INT physical damage (3+2).
          </p>
          <h4 id="Critical Damage">Critical Damage</h4>
          <p>
