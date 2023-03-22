@@ -1536,7 +1536,7 @@
                <td>
                   You may spend 30 minutes with the relevant necessary materials and equipment
                   disguising yourself as another person (within reason). This can be done during a
-                  short rest. You can also apply a disguise to another willing creature.
+                  short rest. You can also apply a disguise to an ally.
                </td>
                <td>
                   30 minutes - No Use Limit
@@ -1683,10 +1683,10 @@
                <td>Cowardice
                </td>
                <td>
-                  If a willing creature is adjacent to you, you can take <a class="condition" data-tooltip-container>cover</a>
+                  If an ally is adjacent to you, you can take <a class="condition" data-tooltip-container>cover</a>
                   behind them.
 
-                  If the creature is not willing, they have to be either
+                  If the creature is not an ally, they must be either
                   <a class="condition" data-tooltip-container>restrained</a>,
                   <a class="condition" data-tooltip-container>incapacitated</a>,
                   <a class="condition" data-tooltip-container>paralysed</a>, or
@@ -1986,7 +1986,7 @@
                   another humanoid creature for 10 minutes. Your physical attributes do not
                   change. You may end this effect at any time for 0AP. A creature within 25ft can inspect the
                   illusion with a PER+INT check, realising it is an illusion on a roll which is 
-                  the same as your INT value or higher. You can use this on a willing ally
+                  the same as your INT value or higher. You can use this on a an ally
                   within 25ft but the effect will only last 1 minute.
                </td>
                <td>3 AP - 3 Uses
@@ -2014,7 +2014,7 @@
                <td>Invisibility
                </td>
                <td>
-                  You may become <a class="condition" data-tooltip-container>invisible</a> for 10 minutes. You can use this on a willing ally
+                  You may become <a class="condition" data-tooltip-container>invisible</a> for 10 minutes. You can use this on an ally
                   within 25ft but the effect will only last 1 minute.
                </td>
                <td>3 AP - 3 Uses
@@ -2183,7 +2183,7 @@
                <td>
                   You gain the ability to speak with animals for 10 minutes. The
                   animal’s intelligence remains the same, so they may not be able to communicate
-                  very effectively. You can use this on a willing ally within 25ft but the effect
+                  very effectively. You can use this on an ally within 25ft but the effect
                   will only last 1 minute.
                </td>
                <td>3 AP - 3 Uses
@@ -2234,7 +2234,7 @@
                <td>Spider Climb
                </td>
                <td>
-                  you may grant any number of willing creatures within 25ft the ability to climb at
+                  you may grant any number of allies within 25ft the ability to climb at
                   full speed with advantage (+) on their skill check. This lasts 1 minute.
                </td>
                <td>3 AP - 3 Uses
@@ -2246,7 +2246,7 @@
                <td>Webbed Feet
                </td>
                <td>
-                  You may grant any number of willing creatures within 25ft the ability to swim at
+                  You may grant any number of allies within 25ft the ability to swim at
                   full speed with advantage (+) on their skill check. This lasts 1 minute.
                </td>
                <td>3 AP - 3 Uses
@@ -2335,7 +2335,7 @@
                <td>True Resurrection
                </td>
                <td>
-                  You may select a willing creature within 25ft that has died in the past hour and bring it
+                  You may select an ally within 25ft that has died in the past hour and bring it
                   back to life. You choose how much HP to give it by spending from your own
                   current pool of HP, and this healing may partially reconstruct the creature's body if the detached or 
                   broken pieces are nearby, however missing limbs don't regrow and if there is major desecration 
@@ -7371,7 +7371,7 @@
                <td>
                   <strong>Health and harm are truly the same to you.</strong>
                   <p>
-                     Select willing ally (including self) within 100ft and <a class="condition" data-tooltip-container>mark</a> it. All damage 
+                     Select an ally (including self) within 100ft and <a class="condition" data-tooltip-container>mark</a> it. All damage 
                      that this creature deals to other creatures is now healing instead.
                </td>
                <td>A+Self, 100ft, Single target
@@ -7406,7 +7406,7 @@
                <td>
                   <strong>Heal an ally with unparalleled power.</strong>
                   <p>
-                     Select a willing ally (excluding self) within 25ft and heal them for double your SPI
+                     Select an ally (excluding self) within 25ft and heal them for double your SPI
                      value (not modifier) HP.
                </td>
                <td>A, 25ft, Single target
@@ -7542,7 +7542,7 @@
                <td>
                   <strong>Conjure a magical armour-like barrier that protects yourself and an ally.</strong>
                   <p>
-                     Select a willing ally within 100ft. You and that ally each gain 2 + your INT modifier added to AC.
+                     Select an ally within 100ft. You and that ally each gain 2 + your INT modifier added to AC.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
@@ -7555,7 +7555,7 @@
                <td>Sonic Pulse
                </td>
                <td>
-                  <strong>Emit a short range blast to escape your enemies.</strong>
+                  <strong>Emit a powerful short range blast to escape your enemies.</strong>
                   <p>
                      Make a melee INT attack against a creature. On a hit deal Heavy+INT force damage and then
                      you are moved up to 20ft directly away from the target regardless of if you hit the attack or not.
@@ -7573,7 +7573,7 @@
                <td>
                   <strong>Grant yourself and an ally the power to overcome negative effects.</strong>
                   <p>
-                     Select a willing ally within 100ft. You and that ally gain Status Resist until the end of
+                     Select an ally within 100ft. You and that ally gain Status Resist until the end of
                      your next turn. Both you and the ally automatically resist the next resistible incoming effect (1
                      resist each). Cannot be cast on a creature already under the effect of this
                      ability.
@@ -7588,9 +7588,12 @@
                </td>
                <td>Shuffle
                </td>
-               <td>Choose a point within 100ft. All enemies within 5ft of this point are
-                  <a class="condition" data-tooltip-container>immobilised</a>. 1 WILL point to resist. Then all allies within this same area may
-                  teleport up to 5ft to an unoccupied space they can see.
+               <td>
+                  <strong>Cause a small area to shift in space and time, locking foes and transporting allies.</strong>
+                  <p>
+                     Select a point within 100ft. All enemies within 5ft of this point are
+                     <a class="condition" data-tooltip-container>immobilised</a>. 1 WILL point to resist the <a class="condition" data-tooltip-container>immobilised</a>.
+                     Then all allies within this same area may teleport up to 5ft to an unoccupied space of their choice that they can see.
                </td>
                <td>A+E, 100ft, All within 5ft (AoE)
                </td>
@@ -7602,9 +7605,12 @@
                </td>
                <td>Armour of Force
                </td>
-               <td>Summon armour for 1 turn on yourself and an ally of your choice within
-                  100ft, when a creature hits the target with a Physical attack they are knocked
-                  <a class="condition" data-tooltip-container>prone</a> after the damage is dealt. 1 FORT point to resist.
+               <td>
+                  <strong>Summon a reflective barrier that pummels attackers into the ground.</strong>
+                  <p>
+                     Select an ally within 100ft. When a creature hits you or that ally with a Physical attack they are knocked
+                     <a class="condition" data-tooltip-container>prone</a> after the damage is dealt. 1 FORT point to resist
+                     the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
@@ -7616,8 +7622,11 @@
                </td>
                <td>Astral Switch
                </td>
-               <td>Choose 2 willing creatures and have them switch places. They must both be
-                  within 50ft of you.
+               <td>
+                  <strong>Perfectly swap positions in an instant.</strong>
+                  <p>
+                     Select 2 allies (including self) and have them switch places. They must both be
+                     within 50ft of you.
                </td>
                <td>A+Self, 50ft, 2 targets
                </td>
@@ -7630,10 +7639,12 @@
                <td>Defensive Blink
                </td>
                <td>
+                  <strong>Make every cut on an ally cause a tear in reality that teleports them away from danger.</strong>
+                  <p>
                   <span class="wip">
-                     Choose a willing target within 100ft. Each time this creature suffers
+                     Select an ally within 100ft. Each time this creature suffers
                      damage until the end of your next turn they teleport 10ft directly away from
-                     their attacker. Cannot be cast on a creature already under the effect of this
+                     the source of the damage (attacker). Cannot be cast on a creature already under the effect of this
                      ability.
                   </span>
                </td>
@@ -7647,10 +7658,13 @@
                </td>
                <td>Force Displace
                </td>
-               <td>Choose a creature within 25ft, teleport to them taking their place. The
-                  target is displaced to a point of your choice within 5ft of you. The target also
-                  suffers Heavy+INT damage. 2 FORT points to resist displacement, in which case
-                  you take a position of your choice within 5ft of the target.
+               <td>
+                  <strong>Aggressively teleport towards a foe, forcing them out of your way.</strong>
+                  <p>
+                     Select a creature within 25ft, teleport to them and briefly occupy the same space as them.
+                     The target suffers Heavy+INT force damage and is pushed to a point of your choice within 5ft of you.
+                     2 FORT points to resist the push. If the creature resists the push it does not move, and you are pushed to
+                     a point within 5ft of the creature.
                </td>
                <td>A+E, 25ft, Single target
                </td>
