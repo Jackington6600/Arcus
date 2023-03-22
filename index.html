@@ -191,6 +191,7 @@
       <a class="h3 nav-link" href="#Step 5 - Classes">Step 5 - Classes</a>
       <a class="h4 nav-link" href="#Class Summaries">Class Summaries</a>
       <a class="h4 nav-link" href="#Abilities">Abilities</a>
+      <a class="h4 nav-link" href="#Legendary Abilities">Legendary Abilities</a>
       <a class="h4 nav-link" href="#Spellcasting">Spellcasting</a>
       <a class="h3 nav-link" href="#Step 6 - Skills & Traits">Step 6 - Skills & Traits</a>
       <a class="h4 nav-link" href="#Skills">Skills</a>
@@ -203,7 +204,6 @@
       <a class="h5 nav-link" href="#Mortality Traits">Mortality Traits</a>
       <a class="h5 nav-link" href="#Elemental Traits">Elemental Traits</a>
       <a class="h5 nav-link" href="#Engineer Traits">Engineer Traits</a>
-      <a class="h4 nav-link" href="#Legendary Traits">Legendary Traits</a>
       <a class="h3 nav-link" href="#Step 7 - Equipment">Step 7 - Equipment</a>
       <a class="h4 nav-link" href="#Weapons">Weapons</a>
       <a class="h5 nav-link" href="#Weapon Example Table">Weapon Example Table</a>
@@ -563,9 +563,9 @@
          </p>
          <p>
             <strong><span class="fort">Constitution (CON)</span></strong> - a combination of the character's overall
-            health and endurance. In addition to constitution based skill checks, your starting Hit Points are four times your
-            consitution value. Later on, your HP will increase by a small amount every odd level and even more if you take the 
-            Legendary Trait Enduring.
+            health and endurance. In addition to constitution based skill checks, your starting Hit Points are three times your
+            consitution value. Later on, your HP will increase if you increase your CON attribute or if you take the 
+            legendary ability: Legendary Endurance.
          </p>
          <p>
             <strong><span class="refl">Dexterity (DEX)</span></strong> - a character's hand-eye coordination, balance,
@@ -947,11 +947,11 @@
          <h3 id="Step 4 - Hit Points">Step 4 - Hit Points</h3>
          <p>
             Your Hit Points (HP) or Health at level 1 is equal to your Constitution Attribute value
-            multiplied by 4. So a Consitution of 15 results in 60 HP at level 1.
+            multiplied by 3. So a Consitution of 15 results in 45 HP at level 1.
          </p>
          <p>
-            Every odd level after first (3, 5, 7, 9 etc.) you gain 4 additional Hit Points.  
-            You can increase your Hit Points further every 5 levels with the Legendary Trait Enduring.
+            <!-- Every odd level after first (3, 5, 7, 9 etc.) you gain 4 additional Hit Points.   -->
+            You can increase your Hit Points further every 5 levels with the legendary ability: Legendary Endurance.
          </p>
          <h4 id="Temporary Hit Points">Temporary Hit Points</h4>
          <p>
@@ -1097,6 +1097,160 @@
             Other abilities can be used regardless of weapon type (see Types of Attack Roll
             section).
          </p>
+         <h4 id="Legendary Abilities">Legendary Abilities</h4>
+         <p>
+           You can unlock a legendary ability at level 1, and an additional one every 5 levels.  
+           These give a significant ability or passive to your character.
+           Some can be taken multiple times.
+         </p>
+         <table class="center">
+            <tr>
+               <td><strong>Name</strong>
+               </td>
+               <td><strong>Desc</strong>
+               </td>
+               <td><strong>Requirements</strong>
+               </td>
+            </tr>
+            <tr>
+               <td>Legendary Endurance
+               </td>
+               <td>
+                  Increase your max HP by additional CON value. This additional HP is recalculated as normal if 
+                  your CON value changes.
+               </td>
+               <td>Can be taken up to 3 times. You may only take either Legendary Endurance or Legendary Power
+                  abilities a total of 3 times. Such as taking Legendary Endurance 3 times and not taking Legendary Power (or vice versa),
+                  or 2 Legendary Endurance and 1 Legendary Power (or vice versa).
+               </td>
+            </tr>
+            <tr>
+               <td>Legendary Power
+               </td>
+               <td>
+                  Light / Medium / Heavy values increase by 1 / 2 / 3 respectively.
+               </td>
+               <td>Can be taken up to 3 times. You may only take either Legendary Endurance or Legendary Power
+                  abilities a total of 3 times. Such as taking Legendary Endurance 3 times and not taking Legendary Power (or vice versa),
+                  or 2 Legendary Endurance and 1 Legendary Power (or vice versa).
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Legendary Empowered Resistance Drain
+               </td>
+               <td>
+                  <p>
+                  Upgrade to Empowered Resistance Drain. When you use Empowered Resistance Drain, the number
+                  of resistance points spent grants another creature of your choice bonus damage on the next instance of damage they 
+                  inflict before the start of your next turn. 1, 2 or 3 resistance points spent results in additional Light, Medium, or Heavy damage
+                  respectively - the type of damage is the same as what the attack deals.
+                  </p>
+                  Any creature can only give this effect once per turn, and any creature can only have one instance of this effect on
+                  them at any given time. 
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Legendary Empowered Ability
+               </td>
+               <td>
+                  <p>
+                  Upgrade to Empowered Ability. When you use Empowered Ability, the number
+                  of resistance points spent grants additional advantage (+) equal to the number of resistance points spent, 
+                  or grants additional damage equal to the number of resistance points spent - your choice. The type of damage 
+                  is the same as what the attack deals. If the ability deals no damage it can still deal this bonus damage of the 
+                  most appropriate type - GM's discretion.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Legendary Heroic Resistance
+               </td>
+               <td>
+                  <p>
+                  Upgrade to Heroic Resistance. On your turn for 0 AP you may spend any number of resistance points of any type.
+                  Until the start of your next turn you may use the Heroic Resistance ability a number of times equal to the 
+                  number of resistance points spent for no additional cost. Even if you don't use all of the Heroic Resistances
+                  you gained from spending resistance points in this way, you do not regain any resistance points spent.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>Practised 
+               </td>
+               <td>
+                  Gain 1 additional use of each ability 
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>Restorative
+               </td>
+               <td>
+                  Heal an additional Light HP or gain additional Light Temp HP whenever you are healed or gain HP respectively.
+
+                  This uses your Light value.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>Fast footed
+               </td>
+               <td>
+                  +1 AC when wearing any Armour and remove -5ft of the speed buff.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Unimpeded
+               </td>
+               <td>
+                  +1 AC when wearing Heavy Armour and remove -5ft of the speed buff.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Bull's Will
+               </td>
+               <td>
+                  Gain 5 Will Resistance Points.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Cat's Reflexes
+               </td>
+               <td>
+                  Gain 5 Reflex Resistance Points.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Bear’s Fortitude
+               </td>
+               <td>
+                  Gain 5 Fortitude Resistance Points.
+               </td>
+               <td>Can be taken once.
+               </td>
+            </tr>
+         </table>
          <h4 id="Spellcasting">Spellcasting</h4>
          <p>
             Abilities and spells that do not mention a weapon (such as most abilities from
@@ -2582,109 +2736,6 @@
                   </td>
                </tr>
             </table>
-         <h4 id="Legendary Traits">Legendary Traits</h4>
-         <p>
-           You can unlock a Legendary Trait every 5 levels.  
-           These give a permanent large passive to your character.
-           Some can be taken multiple times.
-         </p>
-         <table class="center">
-            <tr>
-               <td><strong>Name</strong>
-               </td>
-               <td><strong>Desc</strong>
-               </td>
-               <td><strong>Requirements</strong>
-               </td>
-            </tr>
-            <tr>
-               <td>Enduring
-               </td>
-               <td>
-                  Increase your max HP by additional CON value.  
-               </td>
-               <td>Can be taken multiple times
-               </td>
-            </tr>
-            <tr>
-               <td>Powerful
-               </td>
-               <td>
-                  Light / Medium / Heavy values increase by 1 / 2 / 3 respectively.  
-               </td>
-               <td>Can be taken multiple times
-               </td>
-            </tr>
-            <tr>
-               <td>Practised 
-               </td>
-               <td>
-                  Gain 1 additional use of each ability 
-               </td>
-               <td>Can be taken multiple times
-               </td>
-            </tr>
-            <tr>
-               <td>Restorative
-               </td>
-               <td>
-                  Heal an additional Light HP or gain addtional Light Temp HP whenever you are healed or gain HP respectively.
-
-                  This uses your Light value.
-               </td>
-               <td>Can be taken multiple times
-               </td>
-            </tr>
-            <tr>
-               <td>Fast footed
-               </td>
-               <td>
-                  +1 AC when wearing any Armour and remove -5ft of the speed buff.
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Unimpeded
-               </td>
-               <td>
-                  +1 AC when wearing Heavy Armour and remove -5ft of the speed buff.
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Bull's Will
-               </td>
-               <td>
-                  Gain 5 Will Resistance Points.
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Cat's Reflexes
-               </td>
-               <td>
-                  Gain 5 Reflex Resistance Points.
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Bear’s Fortitude
-               </td>
-               <td>
-                  Gain 5 Fortitude Resistance Points.
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-         </table>
          <h3 id=""></h3>
          <h3 id="Step 7 - Equipment">Step 7 - Equipment</h3>
          <h4 id="Weapons">Weapons</h4>
@@ -2990,7 +3041,7 @@
                </td>
                <td>Assign starting attributes, calculate resistance points (including gained
                   from SPI mod), calculate total HP, gain 4 skills or traits, assign 1 level in a
-                  class (gain abilities from that class), choose equipment.
+                  class (gain abilities from that class), choose equipment. Unlock a legendary ability.
                </td>
             </tr>
             <tr>
@@ -3003,7 +3054,7 @@
             <tr>
                <td>3
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3017,9 +3068,9 @@
             <tr>
                <td>5
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
-                  Unlock a legendary trait.
+                  Unlock a legendary ability.
                </td>
             </tr>
             <tr>
@@ -3032,7 +3083,7 @@
             <tr>
                <td>7
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3046,7 +3097,7 @@
             <tr>
                <td>9
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3055,13 +3106,13 @@
                </td>
                <td>Gain and assign 2 attribute points in two different stats.  To make a stat above 20, this requires both attribute points (recalculate resistance points and HP
                   etc.), gain and assign 1 level in a class (gain abilities from that class),
-                  Unlock a legendary trait.
+                  Unlock a legendary ability.
                </td>
             </tr>
             <tr>
                <td>11
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3075,7 +3126,7 @@
             <tr>
                <td>13
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3089,9 +3140,9 @@
             <tr>
                <td>15
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class),
-                  unlock a Legendary Trait.
+                  unlock a legendary ability.
                </td>
             </tr>
             <tr>
@@ -3104,7 +3155,7 @@
             <tr>
                <td>17
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3118,7 +3169,7 @@
             <tr>
                <td>19
                </td>
-               <td>Increase your HP by 4, gain or upgrade 1 skill or gain 1
+               <td>Gain or upgrade 1 skill or gain 1
                   trait, gain and assign 1 level in a class (gain abilities from that class).
                </td>
             </tr>
@@ -3127,7 +3178,7 @@
                </td>
                <td>Gain and assign 2 attribute points in two different stats.  To make a stat above 20, this requires both attribute points (recalculate resistance points and HP
                   etc.), gain and assign 1 level in a class (gain abilities from that class),
-                  unlock a legendary trait.
+                  unlock a legendary ability.
                </td>
             </tr>
             <tr>
@@ -3162,9 +3213,9 @@
                <li>Gain one new skill or trait, or increase your proficiency level in one skill
                   up to a maximum of (+++).</li>
             </ul>
-            <li>Levels 5, 10, 15, 20</li>
+            <li>Levels 1, 5, 10, 15, 20</li>
             <ul>
-               <li>Unlock a legendary trait.</li>
+               <li>Unlock a legendary ability.</li>
             </ul>
          </ul>
          <h2 id="Out of Combat">Out of Combat</h2>
@@ -3533,7 +3584,7 @@
          <h3 id="Damage">Damage</h3>
          <p>
             Base weapon damage depends on the class of attack or ability you use.  Light, Medium, and Heavy
-            damage deal 3, 6, and 9 damage respectively.  You can increase these values with Legendary Traits
+            damage deal 3, 6, and 9 damage respectively.  You can increase these values with legendary abilities
             every 5 levels.
          </p>
          <table class="center">
@@ -3542,7 +3593,7 @@
                </td>
             </tr>
             <tr>
-               <td><strong>Legendary Damage Trait Level</strong>
+               <td><strong>Legendary Damage Ability Level</strong>
                </td>
                <td><strong>Light</strong>
                </td>
@@ -3591,16 +3642,6 @@
                <td>18
                </td>
             </tr>
-            <tr>
-               <td>4
-               </td>
-               <td>7
-               </td>
-               <td>14
-               </td>
-               <td>21
-               </td>
-            </tr>
          </table>
          <p>
             To this value you add the appropriate damage modifier. If you used DEX+DEX for
@@ -3608,7 +3649,7 @@
          </p>
          <p>
             If a level 1 character had +2 to INT and was making an INT based attack that
-            dealt Light physical damage: They would first make an attack with INT+INT bonus
+            dealt Light physical damage (with no legendary ability upgrades): They would first make an attack with INT+INT bonus
             (2d12+2+2). If successful they would then deal Light+INT physical damage (3+2).
          </p>
          <h4 id="Critical Damage">Critical Damage</h4>
