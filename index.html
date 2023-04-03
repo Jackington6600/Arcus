@@ -869,7 +869,7 @@
             GM's monsters and NPCs always spend the recommend resistance point cost -  
             if they have fewer available than the recommended cost they should still 
             always spend their resistance points even if it would have no effect. For example, 
-            if the ability costs 5 FORT to resist, and the creature has 3 FORT remaining, it should 
+            if the ability costs 5 FORT points to resist, and the creature has 3 FORT remaining, it should 
             still spend all 3 FORT points as it fails to resist the effect. The creatures 
             may spend 1 extra resistance point to automatically succeed. This is done to 
             allow players to spend their abilities to weaken enemies by forcing them to 
@@ -4421,7 +4421,7 @@
                </td>
                <td><strong>Roar with the power to daze nearby creatures. </strong>
                   <p>
-                     <a class="condition" data-tooltip-container>Stun</a> all enemies in a 15ft radius. 1 WILL to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     <a class="condition" data-tooltip-container>Stun</a> all enemies in a 15ft radius. 1 WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>E, 15ft, All within range (AoE)
                </td>
@@ -4497,7 +4497,7 @@
                </td>
                <td><strong>Let out a roar that terrifies those who hear it.</strong>
                   <p>
-                     Inflict <a class="condition" data-tooltip-container>fear</a> to all enemies within 15ft. 1 WILL points to resist the
+                     Inflict <a class="condition" data-tooltip-container>fear</a> to all enemies within 15ft. 1 WILL point to resist the
                      <a class="condition" data-tooltip-container>fear</a>.
                </td>
                <td>E, 15ft, All within range (AoE)
@@ -4637,7 +4637,7 @@
                      Select a creature within 5ft and push them back up to 20ft in a straight line
                      away from you. If this push movement is stopped by another creature or solid
                      object it suffers additional Medium damage, does not move further and is knocked
-                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT points to resist the
+                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT point to resist the
                      <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, Melee, Single target
@@ -4686,7 +4686,7 @@
                      shockwave.</strong>
                   <p>
                      All creatures in a 20ft line from you are knocked <a class="condition" data-tooltip-container>prone</a> and then
-                     <a class="condition" data-tooltip-container>hobbled</a>. 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>, 1 FORT to resist
+                     <a class="condition" data-tooltip-container>hobbled</a>. 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>, 1 FORT point to resist
                      the <a class="condition" data-tooltip-container>hobble</a>. If any of the creatures are already <a class="condition" data-tooltip-container>prone</a>,
                      <a class="condition" data-tooltip-container>hobbled</a>, or <a class="condition" data-tooltip-container>stunned</a> they also suffer Light damage.
                </td>
@@ -4769,7 +4769,7 @@
                <td><strong>Stampede forwards, clattering all in your path.</strong>
                   <p>
                      Move up to 40ft. Each creature you move within 5ft of you may push 10ft in 
-                     a direction of your choice. 1 FORT to resist the push.
+                     a direction of your choice. 1 FORT point to resist the push.
                </td>
                <td>A+E, 5ft, All within 5ft of 40ft movement (AoE)
                </td>
@@ -7789,8 +7789,11 @@
                <td>Unspeakable Words
                </td>
                <td>
-                  Select a creature within 100ft. If this creature has 0 in any resistance 
-                  point type the are <a class="condition" data-tooltip-container>silenced</a>. The <a class="condition" data-tooltip-container>silence</a> cannot be resisted.
+                  <strong>Mute your foe's capabilities while they are vulnerable.</strong>
+                  <p>
+                     Select a creature within 100ft. If this creature has 0 in any resistance 
+                     point type they are <a class="condition" data-tooltip-container>silenced</a>. 
+                     The <a class="condition" data-tooltip-container>silence</a> cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7803,9 +7806,11 @@
                <td>Mystic Emulation
                </td>
                <td>
-                  Select an ally within 100ft. The next time the ally uses an ability 
-                  you may gain 1 use of that ability to use on your next 
-                  turn only. This ignores any reaction or passive abilities.
+                  <strong>Replicate your ally's greatest strengths.</strong>
+                  <p>
+                     Select an ally within 100ft. The next time this ally uses an ability 
+                     you may gain 1 use of that ability to use on your next 
+                     turn only. This ignores any reaction or passive abilities.
                </td>
                <td>A
                </td>
@@ -7817,7 +7822,10 @@
                </td>
                <td>Mass Shield
                </td>
-               <td>All allies within 15ft gain Medium+INT temporary HP.
+               <td>
+                  <strong>Protect all allies around you.</strong>
+                  <p>
+                     All allies within 15ft gain Medium+INT temporary HP.
                </td>
                <td>A, 15ft, All within range (AoE)
                </td>
@@ -7829,9 +7837,12 @@
                </td>
                <td>Astral Projection
                </td>
-               <td>Create an identical duplicate of you within 30ft until the end of your
-                  turn. At any point on your turn and as many times as you like, you can choose to
-                  switch places with the duplicate seamlessly.
+               <td>
+                  <strong>Project a perfect image of yourself.</strong>
+                  <p>
+                     Select a point within 30ft and create an identical duplicate of yourself until the end of your
+                     turn. At any point on your turn and as many times as you like, you may
+                     switch places with the duplicate seamlessly.
                </td>
                <td>-, 30ft, Single target
                </td>
@@ -7843,10 +7854,13 @@
                </td>
                <td>Arcane Shield
                </td>
-               <td>Summon a magical shield upon yourself and an ally within 100ft until the
-                  end of your next turn. The next instance of damage on the target is reduced to
-                  0, then the shield ends. Cannot be cast on a creature already under the effect of
-                  this ability.
+               <td>
+                  <strong>Negate incoming damage with two powerful shields.</strong>
+                  <p>
+                     Select an ally within 100ft. You and that ally gain Arcane Shield until the end of your next turn. 
+                     The next instance of damage on that ally and yourself is reduced to
+                     0, then the shield ends. Cannot be cast on a creature already under the effect of
+                     this ability.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
@@ -7858,9 +7872,11 @@
                </td>
                <td>Mass Reposition
                </td>
-               <td>Choose any number of willing creatures within 50ft, each one may choose
-                  to immediately spend their reaction to teleport to a point they can see within
-                  20ft.
+               <td>
+                  <strong>Teleport the masses over a short distance.</strong>
+                  <p>
+                     Select any number of willing creatures within 50ft, each one may immediately
+                     spend their reaction to teleport to a point they can see within 20ft.
                </td>
                <td>A+E, 50ft, Any you choose within range (AoE)
                </td>
@@ -7872,9 +7888,12 @@
                </td>
                <td>Imposed Teleport
                </td>
-               <td>Select a creature within 100ft, they suffer INT damage as you teleport
-                  them to a point you can see within 25ft of their current position. 2 WILL to
-                  resist the teleport.
+               <td>
+                  <strong>Force another creature to teleport to a point of your choosing.</strong>
+                  <p>
+                     Select a creature within 100ft, they suffer INT force damage as you teleport
+                     them to a point you can see within 25ft of their current position. 2 WILL points to
+                     resist the teleport.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8081,7 +8100,7 @@
                <td>Mind Prism
                </td>
                <td>Choose a creature within 100ft. Give them Adv or DisAdv (your choice) to
-                  all their rolls for a turn. 2 WILL to resist.
+                  all their rolls for a turn. 2 WILL points to resist.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8308,7 +8327,7 @@
                <td>Psychic Shriek
                </td>
                <td>Auto hit up to 3 creatures within 50ft. This does Light+INT damage and
-                  Stuns. 1 WILL to resist the <a class="condition" data-tooltip-container>stun</a>.
+                  Stuns. 1 WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 50ft, 3 targets
                </td>
@@ -8334,7 +8353,7 @@
                <td>Apathy
                </td>
                <td>Force a creature within 100ft to spend all AP on its turn doing nothing.
-                  It also cannot use its reaction. No <a class="condition" data-tooltip-container>paralysis</a>, just do nothing. 2 WILL to
+                  It also cannot use its reaction. No <a class="condition" data-tooltip-container>paralysis</a>, just do nothing. 2 WILL points to
                   resist.
                </td>
                <td>A+E, 100ft, Single target
@@ -8794,7 +8813,7 @@
                </td>
                <td>Call upon birds to swarm a target. Make a regular SPI based attack roll
                   against a target dealing Heavy+SPI physical damage. The target is also <a class="condition" data-tooltip-container>hobbled</a>
-                  and <a class="condition" data-tooltip-container>blinded</a>. 1 REFL to resist each affect
+                  and <a class="condition" data-tooltip-container>blinded</a>. 1 REFL point to resist each affect
                </td>
                <td>A+E, 100ft,
                   <p>
@@ -8879,10 +8898,10 @@
                <td>Turn to wood
                </td>
                <td>Make an SPI based range attack against a target. This attack deals
-                  Medium+SPI damage and the target is <a class="condition" data-tooltip-container>immobilised</a> as they turn to wood. 2 WILL to
+                  Medium+SPI damage and the target is <a class="condition" data-tooltip-container>immobilised</a> as they turn to wood. 2 WILL points to
                   resist the <a class="condition" data-tooltip-container>immobilise</a>. If they don’t move before the end of their next turn,
                   the wood encases their body and they’re <a class="condition" data-tooltip-container>paralysed</a> until the end of their
-                  subsequent turn. 2 WILL to resist the <a class="condition" data-tooltip-container>paralysed</a>.
+                  subsequent turn. 2 WILL points to resist the <a class="condition" data-tooltip-container>paralysed</a>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -9198,7 +9217,7 @@
                <td>Corrosive Acid Vial
                </td>
                <td>Throw a vial of corrosive acid at a group of enemies. <a class="condition" data-tooltip-container>Mark</a> them and
-                  reduce their AC by 2+INT, 1 REFL to resist.
+                  reduce their AC by 2+INT, 1 REFL point to resist.
                </td>
                <td>All
                   <p>
@@ -9274,7 +9293,7 @@
                <td>Black hole grenade
                </td>
                <td>Throw a grenade within 50ft. This sucks everyone within 15/20/25ft up to
-                  5/10/15ft closer to the grenade. 1/2/3 Fort to resist the movement.
+                  5/10/15ft closer to the grenade. 1/2/3 Fort point to resist the movement.
                </td>
                <td>A+E, 50ft
                </td>
@@ -9404,7 +9423,7 @@
                <td>Choose a tile within 50ft. This and all tiles within a 5ft radius are
                   coated in a net trap. You can use a reaction to activate this trap at any time
                   within 50ft and <a class="condition" data-tooltip-container>silence</a> and <a class="condition" data-tooltip-container>immobilise</a> all those standing in the marked tiles. 1
-                  REFL to resist. This is a construct.
+                  REFL point to resist. This is a construct.
                </td>
                <td>All
                </td>
@@ -9417,7 +9436,7 @@
                <td>This one goes boom
                </td>
                <td>Throw a grenade, dealing Medium + Int damage and moving the target up to
-                  20ft in a direction of your choice. 2 FORT to resist the movement
+                  20ft in a direction of your choice. 2 FORT points to resist the movement
                </td>
                <td>50ft, E
                </td>
@@ -9459,7 +9478,7 @@
                <td>Flamethrower
                </td>
                <td>Choose a point exactly 15ft away from you. All creatures within 10ft of
-                  that point suffer Medium+INT fire damage. 1 REFL to resist for half damage.
+                  that point suffer Medium+INT fire damage. 1 REFL point to resist for half damage.
                </td>
                <td>All, 15ft. 10ft radius (AoE)
                </td>
@@ -9524,7 +9543,7 @@
                <td>Magnets!
                </td>
                <td>Choose 2 creatures within 50ft of each other. They are pinged together,
-                  and move directly towards each other up to 25ft. 2 Fort to resist the movement.
+                  and move directly towards each other up to 25ft. 2 FORT points to resist the movement.
                </td>
                <td>E, 50ft
                </td>
@@ -9601,7 +9620,7 @@
                   <p>
                      Choose 1/2/3 tiles to throw a grenade into. These bump all creatures within 5ft
                      10ft in a straight line of your choice. You can bump the same creature multiple
-                     times (they explode in order) 1 FORT to resist each bump.
+                     times (they explode in order) 1 FORT point to resist each bump.
                </td>
                <td>All
                   <p>
@@ -9839,7 +9858,7 @@
                <td>The beast bites onto an enemy within 5ft, dealing light damage. They
                   then move and drag the enemy up to 25ft towards you. If it is within melee
                   range, you can use your reaction to make a regular attack against the creature.
-                  2 FORT to resist
+                  2 FORT points to resist
                </td>
                <td>E
                </td>
@@ -9853,7 +9872,7 @@
                </td>
                <td>Your beast charges forward, knocking over everyone in their path. Move
                   up to 20ft making a regular attack against everyone in their path. Deal regular
-                  damage and knock <a class="condition" data-tooltip-container>prone</a> on a successful hit. 1 FORT to resist.
+                  damage and knock <a class="condition" data-tooltip-container>prone</a> on a successful hit. 1 FORT point to resist.
                </td>
                <td>E, 20ft
                </td>
@@ -10243,7 +10262,7 @@
                <td>Poison Strike
                </td>
                <td>Make a regular melee attack against a target. On a successful hit do
-                  Light+DEX poison damage and <a class="condition" data-tooltip-container>stun</a>. 2 FORT to resist <a class="condition" data-tooltip-container>stun</a>
+                  Light+DEX poison damage and <a class="condition" data-tooltip-container>stun</a>. 2 FORT points to resist <a class="condition" data-tooltip-container>stun</a>
                </td>
                <td>E, Melee
                </td>
@@ -10435,7 +10454,7 @@
                <td>Bite onto an enemy within 5ft that is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
                   <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
                   <a class="condition" data-tooltip-container>paralysed</a> then move and drag the enemy up to 20ft
-                  with you. 2 FORT to resist.
+                  with you. 2 FORT points to resist.
                </td>
                <td>E
                </td>
@@ -10639,7 +10658,7 @@
                <td>Distraction
                </td>
                <td><a class="condition" data-tooltip-container>Mark</a> an adjacent creature.
-                  The creature has DisAdv (--) on any attack this turn.  2 REFL to resist.
+                  The creature has DisAdv (--) on any attack this turn.  2 REFL points to resist.
                </td>
                <td>E, melee, Single target
                </td>
@@ -10715,7 +10734,7 @@
                   successful hit deal Light+STR damage. You may then chose to hold onto the target 
                   and fly 20ft up into the air after which the target is dropped dealing 20ft fall damage 
                   (Normally 10, normal rules apply). 
-                  2 FORT to resistance being lifted into the air.
+                  2 FORT points to resistance being lifted into the air.
                </td>
                <td>E, Melee
                </td>
@@ -10728,7 +10747,7 @@
                <td>Sky Fall
                </td>
                <td>Fly directly down to the ground. If you started at least 20ft up, all creatures within 5ft get knocked <a class="condition" data-tooltip-container>prone</a>. 
-                  1 FORT to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
+                  1 FORT point to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, AOE, 5ft
                </td>
