@@ -853,7 +853,7 @@
          <p>
             When you use the Resistance Drain core ability on a creature, 
             you may spend up to 3 resistance points of any type to increase the 
-            resistance points drained from that creature by the same number.
+            resistance points drained from this creature by the same number.
 
          </p>
          <h4 id="Important Notes For The GM">Important Notes For The GM</h4>
@@ -3919,7 +3919,7 @@
                <td>
                   When you use the Resistance Drain core ability on a creature, 
                   you may spend up to 3 resistance points of any type to increase the 
-                  resistance points drained from that creature by the same number.
+                  resistance points drained from this creature by the same number.
                </td>
                <td>E, Range varies
                </td>
@@ -5194,8 +5194,8 @@
                <td><strong>Lash out and elude your foes, staying mobile all the
                      while.</strong>
                   <p>
-                     If you have moved within 5ft of a hostile creature during your turn, deal Medium
-                     damage to that creature within 5ft. That creature cannot make attacks of
+                     If you have moved within 5ft of a creature during your turn, you may deal Medium
+                     damage to this creature within 5ft. This creature cannot make attacks of
                      opportunity against you this round.
                </td>
                <td>A+E, 5ft, Single target
@@ -8116,9 +8116,12 @@
                </td>
                <td>Psychic Pierce
                </td>
-               <td>Auto Hit a target within 100ft. The target suffers Medium+INT damage, but
-                  if they currently have 3 or more distinct negative conditions they suffer
-                  Heavy+INT damage instead.
+               <td>
+                  <strong>Puncture a creatures mind as if taking a blade to their synapses.</strong>
+                  <p>
+                     Make an auto hit attack against a creature within 100ft. The creature suffers Medium+INT psychic damage, but
+                     if they currently have 3 or more distinct negative conditions they suffer
+                     Heavy+INT psychic damage instead.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8132,8 +8135,11 @@
                </td>
                <td>Mind Prism
                </td>
-               <td>Choose a creature within 100ft. Give them Adv or DisAdv (your choice) to
-                  all their rolls for a turn. 2 WILL points to resist.
+               <td>
+                  <strong>Enhance or degrade a creature's focus.</strong>
+                  <p>
+                     Select a creature within 100ft. This creature gains Adv (+) or DisAdv (-) (your choice) on
+                     all their dice rolls. 2 WILL points to resist the DisAdv (-).
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8143,12 +8149,15 @@
             <tr>
                <td>1
                </td>
-               <td>Force Neglection
+               <td>Neglect
                </td>
-               <td><a class="condition" data-tooltip-container>Mark</a> a creature within 100ft. This creature cannot select you as a target
-                  until your next turn, unless you are the only hostile remaining. If you are also
-                  taunting the target it simply ignores the <a class="condition" data-tooltip-container>taunt</a>. You can still be affected by
-                  AoE abilities. Cannot be resisted.
+               <td>
+                  <strong>Make a creature blind to you as a threat.</strong>
+                  <p>
+                     Select a creature within 100ft and <a class="condition" data-tooltip-container>Mark</a> it. 
+                     This creature cannot select you as a target, unless you are the only hostile remaining. If you are also
+                     taunting the target it simply ignores the <a class="condition" data-tooltip-container>taunt</a>. You can still be affected by
+                     AoE abilities. Cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8161,9 +8170,11 @@
                <td>Psychic Link
                </td>
                <td>
-                  Select a creature within 100ft and link yourself to it. When you are inflicted with 
-                  a condition, both you and the creature are 
-                  inflicted with the condition and may attempt to resist it separately as normal.
+                  <strong>Bind yourself to another's mental state, feeling what they feel.</strong>
+                  <p>
+                     Select a creature within 100ft and link yourself to it. When you are inflicted with 
+                     a condition, both you and the linked creature are 
+                     inflicted with the condition and may attempt to resist it separately as normal.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8175,8 +8186,13 @@
                </td>
                <td>Panic Attack
                </td>
-               <td>Force a target (including allies) within 100ft to spend their reaction
-                  attacking the closest target (random if more than one). 2 WILL points to resist.
+               <td>
+                  <strong>Trigger a creature to lose control and strike wildly.</strong>
+                  <p>
+                     Select a creature within 100ft, this creature must spend its reaction to 
+                     attack the closest creature using a regular attack without moving. If multiple 
+                     creatures are the same distance the target is selected randomly.
+                     2 WILL points to resist being forced to make the attack.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8189,12 +8205,14 @@
                <td>Radiating Anguish
                </td>
                <td>
-                  Select a creature within 100ft, make note of their current position, and <a class="condition" data-tooltip-container>hobble</a> them. 
-                  At the start of your next turn: 
-                  If the selected creature is within 5ft of the noted position it suffers Heavy+MOD psychic damage. 
-                  Or if it is within 20ft of the noted position it suffers Medium+MOD psychic damage. 
-                  Otherwise it suffers Light+MOD damage. 
-                  2 WILL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
+                  <strong>Slowly emit a sense of pain and suffering.</strong>
+                  <p>
+                     Select a creature within 100ft, make note of their current position, and <a class="condition" data-tooltip-container>hobble</a> them. 
+                     At the start of your next turn: 
+                     If the selected creature is within 5ft of the noted position it suffers Heavy+MOD psychic damage. 
+                     Or if it is within 20ft of the noted position it suffers Medium+MOD psychic damage. 
+                     Otherwise it suffers Light+MOD psychic damage. 
+                     2 WILL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8206,10 +8224,13 @@
                </td>
                <td>Cruel Joke
                </td>
-               <td>Your harsh words bring their world crashing down upon them. Auto hit a
-                  target within 100ft dealing Medium+INT Psychic damage. Auto crit if the target
-                  has a negative condition. The target is then also <a class="condition" data-tooltip-container>taunted</a> by you. 2 WILL points
-                  to resist.
+               <td>
+                  <strong>Make a joke that cuts so deep it hurts.</strong>
+                  <p>
+                     Make an auto hit attack against a creature within 100ft,
+                     dealing Medium+INT psychic damage. If the creature
+                     has a negative condition the attack is a critical hit. The creature is then also <a class="condition" data-tooltip-container>taunted</a> by you. 2 WILL points
+                     to resist the <a class="condition" data-tooltip-container>taunted</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -9796,7 +9817,7 @@
                </td>
                <td><a class="condition" data-tooltip-container>Mark</a> a target. This becomes your beast’s focus until it dies or the
                   beast’s stance is changed. All allies (incl beast) gain advantage (+) in all
-                  attacks against that creature in the next turn.
+                  attacks against this creature in the next turn.
                </td>
                <td>E, 100ft
                </td>
