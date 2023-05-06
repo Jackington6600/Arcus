@@ -272,12 +272,12 @@
       <a class="h3 nav-link" href="#Beastmaster">Beastmaster</a>
       <a class="h2 nav-link" href="#Appendix">Appendix</a>
       <a class="h3 nav-link" href="#Stat Blocks">Stat Blocks</a>
-      <a class="h4 nav-link" href="#Beast Shape - Tiny Animal">Beast Shape - Tiny Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Medium Animal">Beast Shape - Medium Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Large Animal">Beast Shape - Large Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Tiny Flying Animal">Beast Shape - Tiny Flying Animal</a>
-      <a class="h4 nav-link" href="#Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</a>
+      <a class="h4 nav-link" href="#Tiny Beast Form">Tiny Beast Form</a>
+      <a class="h4 nav-link" href="#Medium Beast Form">Medium Beast Form</a>
+      <a class="h4 nav-link" href="#Large Beast Form">Large Beast Form</a>
+      <a class="h4 nav-link" href="#Aquatic Beast Form">Aquatic Beast Form</a>
+      <a class="h4 nav-link" href="#Tiny Flying Beast Form">Tiny Flying Beast Form</a>
+      <a class="h4 nav-link" href="#Large Flying Beast Form">Large Flying Beast Form</a>
       <a class="h4 nav-link" href="#Undead Creature Stats">Undead Creature Stats</a>
       <a class="h4 nav-link" href="#Soul Devourer Stats">Soul Devourer Stats</a>
       <a class="h4 nav-link" href="#Beast Base Stats">Beast Base Stats</a>
@@ -2195,10 +2195,10 @@
                <td>Anthropomorphic Beast
                </td>
                <td>
-                  Your Beast Shape is more anthropomorphic and can stand on hind legs. 
-                  While in Beast Shape, you can manipulate objects and weild weapons.  
+                  Your Beast Form is more anthropomorphic and can stand on hind legs. 
+                  While in Beast Form, you can manipulate objects and weild weapons.  
                   This still uses your Beast's stats, and you can't weild a weapon which is
-                  disproportionate for the beast (e.g. a Tiny Animal can't wield a Medium or Heavy weapon).
+                  disproportionate for the beast (e.g. a Tiny Beast Form cannot wield a Medium or Heavy weapon).
                </td>
                <td>Passive
                </td>
@@ -8718,7 +8718,7 @@
                <td>Beast Form
                </td>
                <td>
-                  <strong>Transform into animals at will.</strong>
+                  <strong>Transform into beasts at will.</strong>
                   <p>
                   You gain the ability to change form into your unlocked beasts for 1AP (See Beast Form table in the Appendix). While in Beast Form, you can use all the beast's abilities.
                   Core abilities in this table have unlimited uses as normal, and all of the level 1 abilities are automatically 
@@ -10388,9 +10388,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Tiny Animal">Beast Shape - Tiny Animal</h4>
+                  <h4 id="Tiny Beast Form">Tiny Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into a tiny animal such as a rat, snake,
+                     For 1AP, you can transform into a tiny beast such as a rat, snake,
                      or lizard. Useful for fast movement, evading damage, and poisoning.
                   </em></strong>
                </td>
@@ -10437,10 +10437,12 @@
                <td>Nimble
                </td>
                <td>
-                  You ignore difficult terrain and can climb any surface at half movement
-                  speed with advantage (+++).
-                  <br><br>
-                  If you choose an amphibious creature it can swim at full movement speed.
+                  <strong>Your small form makes you nimble and evasive.</strong>
+                  <p>
+                     You ignore difficult terrain and can climb any surface at half movement
+                     speed with advantage (+++).
+                     <br><br>
+                     If you choose an amphibious creature you can also swim at full movement speed.
                </td>
                <td>Self
                </td>
@@ -10452,10 +10454,13 @@
                </td>
                <td>Ankle Bite
                </td>
-               <td>Make a regular melee attack against a target. On a successful hit do
-                  Light+DEX poison damage.
+               <td>
+                  <strong>Strike at their heels.</strong>
+                  <p>
+                     Make a melee DEX attack against a creature. On a hit deal
+                     Light+DEX poison damage.
                </td>
-               <td>E, Melee
+               <td>A+E, Melee, Single Target
                </td>
                <td>2
                </td>
@@ -10465,10 +10470,13 @@
                </td>
                <td>Poison Strike
                </td>
-               <td>Make a regular melee attack against a target. On a successful hit do
-                  Light+DEX poison damage and <a class="condition" data-tooltip-container>stun</a>. 2 FORT points to resist <a class="condition" data-tooltip-container>stun</a>
+               <td>
+                  <strong>Daze your enemies with a potent venom.</strong>
+                  <p>
+                     Make a melee DEX attack against a creature. On a hit deal
+                     Light+DEX poison damage and the creature is <a class="condition" data-tooltip-container>stunned</a>. 2 FORT points to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
-               <td>E, Melee
+               <td>A+E, Melee, Single Target
                </td>
                <td>2
                </td>
@@ -10478,7 +10486,10 @@
                </td>
                <td>Scamper
                </td>
-               <td>Move 40ft. Can climb upwards at normal speed
+               <td>
+                  <strong>Move rapidly and allude your foes.</strong>
+                  <p>
+                     Move up to 40ft. With this movement you may climb upwards at full speed.
                </td>
                <td>Self
                </td>
@@ -10491,9 +10502,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Medium Animal">Beast Shape - Medium Animal</h4>
+                  <h4 id="Medium Beast Form">Medium Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into a medium animal such as a wolf,
+                     For 1AP, you can transform into a medium beast such as a wolf,
                      leopard, or pig. Useful for team fighting and crowd control.
                   </em></strong>
                </td>
@@ -10539,13 +10550,16 @@
                </td>
                <td>Go for the Throat
                </td>
-               <td>Do a Medium+Dex melee attack against a creature.  
-                  If the creature is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
-                  <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
-                  <a class="condition" data-tooltip-container>paralysed</a>
-                  this deals Heavy+Dex damage.
+               <td>
+                  <strong>Lash at a creature's throat.</strong>
+                  <p>
+                     Make a melee DEX attack against a creature, dealing Medium+DEX damage on a hit.  
+                     If the creature is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
+                     <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
+                     <a class="condition" data-tooltip-container>paralysed</a>
+                     this deals Heavy+DEX damage instead.
                </td>
-               <td>E, Melee
+               <td>A+E, Melee, Single Target
                </td>
                <td>2
                </td>
@@ -10555,7 +10569,10 @@
                </td>
                <td>Pack Hunter
                </td>
-               <td>Do an additional Light damage for every ally adjacent to the next enemy you damage with single target melee attack this turn.
+               <td>
+                  <strong>Coordinate and attack as a pack.</strong>
+                  <p>
+                     On the next single target melee attack you make this turn, deal an additional Light damage for every ally adjacent to the enemy you deal damage to.
                </td>
                <td>Self
                </td>
@@ -10567,9 +10584,13 @@
                </td>
                <td>Knock to the Floor
                </td>
-               <td>Knock an enemy within 5ft <a class="condition" data-tooltip-container>prone</a>. 2 Fort resist
+               <td>
+                  <strong>Drag their legs out from under them.</strong>
+                  <p>
+                     Select a creature within 5ft and knock them <a class="condition" data-tooltip-container>prone</a>. 2 FORT to resist
+                     the <a class="condition" data-tooltip-container>prone</a>.
                </td>
-               <td>E
+               <td>A+E, 5ft, Single target
                </td>
                <td>1
                </td>
@@ -10578,9 +10599,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Large Animal">Beast Shape - Large Animal</h4>
+                  <h4 id="Large Beast Form">Large Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into a large animal such as a bear,
+                     For 1AP, you can transform into a large beast such as a bear,
                        moose, or sphinx. Useful for raw melee damage or toughness. 
                   </em></strong>
                </td>
@@ -10669,9 +10690,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Aquatic Animal">Beast Shape - Aquatic Animal</h4>
+                  <h4 id="Aquatic Beast Form">Aquatic Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into an aquatic animal such as a shark,
+                     For 1AP, you can transform into an aquatic beast such as a shark,
                      dolphin, or small whale. Useful for water encounters
                   </em></strong>
                </td>
@@ -10785,9 +10806,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Tiny Flying Animal">Beast Shape - Tiny Flying Animal</h4>
+                  <h4 id="Tiny Flying Beast Form">Tiny Flying Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into a Tiny flying animal such as a
+                     For 1AP, you can transform into a tiny flying beast such as a
                      hawk, eagle, or bat. Useful for scouting, crossing ravines, and against
                      creatures without range. 
                   </em></strong>
@@ -10873,9 +10894,9 @@
          <table class="center">
             <tr>
                <td colspan="5">
-                  <h4 id="Beast Shape - Large Flying Animal">Beast Shape - Large Flying Animal</h4>
+                  <h4 id="Large Flying Beast Form">Large Flying Beast Form</h4>
                   <strong><em>
-                     For 1AP, you can transform into a large flying animal such as a
+                     For 1AP, you can transform into a large flying beast such as a
                      giant eagle, griffin, or pterodactyl. Useful for air combat, carrying creatures
                      across ravines, and against creatures without range. 
                   </em></strong>
