@@ -7073,7 +7073,7 @@
                <td>
                   <strong>Raise an undead horde to fight for you.</strong>
                   <p>
-                     Suffer Heavy damage and choose 3 points within 10ft. Summon an undead creature on each of 
+                     Suffer Heavy damage and select 3 points within 10ft. Summon an undead creature on each of 
                      these points - see the appendix for a relevant stat block. Each of these creatures 
                      are fully controlled by you and may each immediately take their turn upon being summoned. 
                      In future rounds they will take turns immediately before yours. On your turn you may
@@ -7266,7 +7266,7 @@
                <td>
                   <strong>Conjure a deadly creature to drain life from your foes.</strong>
                   <p>
-                     Suffer Heavy damage and choose a point within 50ft. Summon a soul devourer on this point 
+                     Suffer Heavy damage and select a point within 50ft. Summon a soul devourer on this point 
                      - see the appendix for a relevant stat block. This creature 
                      is fully controlled by you and may each immediately take its turn upon being summoned. 
                      In future rounds it will take turns immediately before yours. On your turn you may
@@ -7319,7 +7319,7 @@
                <td>
                   <strong>Bring additional serenity and recovery to those within reach.</strong>
                   <p>
-                     Any creatures you choose that are healed within 5ft of you immediately heal for an 
+                     Allies that are healed within 5ft of you immediately heal for an 
                      additional Light HP (excludes self).
                </td>
                <td>A, 5ft
@@ -7386,9 +7386,9 @@
                <td>
                   <strong>Alternate between destruction and restoration.</strong>
                   <p>
-                     Choose up to 4 unique targets, where the first is within 100ft, the
+                     Select up to 4 unique creatures, where the first is within 100ft, the
                      second is within 10ft of the first, and the third is within 10ft of the second,
-                     and the fourth is within 10ft of the third. The first target suffers Medium+SPI
+                     and the fourth is within 10ft of the third. The first creature suffers Medium+SPI
                      Soul damage, the second is healed for the same amount, the third takes Soul
                      damage and the fourth is healed.
                </td>
@@ -7875,10 +7875,10 @@
                <td>
                   <strong>Teleport the masses over a short distance.</strong>
                   <p>
-                     Select any number of willing creatures within 50ft, each one may immediately
+                     Select any number of allies within 50ft, each one may immediately
                      spend their reaction to teleport to a point they can see within 20ft.
                </td>
-               <td>A+E, 50ft, Any you choose within range (AoE)
+               <td>A, 50ft, Allies within range (AoE)
                </td>
                <td>1
                </td>
@@ -10647,9 +10647,12 @@
                </td>
                <td>Savage Bite
                </td>
-               <td>Make a melee attack against a creature, dealing Heavy+Str damage.
+               <td>
+                  <strong>Bite down with strong jaws and sharp teeth.</strong>
+                  <p>
+                     Make a melee STR attack against a creature, on a hit deal Heavy+STR damage.
                </td>
-               <td>E
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10659,14 +10662,14 @@
                </td>
                <td>Barrel
                </td>
-               <td>Rush forward smashing all enemies in your path. Move up to 20ft
-                  and make a regular melee attack against all targets in that line.
-                  All targets hit by the attack take Light+Str damage and are knocked
-                  <a class="condition" data-tooltip-container>prone</a>. 1 FORT point to resist.
-
-                  You cannot hit the same enemy twice.
+               <td>
+                  <strong>Rush forward smashing all enemies in your path.</strong>
+                  <p>
+                     Move up to 20ft, moving through other creatures, and make a melee STR attack against all creatures moved through.
+                     You cannot hit the same enemy twice. All creatures hit by the attack suffer Light+STR damage and are knocked
+                     <a class="condition" data-tooltip-container>prone</a>. 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
-               <td>A+E, All within 20ft of movement from self (AoE)
+               <td>A+E, All creatures moved through with 20ft of movement (AoE)
                </td>
                <td>2
                </td>
@@ -10674,14 +10677,17 @@
             <tr>
                <td>1
                </td>
-               <td>Take Back to Den
+               <td>Drag Away
                </td>
-               <td>Bite onto an enemy within 5ft that is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
-                  <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
-                  <a class="condition" data-tooltip-container>paralysed</a> then move and drag the enemy up to 20ft
-                  with you. 2 FORT points to resist.
+               <td>
+                  <strong>Take an ally or disabled foe and bring them to a vulnerable position.</strong>
+                  <p>
+                     Select an ally within 5ft, or a foe within 5ft that is <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>prone</a>,
+                     <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>unconscious</a>, or 
+                     <a class="condition" data-tooltip-container>paralysed</a> and move up to 20ft pulling the creature
+                     with you. 2 FORT points to resist the pull.
                </td>
-               <td>E
+               <td>A+E, 5ft, Single target
                </td>
                <td>1
                </td>
@@ -10738,9 +10744,11 @@
                </td>
                <td>Water Breathing
                </td>
-               <td>When in water, you have Adv (+) on all CON checks and don’t need to hold
-                  your breath.  On land, you have DisAdv (-) on all CON checks and need to hold
-                  your breath.
+               <td>
+                  <strong>Breathe and thrive underwater.</strong>
+                  <p>
+                     When in water, you have Adv (+) on all checks involving CON and can freely breathe underwater. 
+                     When out of water, you have DisAdv (-) on all checks involving CON and cannot breathe.
                </td>
                <td>Self
                </td>
@@ -10750,9 +10758,12 @@
             <tr>
                <td>Core
                </td>
-               <td>Creature from the Depths
+               <td>Adapted to Swim
                </td>
-               <td>When in water, all attacks of opportunity against you have DisAdv (--).
+               <td>
+                  <strong>Swim faster than other creatures can react.</strong>
+                  <p>
+                     When in water, all attacks of opportunity made against you have DisAdv (--).
                </td>
                <td>Self
                </td>
@@ -10764,9 +10775,12 @@
                </td>
                <td>Bite and Tear
                </td>
-               <td>Make a melee attack against a creature, dealing Medium+Dex damage. 
+               <td>
+                  <strong>Bite, claw, and tear at your foes.</strong>
+                  <p>
+                     Make a melee DEX attack against a creature, on a hit deal Medium+DEX damage. 
                </td>
-               <td>E, Melee, Single target
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10776,13 +10790,15 @@
                </td>
                <td>Water Strike
                </td>
-               <td>Storm forward and strike with great force. Choose a creature you can see
-                  within 20ft and speed directly to them and make a regular
-                  melee attack against the creature dealing DEX damage. On a hit the creature takes additional Light damage
-                  for each tile moved (distance in ft divided by 5). 15ft is equal to 3 tiles, 3*Light (Heavy)
-                  additional damage is dealt. 
+               <td>
+                  <strong>Storm forward and strike with great force.</strong>
+                  <p>
+                     Select a creature within 20ft and move to the closest tile adjacent to them. Then make a melee DEX
+                     attack against the creature. On a hit, the creature suffers DEX damage plus an additional Light damage
+                     for each tile moved (distance in ft divided by 5). For example, 15ft is equal to 3 tiles, so 3*Light
+                     additional damage is dealt. 
                </td>
-               <td>A+E, 30ft/Melee, Single target
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10792,10 +10808,13 @@
                </td>
                <td>Circling Fins
                </td>
-               <td>Cause <a class="condition" data-tooltip-container>fear</a> into the heart of a non <a class="condition" data-tooltip-container>blinded</a> enemy within 20ft. 2 WILL
-                  resist.
+               <td>
+                  <strong>Strike fear into the helpless creatures of the depths.</strong>
+                  <p>
+                     Select a creature that can see you within 20ft and <a class="condition" data-tooltip-container>frighten</a> them. 2 WILL
+                     points to resist the <a class="condition" data-tooltip-container>fear</a>.
                </td>
-               <td>E, Single Target, 20ft
+               <td>A+E, Melee, Single target
                </td>
                <td>1
                </td>
@@ -10855,9 +10874,12 @@
                </td>
                <td>Peck
                </td>
-               <td>Make a melee attack against a creature, dealing Light+Dex damage.
+               <td>
+                  <strong>Strike with your beak and claws.</strong>
+                  <p>
+                     Make a melee DEX attack against a creature, on a hit deal Light+DEX damage.
                </td>
-               <td>E
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10867,12 +10889,14 @@
                </td>
                <td>Go for the Eyes
                </td>
-               <td>Swoop down on target.<br><br>Move up to 25ft and make a
-                  regular melee attack. On a successful hit deal Light+DEX and <a class="condition" data-tooltip-container>blind</a> the
-                  opponent. 2 REFL Points to resist the <a class="condition" data-tooltip-container>blind</a>. You may then move up to 25ft away, however this
-                  will trigger attacks of opportunity.
+               <td>
+                  <strong>Swoop down with great precision.</strong>
+                  <p>
+                     You may move up to 25ft and then make a
+                     melee DEX attack against a creature. On a hit, deal Light+DEX damage and <a class="condition" data-tooltip-container>blind</a> the
+                     creature. 2 REFL points to resist the <a class="condition" data-tooltip-container>blind</a>. You may then move up to 25ft away.
                </td>
-               <td>E, Melee
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10882,10 +10906,13 @@
                </td>
                <td>Distraction
                </td>
-               <td><a class="condition" data-tooltip-container>Mark</a> an adjacent creature.
-                  The creature has DisAdv (--) on any attack this turn.  2 REFL points to resist.
+               <td>
+                  <strong>Flap in the face of a creature to distract it.</strong>
+                  <p>
+                     Select a creature within 5ft and <a class="condition" data-tooltip-container>mark</a> it.
+                     The creature has DisAdv (--) on all attack rolls this turn. 2 REFL points to resist the DisAdv (--).
                </td>
-               <td>E, melee, Single target
+               <td>A+E, 5ft, Single target
                </td>
                <td>1
                </td>
@@ -10943,9 +10970,12 @@
                </td>
                <td>Razor Talons
                </td>
-               <td>Make a melee attack against a creature, dealing Medium+Str damage.
+               <td>
+                  <strong>Rake massive talons across your foe.</strong>
+                  <p>
+                     Make a melee STR attack against a creature, on a hit deal Medium+STR damage.
                </td>
-               <td>E
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10955,13 +10985,15 @@
                </td>
                <td>Pick Up and Drop
                </td>
-               <td>Sink your talons into an enemy. Make a regular melee attack. On a
-                  successful hit deal Light+STR damage. You may then chose to hold onto the target 
-                  and fly 20ft up into the air after which the target is dropped dealing 20ft fall damage 
-                  (Normally 10, normal rules apply). 
-                  2 FORT points to resistance being lifted into the air.
+               <td>
+                  <strong>Sink your talons in and lift a creature to the sky.</strong>
+                  <p>
+                     Make a melee STR attack against a creature. On a
+                     hit deal Light+STR damage. You may then choose pull the creature with you 
+                     and fly up to 20ft in any direction. Then the creature is dropped, dealing any falling damage 
+                     as normal. 2 FORT points to resist the pull.
                </td>
-               <td>E, Melee
+               <td>A+E, Melee, Single target
                </td>
                <td>2
                </td>
@@ -10971,10 +11003,13 @@
                </td>
                <td>Sky Fall
                </td>
-               <td>Fly directly down to the ground. If you started at least 20ft up, all creatures within 5ft get knocked <a class="condition" data-tooltip-container>prone</a>. 
-                  1 FORT point to resist being knocked <a class="condition" data-tooltip-container>prone</a>.
+               <td>
+                  <strong>Fly down and smash your weight into the ground.</strong>
+                  <p>
+                     Move all the way directly down to the ground. If you started at least 20ft up, all creatures within 5ft of where you land are knocked <a class="condition" data-tooltip-container>prone</a>. 
+                     1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
-               <td>A+E, AOE, 5ft
+               <td>A+E, 5ft, All within range (AoE)
                </td>
                <td>1
                </td>
