@@ -1719,8 +1719,7 @@
                </td>
                <td>
                   You may create a small source of light within 100ft that floats and persists until you create a new 
-                  arcane light, or you move more than 100ft away from the light. The light spreads in a 25ft
-                  radius.
+                  arcane light, or you move more than 100ft away from the light. The light spreads roughly 25ft from the arcane light.
                </td>
                <td>0 AP - No Use Limit
                </td>
@@ -1968,7 +1967,7 @@
                <td>Detect Thoughts
                </td>
                <td>
-                  You may sense intelligent creatures in a 15ft radius as spots of light when you close your eyes. 
+                  You may sense intelligent creatures within 15ft of you as spots of light when you close your eyes. 
                   This includes seeing them through walls. This vision persists for 6 seconds.
                   Creatures have to have an intelligence of at least 8 for you to be able to see them, and the more intelligent
                   the creature, the brighter the spots of light.
@@ -2307,7 +2306,7 @@
                <td>Detect Life
                </td>
                <td>
-                  You may sense living creatures in a 10ft radius as spots of soul energy when you close your eyes
+                  You may sense living creatures within 10ft of you as spots of soul energy when you close your eyes
                   The larger the creature, the larger and brighter the the spots are.
                   This includes seeing them through walls. This vision persists for 6 seconds.
                </td>
@@ -4376,7 +4375,7 @@
                      making hostiles aggressive. </strong>
                   <p>
                      Until the start of your next turn, you become <a class="condition" data-tooltip-container>resistant</a> to all physical
-                     damage. All enemies in a 10ft radius become <a class="condition" data-tooltip-container>taunted</a>. 1 WILL point to
+                     damage. All enemies within 10ft of you become <a class="condition" data-tooltip-container>taunted</a>. 1 WILL point to
                      resist the <a class="condition" data-tooltip-container>taunt</a>.
                </td>
                <td>E, 10ft, All within range (AoE)
@@ -4421,7 +4420,7 @@
                </td>
                <td><strong>Roar with the power to daze nearby creatures. </strong>
                   <p>
-                     <a class="condition" data-tooltip-container>Stun</a> all enemies in a 15ft radius. 1 WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     <a class="condition" data-tooltip-container>Stun</a> all enemies within 15ft of you. 1 WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>E, 15ft, All within range (AoE)
                </td>
@@ -4752,8 +4751,8 @@
                <td><strong>Summon an overwhelming sonic boom to bring your enemies to their
                      knees. </strong>
                   <p>
-                     Make a melee weapon attack against a creature. On a hit all creatures within
-                     10ft of the initial target (excluding yourself) suffer Light damage and are
+                     Make a melee weapon attack against a creature. On a hit all creatures (excluding yourself) within
+                     10ft of the initial target suffer Light damage and are
                      knocked <a class="condition" data-tooltip-container>prone</a>. Costs 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, Melee, All within 10t of the target (AoE) excluding Self
@@ -4891,8 +4890,8 @@
                <td><strong>Pick off the stragglers and the weak. </strong>
                   <p>
                      Make a weapon attack against a creature and on a hit deal additional Medium
-                     damage. This additional damage is reduced by 1 for each other creature within a
-                     10ft radius of the initial target (this excludes you and the initial target).
+                     damage. This additional damage is reduced by 1 for each other creature within
+                     10ft of the initial target (this excludes you and the initial target).
                      This additional damage cannot drop below 0.
                </td>
                <td>A+E, Weapon
@@ -4923,10 +4922,10 @@
                </td>
                <td><strong>Dazzle your foes with a small explosive. </strong>
                   <p>
-                     Select a point within 50ft and <a class="condition" data-tooltip-container>blind</a> all creatures in a 10ft radius. 1
+                     Select a point within 50ft and <a class="condition" data-tooltip-container>blind</a> all creatures within a 10ft. 1
                      REFL point to resist the <a class="condition" data-tooltip-container>blind</a>.
                </td>
-               <td>All, 50ft, All within 10ft radius of target tile (AoE)
+               <td>All, 50ft, All within 10ft (AoE)
                </td>
                <td>1
                </td>
@@ -5017,14 +5016,15 @@
                </td>
                <td><strong>Conceal an area with thick smoke. </strong>
                   <p>
-                     Select a point within 50ft, all tiles within 5ft of this point become filled
-                     with smoke. All creatures in this area are <a class="condition" data-tooltip-container>blinded</a> and
-                     <a class="condition" data-tooltip-container>invisible</a>. The cloud lasts for 1 round as normal and the effects cannot
-                     be resisted. Leaving the area of smoke immediately removes the <a class="condition" data-tooltip-container>blinded</a>
-                     and <a class="condition" data-tooltip-container>invisible</a> conditions. The area of smoke also blocks line of
+                     Select a point within 50ft, and create a 5ft radius zone that becomes filled
+                     with smoke. All creatures in this zone are <a class="condition" data-tooltip-container>blinded</a> and
+                     <a class="condition" data-tooltip-container>invisible</a>. These effects cannot be resisted. 
+                     The zone lasts until the start of your next turn as normal. 
+                     Leaving the zone immediately removes the <a class="condition" data-tooltip-container>blinded</a>
+                     and <a class="condition" data-tooltip-container>invisible</a> conditions. The zone also blocks line of
                      sight.
                </td>
-               <td>All, 50ft, All within 5ft radius of target tile (AoE)
+               <td>All, 50ft, All within 5ft (AoE)
                </td>
                <td>1
                </td>
@@ -5584,7 +5584,7 @@
                      If creatures leave the area the DisAdv (--) effect ends.
                </td>
                <td>
-                  E, 100ft (Ranged weapon required), All enemies within a 15ft radius (AoE)
+                  E, 100ft (Ranged weapon required), All enemies within a 15ft (AoE)
                </td>
                <td>1
                </td>
@@ -5862,10 +5862,10 @@
                </td>
                <td><strong>Unleash a barrage of falling projectiles.</strong>
                   <p>
-                     Select a point within weapon range. All creatures within a 15ft radius suffer
+                     Select a point within weapon range. All creatures within a 15ft suffer
                      Light+(DEX or PER) damage.
                </td>
-               <td>All, Weapon (Ranged weapon required), All within 20ft radius (AoE)
+               <td>All, Weapon (Ranged weapon required), All within 15ft (AoE)
                </td>
                <td>2
                </td>
@@ -6169,7 +6169,7 @@
                </td>
                <td><strong>Throw an explosive ball of flame.</strong>
                   <p>
-                     Select a point within 50ft. All creatures within 5ft of this point suffer
+                     Select a point within 50ft. All creatures within 5ft suffer
                      Heavy+MOD fire damage. 1 REFL point to resist and suffer half damage instead. 2
                      REFL points to resist and suffer no damage instead.
                </td>
@@ -6346,8 +6346,8 @@
                </td>
                <td><strong>Unleash a swirling hurricane to throw your foes.</strong>
                   <p>
-                     Select a point within 50ft, all creatures within 5ft of that point are pushed
-                     directly 15ft away from it. All creatures suffer Light+MOD damage or Medium+MOD
+                     Select a point within 50ft, all creatures within 5ft are pushed
+                     directly 15ft away from the point. All creatures suffer Light+MOD damage or Medium+MOD
                      damage if this push movement is stopped by another creature or solid object. 1
                      FORT point to resist the push.
                </td>
@@ -6641,8 +6641,8 @@
                <td>
                   <strong>Conjure the power of the elemental storm itself.</strong>
                   <p>
-                     Select a point within 50ft and create a 15ft radius area around it.
-                     All creatures that end their turn in this area suffer Medium (fire, frost,
+                     Select a point within 50ft and create a 15ft radius zone.
+                     All creatures that end their turn in this zone suffer Medium (fire, frost,
                      lightning, or physical) damage and lose their reaction this turn.
                </td>
                <td>All, 50ft, All within 15ft (AoE)
@@ -6709,8 +6709,8 @@
                <td>
                   <strong>Shards of stone circle around you, harming all foes forced through it.</strong>
                   <p>
-                     Create a 15ft radius area around you that moves with you. For every 5ft any 
-                     creature is moved as a part of a push or pull movement through this area it suffers Light 
+                     Create a 15ft radius zone around you that moves with you. For every 5ft any 
+                     creature is moved as a part of a push or pull movement through this zone it suffers Light 
                      damage. No creatures are harmed if you are pushed or pulled during this effect.
                </td>
                <td>A+E, 15ft, All within range (AoE)
@@ -6784,7 +6784,7 @@
                         You are also <a class="condition" data-tooltip-container>immune</a> to frost damage and automatically resist all WILL based
                         effects at no cost.
                      <p>
-                        <strong>Fire</strong>: All creatures within 5ft of you at the start of your next turn
+                        <strong>Fire</strong>: All creatures within 5ft at the start of your next turn
                         suffer Medium fire damage and become <a class="condition" data-tooltip-container>frightened</a> of you. 
                         1 WILL point to resist the <a class="condition" data-tooltip-container>fear</a>.
                         You are also <a class="condition" data-tooltip-container>immune</a> to fire damage.
@@ -7152,12 +7152,12 @@
                   <strong>Conjure an area of recovery fuelled by souls in the area of enervation.</strong>
                   <p>
                      Select 2 points within 100ft, create a 10ft radius zone around each, choose 
-                     one to be an area of life and the other an area of death. At the start of 
-                     your next turn all creatures in the area of death each suffer Medium+SPI soul damage. 
-                     The number of creatures damaged in the area of death is multiplied by Light, and 
-                     all allies in the area of life are healed for that amount (up to a maximum of 3*Light). 
+                     one to be an zone of life and the other an zone of death. At the start of 
+                     your next turn all creatures in the zone of death each suffer Medium+SPI soul damage. 
+                     The number of creatures damaged in the zone of death is multiplied by Light, and 
+                     all allies in the zone of life are healed for that amount (up to a maximum of 3*Light). 
                      For example, 2 creatures damaged would result in 2*Light healing to each ally in the 
-                     area of life.
+                     zone of life.
                </td>
                <td>A+E, 100ft, Creatures of choice within 15ft of 2 points (AoE)
                </td>
@@ -7987,7 +7987,7 @@
                <td>
                   <strong>Create an overwhelming force of gravity that pulls creatures in.</strong>
                   <p>
-                     Select a point within 100ft, all creatures within 20ft of this point are
+                     Select a point within 100ft, all creatures within 20ft are
                      pulled 10ft closer to the centre if possible. 2 FORT points to resist the pull.
                </td>
                <td>A+E, 100ft, All within 20ft (AoE)
@@ -8003,7 +8003,7 @@
                <td>
                   <strong>Emit a shockwave of gravitational energy that pushes everything back.</strong>
                   <p>
-                     Select a point within 100ft, all creatures within 10ft of this point
+                     Select a point within 100ft, all creatures within 10ft
                      suffer Medium+INT force damage and are pushed 10ft away from the point. 1 FORT point 
                      to resist the push, and if they resist they suffer
                      Light+INT force damage instead. Creatures in the centre are not pushed but suffer the
@@ -8519,11 +8519,11 @@
                <td>
                   <strong>Conjure a black hole that draws in all light, sound, and feeling.</strong>
                   <p>
-                     Select a point within 100ft and all tiles within 10ft of this point become filled with magical darkness. 
-                     All creatures within this area of darkness are <a class="condition" data-tooltip-container>silenced</a>, 
+                     Select a point within 100ft and create a 10ft radius zone filled with magical darkness. 
+                     All creatures within this zone of darkness are <a class="condition" data-tooltip-container>silenced</a>, 
                      <a class="condition" data-tooltip-container>blinded</a>, <a class="condition" data-tooltip-container>deafened</a>, 
-                     and no sound can be created within this area. These conditions cannot be resisted unless creatures are immune. 
-                     Leaving this area immediately removes all of the above conditions. This area also blocks line of sight.
+                     and no sound can be created within this zone. These conditions cannot be resisted unless creatures are immune. 
+                     Leaving this zone immediately removes all of the above conditions. This zone also blocks line of sight.
                </td>
                <td>All, 100ft, All within 10ft (AoE)
                </td>
@@ -8867,9 +8867,7 @@
                      When an ally within 15ft attempts to resist an effect, you may spend your
                      reaction to attempt to resist on their behalf - spending WILL points instead.
                </td>
-               <td>A, 15ft,
-                  <br><br>
-                  Single target
+               <td>A, 15ft, Single target
                </td>
                <td>React
                </td>
@@ -8934,9 +8932,7 @@
                      suffer the damage instead. You take half damage while the ally suffers none.
                </td>
                <td>
-                  A+E, 10ft,
-                  <br><br>
-                  Single target
+                  A+E, 10ft, Single target
                </td>
                <td>React
                </td>
@@ -8955,9 +8951,7 @@
                      turn. If an ally is within 5ft of the spirit at any time, they gain an additional distinct reaction to spend in that round.
                </td>
                <td>
-                  A+Self, 100ft,
-                  <br><br>
-                  All within 15ft and 5ft (AoE)
+                  A+Self, 100ft, All within 15ft and 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -8973,9 +8967,7 @@
                      Make a versatile SPI attack roll against a creature within 100ft, on a hit deal Heavy+SPI damage. The creature is also <a class="condition" data-tooltip-container>hobbled</a>
                      and <a class="condition" data-tooltip-container>blinded</a>. 1 REFL point to resist each affect separately.
                </td>
-               <td>A+E, 100ft,
-                  <p>
-                     Single target
+               <td>A+E, 100ft, Single target
                </td>
                <td>2
                </td>
@@ -9032,9 +9024,7 @@
                   <p>
                      Select an ally within 50ft, this ally becomes <a class="condition" data-tooltip-container>immune</a> to all negative conditions.
                </td>
-               <td>A, 50ft,
-                  <p>
-                     Single Target
+               <td>A, 50ft, Single Target
                </td>
                <td>1
                </td>
@@ -9103,9 +9093,7 @@
                      to Fire damage. If an ally is within 5ft at any time, they may deal an additional
                      Light fire damage when they successfully damage an enemy. 
                </td>
-               <td>A+E, 100ft,
-                  <p>
-                     All within 15ft and 5ft (AoE)
+               <td>A+E, 100ft, All within 15ft and 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -9153,9 +9141,7 @@
                   <p>
                      Select an ally within 25ft, the ally regains up to 3 resistance points of their choice.
                </td>
-               <td>A, 25ft,
-                  <p>
-                     Single target
+               <td>A, 25ft, Single target
                </td>
                <td>1
                </td>
@@ -9205,9 +9191,7 @@
                      the spirit may resist any negative effects for 1 point less. 
                      If an ally is within 5ft, they may automatically resist all incoming effects at no cost.
                </td>
-               <td>A+E, 100ft,
-                  <p>
-                     All within 15ft and 5ft (AoE)
+               <td>A+E, 100ft, All within 15ft and 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -9226,9 +9210,7 @@
                      enemies in the same area suffer Light+SPI poison damage as spiders swarm
                      across biting them.
                </td>
-               <td>E, 100ft,
-                  <p>
-                     Enemies within 15ft (AoE)
+               <td>E, 100ft, Enemies within 15ft (AoE)
                </td>
                <td>2
                </td>
@@ -9244,9 +9226,7 @@
                      Whenever an ally within 15ft of you inflicts damage, they heal HP equal to half of the 
                      damage they deal.
                </td>
-               <td>A, 15ft,
-                  <p>
-                     All within range (AoE)
+               <td>A, 15ft, All within range (AoE)
                </td>
                <td>3
                </td>
@@ -9295,9 +9275,7 @@
                      the spirit is <a class="condition" data-tooltip-container>hobbled</a>. 1 FORT to resist the <a class="condition" data-tooltip-container>hobble</a>. 
                      An enemy that moves within 5ft or ends their turn within 5ft of the spirit suffers Medium+SPI frost damage.
                </td>
-               <td>A+E, 100ft,
-                  <p>
-                     All within 15ft and 5ft (AoE)
+               <td>A+E, 100ft, All within 15ft and 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -9347,51 +9325,63 @@
                </td>
             </tr>
             <tr>
-               <td>-
+               <td>Core
                </td>
-               <td>Hardy constructs
+               <td>Contraption Construction
                </td>
-               <td>All of the engineer’s constructs persist as if they were creatures.
-                  These can be destroyed by the enemy and have an AC of 10 and HP of 2xINT (minimum 1). If a
-                  trap is destroyed it does not trigger. Only one of each type of construct
-                  (read: ability) can persist at any time, and you can deconstruct them whenever
-                  you want for 0 AP. If cast while <a class="condition" data-tooltip-container>hidden</a>,
-                  the construct remains <a class="condition" data-tooltip-container>hidden</a> until
-                  activated or if creatures pass an INT value Per+Per check.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>-
-               </td>
-               <td>Working under pressure
-               </td>
-               <td>A lot of the engineer’s abilities can be cast with a varying AP cost to
-                  have a different level of power. All of these take 1 use of the ability as
-                  normal.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>-
-               </td>
-               <td>Spring loaded traps
-               </td>
-               <td><strong>Place a line of temporary traps</strong>
+               <td>
+                  <strong>Design and build contraptions rapidly and reliably.</strong>
                   <p>
-                     Choose 3 consecutive tiles on the map within 50ft. Place spring loaded traps
-                     which activate if creatures cross them. Creatures receive
-                     (Light/Medium/Heavy)+Int damage for entering a tile containing these traps. At
-                     the start of your next turn, any traps which haven’t been set off automatically
-                     set off damaging creatures in the tile.
+                     You can create contraptions of 2 types, a trap contraption and a creature contraption.
+                     Creature contraptions are treated as creatures and trap contraptions are not.
+                     All contraptions you create can be destroyed by suffering damage, they have an AC of 10, and HP of 2xINT (minimum 1). If a
+                     trap contraption is destroyed it does not trigger. Only one of each contraption (ability)
+                     can persist at any time (you may have multiple creature contraptions or multiple trap contraptions). 
+                     You may destroy any number of contraptions on your turn 
+                     for 0 AP. If contraptions are created while you are <a class="condition" data-tooltip-container>hidden</a>,
+                     it remains <a class="condition" data-tooltip-container>hidden</a> until
+                     triggered or until a creature rolls a PER+PER check (or has a higher passive perception) that is higher 
+                     than your INT value (not modifier).
                </td>
-               <td>All, 3 tiles within 50ft.
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Efficient Under Pressure
+               </td>
+               <td>
+                  <strong>Your crafting skills do not crack under pressure, they thrive.</strong>
+                  <p>
+                     Many of the engineer’s abilities have multiple AP costs separated by slashes (/), when casting an ability
+                     like this you must choose one of the AP costs to spend, and the power of the ability
+                     will vary depending on the AP spent. You still expend 1 ability use as normal. For example, 
+                     if an ability had a cost of "1/2/3", there might be a section in the description that reads
+                     "deal Light/Medium/Heavy damage". This means that if you were to spend 1 AP casting the ability 
+                     you would deal Light damage, 2 AP would deal Medium damage, and 3 AP would deal Heavy damage. There
+                     may also be other differences explained in the description without slashes (/).
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Spring Loaded Traps
+               </td>
+               <td>
+                  <strong>Throw and deploy a line of simple spring loaded traps.</strong>
+                  <p>
+                     Select 3 connected tiles within 50ft and deploy a trap contraption in each of these tiles.
+                     When a creature steps into any of these tiles or ends their turn there, it suffers
+                     (Light/Medium/Heavy)+INT damage. Once this damage is dealt the trap in that tile is destroyed.
+               </td>
+               <td>All, 50ft, 3 targets
                </td>
                <td>1/2/3
                </td>
@@ -9401,16 +9391,14 @@
                </td>
                <td>Timed Grenades
                </td>
-               <td><strong>Throw a number of grenades which explode in an area.</strong>
+               <td>
+                  <strong>Throw grenades which explode in an area.</strong>
                   <p>
-                     Choose 1/2/3 tiles to throw a grenade into. At the start of your next turn,
-                     these explode dealing Light damage to all creatures including self in a 5ft AOE.
+                     Select 1/2/3 unique points within 50ft. At the start of your next turn
+                     deal Light damage to all creatures within 5ft of each point. The same creature can be damaged
+                     multiple times.
                </td>
-               <td>All
-                  <p>
-                     3 tiles within 50ft
-                  <p>
-                     5ft AOE
+               <td>All, 50ft, All within 5ft (AoE) 1/2/3 targets
                </td>
                <td>1/2/3
                </td>
@@ -9420,14 +9408,14 @@
                </td>
                <td>Corrosive Acid Vial
                </td>
-               <td>Throw a vial of corrosive acid at a group of enemies. <a class="condition" data-tooltip-container>Mark</a> them and
-                  reduce their AC by 2+INT, 1 REFL point to resist.
+               <td>
+                  <strong>Throw a vial of corrosive acid at a group of enemies.</strong>
+                  <p>
+                     Select a point within 50ft, <a class="condition" data-tooltip-container>mark</a> them and
+                     reduce their AC by 2+INT. 1 REFL point to resist the <a class="condition" data-tooltip-container>mark</a>
+                     and AC reduction.
                </td>
-               <td>All
-                  <p>
-                     50ft,
-                  <p>
-                     5ft AOE
+               <td>All, 50ft, 5ft (AOE)
                </td>
                <td>1
                </td>
@@ -9437,11 +9425,13 @@
                </td>
                <td>Pain field
                </td>
-               <td>Twiddle some knobs and tada, pure pain in a ring around you! Autohit
-                  Light + Int damage on every creature exactly either 10, 15, or 20ft (your
-                  choice) from you.
+               <td>
+                  <strong>Emit waves of pure pain that peak in amplitude at the perfect distance.</strong>
+                  <p>
+                     Make an auto hit attack against all creatures exactly either 10ft, 15ft, or 20ft (your
+                     choice) from you. On a hit, deal Light+INT damage.
                </td>
-               <td>A+E, 25ft.
+               <td>A+E, 25ft, All within specific range (AoE)
                </td>
                <td>2
                </td>
@@ -9449,16 +9439,15 @@
             <tr>
                <td>1
                </td>
-               <td>Splash potion of harming
+               <td>Nerve Agent
                </td>
-               <td>Throw a potion. Make a Dex based ranged attack. This deals Light+Int
-                  damage in a 5FT AOE.
+               <td>
+                  <strong>Throw a small vial of nerve agent that harms with every drop.</strong>
+                  <p>
+                     Select a point within 50ft and make a versatile DEX attack against each creature within
+                     5ft. On a hit, deal Light+INT damage.
                </td>
-               <td>All
-                  <p>
-                     50ft,
-                  <p>
-                     5ft AOE
+               <td>All, 50ft, All within 5ft (AoE)
                </td>
                <td>2
                </td>
@@ -9468,11 +9457,13 @@
                </td>
                <td>Flashbang
                </td>
-               <td>Dazzle your foes with a small explosive. Select a point within 50ft and
-                  <a class="condition" data-tooltip-container>blind</a> all creatures in a 10ft radius. 1 REFL point to resist the
-                  <a class="condition" data-tooltip-container>blind</a>.
+               <td>
+                  <strong>Dazzle your foes with a small explosive.</strong>
+                  <p>
+                     Select a point within 50ft and <a class="condition" data-tooltip-container>blind</a> all creatures within 10ft. 1
+                     REFL point to resist the <a class="condition" data-tooltip-container>blind</a>.
                </td>
-               <td>All, 50ft, All within 10ft radius of target tile (AoE)
+               <td>All, 50ft, All within 10ft (AoE)
                </td>
                <td>1
                </td>
@@ -9480,26 +9471,17 @@
             <tr>
                <td>2
                </td>
-               <td>Long lasting trap
+               <td>Crippling Trap
                </td>
-               <td>Set up to 4 connected traps, where the closest is within 5ft of you.
-                  These <a class="condition" data-tooltip-container>hobble</a> / <a class="condition" data-tooltip-container>immobilise</a> / <a class="condition" data-tooltip-container>stun</a> the next creature to enter the tile (no
-                  resist). This is a construct.
+               <td>
+                  <strong>Roll out disabling traps nearby.</strong>
+                  <p>
+                     Select up to 4 connected tiles where the closest is within 5ft of you. Deploy a trap contraption
+                     in each of these tiles. Any creature that moves into these tiles or ends their turn there becomes
+                     <a class="condition" data-tooltip-container>hobbled</a>/<a class="condition" data-tooltip-container>immobilised</a>/<a class="condition" data-tooltip-container>stunned</a>. 
+                     2 FORT points to resist the condition.
                </td>
-               <td>4 tiles, 5ft.
-               </td>
-               <td>1/2/3
-               </td>
-            </tr>
-            <tr>
-               <td>2
-               </td>
-               <td>Black hole grenade
-               </td>
-               <td>Throw a grenade within 50ft. This sucks everyone within 15/20/25ft up to
-                  5/10/15ft closer to the grenade. 1/2/3 Fort point to resist the movement.
-               </td>
-               <td>A+E, 50ft
+               <td>All, 5ft, 4 targets
                </td>
                <td>1/2/3
                </td>
@@ -9507,9 +9489,28 @@
             <tr>
                <td>2
                </td>
-               <td>Speed potion
+               <td>Gravity Bomb
                </td>
-               <td>Double your base movement speed for this turn.
+               <td>
+                  <strong>Construct and throw a bomb that generates a gravitational vortex.</strong>
+                  <p>
+                     Select a point within 50ft. All creatures within 15/20/25ft are pulled up to
+                     5/10/15ft closer to the point. 1/2/3 FORT point to resist the pull.
+               </td>
+               <td>All, 50ft, All within 15/20/25ft (AoE)
+               </td>
+               <td>1/2/3
+               </td>
+            </tr>
+            <tr>
+               <td>2
+               </td>
+               <td>Speed Potion
+               </td>
+               <td>
+                  <strong>Drink a potion that grants you immense haste.</strong>
+                  <p>
+                     Your base movement speed is doubled.
                </td>
                <td>Self
                </td>
@@ -9521,14 +9522,17 @@
                </td>
                <td>Smoke Bomb
                </td>
-               <td>Conceal an area with thick smoke. Select a point within 50ft, all tiles
-                  within 5ft of this point become filled with smoke. All creatures in this area
-                  are <a class="condition" data-tooltip-container>blinded</a> and <a class="condition" data-tooltip-container>invisible</a>. The cloud lasts for 1 round as
-                  normal and the effects cannot be resisted. Leaving the area of smoke immediately
-                  removes the <a class="condition" data-tooltip-container>blinded</a> and <a class="condition" data-tooltip-container>invisible</a> conditions. The area of
-                  smoke also blocks line of sight.
+               <td><strong>Conceal an area with thick smoke. </strong>
+                  <p>
+                     Select a point within 50ft, and create a 5ft radius zone that becomes filled
+                     with smoke. All creatures in this zone are <a class="condition" data-tooltip-container>blinded</a> and
+                     <a class="condition" data-tooltip-container>invisible</a>. These effects cannot be resisted. 
+                     The zone lasts until the start of your next turn as normal. 
+                     Leaving the zone immediately removes the <a class="condition" data-tooltip-container>blinded</a>
+                     and <a class="condition" data-tooltip-container>invisible</a> conditions. The zone also blocks line of
+                     sight.
                </td>
-               <td>All, 50ft, All within 5ft radius of target tile (AoE)
+               <td>All, 50ft, All within 5ft (AoE)
                </td>
                <td>1
                </td>
@@ -9681,8 +9685,8 @@
                </td>
                <td>Flamethrower
                </td>
-               <td>Choose a point exactly 15ft away from you. All creatures within 10ft of
-                  that point suffer Medium+INT fire damage. 1 REFL point to resist for half damage.
+               <td>Choose a point exactly 15ft away from you. All creatures within 10ft
+                  suffer Medium+INT fire damage. 1 REFL point to resist for half damage.
                </td>
                <td>All, 15ft. 10ft radius (AoE)
                </td>
@@ -9708,7 +9712,7 @@
                <td>Land mines
                </td>
                <td>Choose 3 tiles with 50ft which are not adjacent to each other. Place a
-                  large mine on these. If triggered by an enemy, explode in a 5ft radius dealing
+                  large mine on these. If triggered by an enemy, explode in a 5ft  dealing
                   Light/Medium/Heavy+Int damage. This is a construct.
                </td>
                <td>
@@ -9806,7 +9810,7 @@
                   the bot arms itself and then this and every subsequent turn the bot will move 15ft closer to the
                   <a class="condition" data-tooltip-container>marked</a> target. When this bot is within
                   5ft of the target at any time it immediately explodes, dealing Heavy+INT damage
-                  in a 10ft radius. This bot also detonates in the same way if the bot is
+                  to all creatures within 10ft. This bot also detonates in the same way if the bot is
                   destroyed, or if the <a class="condition" data-tooltip-container>marked</a> target dies. This is a construct, but with twice
                   the normal construct HP.
                </td>
