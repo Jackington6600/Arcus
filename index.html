@@ -3691,7 +3691,7 @@
                </td>
                <td>The creature is forced to attack the creature that has taunted it (the
                   taunter). The creature must do as much damage as possible to the taunter. This
-                  may include AOE or collateral damage so long as it still aims to maximise damage
+                  may include AoE or collateral damage so long as it still aims to maximise damage
                   to the taunter.
                </td>
             </tr>
@@ -5037,7 +5037,7 @@
                <td><strong>A surge of adrenaline pushes you to new limits, but comes at a
                      cost.</strong>
                   <p>
-                     Gain 1 additional AP this turn, but next turn you start with 2 fewer AP.
+                     Gain 1 additional AP this turn, but next turn your start with 2 fewer AP.
                </td>
                <td>Self
                </td>
@@ -7191,7 +7191,7 @@
                   <p>
                      Select 5 connected tiles within 100ft to become tiles of judgement. All
                      allies (excluding self) that end their turn or move into these tiles receive
-                     Medium+SPI healing, an ally can only receive healing from this ability once. 
+                     Medium+SPI healing, an ally can only receive healing from this ability once per cast. 
                      All enemies that end their turn or move into these tiles become
                      immediately <a class="condition" data-tooltip-container>stunned</a>. 
                      2 WILL points to resist the <a class="condition" data-tooltip-container>stun</a>.
@@ -9309,7 +9309,7 @@
                   <p>
                      <strong><em>Attributes: Intelligence. Dex?</em></strong>
                   <p>
-                     <strong><em>Summary: Fortifications, Personal Buffs, Ranged AOE</em></strong>
+                     <strong><em>Summary: Fortifications, Personal Buffs, Ranged AoE</em></strong>
                </td>
             </tr>
             <tr>
@@ -9334,9 +9334,10 @@
                   <p>
                      You can create contraptions of 2 types, a trap contraption and a creature contraption.
                      Creature contraptions are treated as creatures and trap contraptions are not.
+                     All contraptions last indefinitely until destroyed, similarly to summons.
                      All contraptions you create can be destroyed by suffering damage, they have an AC of 10, and HP of 2xINT (minimum 1). If a
                      trap contraption is destroyed it does not trigger. Only one of each contraption (ability)
-                     can persist at any time (you may have multiple creature contraptions or multiple trap contraptions). 
+                     can persist at any time, any that already exist are destroyed if you cast the ability again. 
                      You may destroy any number of contraptions on your turn 
                      for 0 AP. If contraptions are created while you are <a class="condition" data-tooltip-container>hidden</a>,
                      it remains <a class="condition" data-tooltip-container>hidden</a> until
@@ -9415,7 +9416,7 @@
                      reduce their AC by 2+INT. 1 REFL point to resist the <a class="condition" data-tooltip-container>mark</a>
                      and AC reduction.
                </td>
-               <td>All, 50ft, 5ft (AOE)
+               <td>All, 50ft, 5ft (AoE)
                </td>
                <td>1
                </td>
@@ -9471,7 +9472,7 @@
             <tr>
                <td>2
                </td>
-               <td>Crippling Trap
+               <td>Crippling Traps
                </td>
                <td>
                   <strong>Roll out disabling traps nearby.</strong>
@@ -9522,7 +9523,8 @@
                </td>
                <td>Smoke Bomb
                </td>
-               <td><strong>Conceal an area with thick smoke. </strong>
+               <td>
+                  <strong>Conceal an area with thick smoke.</strong>
                   <p>
                      Select a point within 50ft, and create a 5ft radius zone that becomes filled
                      with smoke. All creatures in this zone are <a class="condition" data-tooltip-container>blinded</a> and
@@ -9540,10 +9542,13 @@
             <tr>
                <td>3
                </td>
-               <td>Potion of power
+               <td>Enhancing Potion
                </td>
-               <td>Drink a potion. This boosts your STR, DEX, or PER by +10 for your next
-                  attack roll (not damage) or ability check.
+               <td>
+                  <strong>Enhance yourself with a powerful potion.</strong>
+                  <p>
+                     Increase your STR, DEX, or PER value (not modifier) by 10 for your next
+                     attack roll (not damage) or ability check.
                </td>
                <td>Self
                </td>
@@ -9553,16 +9558,21 @@
             <tr>
                <td>3
                </td>
-               <td>Sticky fire
+               <td>Sticky Fire
                </td>
-               <td>Make an dex based attack roll against a target within 50ft. Coat them in
-                  a sticky fire, dealing Light + int damage. If at any point in this creature's
-                  turn they are adjacent to another creature, the other creature is also ignited
-                  (if they haven’t been already) also dealing Light + int damage. This is
-                  extinguished at the end of the ignited creature’s turn. This can spread from
-                  creature to creature in this manner indefinitely.
+               <td>
+                  <strong>Ignite someone with infectious flames that spread to nearby creatures.</strong>
+                  <p>
+                     Make a ranged DEX attack against a creature within 50ft. On a hit, deal Light+INT fire damage 
+                     and <class="condition" data-tooltip-container>mark</a> them. 
+                     At any point if a creature marked in this way is within 5ft of another creature, the 
+                     other creature is also immediately <class="condition" data-tooltip-container>marked</a>
+                     and suffers Light+INT fire damage. While a creature is 
+                     <class="condition" data-tooltip-container>marked</a> in this way it cannot be damaged by this ability again.
+                     The <class="condition" data-tooltip-container>mark</a> cannot be resisted and it ends 
+                     on all creatures at the start of your next turn as normal. 
                </td>
-               <td>50ft, E
+               <td>All, 50ft, All within 5ft
                </td>
                <td>3
                </td>
@@ -9570,13 +9580,16 @@
             <tr>
                <td>3
                </td>
-               <td>Melee Bot
+               <td>Melee Contraption
                </td>
-               <td>Build a small turret with 5ft of you. This moves right before your turn
-                  with a speed of 5/15/30ft per turn and can make an Int based melee attack
-                  dealing Med+Int damage. This is a construct.
+               <td>
+                  <strong>Create a small contraption capable of moving and fighting in close quarters.</strong>
+                  <p>
+                     Deploy a small creature contraption within 5ft of you. This contraption acts immediately before your turn.
+                     Each turn it may move 5/15/30ft under your control and may then make a melee INT attack using your INT. 
+                     On a hit deal Medium+INT damage.
                </td>
-               <td>5ft, E
+               <td>Self, 5ft, Single target
                </td>
                <td>1/2/3
                </td>
@@ -9626,14 +9639,19 @@
             <tr>
                <td>4
                </td>
-               <td>Big ol’ net
+               <td>Nullifying Net Trap
                </td>
-               <td>Choose a tile within 50ft. This and all tiles within a 5ft radius are
-                  coated in a net trap. You can use a reaction to activate this trap at any time
-                  within 50ft and <a class="condition" data-tooltip-container>silence</a> and <a class="condition" data-tooltip-container>immobilise</a> all those standing in the marked tiles. 1
-                  REFL point to resist. This is a construct.
+               <td>
+                  <strong>Throw a net trap with debilitating properties.</strong>
+                  <p>
+                     Select a point within 50ft. Deploy a trap contraption in this tile.
+                     You may activate this trap at any time at no cost - this trap is not triggered in any other way. 
+                     When triggered, all creatures within 5ft of this trap are 
+                     <a class="condition" data-tooltip-container>silenced</a> and 
+                     <a class="condition" data-tooltip-container>immobilised</a>. 1
+                     REFL point to resist both conditions.
                </td>
-               <td>All
+               <td>All, 50ft, All within 5ft (AoE)
                </td>
                <td>1
                </td>
@@ -9641,12 +9659,15 @@
             <tr>
                <td>4
                </td>
-               <td>This one goes boom
+               <td>Blast Bomb
                </td>
-               <td>Throw a grenade, dealing Medium + Int damage and moving the target up to
-                  20ft in a direction of your choice. 2 FORT points to resist the movement
+               <td>
+                  <strong>Throw a well placed powerful grenade that blasts an enemy away from it.</strong>
+                  <p>
+                     Select a creature within 50ft, it suffers Medium+INT damage and is pushed in a straight line
+                     up to 20ft in a direction of your choice. 2 FORT points to resist the push.
                </td>
-               <td>50ft, E
+               <td>A+E, 50ft, Single target
                </td>
                <td>2
                </td>
@@ -9654,14 +9675,18 @@
             <tr>
                <td>5
                </td>
-               <td>Exploding potato
+               <td>Hot Potato Bomb
                </td>
-               <td>Stick a small bomb to an enemy. The next time this enemy takes damage,
-                  that damage is increased by Light and the potato bounces to the closest creature
-                  within 50ft (AOE attacks count as happening simultaneously). At the start of
-                  your next turn, the bomb explodes for Heavy + Int damage.
+               <td>
+                  <strong>Stick a bomb to a foe that hops around to nearby creatures.</strong>
+                  <p>
+                     Select a creature within 50ft and <a class="condition" data-tooltip-container>mark</a> it. The next time this creature suffers damage
+                     it suffers an additional Light damage and then, after damage is resolved, the <a class="condition" data-tooltip-container>mark</a> 
+                     is transferred to the closest creature within 50ft - this is chosen randomly if equal distance. At the start of
+                     your next turn, the currently <a class="condition" data-tooltip-container>marked</a> creature suffers Heavy+INT damage and
+                     the <a class="condition" data-tooltip-container>mark</a> ends. The <a class="condition" data-tooltip-container>mark</a> cannot be resisted.
                </td>
-               <td>50ft
+               <td>All, 50ft, Single target
                </td>
                <td>3
                </td>
@@ -9669,13 +9694,16 @@
             <tr>
                <td>5
                </td>
-               <td>Shooty Bot
-               </td>
-               <td>Build a small turret with 5ft of you. This attacks before your turn and
-                  has a Int based ranged attack Light damage with a 10/30/50ft range. This is a
-                  construct.
+               <td>Projectile Contraption
                </td>
                <td>
+                  <strong>Create a small contraption capable of moving and fighting at longer range.</strong>
+                  <p>
+                     Deploy a small creature contraption within 5ft of you. This contraption acts immediately before your turn.
+                     Each turn it may make a ranged INT attack against a creature within 10/30/50ft using your INT. 
+                     On a hit deal Light damage.
+               </td>
+               <td>Self, 5ft, Single target
                </td>
                <td>1/2/3
                </td>
@@ -9685,10 +9713,13 @@
                </td>
                <td>Flamethrower
                </td>
-               <td>Choose a point exactly 15ft away from you. All creatures within 10ft
-                  suffer Medium+INT fire damage. 1 REFL point to resist for half damage.
+               <td>
+                  <strong>Spew violent flames at short range.</strong>
+                  <p>
+                     Select a point exactly 15ft away from you. All creatures within 10ft
+                     suffer Medium+INT fire damage. 1 REFL point to resist for half damage instead.
                </td>
-               <td>All, 15ft. 10ft radius (AoE)
+               <td>All, 15ft, All within 10ft (AoE)
                </td>
                <td>2
                </td>
@@ -9699,7 +9730,10 @@
                <td>Prepared
                </td>
                <td>
-                  Next round, go first in the initiative order and have 1AP of free movement.
+                  <strong>Prepare yourself for what's to come.</strong>
+                  <p>
+                     In the next round of combat, go first in the initiative order and at the start of your next turn gain 1 AP worth of 
+                     free movement.
                </td>
                <td>Self
                </td>
@@ -9709,13 +9743,16 @@
             <tr>
                <td>7
                </td>
-               <td>Land mines
-               </td>
-               <td>Choose 3 tiles with 50ft which are not adjacent to each other. Place a
-                  large mine on these. If triggered by an enemy, explode in a 5ft  dealing
-                  Light/Medium/Heavy+Int damage. This is a construct.
+               <td>Land Mines
                </td>
                <td>
+                  <strong>Create deadly explosive mines.</strong>
+                  <p>
+                     Select 3 tiles with 50ft that are not adjacent to each other. Deploy a trap contraption on 
+                     each of these tiles. When a creature steps into any of these tiles or ends their turn there, all creatures within 5ft suffer
+                     (Light/Medium/Heavy)+INT damage.
+               </td>
+               <td>All, 50ft, All within 5ft (AoE) 3 targets
                </td>
                <td>1/2/3
                </td>
@@ -9725,10 +9762,15 @@
                </td>
                <td>Stink bomb
                </td>
-               <td>Choose a point within 50ft (including on self). Creatures within 25ft of
-                  that point have to spend 1 WILL for every tile they willingly move closer.
+               <td>
+                  <strong>Launch and detonate a cannister of potent odour.</strong>
+                  <p>
+                     Select a point within 50ft and create a 25ft radius zone. Each time a creature
+                     within this zone willingly moves 1 tile closer to the centre they 
+                     must spend 1 WILL point. Willingly moving into this zone from outside of it also
+                     triggers this effect.
                </td>
-               <td>E, 50ft
+               <td>All, 50ft, All within 25ft (AoE)
                </td>
                <td>1
                </td>
@@ -9736,11 +9778,14 @@
             <tr>
                <td>8
                </td>
-               <td>Reinforced Constructs
-               </td>
-               <td>Your constructs now have HP of your INT value, not modifier.
+               <td>Reinforced Contraptions
                </td>
                <td>
+                  <strong>Make your contraptions more sturdy and reliable.</strong>
+                  <p>
+                     Your contraptions now have HP equal to your INT value (not modifier).
+               </td>
+               <td>Self
                </td>
                <td>Pass
                </td>
@@ -9748,12 +9793,17 @@
             <tr>
                <td>8
                </td>
-               <td>Magnets!
+               <td>Magnets
                </td>
-               <td>Choose 2 creatures within 50ft of each other. They are pinged together,
-                  and move directly towards each other up to 25ft. 2 FORT points to resist the movement.
+               <td>
+                  <strong>Make your contraptions more sturdy and reliable.</strong>
+                  <p>
+                     Select 2 creatures (including self) within 50ft of you and within 50ft of each other. 
+                     Each creature is pulled up to 25ft in a straight line towards the other creature 
+                     (up to 50ft total movement). 2 FORT points to resist the pull - each creature resists
+                     separately.
                </td>
-               <td>E, 50ft
+               <td>All, 50ft, 2 targets
                </td>
                <td>1
                </td>
@@ -9763,11 +9813,14 @@
                </td>
                <td>Static Charge Generator
                </td>
-               <td>Choose 5 creatures within 50ft and further away than 15ft. The first
-                  time each creature is within 15ft of you they take Medium+INT damage. This
-                  charge dissipates at the start of your next turn.
+               <td>
+                  <strong>Imbue static charge upon foes and punish them if they get too close.</strong>
+                  <p>
+                     Select up to 5 creatures that are at least 20ft away and up to 50ft away. The first
+                     time each creature is within 15ft of you at any time they immediately suffer Medium+INT lightning damage. 
+                     This effect at the start of your next turn.
                </td>
-               <td>E, 50ft
+               <td>A+E, 20-50ft, 5 targets
                </td>
                <td>3
                </td>
@@ -9775,12 +9828,14 @@
             <tr>
                <td>9
                </td>
-               <td>Shot of ‘spresso.
+               <td>Stimulant
                </td>
                <td>
-                  Cast a variable AP cost ability at level 3, and another variable AP cost
-                  ability at level 1. This does not take their normal ability uses, and at the start of your next
-                  turn you start with 1 less AP.
+                  <strong>Give yourself a shot of stimulant to expedite your actions.</strong>
+                  <p>
+                     Cast any variable AP cost ability for 3 AP, and another variable AP cost
+                     ability for 1 AP. This does not expend any uses of those 2 abilities, and at the start of your next
+                     turn you start with 1 fewer AP.
                </td>
                <td>Self
                </td>
@@ -9790,10 +9845,13 @@
             <tr>
                <td>10
                </td>
-               <td>Potion of Damage Control
+               <td>Potion of Restorative Immunity
                </td>
-               <td>Become <a class="condition" data-tooltip-container>immune</a> to one damage type for the next turn. Instead, heal for
-                  the damage you would have received.
+               <td>
+                  <strong>Become impervious to damage and heal from the harm.</strong>
+                  <p>
+                     You become <a class="condition" data-tooltip-container>immune</a> to one damage type of your choice. 
+                     All damage that you prevent with this immunity heals you instead.
                </td>
                <td>Self
                </td>
@@ -9803,18 +9861,21 @@
             <tr>
                <td>10
                </td>
-               <td>Self Destruct Bot
+               <td>Self Destruct Contraption
                </td>
                <td>
-                  Build a bot within 5ft of you and <a class="condition" data-tooltip-container>mark</a> a target. Immediately before your next turn, 
-                  the bot arms itself and then this and every subsequent turn the bot will move 15ft closer to the
-                  <a class="condition" data-tooltip-container>marked</a> target. When this bot is within
-                  5ft of the target at any time it immediately explodes, dealing Heavy+INT damage
-                  to all creatures within 10ft. This bot also detonates in the same way if the bot is
-                  destroyed, or if the <a class="condition" data-tooltip-container>marked</a> target dies. This is a construct, but with twice
-                  the normal construct HP.
+                  <strong>Construct an unstable, self-destructing mechanism that crawls towards your foes.</strong>
+                  <p>
+                     Deploy a creature contraption within 5ft of you and <a class="condition" data-tooltip-container>mark</a> a creature within 50ft. 
+                     This contraption acts immediately before your turn. Each turn the contraption will try to move 15ft closer to the 
+                     <a class="condition" data-tooltip-container>marked</a> creature, taking the shortest path possible.
+                     At any time, when this contraption is within 5ft of the <a class="condition" data-tooltip-container>marked</a> creature
+                     it will immediately self-destruct, dealing Heavy+INT damage to all creatures within 10ft and the contraption is then destroyed.
+                     Unlike other contraptions, this contraption also self-destructs in the same way if it is destroyed in any other way, or if the 
+                     <a class="condition" data-tooltip-container>marked</a> creature dies. This contraption has HP equal to double your contraption's
+                     normal HP value.
                </td>
-               <td>
+               <td>Self, 5ft, Single target
                </td>
                <td>3
                </td>
@@ -9822,19 +9883,20 @@
             <tr>
                <td>10
                </td>
-               <td>Displacement Grenades
+               <td>Displacement Bombs
                </td>
-               <td><strong>Throw a number of grenades which explode in an area.</strong>
+               <td>
+                  <strong>Throw a number of grenades which explode in an area.</strong>
                   <p>
-                     Choose 1/2/3 tiles to throw a grenade into. These bump all creatures within 5ft
-                     10ft in a straight line of your choice. You can bump the same creature multiple
-                     times (they explode in order) 1 FORT point to resist each bump.
+                     Select 1/2/3 points within 50ft. The following affect is activated at each point in the order
+                     they were selected: Each creature within 5ft is pushed 10ft in a direction of your choice in a 
+                     straight line. 
+                  </p>
+                  <p>
+                     The same creature can be pushed multiple times. 1 FORT point to resist each push.
+                  </p>
                </td>
-               <td>All
-                  <p>
-                     3 tiles within 50ft
-                  <p>
-                     5ft AOE
+               <td>All, 50ft, All within 5ft (AoE) 1/2/3 targets
                </td>
                <td>1/2/3
                </td>
