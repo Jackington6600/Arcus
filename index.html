@@ -5806,7 +5806,7 @@
                </td>
                <td><strong>Choose between a mighty shot, or an accurate one.</strong>
                   <p>
-                     Before you make a ranged single target attack, you may choose one of the following:
+                     Before you make a ranged single target attack, you may choose one of the following effects:
                      Gain Adv (+) on the attack roll and subtract Light damage from the damage dealt.
                      Gain DisAdv (-) on the attack roll and deal additional Light damage.
                </td>
@@ -6411,17 +6411,21 @@
             <tr>
                <td>Core
                </td>
-               <td>???
+               <td>Harness Primordial Chaos
                </td>
-               <td><strong>???</strong>
+               <td><strong>Focus on the power of the elements and risk harnessing its full potential.</strong>
                   <p>
-                     Select a creature within 50ft, this creature becomes <a class="condition" data-tooltip-container>weak</a> 
-                     to all damage that you deal. You become <a class="condition" data-tooltip-container>weak</a> to all 
+                     At the start of each of your turns you may
+                     select a creature within 50ft and choose one of the following effects:
+                     The creature becomes <a class="condition" data-tooltip-container>weak</a> 
+                     to all damage that you deal and you become <a class="condition" data-tooltip-container>weak</a> to all 
                      damage types.
+                     The creature can only deal glancing damage to you and all damage you deal 
+                     is glancing damage.
                </td>
                <td>Self
                </td>
-               <td>Pass
+               <td>0
                </td>
             </tr>
             <tr>
@@ -7252,6 +7256,23 @@
                </td>
             </tr>
             <tr>
+               <td>Core
+               </td>
+               <td>Vital Exchange
+               </td>
+               <td>
+                  <strong>Sacrifice your own health to maximise your power.</strong>
+                  <p>
+                     Whenever you heal or deal damage to a creature, you may sacrifice any amount
+                     of your own HP up to Heavy to heal or deal additional damage equal to the 
+                     HP sacrificed.
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
                <td>1
                </td>
                <td>Healing Lance
@@ -7859,14 +7880,13 @@
                <td>
                   <strong>Create a spark of force if you have not and will not cause harm otherwise.</strong>
                   <p>
-                     If you haven’t dealt any damage since the start of your turn, you may make an auto hit attack against
-                     creature within 100ft dealing Light force damage. Remaining AP on this turn cannot be spent on abilities or attacks 
-                     which deal damage or that would cause you to deal damage later in the round (such as traps). 
-                     When you reach level 5 in Arcane this damage is increased to Light+INT.
+                     Immediately before you end your turn, if you have dealt no damage since the start of your turn 
+                     you may immediately make an auto hit attack against a creature within 100ft dealing Light force damage. 
+                     Your turn then ends. When you reach level 5 in Arcane this damage is increased to Light+INT.
                </td>
                <td>A+E, 100ft, Single target
                </td>
-               <td>1
+               <td>0
                   <p>
                      (Unlimited Uses)
                </td>
@@ -7887,6 +7907,22 @@
                <td>2
                   <p>
                      (Regular Attack - Unlimited Uses)
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
+               <td>Magic Momentum
+               </td>
+               <td>
+                  <strong>Maintain your spellcasting momentum to grant additional protection.</strong>
+                  <p>
+                     Once per turn, if you cast at least two 1 AP limited use abilities on the same turn, 
+                     you may grant a creature within 100ft Light temporary HP.
+               </td>
+               <td>All, 100ft, Single target
+               </td>
+               <td>Pass
                </td>
             </tr>
             <tr>
@@ -8507,6 +8543,24 @@
                </td>
             </tr>
             <tr>
+               <td>Core
+               </td>
+               <td>Painful Inhibition
+               </td>
+               <td>
+                  <strong>Choose harm over hindrance.</strong>
+                  <p>
+                     Whenever you inflict a condition upon another creature (after they fail to resist)
+                     you may immediately choose to remove the condition from the creature, causing it to have no affect, and deal Light 
+                     damage to the creature. This effect cannot be performed with the <a class="condition" data-tooltip-container>marked</a> 
+                     or <a class="condition" data-tooltip-container>deafened</a> conditions.
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
                <td>1
                </td>
                <td>Mind Prism
@@ -8530,7 +8584,7 @@
                <td>
                   <strong>Make a creature blind to you as a threat.</strong>
                   <p>
-                     Select a creature within 100ft and <a class="condition" data-tooltip-container>Mark</a> it. 
+                     Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. 
                      This creature cannot select you as a target, unless you are the only hostile remaining. If you are also
                      taunting the target it simply ignores the <a class="condition" data-tooltip-container>taunt</a>. You can still be affected by
                      AoE abilities. Cannot be resisted.
