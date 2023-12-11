@@ -3462,14 +3462,20 @@
                      the attack roll.
                   <li><strong>Ranged weapon attack</strong> uses your equipped ranged weapon to
                      make the attack roll - will have DisAdv (-) if you are within melee range of a
-                     hostile creature.
+                     hostile creature. If this type of attack is made against
+                     a target that is at least 10ft above the attacker, the attack is made with 
+                     DisAdv (-), also an attack made against a target 10ft below the attacker, the
+                     attack is made with Adv (+).
                   <li><strong>Melee attack</strong> uses melee range to make the attack roll but
                      does not require a melee weapon. This could include a magical punch attack,
                      which does not require a free hand.
                   <li><strong>Ranged attack</strong> uses the described range to make the attack
                      roll but does not require a ranged weapon - will have DisAdv (-) if you are
-                     within melee range of a hostile creature. This could include a magical ranged
-                     attack, which does not require a free hand.
+                     within melee range of a hostile creature. If this type of attack is made against
+                     a target that is at least 10ft above the attacker, the attack is made with 
+                     DisAdv (-), also an attack made against a target 10ft below the attacker, the
+                     attack is made with Adv (+).
+                     This could include a magical ranged attack, which does not require a free hand.
                   <li><strong>Versatile attack</strong> uses the described range to make the
                      attack roll - has no disadvantages due to hostile creatures within melee range.
                      This could include a magical ability, which does not require a free hand.
@@ -4066,6 +4072,19 @@
                <td>The creature becomes rigid and cannot do anything while paralysed. All
                   attack rolls against the creature have Adv (++). Any attack that hits the
                   creature deals critical damage if the attacker is within 5ft of the creature.
+               </td>
+            </tr>
+            <tr>
+               <td><em>Poisoned</em>
+               </td>
+               <td>The creature cannot heal or regain health.
+               </td>
+            </tr>
+            <tr>
+               <td><em>Feeble</em>
+               </td>
+               <td>All damage this creature deals is glancing damage. This can still be increased
+                  to normal damage on a critical hit.
                </td>
             </tr>
             <tr>
@@ -6420,8 +6439,8 @@
                      The creature becomes <a class="condition" data-tooltip-container>weak</a> 
                      to all damage that you deal and you become <a class="condition" data-tooltip-container>weak</a> to all 
                      damage types.
-                     The creature can only deal glancing damage to you and all damage you deal 
-                     is glancing damage.
+                     The creature can only deal glancing damage to you specifically
+                     and you become <a class="condition" data-tooltip-container>enfeebled</a>.
                </td>
                <td>Self
                </td>
@@ -7569,9 +7588,10 @@
                <td>
                   <strong>Condemn your enemy to a fearful end.</strong>
                   <p>
-                     Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. This creature cannot be healed/regain health for
-                     the duration of the <a class="condition" data-tooltip-container>mark</a> and is <a class="condition" data-tooltip-container>frightened</a>. 2 WILL points to resist the
-                     <a class="condition" data-tooltip-container>fear</a>, the <a class="condition" data-tooltip-container>mark</a> and healing prevention cannot be resisted.
+                     Select a creature within 100ft. This creature becomes 
+                     <a class="condition" data-tooltip-container>poisoned</a> and <a class="condition" data-tooltip-container>frightened</a>. 
+                     2 WILL points to resist the <a class="condition" data-tooltip-container>fear</a>, 
+                     the <a class="condition" data-tooltip-container>poison</a> cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -9279,7 +9299,8 @@
                   <strong>Infest a foe's flesh with maggots.</strong>
                   <p>
                      Select a creature within 50ft. This creature suffers Medium+SPI poison
-                     damage and cannot be healed/regain health.
+                     damage and becomes <a class="condition" data-tooltip-container>poisoned</a>.
+                     The <a class="condition" data-tooltip-container>poison</a> cannot be resisted.
                </td>
                <td>A+E, 50ft, Single target
                </td>

@@ -72,6 +72,12 @@ function getContent(innerText) {
 		case "paralysed": case "paralyse": case "paralysis":
 			return "The creature becomes rigid and cannot do anything while paralysed. All attack rolls against the creature have Adv (++). Any attack that hits the creature is a critical hit if the attacker is within 5ft of the creature.";
 
+		case "poisoned": case "poison": 
+			return "The creature cannot heal or regain health.";
+
+		case "feeble": case "enfeebled": case "enfeeblement": 
+			return "All damage this creature deals is glancing damage. This can still be increased to normal damage on a critical hit.";
+
 		case "weak":
 			return "The creature becomes weak to a specified damage type (such as physical, fire or psychic). All incoming damage of that type is increased by 50% (half the incoming damage, round down, and add it to the incoming damage).";
 
