@@ -3437,6 +3437,13 @@
             <a class="condition" data-tooltip-container>paralysed</a>, or <a class="condition" data-tooltip-container>hobbled</a> specifically) unless the GM
             deems it unreasonable. Generally referred to as “push”, “pushed”, “pull”, or
             “pulled”.
+
+            <p>
+            <strong>Collisions</strong>
+            <p>
+            A collision is when push movement is stopped or blocked by an object or creature. When a collision occurs,
+            the creature being pushed suffers Light damage and the movement ends. If multiple creatures are all being pushed by the same 
+            ability, these movements happen simultaneously and movement may be stopped, but no damage is suffered.
          </p>
          <h3 id="Attacking">Attacking</h3>
          <p>
@@ -4617,6 +4624,22 @@
             <tr>
                <td>Core
                </td>
+               <td>Ignore Pain
+               </td>
+               <td><strong>There is no need for evasion or armour when you can shrug off
+                     pain without issue. </strong>
+                  <p>
+                     You may use your STR bonus to calculate your AC as if it were DEX.
+                     You also ignore the effects of difficult terrain.
+               </td>
+               <td>Self
+               </td>
+               <td>Pass
+               </td>
+            </tr>
+            <tr>
+               <td>Core
+               </td>
                <td>Forceful Shove
                </td>
                <td><strong>Push harder and further with great technique.</strong>
@@ -4715,17 +4738,17 @@
             <tr>
                <td>1
                </td>
-               <td>Ignore Pain
+               <td>Aggressive Proximity
                </td>
-               <td><strong>There is no need for evasion or armour when you can shrug off
-                     pain without issue. </strong>
+               <td><strong>Take advantage of enemies that approach you.</strong>
                   <p>
-                     You may use your STR bonus to calculate your AC as if it were DEX.
-                     You also ignore the effects of difficult terrain.
+                     Spend your reaction in addition to the AP cost. Then, when a creature moves into a tile within 5ft of
+                     you (voluntarily or involuntarily), you may deal Light damage to that creature. Each creature can only
+                     be damaged by this effect once per cast. This ability has no affect when you are the one moving.
                </td>
-               <td>Self
+               <td>E, 5ft, All within range (AoE)
                </td>
-               <td>Pass
+               <td>1
                </td>
             </tr>
             <tr>
@@ -4776,15 +4799,19 @@
             <tr>
                <td>2
                </td>
-               <td>???
+               <td>Sundering Strike
                </td>
-               <td><strong>???</strong>
+               <td><strong>Utterly break an enemy's defences.</strong>
                   <p>
-                     ???
+                     Make a melee weapon attack against a creature and on a hit you may either:
+                     <a class="condition" data-tooltip-container>mark</a> the creature and its AC is set to 8; 
+                     or deal additional damage equal to the creature's AC - 15.
+                     For example, if the creature has an AC of 18: 18 - 15 = 3,
+                     therefore resulting in 3 additional damage. The AC reduction cannot be resisted.
                </td>
-               <td>???
+               <td>A+E, Melee, Single target
                </td>
-               <td>???
+               <td>2
                </td>
             </tr>
             <tr>
@@ -4792,7 +4819,7 @@
                </td>
                <td>Savage Leap
                </td>
-               <td><strong>Leap forward and strike with great force.</strong>
+               <td><strong>Leap forward and use your momentum to strike harder.</strong>
                   <p>
                      Select a point you can see within 20ft and jump to that tile. You may then
                      immediately make a melee weapon attack against a creature. On a hit the creature
@@ -4809,13 +4836,14 @@
                </td>
                <td>Hunker Down
                </td>
-               <td><strong>Adopt a greatly defensive stance. </strong>
+               <td><strong>Adopt a greatly defensive stance.</strong>
                   <p>
-                     Become <a class="condition" data-tooltip-container>invulnerable</a> and heal yourself for Medium+CON HP.
+                     The next time you suffer damage, reduce the damage to 0, and you 
+                     may then spend your reaction to gain temporary HP equal to the initial damage.
                </td>
                <td>Self
                </td>
-               <td>3
+               <td>1
                </td>
             </tr>
             <tr>
@@ -4825,10 +4853,10 @@
                </td>
                <td><strong>Let out a roar that terrifies those who hear it.</strong>
                   <p>
-                     Inflict <a class="condition" data-tooltip-container>fear</a> to all enemies within 15ft. 1 WILL point to resist the
+                     Inflict <a class="condition" data-tooltip-container>fear</a> to all enemies within 10ft. 1 WILL point to resist the
                      <a class="condition" data-tooltip-container>fear</a>.
                </td>
-               <td>E, 15ft, All within range (AoE)
+               <td>E, 10ft, All within range (AoE)
                </td>
                <td>1
                </td>
@@ -4836,60 +4864,21 @@
             <tr>
                <td>3
                </td>
-               <td>Debilitate
+               <td>Pin and Crush
                </td>
-               <td><strong>Batter your enemy with a crippling and critical strike.</strong>
+               <td><strong>Pin a foe and ready your weapon for a massive attack.</strong>
                   <p>
-                     Make a melee weapon attack against a creature. On a hit the creature is
-                     <a class="condition" data-tooltip-container>immobilised</a> or <a class="condition" data-tooltip-container>stunned</a> (your choice). If the creature already
-                     has the condition you chose, the attack deals critical damage. 2 FORT points to
-                     resist the <a class="condition" data-tooltip-container>immobilise</a> or <a class="condition" data-tooltip-container>stun</a>.
+                     Select a creature within 5ft and <a class="condition" data-tooltip-container>immobilise</a> it.
+                     3 FORT or REFL points to resist the <a class="condition" data-tooltip-container>immobilise</a>.
+                     At the start of your next turn, before performing any other actions,
+                     you may immediately spend 1 additional AP to make a melee weapon 
+                     attack against the same creature. This attack deals critical damage.
                </td>
                <td>A+E, Melee, Single target
                </td>
-               <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
+               <td>1
                   <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong> 
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
+                     1
                </td>
             </tr>
             <tr>
@@ -4916,8 +4905,8 @@
                <td><strong>Lash out and limit an enemy’s capabilities.</strong>
                   <p>
                      Make a melee weapon attack against a creature and on a hit the creature is
-                     <a class="condition" data-tooltip-container>silenced</a> and has DisAdv (--) on all attack rolls. 2 FORT 
-                     points to resist the <a class="condition" data-tooltip-container>silence</a>, 1 FORT point to resist the DisAdv (--).
+                     <a class="condition" data-tooltip-container>silenced</a> and has DisAdv (--) on all attack rolls. 2 FORT or WILL 
+                     points to resist the <a class="condition" data-tooltip-container>silence</a> and the DisAdv (--).
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -4931,9 +4920,9 @@
                </td>
                <td><strong>Take hits with stoic resolve.</strong>
                   <p>
-                     When you suffer physical damage, you may spend your reaction and 2 FORT points
+                     When you suffer damage, you may spend your reaction and 3 FORT points
                      to reduce that physical damage to 0. On your next turn you start with 1 fewer
-                     AP.
+                     AP. You may spend 1 additional FORT point to reduce all types of damage to 0.
                </td>
                <td>Self, Melee
                </td>
@@ -4959,13 +4948,12 @@
                </td>
                <td>Heavy Kick
                </td>
-               <td><strong>Shunt your target with a resounding kick.</strong>
+               <td><strong>Rush and shunt your target with a resounding kick.</strong>
                   <p>
-                     Select a creature within 5ft and push them back up to 20ft in a straight line
-                     away from you. If this push movement is stopped by another creature or solid
-                     object it suffers additional Medium damage, does not move further and is knocked
-                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT point to resist the
-                     <a class="condition" data-tooltip-container>prone</a>.
+                     Move up to 20ft and then select a creature within 5ft. Push 
+                     the creature back up to 20ft in a straight line away from you, collision
+                     deals Medium damage instead of Light. 3 FORT or REFL
+                     to resist the push.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -4975,16 +4963,16 @@
             <tr>
                <td>5
                </td>
-               <td>Distracting Shout
+               <td>The Bigger They Are...
                </td>
-               <td><strong>Yell and disorient your foes.</strong>
+               <td><strong>Gain focused defences against a single powerful foe.</strong>
                   <p>
-                     When an enemy within 15ft makes an attack against an ally, you may spend your
-                     reaction to impose DisAdv (--) on the attack.
+                     Select a hostile creature within 5ft and gain temporary HP equal to their current total
+                     resistance points of all three types. 
                </td>
-               <td>A+E, 15ft, Single target
+               <td>E, 5ft, Single target
                </td>
-               <td>React
+               <td>1
                </td>
             </tr>
             <tr>
@@ -4995,11 +4983,9 @@
                <td><strong>Torment your enemies to send them fleeing. </strong>
                   <p>
                      When an enemy within 5ft dies, you may spend your reaction to <a class="condition" data-tooltip-container>frighten</a> 
-                     another enemy within 15ft. 2 WILL points to resist the <a class="condition" data-tooltip-container>fear</a>.
+                     another enemy within 50ft. 2 WILL points to resist the <a class="condition" data-tooltip-container>fear</a>.
                </td>
-               <td>A+E, 15ft,
-                  <p>
-                     Single target
+               <td>A+E, 50ft, Single target
                </td>
                <td>React
                </td>
@@ -5013,8 +4999,8 @@
                      shockwave.</strong>
                   <p>
                      All creatures in a 20ft line from you are knocked <a class="condition" data-tooltip-container>prone</a> and then
-                     <a class="condition" data-tooltip-container>hobbled</a>. 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>, 1 FORT point to resist
-                     the <a class="condition" data-tooltip-container>hobble</a>. If any of the creatures are already <a class="condition" data-tooltip-container>prone</a>,
+                     <a class="condition" data-tooltip-container>hobbled</a>. 3 FORT or REFL points to resist the <a class="condition" data-tooltip-container>prone</a>
+                     and the <a class="condition" data-tooltip-container>hobble</a>. If any of the creatures are already <a class="condition" data-tooltip-container>prone</a>,
                      <a class="condition" data-tooltip-container>hobbled</a>, or <a class="condition" data-tooltip-container>stunned</a> they also suffer Light damage.
                </td>
                <td>A+E, All within 20ft straight line from self (AoE)
@@ -5042,14 +5028,13 @@
             <tr>
                <td>7
                </td>
-               <td>Sundering Strike
+               <td>...The Harder They Fall
                </td>
-               <td><strong>Utterly break an enemy's defences.</strong>
+               <td><strong>Use a creature's size against it.</strong>
                   <p>
-                     Make a melee weapon attack against a creature and on a hit the creature is
-                     <a class="condition" data-tooltip-container>marked</a> and its AC is set to 8. Deal additional damage equal to half the 
-                     AC reduction the creature suffers. For example, a reduction from 15 AC to 8 is a 
-                     reduction of 7 and therefore results in 3 additional damage.
+                     Make a melee weapon attack against a creature and on a hit the creature suffers
+                     additional damage equal to half their current resistance points in the type that has the most
+                     points. Each creature can only be damaged by this ability once per combat.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -5064,7 +5049,7 @@
                <td><strong>Selflessly throw yourself into harm's way.</strong>
                   <p>
                      When an enemy damages an ally within 5ft of you, you may spend your reaction to
-                     suffer the damage instead. You suffer full damage while the ally suffers none.
+                     suffer the damage instead. You suffer half the damage while the ally suffers none.
                </td>
                <td>A+E, 5ft, Single target
                </td>
@@ -5081,9 +5066,9 @@
                   <p>
                      Make a melee weapon attack against a creature. On a hit all creatures (excluding yourself) within
                      10ft of the initial target suffer Light damage and are
-                     knocked <a class="condition" data-tooltip-container>prone</a>. Costs 1 FORT point to resist the <a class="condition" data-tooltip-container>prone</a>.
+                     knocked <a class="condition" data-tooltip-container>prone</a>. Costs 1 FORT or REFL point to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
-               <td>A+E, Melee, All within 10t of the target (AoE) excluding Self
+               <td>A+E, Melee, All within 10ft of the target (AoE) excluding Self
                </td>
                <td>2
                </td>
@@ -5096,7 +5081,8 @@
                <td><strong>Stampede forwards, clattering all in your path.</strong>
                   <p>
                      Move up to 40ft. Each creature you move within 5ft of you may push 10ft in 
-                     a direction of your choice. 1 FORT point to resist the push.
+                     a direction of your choice. Each creature may only be pushed once 
+                     per cast. 2 FORT point to resist the push. 
                </td>
                <td>A+E, 5ft, All within 5ft of 40ft movement (AoE)
                </td>
@@ -5128,7 +5114,7 @@
                   </strong>
                   <p>
                      Make a melee weapon attack against a creature. On a hit and if you are below
-                     half of your HP maximum, you deal additional damage equal to your STR value (not
+                     a quarter of your HP maximum, you deal additional damage equal to your STR value (not
                      modifier).
                </td>
                <td>A+E, Melee, Single target
@@ -5158,13 +5144,13 @@
                </td>
                <td><strong>They can try and stop you. They will fail.</strong>
                   <p>
-                     Gain immunity to all negative conditions, and become <a class="condition" data-tooltip-container>immovable</a> and 
+                     At any time, you may gain immunity to all negative conditions, and become <a class="condition" data-tooltip-container>immovable</a> and 
                      <a class="condition" data-tooltip-container>immutable</a>. This also removes all negative conditions currently 
                      affecting you.
                </td>
                <td>S
                </td>
-               <td>0
+               <td>0 (React)
                </td>
             </tr>
          </table>
@@ -6036,6 +6022,21 @@
             <tr>
                <td>3
                </td>
+               <td>Distracting Shot
+               </td>
+               <td><strong>Fire and disorient your foes.</strong>
+                  <p>
+                     When an enemy within 15ft makes an attack against an ally, you may spend your
+                     reaction to impose DisAdv (--) on the attack.
+               </td>
+               <td>A+E, 15ft, Single target
+               </td>
+               <td>React
+               </td>
+            </tr>
+            <tr>
+               <td>3
+               </td>
                <td>Bear’s Fortitude
                </td>
                <td><strong>Your fortitude resembles that of a bear.</strong>
@@ -6672,7 +6673,7 @@
                      turns as normal.
                   <p>
                      When you reach level 10 in Elemental, damaging a creature with any ability or
-                     weapon will grant you the Heavy+MOD Temp HP.
+                     weapon will grant you the Heavy+MOD temporary HP.
                </td>
                <td>Self
                </td>
@@ -8128,9 +8129,10 @@
                   <p>
                      Select a point within 100ft and summon an astral guardian creature. This creature is 
                      <a class="condition" data-tooltip-container>invincible</a>, has no stats, and cannot be moved or moved through.
-                     When a creature moves from a tile 10ft or further away from the astral guardian into a tile within 5ft of
+                     When a creature moves into a tile within 5ft of
                      the astral guardian, you may make an melee INT attack using your INT modifier, dealing Medium+INT
-                     force damage on a hit. The astral guardian can also make attacks of opportunity with no limit.
+                     force damage on a hit. Each creature may only be attacked in this way
+                     once per cast. In addition to this, the astral guardian may make attacks of opportunity with no limit.
                </td>
                <td>A+E, 100ft, All within 5ft (AoE)
                </td>
