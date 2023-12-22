@@ -840,10 +840,10 @@
          </p>
          <h5 id="Resisting Incoming Effects">Resisting Incoming Effects</h5>
          <p>
-            Throughout the game, you will be inflicted with negative effects from traps, attacks, incoming spells, and so on. 
+            Throughout the game, you will be inflicted with negative effects from traps, attacks, incoming spells etc. 
             You can spend resistance points to reduce or prevent these negative effects.
 
-            To resist an incoming effect, the GM will tell you the types of resistance points you may spend (FORT, REFL, or WILL)
+            To resist an incoming effect, the GM will tell you the types of resistance points you may spend (FORT, REFL, and/or WILL)
             and a difficulty rating (DR). 
             You may then choose to spend as many resistance points of those types as you wish and then roll
             a number of d12s equal to the number of resistance points spent. To
@@ -1137,38 +1137,6 @@
                <td>Can be taken up to 3 times. You may only take either Legendary Endurance or Legendary Power
                   abilities a total of 3 times. Such as taking Legendary Endurance 3 times and not taking Legendary Power (or vice versa),
                   or 2 Legendary Endurance and 1 Legendary Power (or vice versa).
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Legendary Empowered Resistance Drain
-               </td>
-               <td>
-                  <p>
-                  Upgrade to Empowered Resistance Drain. When you use Empowered Resistance Drain, the number
-                  of resistance points spent grants another creature of your choice bonus damage on the next instance of damage they 
-                  inflict before the start of your next turn. 1, 2 or 3 resistance points spent results in additional Light, Medium, or Heavy damage
-                  respectively - the type of damage is the same as what the attack deals.
-                  </p>
-                  Any creature can only give this effect once per turn, and any creature can only have one instance of this effect on
-                  them at any given time. 
-               </td>
-               <td>Can be taken once.
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  Legendary Empowered Ability
-               </td>
-               <td>
-                  <p>
-                  Upgrade to Empowered Ability. When you use Empowered Ability, the number
-                  of resistance points spent grants additional advantage (+) equal to the number of resistance points spent, 
-                  or grants additional damage equal to the number of resistance points spent - your choice. The type of damage 
-                  is the same as what the attack deals. If the ability deals no damage it can still deal this bonus damage of the 
-                  most appropriate type - GM's discretion.
-               </td>
-               <td>Can be taken once.
                </td>
             </tr>
             <tr>
@@ -3362,8 +3330,8 @@
             Jumping movement works the same as regular movement except obstacles (such as
             gaps, low obstacles, or small creatures) can be avoided on the path.
             The distance that can be jumped in ft is equal to the creature's STR value 
-            (rounded down to a multiple of 5). The height that can be jumped in ft is equal
-            to half the creature's STR value (rounded down to a multiple of 5).  What can or
+            (if in tile based combat, rounded down to a multiple of 5). The height that can be jumped in ft is equal
+            to half the creature's STR value (if in tile based combat, rounded down to a multiple of 5).  What can or
             cannot be jumped may be up to the GM’s discretion. The jump may require a roll
             depending on the difficulty, distance, or height of the jump - this will use strength and/or
             dexterity depending on the nature of the jump (strength for greater distance,
@@ -4872,7 +4840,7 @@
                      3 FORT or REFL points to resist the <a class="condition" data-tooltip-container>immobilise</a>.
                      At the start of your next turn, before performing any other actions,
                      you may immediately spend 1 additional AP to make a melee weapon 
-                     attack against the same creature. This attack deals critical damage.
+                     attack against the same creature. This attack deals additional Medium damage.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -4922,7 +4890,7 @@
                   <p>
                      When you suffer damage, you may spend your reaction and 3 FORT points
                      to reduce that physical damage to 0. On your next turn you start with 1 fewer
-                     AP. You may spend 1 additional FORT point to reduce all types of damage to 0.
+                     AP. You may instead spend 4 FORT points to reduce all types of damage to 0.
                </td>
                <td>Self, Melee
                </td>
@@ -5032,9 +5000,9 @@
                </td>
                <td><strong>Use a creature's size against it.</strong>
                   <p>
-                     Make a melee weapon attack against a creature and on a hit the creature suffers
-                     additional damage equal to half their current resistance points in the type that has the most
-                     points. Each creature can only be damaged by this ability once per combat.
+                     Make a melee weapon attack against a creature. On a hit the creature suffers
+                     additional damage equal to half their missing resistance points in the type that has the most
+                     points missing. Each creature can only be damaged by this ability once per combat.
                </td>
                <td>A+E, Melee, Single target
                </td>
@@ -10375,7 +10343,7 @@
                      rat or baby bear, and as you level up it will grow in power.
                   <p>
                      Your beast has its own "character sheet" found in the Beast Companion Base Stats section and has a separate turn
-                     to you as well as its own AP, HP, Resistance Point pools, reaction, and so on. 
+                     to you as well as its own AP, HP, Resistance Point pools, reaction etc. 
                      Like the creatures that you fight against, your beast will always spend resistance points to attempt
                      to resist incoming effects.
                   <p>
