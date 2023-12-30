@@ -2235,7 +2235,7 @@
                <td>
                   You may send a target within 50ft to sleep. They receive the
                   <a class="condition" data-tooltip-container>unconscious</a> condition, but if they receive any damage or negative status effect
-                  they instantly wake up and are no longer <a class="condition" data-tooltip-container>unconscious</a>. This lasts for up to 8
+                  they immediately wake up and are no longer <a class="condition" data-tooltip-container>unconscious</a>. This lasts for up to 8
                   hours (or however long the creature would normally sleep). A creature that
                   cannot sleep is unaffected by this ability. 2 WILL points to resist. 
                   If they successfully resist the effect the target creature will be 
@@ -4016,7 +4016,7 @@
                   reactions while stunned.
                   <p>
                      If the creature is stunned during its turn it immediately spends up to 2AP. If
-                     it now has 0 AP remaining its turn instantly ends, otherwise it may continue to
+                     it now has 0 AP remaining its turn immediately ends, otherwise it may continue to
                      act. In all cases the <a class="condition" data-tooltip-container>stun</a> still lasts until the start of the creature’s turn
                      that was the source of the <a class="condition" data-tooltip-container>stun</a> as normal.
                </td>
@@ -5190,8 +5190,8 @@
                <td><strong>Pick off the stragglers and the weak. </strong>
                   <p>
                      Make a weapon attack against a creature and on a hit deal additional Medium
-                     damage. This additional damage is reduced by 1 for each other creature within
-                     10ft of the initial target (this excludes you and the initial target).
+                     damage. This additional damage is reduced by 1 for each other enemy within
+                     10ft of the initial target (this excludes self, allies, and the initial target).
                      This additional damage cannot drop below 0.
                </td>
                <td>A+E, Weapon
@@ -5207,7 +5207,7 @@
                <td><strong>Tangle your foe in rope as you move nimbly around them. </strong>
                   <p>
                      <a class="condition" data-tooltip-container>Immobilise</a> a creature within 5ft of you, then move yourself to any
-                     position within 15ft of that same creature. 2 REFL points to resist the
+                     position within 15ft of that same creature. 3 FORT or REFL points to resist the
                      <a class="condition" data-tooltip-container>immobilise</a>.
                </td>
                <td>A+E, 5ft, Single target
@@ -5237,8 +5237,8 @@
                </td>
                <td><strong>Reveal your foe’s greatest strengths and weaknesses.</strong>
                   <p>
-                     Make a weapon attack against a creature. On a hit the creature loses 3
-                     resistance points of your choice. For each resistance type reduced from 1 to 0,
+                     Make a weapon attack against a creature. On a hit the creature loses 4
+                     resistance points of your choice. If at least one resistance type is reduced from 1 to 0,
                      it suffers additional Light damage. You also learn all of the creature’s
                      vulnerabilities, weaknesses, resistances, and immunities.
                </td>
@@ -5268,10 +5268,10 @@
                </td>
                <td><strong>Coat your weapon in a sickening poison.</strong>
                   <p>
-                     Make a weapon attack against a creature. On a hit all damage dealt is poison
-                     damage and it ignores all damage resistances and immunities. For each resistance
+                     Make a weapon attack against a creature. For each resistance
                      type that the creature has no remaining resistance points, it suffers additional
-                     Light poison damage.
+                     Light poison damage. The creature also becomes <a class="condition" data-tooltip-container>poisoned</a>.
+                     1 FORT or WILL to resist the <a class="condition" data-tooltip-container>poison</a>.
                </td>
                <td>A+E, Weapon, Single target
                </td>
@@ -5298,15 +5298,15 @@
                </td>
                <td>Hit and Run
                </td>
-               <td><strong>You have an essential skill for any effective
-                     skirmisher.</strong>
+               <td><strong>Rapidly reposition and attack.</strong>
                   <p>
-                     Move up to 40ft and at the end of your turn move back to where you were when
-                     this ability was used.
+                     Move up to 75ft and make a melee or ranged weapon attack against a creature. This
+                     movement may be broken up by the attack. On a hit the creature is
+                     <a class="condition" data-tooltip-container>hobbled</a>. 2 FORT or REFL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
                </td>
-               <td>Self
+               <td>A+E, Weapon, Single target
                </td>
-               <td>1
+               <td>3
                </td>
             </tr>
             <tr>
@@ -5390,54 +5390,13 @@
                </td>
                <td><strong>Daze your target with a well timed blow to the head.</strong>
                   <p>
-                     Make a weapon attack against a creature with Adv (++). On a hit the creature
-                     becomes <a class="condition" data-tooltip-container>stunned</a>. 2 FORT points to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     Make a weapon attack against a creature. On a hit the creature
+                     is <a class="condition" data-tooltip-container>stunned</a>. 
+                     1 FORT or WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, Weapon, Single target
                </td>
                <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat.</strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull. </strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
                </td>
             </tr>
             <tr>
@@ -5447,8 +5406,9 @@
                </td>
                <td><strong>Strike with perfect accuracy.</strong>
                   <p>
-                     Whenever you make an attack you may choose to give the attack the auto hit
-                     property. This effect lasts until the end of your next turn.
+                     Whenever you make an attack roll you may choose to give the attack the auto hit
+                     property. When you do this, before any other effects, you may drain 1 additional resistance point 
+                     of any type.
                </td>
                <td>Self
                </td>
@@ -5462,8 +5422,8 @@
                </td>
                <td><strong>Prowl the battlefield and hunt your prey.</strong>
                   <p>
-                     After you make an attack of opportunity, you can also instantly move up to 25ft.
-                     Also as a reaction when a creature within 5ft of you dies you may instantly move
+                     After you make an attack of opportunity, you can also immediately move up to 25ft.
+                     Also as a reaction when a creature within 5ft of you dies you may immediately move
                      up to 25ft.
                </td>
                <td>E, Melee, Single Target
@@ -5516,7 +5476,7 @@
                      <a class="condition" data-tooltip-container>immobilised</a>, <a class="condition" data-tooltip-container>prone</a>,
                      <a class="condition" data-tooltip-container>blind</a>, <a class="condition" data-tooltip-container>stunned</a>, 
                      <a class="condition" data-tooltip-container>silenced</a>) you may inflict them with
-                     one other condition in the list of your choice. 2 REFL points to resist the
+                     one other condition in the list of your choice. 3 FORT, REFL, or WILL points to resist the
                      chosen condition.
                </td>
                <td>A+E, 5ft, Single target
@@ -5550,13 +5510,12 @@
                   <p>
                      When you are inflicted with any of the following conditions: <a class="condition" data-tooltip-container>hobbled</a>,
                      <a class="condition" data-tooltip-container>prone</a>, <a class="condition" data-tooltip-container>immobilised</a>, 
-                     and/or <a class="condition" data-tooltip-container>incapacitated</a>, remove all
+                     and/or <a class="condition" data-tooltip-container>incapacitated</a>, you may spend your reaction to remove all
                      of the above conditions and immediately jump to a point you can see within 20ft.
-                     You also become <a class="condition" data-tooltip-container>immune</a> to these conditions until the start of your next turn.
                </td>
                <td>Self
                </td>
-               <td>1
+               <td>0 (React)
                </td>
             </tr>
             <tr>
@@ -5566,7 +5525,7 @@
                </td>
                <td><strong>Diminish their powers.</strong>
                   <p>
-                     <a class="condition" data-tooltip-container>Silence</a> a creature within 5ft. 2 REFL points to resist the
+                     <a class="condition" data-tooltip-container>Silence</a> a creature within 5ft. 2 FORT, REFL, or WILL points to resist the
                      <a class="condition" data-tooltip-container>silence</a>.
                </td>
                <td>A+E, 5ft, Single target
@@ -5577,12 +5536,13 @@
             <tr>
                <td>7
                </td>
-               <td>Paralysing Venom
+               <td>Venom
                </td>
-               <td><strong>Paralyse your victim with a deadly toxin.</strong>
+               <td><strong>Drain the strength of an enemy.</strong>
                   <p>
-                     Make a weapon attack against a creature and on a hit <a class="condition" data-tooltip-container>paralyse</a> them. 2
-                     FORT points to resist the <a class="condition" data-tooltip-container>paralysis</a>.
+                     Make a weapon attack against a creature, on a hit the creature is 
+                     <a class="condition" data-tooltip-container>poisoned</a> and <a class="condition" data-tooltip-container>enfeebled</a>.
+                     2 FORT or WILL points to resist both conditions.
                </td>
                <td>A+E, Weapon, Single target
                </td>
@@ -5596,7 +5556,7 @@
                </td>
                <td><strong>You can dodge anything that comes your way.</strong>
                   <p>
-                     You gain a +5 bonus to AC and may spend unlimited REFL resistance points without
+                     You gain a +5 bonus to AC and may spend unlimited REFL resistance points on resisting incoming effects, without
                      changing your current total. This AC bonus stacks with any other bonuses.
                </td>
                <td>Self
@@ -5612,7 +5572,7 @@
                <td><strong>Lash back when they least expect it.</strong>
                   <p>
                      When you are damaged by a melee attack, you may spend your reaction to <a class="condition" data-tooltip-container>stun</a>
-                     the enemy. 2 FORT points to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     the enemy. 1 FORT point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 5ft, Single target
                </td>
@@ -5673,13 +5633,17 @@
             <tr>
                <td>10
                </td>
-               <td>-
+               <td>Paralysing Strike
                </td>
-               <td>
-                  -
-               <td>-
+               <td><strong>Coat your weapon with a paralysing toxin and attack.</strong>
+                  <p>
+                     Make a weapon attack against a creature. If that creature has 0 FORT points
+                     remaining, it becomes <a class="condition" data-tooltip-container>paralysed</a>.
+                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted. 
+                     A creature can only be affected by this ability once per combat.
+               <td>A+E, Weapon, Single target
                </td>
-               <td>-
+               <td>3
                </td>
             </tr>
             <tr>
@@ -5689,7 +5653,8 @@
                </td>
                <td><strong>Your reflexes surpass what seems possible.</strong>
                   <p>
-                     You can spend 2 REFL points as 1 FORT point.
+                     Whenever you attempt to resist an incoming effect, you may always spend 
+                     1 REFL point as part of the cost, regardless of the types requested. 
                </td>
                <td>Self
                </td>
@@ -5705,7 +5670,8 @@
                   <p>
                      Make a weapon attack against a creature. On a hit and if the creature is below
                      half its HP maximum, you deal additional damage equal to your DEX or PER value
-                     (not modifier).
+                     (not modifier). 
+                     A creature can only be damaged by this ability once per combat.
                </td>
                <td>A+E, Weapon, Single target
                </td>
@@ -7301,7 +7267,7 @@
                      When you reduce a creature within 100ft to 0 HP, you may spend your reaction to 
                      make a versatile SPI attack against another creature within 15ft of the initial target. 
                      On a hit the creature suffers Light+SPI soul damage. It must specifically be you 
-                     and your damage that reduces the creature to 0 HP.
+                     and your damage that reduces the creature to 0 HP. On your next turn you start with 1 fewer AP.
                </td>
                <td>A+E, 100ft, Single target within 15ft
                </td>
@@ -9132,7 +9098,7 @@
                   When you change form into the beast, your physical attributes and AC change to that of the beast, but your Spirit
                   and Intelligence attributes and all resistance points remain the same - you may use your resistance points as normal.
                   When you change form into the beast you must also choose how much HP you give to the beast,
-                  up to that of the max HP of the beast - the amount you give is subtracted from your health pool. When your beast form is reduced to 0 HP, you instantly return to 
+                  up to that of the max HP of the beast - the amount you give is subtracted from your health pool. When your beast form is reduced to 0 HP, you immediately return to 
                   your original form - any additional damage is carried over and also subtracted from your max HP. 
                </p><p>
                   You can voluntarily leave beast form at any time on your turn for no cost, returning to your original form, and
