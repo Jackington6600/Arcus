@@ -5745,7 +5745,7 @@
                   <p>
                      <a class="condition" data-tooltip-container>Mark</a> a creature within 100ft. All attacks against the 
                      <a class="condition" data-tooltip-container>marked</a>
-                     creature also add 2 + your PER modifier to attack rolls.
+                     creature also add 4 + your PER modifier to attack rolls.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -5762,10 +5762,7 @@
                   <p>
                      Make a ranged weapon attack against a creature within 10ft ignoring any
                      disadvantage due to being within 5ft. On a hit the creature is pushed 20ft
-                     directly away from you. If this push movement is stopped by another creature or
-                     solid object, the initial target suffers additional Light damage and is knocked
-                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT point to resist the
-                     <a class="condition" data-tooltip-container>prone</a>.
+                     directly away from you. 3 FORT or REFL points to resist the push.
                </td>
                <td>A+E, 10ft (Ranged weapon required), Single target
                </td>
@@ -5783,7 +5780,7 @@
                      <a class="condition" data-tooltip-container>immobilised</a> and <a class="condition" data-tooltip-container>hobbled</a>. 
                      If you successfully <a class="condition" data-tooltip-container>immobilise</a> the 
                      target, and there is an ally within melee range, the ally may spend their reaction 
-                     to deal Medium damage the initial target. 2 FORT points to resist the
+                     to deal Medium damage the initial target. 3 FORT or REFL points to resist the
                      <a class="condition" data-tooltip-container>immobilise</a>, the 
                      <a class="condition" data-tooltip-container>hobbled</a> cannot be resisted.
                </td>
@@ -5799,11 +5796,11 @@
                </td>
                <td><strong>Command your allies to press the attack.</strong>
                   <p>
-                     All allies within 50ft may immediately spend their reaction to move up to 40ft
-                     closer to a target within 100ft. They must take the shortest path possible -
+                     Select a creature within 100ft. All allies within 50ft of you may immediately spend their reaction to move up to 40ft
+                     closer the initial target. They must take the shortest path possible toward the target -
                      avoiding any intentional self harm/endangerment.
                </td>
-               <td>A, 50ft/100ft, Single target
+               <td>A, 100ft/50ft, Single target
                </td>
                <td>1
                </td>
@@ -5847,7 +5844,7 @@
                      Make a ranged weapon attack against all creatures in a 30ft line originating
                      from you. This attack ignores any disadvantage due to being within 5ft.
                </td>
-               <td>A+E, All within 40ft straight line from self (AoE) (Ranged weapon
+               <td>A+E, All within 30ft straight line from self (AoE) (Ranged weapon
                   required)
                </td>
                <td>2
@@ -5879,9 +5876,9 @@
                <td><strong>Command your allies to open fire.</strong>
                   <p>
                      Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. 
-                     Each time the <a class="condition" data-tooltip-container>marked</a>
-                     target suffers damage, it also suffers your PER modifier as additional
-                     damage. A creature can only be <a class="condition" data-tooltip-container>marked</a> by one "Fire!" ability at a time.
+                     The first time each creature damages the <a class="condition" data-tooltip-container>marked</a>
+                     target this round, it suffers Medium additional damage. 
+                     A creature can only be <a class="condition" data-tooltip-container>marked</a> by one "Fire!" ability at a time.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -5897,8 +5894,7 @@
                   <p>
                      Make a ranged weapon attack against a creature. On a hit you may select a second
                      creature within 15ft of the initial target, and a third creature within 15ft of
-                     the second. The second and third creatures both suffer half your weapon damage
-                     (e.g. (Medium+PER)/2).
+                     the second. The first creature suffers Heavy damage, the second and third creatures both suffer Medium damage.
                </td>
                <td>A+E, Weapon (Ranged weapon required), 3 targets
                </td>
@@ -5913,9 +5909,9 @@
                <td><strong>The greater the range, the more devastating the shot.</strong>
                   <p>
                      Make a ranged weapon attack against a creature. On a hit deal an additional
-                     Light damage for every 20ft past 50ft the creature is away from you (up to a
-                     maximum of 5 x Light additional damage at 150ft). For example, 95ft deals an
-                     additional 2 x Light damage, and 60ft would result in no additional damage.
+                     Light damage for every 20ft past 40ft the creature is away from you (up to a
+                     maximum of 5 x Light additional damage at 140ft). For example, 95ft deals an
+                     additional 2 x Light damage, and 50ft would result in no additional damage.
                </td>
                <td>A+E, Weapon (Ranged weapon required), Single target
                </td>
@@ -5956,58 +5952,19 @@
             <tr>
                <td>3
                </td>
-               <td>Distracting Shot
+               <td>Bring It Down!
                </td>
-               <td><strong>Fire and disorient your foes.</strong>
+               <td><strong>Command your allies to bring a foe to its knees.</strong>
                   <p>
-                     When an enemy within 15ft makes an attack against an ally, you may spend your
-                     reaction to impose DisAdv (--) on the attack.
+                     Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. 
+                     Also select one resistance type that it has 1 or more points remaining.
+                     At the start of your next turn if the creature has 0 points remaining in the chosen type
+                     you may force the creature to lose resistance points 
+                     equal to the number of points it lost in the chosen type. 
                </td>
                <td>A+E, 15ft, Single target
                </td>
-               <td>React
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
+               <td>1
                </td>
             </tr>
             <tr>
@@ -6017,7 +5974,7 @@
                </td>
                <td><strong>Call upon your allies for reinforcement.</strong>
                   <p>
-                     Select an ally within 50ft. This ally may use up to 75ft of regular movement to
+                     Select an ally within 50ft. This ally may spend their reaction to move up to 75ft to
                      reach an unoccupied point within 5ft of you. They must take the shortest path
                      possible - avoiding any intentional self harm/endangerment.
                </td>
@@ -6029,15 +5986,15 @@
             <tr>
                <td>4
                </td>
-               <td>Running Shot
+               <td>Hit and Run
                </td>
-               <td><strong>Rapidly reposition and open fire.</strong>
+               <td><strong>Rapidly reposition and attack.</strong>
                   <p>
-                     Move up to 75ft and make a ranged weapon attack against a creature. This
+                     Move up to 75ft and make a melee or ranged weapon attack against a creature. This
                      movement may be broken up by the attack. On a hit the creature is
-                     <a class="condition" data-tooltip-container>hobbled</a>. 2 FORT points to resist the <a class="condition" data-tooltip-container>hobble</a>.
+                     <a class="condition" data-tooltip-container>hobbled</a>. 2 FORT or REFL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
                </td>
-               <td>A+E, Weapon (Ranged weapon required), Single target
+               <td>A+E, Weapon, Single target
                </td>
                <td>3
                </td>
@@ -6065,10 +6022,10 @@
                </td>
                <td><strong>Unleash a rapid close range volley.</strong>
                   <p>
-                     Make a ranged weapon attack against up to 3 creatures within 15ft. The same
-                     creature cannot be hit twice.
+                     Make a ranged weapon attack against up to 3 creatures within 20ft, dealing
+                     Medium damage on a hit. The same creature cannot be hit twice.
                </td>
-               <td>A+E, 15ft (Ranged weapon required), 3 targets
+               <td>A+E, 20ft (Ranged weapon required), 3 targets
                </td>
                <td>2
                </td>
@@ -6095,8 +6052,8 @@
                </td>
                <td><strong>Demoralise a foe and extinguish their strength.</strong>
                   <p>
-                     Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. All damage on their next
-                     attack or ability is halved. 2 WILL points to resist the damage reduction.
+                     Select a creature within 100ft and <a class="condition" data-tooltip-container>enfeeble</a> it. 
+                     3 FORT or WILL points to resist the <a class="condition" data-tooltip-container>enfeeblement</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
