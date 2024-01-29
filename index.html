@@ -5406,7 +5406,7 @@
                </td>
                <td><strong>Strike with perfect accuracy.</strong>
                   <p>
-                     Whenever you make an attack roll you may choose to give the attack the auto hit
+                     Whenever you target an enemy with an attack you may choose to give the attack the auto hit
                      property. When you do this, before any other effects, you may drain 1 additional resistance point 
                      of any type.
                </td>
@@ -5960,7 +5960,7 @@
                      Also select one resistance type that it has 1 or more points remaining.
                      At the start of your next turn if the creature has 0 points remaining in the chosen type
                      you may force the creature to lose resistance points 
-                     equal to the number of points it lost in the chosen type. 
+                     equal to half the number of points it lost in the chosen type (rounded up). 
                </td>
                <td>A+E, 15ft, Single target
                </td>
@@ -6068,7 +6068,7 @@
                <td><strong>Command your allies to seize the advantage.</strong>
                   <p>
                      Select an ally within 50ft. This ally may spend their reaction to move up to
-                     25ft in a way of their choice, or make a melee weapon attack. You also cannot
+                     25ft in a way of their choice, or make a melee weapon attack which deals Medium damage. You also cannot
                      spend your reaction this turn.
                </td>
                <td>A, 50ft, Single target
@@ -6096,17 +6096,19 @@
             <tr>
                <td>7
                </td>
-               <td>Clear Focus
+               <td>Into Position!
                </td>
-               <td><strong>Your deft focus grants you deadly accuracy.</strong>
+               <td><strong>Get your allies into formation.</strong>
                   <p>
-                     Gain Adv (+) on all attacks this turn if you did not suffer any damage since the
-                     end of your last turn. If you suffer any damage during your turn this effect
-                     ends.
+                     Select 2 points within 100ft, creating a 5ft radius zone around each point - 
+                     these zones from this ability cannot overlap. One zone must be a Frontline where all allies in 
+                     the radius gain a +5 bonus to AC and a +5 bonus to melee attacks. One zone must be a Backline 
+                     where, if there is at least 1 ally in the Frontline zone, all allies in the Backline gain +5 bonus
+                     to ranged attacks, and +1 additional damage is added to all ranged attacks and abilities.
                </td>
-               <td>Self
+               <td>A+Self, 100ft, 2 targets - all within 5ft (AoE)
                </td>
-               <td>Pass
+               <td>1
                </td>
             </tr>
             <tr>
@@ -6149,7 +6151,7 @@
                <td><strong>Press the offence as your foes fall.</strong>
                   <p>
                      When you kill a creature, you may spend your reaction to make a ranged weapon
-                     attack against another creature.
+                     attack against another creature dealing Medium damage on a hit.
                </td>
                <td>A+E, Weapon (Ranged weapon required), Single
                </td>
@@ -6164,7 +6166,7 @@
                <td><strong>Return fire and assert your ranged dominance.</strong>
                   <p>
                      When you are hit by ranged attack you may spend your reaction to make a ranged
-                     weapon attack against the source of the attack.
+                     weapon attack against the source of the attack dealing Medium damage on a hit.
                </td>
                <td>A+E, Weapon (Ranged weapon required), Single target
                </td>
@@ -6174,14 +6176,15 @@
             <tr>
                <td>9
                </td>
-               <td>Achilles’ Heel
+               <td>Create An Opening!
                </td>
-               <td><strong>Brand a target with a new weakness.</strong>
+               <td><strong>Order your allies to create a weak spot in the enemy.</strong>
                   <p>
-                     Select a creature within 100ft, <a class="condition" data-tooltip-container>mark</a> it, and choose one resistance
-                     point type (e.g. REFL). The next time the creature chooses to spend this
-                     resistance point type it suffers Heavy damage. This does not include resistance
-                     point drain.
+                     Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. 
+                     Whenever a creature targets the <a class="condition" data-tooltip-container>marked</a> 
+                     creature with an attack, before any other effects, you may drain 1 additional resistance point 
+                     of any type.
+                     A creature can only be <a class="condition" data-tooltip-container>marked</a> by one "Create An Opening!" ability at a time.
                </td>
                <td>A+E, 100ft, Single Target
                </td>
