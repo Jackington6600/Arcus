@@ -6307,26 +6307,6 @@
             <tr>
                <td>Core
                </td>
-               <td>Harness Primordial Chaos
-               </td>
-               <td><strong>Focus on the power of the elements and risk harnessing its full potential.</strong>
-                  <p>
-                     At the start of each of your turns you may
-                     select a creature within 50ft and choose one of the following effects:
-                     The creature becomes <a class="condition" data-tooltip-container>weak</a> 
-                     to all damage that you deal and you become <a class="condition" data-tooltip-container>weak</a> to all 
-                     damage types.
-                     The creature can only deal glancing damage to you specifically
-                     and you become <a class="condition" data-tooltip-container>enfeebled</a>.
-               </td>
-               <td>Self
-               </td>
-               <td>0
-               </td>
-            </tr>
-            <tr>
-               <td>1
-               </td>
                <td>Stone Skin
                </td>
                <td><strong>Your skin is as tough as stone.</strong>
@@ -6366,10 +6346,7 @@
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit deal
                      Medium+MOD damage and the creature is pushed 15ft in a straight line in a
-                     direction of your choice. If this push movement is stopped by another creature
-                     or solid object, they suffer additional Light damage and the target is knocked
-                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist the push, 1 FORT point to resist the
-                     <a class="condition" data-tooltip-container>prone</a>.
+                     direction of your choice. 3 FORT points to resist the push.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6401,7 +6378,7 @@
                      Select a creature within 40ft and pull it to an unoccupied space within 5ft of
                      you. Deal Light (fire, frost, lightning, or physical) damage for every 10ft the
                      creature is moved. For example, a distance of 25ft would result in 2 x Light
-                     damage. 2 FORT points to resist the pull.
+                     damage. 2 FORT or REFL points to resist the pull.
                </td>
                <td>A+E, 40ft, Single target
                </td>
@@ -6427,11 +6404,11 @@
                </td>
                <td>Stalagmite
                </td>
-               <td><strong>A large rock erupts from the ground and then explodes horizontally.</strong>
+               <td><strong>A large rock erupts from the ground and then explodes.</strong>
                   <p>
                      Select a point on the ground within 50ft, any creature stood on this tile is knocked 
                      <a class="condition" data-tooltip-container>prone</a>. Then all <a class="condition" data-tooltip-container>prone</a> creatures within 5ft of this point, 
-                     including the initial target, suffer Light damage. 2 REFL 
+                     including the initial target, suffer Light damage. 3 REFL or FORT 
                      points to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, 50ft, Single target
@@ -6447,7 +6424,7 @@
                <td><strong>Throw an explosive ball of flame.</strong>
                   <p>
                      Select a point within 50ft. All creatures within 5ft suffer
-                     Heavy+MOD fire damage. 1 REFL point to resist and suffer half damage instead. 2
+                     Heavy+MOD fire damage. 2 REFL point to resist and suffer half damage instead. 4
                      REFL points to resist and suffer no damage instead.
                </td>
                <td>All, 50ft, All within 5ft (AoE)
@@ -6463,7 +6440,9 @@
                <td><strong>Invoke a shocking bolt of lightning.</strong>
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit the
-                     creature suffers Medium+MOD lightning damage and is <a class="condition" data-tooltip-container>stunned</a>. 2 REFL
+                     creature suffers Medium+MOD lightning damage and is <a class="condition" data-tooltip-container>stunned</a>, 
+                     and you may then select another creature within 5ft of the original target which also becomes 
+                     <a class="condition" data-tooltip-container>stunned</a>. 1 REFL
                      points to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 50ft, Single target
@@ -6516,7 +6495,7 @@
                <td><strong>Leap away with a thunderous blast.</strong>
                   <p>
                      Make a versatile MOD attack against all creatures within 10ft. On a hit they
-                     suffer Light+MOD lightning damage, then you may jump to a point within 30ft.
+                     suffer Light lightning damage, then you may jump to a point within 30ft.
                </td>
                <td>A+E, 10ft, All within range (AoE)
                </td>
@@ -6531,7 +6510,8 @@
                <td><strong>Drop a large spiked rock on your foe.</strong>
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit it suffers
-                     Heavy+MOD damage. This attack deals critical damage if the creature is <a class="condition" data-tooltip-container>prone</a>.
+                     Heavy+MOD damage. This attack deals critical damage if the creature is 
+                     <a class="condition" data-tooltip-container>prone</a> or <a class="condition" data-tooltip-container>immobilised</a>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6545,12 +6525,14 @@
                </td>
                <td><strong>Encase your enemy in ice.</strong>
                   <p>
-                     Select a creature within 50ft and <a class="condition" data-tooltip-container>paralyse</a> them. 2 FORT points to
-                     resist the <a class="condition" data-tooltip-container>paralysis</a>.
+                     Select a creature within 50ft. If that creature has 0 FORT points
+                     remaining, it becomes <a class="condition" data-tooltip-container>paralysed</a>.
+                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted. 
+                     A creature can only be affected by this ability once per combat.
                </td>
                <td>A+E, 50ft, Single target
                </td>
-               <td>1
+               <td>2
                </td>
             </tr>
             <tr>
