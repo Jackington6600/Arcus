@@ -4889,7 +4889,7 @@
                <td><strong>Take hits with stoic resolve.</strong>
                   <p>
                      When you suffer damage, you may spend your reaction and 3 FORT points
-                     to reduce that physical damage to 0. On your next turn you start with 1 fewer
+                     to reduce all physical damage to 0. On your next turn you start with 1 fewer
                      AP. You may instead spend 4 FORT points to reduce all types of damage to 0.
                </td>
                <td>Self, Melee
@@ -6346,7 +6346,7 @@
                   <p>
                      Make a versatile MOD attack against a creature within 50ft. On a hit deal
                      Medium+MOD damage and the creature is pushed 15ft in a straight line in a
-                     direction of your choice. 3 FORT points to resist the push.
+                     direction of your choice. 3 FORT or REFL points to resist the push.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6378,7 +6378,7 @@
                      Select a creature within 40ft and pull it to an unoccupied space within 5ft of
                      you. Deal Light (fire, frost, lightning, or physical) damage for every 10ft the
                      creature is moved. For example, a distance of 25ft would result in 2 x Light
-                     damage. 2 FORT or REFL points to resist the pull.
+                     damage. 3 FORT or REFL points to resist the pull.
                </td>
                <td>A+E, 40ft, Single target
                </td>
@@ -6392,7 +6392,7 @@
                </td>
                <td><strong>Conjure the elements to protect you.</strong>
                   <p>
-                     Gain Medium+MOD temporary HP.
+                     Gain Heavy+MOD temporary HP.
                </td>
                <td>Self
                </td>
@@ -6424,7 +6424,7 @@
                <td><strong>Throw an explosive ball of flame.</strong>
                   <p>
                      Select a point within 50ft. All creatures within 5ft suffer
-                     Heavy+MOD fire damage. 2 REFL point to resist and suffer half damage instead. 4
+                     Heavy+MOD fire damage. 1 REFL point to resist and suffer half damage instead. 3
                      REFL points to resist and suffer no damage instead.
                </td>
                <td>All, 50ft, All within 5ft (AoE)
@@ -6479,7 +6479,7 @@
                <td><strong>Engulf yourself in flames to fight back.</strong>
                   <p>
                      When you are hit by a melee attack, you may spend your reaction to suffer Light
-                     fire damage and then make a melee MOD attack against the attacking creature
+                     fire damage and then make a melee auto hit attack against the attacking creature
                      dealing Light+MOD fire damage.
                </td>
                <td>A+E, Melee, Single target
@@ -6495,7 +6495,7 @@
                <td><strong>Leap away with a thunderous blast.</strong>
                   <p>
                      Make a versatile MOD attack against all creatures within 10ft. On a hit they
-                     suffer Light lightning damage, then you may jump to a point within 30ft.
+                     suffer Light+MOD lightning damage, then you may jump to a point within 30ft.
                </td>
                <td>A+E, 10ft, All within range (AoE)
                </td>
@@ -6543,55 +6543,15 @@
                <td><strong>These elements were made for fighting, and that’s just what
                      they’ll do.</strong>
                   <p>
-                     You become <a class="condition" data-tooltip-container>weak</a> to all damage types. After you damage a creature with an
-                     Elemental ability, gain Heavy+MOD temporary HP. This can only happen once per
+                     You become <a class="condition" data-tooltip-container>weak</a> to all damage types. 
+                     Immediately after you damage a creature with an
+                     Elemental ability, may choose to gain Heavy+MOD temporary HP for each hostile creature
+                     within 10ft of you. You may only do this once per
                      round and any remaining temporary HP is removed at the start of each of your
                      turns as normal.
                   <p>
                      When you reach level 10 in Elemental, damaging a creature with any ability or
-                     weapon will grant you the Heavy+MOD temporary HP.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
+                     weapon will allow you to trigger this ability.
                </td>
                <td>Self
                </td>
@@ -6605,10 +6565,8 @@
                </td>
                <td><strong>Unleash a swirling hurricane to throw your foes.</strong>
                   <p>
-                     Select a point within 50ft, all creatures within 5ft are pushed
-                     directly 15ft away from the point. All creatures suffer Light+MOD damage or Medium+MOD
-                     damage if this push movement is stopped by another creature or solid object. 1
-                     FORT point to resist the push.
+                     Select a point within 50ft, all creatures within 5ft suffer Light+MOD damage and are pushed
+                     directly 15ft away from the point. 2 FORT or REFL points to resist the push.
                </td>
                <td>All, 50ft, All within 5ft (AoE)
                </td>
@@ -6623,9 +6581,9 @@
                <td><strong>Shift your form to water so that physical attacks pass right
                      through.</strong>
                   <p>
-                     When you suffer physical damage, you may spend your reaction and 2 REFL points
-                     to reduce that physical damage to 0. On your next turn you start with 1 fewer
-                     AP.
+                     When you suffer damage, you may spend your reaction and 3 REFL points
+                     to reduce all physical damage to 0. On your next turn you start with 1 fewer
+                     AP. You may instead spend 4 REFL points to reduce all types of damage to 0. 
                </td>
                <td>Self
                </td>
@@ -6659,16 +6617,11 @@
                </td>
                <td><strong>Launch sharp rock in all directions.</strong>
                   <p>
-                     Shards of rock move outwards from you in straight lines in every direction up to
-                     25ft along the ground (6 directions for hex grid, 8 directions for square grid).
-                     The shard’s movement along each line ends after it hits a creature or solid
-                     object. Make a versatile MOD attack against all creatures hit by the shards. On
-                     a hit the creature suffers Light+MOD damage and is knocked <a class="condition" data-tooltip-container>prone</a>. 1
-                     FORT point to resist the <a class="condition" data-tooltip-container>prone</a>.
+                     TODO: NEED A REPLACEMENT HERE
                </td>
-               <td>A+E, 25ft, Up to 6 or 8 targets within range (AoE)
+               <td>TODO
                </td>
-               <td>2
+               <td>TODO
                </td>
             </tr>
             <tr>
@@ -6694,8 +6647,9 @@
                </td>
                <td><strong>Create a swirling torrent of water around you.</strong>
                   <p>
-                     You may push any number of creatures within 10ft to another point within 10ft. 1
-                     FORT points to resist the push.
+                     You may push any number of creatures within 10ft to another point within 10ft of you.
+                     Creatures do not suffer damage from forced movement due to this push.
+                     2 FORT or REFL points to resist the push.
                </td>
                <td>A+E, 10ft, All within range (AoE)
                </td>
@@ -6710,7 +6664,7 @@
                <td><strong>Burn a creature from the inside out. Harm yourself in the process.</strong>
                   <p>
                      Make an auto hit attack against a creature within 50ft and deal Heavy+MOD fire damage. You may
-                     suffer Heavy fire damage to make this attack deal critical damage.
+                     suffer Medium fire damage to make this attack deal critical damage.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6742,7 +6696,7 @@
                   <p>
                      Select a point within 50ft and then select a creature within 30ft
                      of that point. Pull the creature to this point and <a class="condition" data-tooltip-container>immobilise</a> and knock them 
-                     <a class="condition" data-tooltip-container>prone</a>. 2 FORT points to resist 
+                     <a class="condition" data-tooltip-container>prone</a>. 3 FORT points to resist 
                      <a class="condition" data-tooltip-container>pull</a>, <a class="condition" data-tooltip-container>immobilise</a>, 
                      and <a class="condition" data-tooltip-container>prone</a>. If they resist they suffer Light damage instead.
                   </p>
@@ -6780,8 +6734,8 @@
                   <p>
                      Select a creature within 50ft, they become <a class="condition" data-tooltip-container>stunned</a> and <a class="condition" data-tooltip-container>hobbled</a> as
                      they start to drown. If the creature does not resist these conditions, it must spend 1AP on 
-                     its next turn or suffer Medium+MOD damage. This has no effect on creatures that can breathe 
-                     underwater or do not need to breathe. 2 FORT points to resist both conditions. 
+                     its next turn or suffer Light+MOD damage. This has no effect on creatures that can breathe 
+                     underwater or do not need to breathe. 1 FORT point to resist both conditions. 
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6797,7 +6751,7 @@
                   <strong>Flames erupt around you with immense and unbearable heat.</strong>
                   <p>
                      Make an auto hit attack against all creatures within 10ft, they each suffer Medium+MOD fire damage, 
-                     then deal Medium+MOD fire damage to yourself.
+                     then deal Heavy+MOD fire damage to yourself.
                </td>
                <td>All, 10ft, All within range (AoE)
                </td>
@@ -6815,7 +6769,7 @@
                      Select a point within 50ft and all non airborne creatures within 10ft of this point 
                      are knocked <a class="condition" data-tooltip-container>prone</a>. 
                      At the start of your next turn, all non-airborne creatures within this same area suffer 
-                     Medium+MOD damage.
+                     Medium+MOD damage. 2 FORT or REFL points to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>All, 50ft, All within 10ft (AoE)
                </td>
@@ -6884,7 +6838,7 @@
                   <strong>Jump with the wind and pull your foes into striking distance.</strong>
                   <p>
                      Select a point within 25ft and jump to it. Then all creatures
-                     within 15ft of that point are pulled up to 10ft closer to you. 1 FORT
+                     within 15ft of that point are pulled up to 10ft closer to you. 1 FORT or REFL
                      point to resist the pull.
                </td>
                <td>A+E, 25ft, All within 15ft (AoE)
@@ -6936,7 +6890,7 @@
                   <p>
                      Select a creature within 50ft and <a class="condition" data-tooltip-container>hobble</a> them. 
                      All actions and abilities that this creature performs apart from movement cost 1 additional AP 
-                     to be used. 2 FORT points to resist the <a class="condition" data-tooltip-container>hobble</a>
+                     to be used. 2 FORT or WILL points to resist the <a class="condition" data-tooltip-container>hobble</a>
                      and the additional AP cost effect.
                </td>
                <td>A+E, 50ft, Single target
@@ -7003,11 +6957,11 @@
                <td>Tidal Wave
                </td>
                <td>
-                  <strong>Create a huge surge of water that pushed all around you.</strong>
+                  <strong>Create a huge surge of water that rushes all around you.</strong>
                   <p>
                      All creatures within 25ft are pushed directly 15ft closer or further away
                      from you (your choice). All creatures also suffer
-                     Light+MOD damage. 1 FORT point to resist the push.
+                     Light damage. 1 FORT or REFL point to resist the push.
                </td>
                <td>A+E, 25ft, All within range (AoE)
                </td>
@@ -7038,8 +6992,7 @@
                         you may encase it in ice to <a class="condition" data-tooltip-container>immobilise</a> it,
                         1 FORT point to resist. Or you may push
                         the creature with water in a direction of your choice by 10ft, 1 FORT point
-                        to resist - if this push movement is stopped by another creature or
-                        solid object, the initial target suffers additional Light damage. 
+                        to resist.
                         You are also <a class="condition" data-tooltip-container>immune</a> to frost damage and automatically resist all WILL based
                         effects at no cost.
                      <p>
