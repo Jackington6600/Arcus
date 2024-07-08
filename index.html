@@ -7053,24 +7053,6 @@
             <tr>
                <td>Core
                </td>
-               <td>Mortal Coil
-               </td>
-               <td>
-                  <strong>Spend your own life force to harm or heal others.</strong>
-                  <p>
-                     Make an auto hit attack against a creature within 100ft which deals Heavy+SPI soul damage OR healing
-                     them for Heavy+SPI HP. You then suffer Heavy+SPI.
-               </td>
-               <td>A+E, 100ft, Single target
-               </td>
-               <td>2
-                  <p>
-                     (Regular Attack - Unlimited Uses)
-               </td>
-            </tr>
-            <tr>
-               <td>Core
-               </td>
                <td>Soul Strike
                </td>
                <td>
@@ -7161,7 +7143,7 @@
                   <p>
                      When you reduce a creature within 100ft to 0 HP, you may spend your reaction to 
                      make a versatile SPI attack against another creature within 15ft of the initial target. 
-                     On a hit the creature suffers Light+SPI soul damage. It must specifically be you 
+                     On a hit the creature suffers Medium+SPI soul damage. It must specifically be you 
                      and your damage that reduces the creature to 0 HP. On your next turn you start with 1 fewer AP.
                </td>
                <td>A+E, 100ft, Single target within 15ft
@@ -7177,9 +7159,9 @@
                <td>
                   <strong>Bind a soul to a cell of agony.</strong>
                   <p>
-                     Select a creature within 100ft, <a class="condition" data-tooltip-container>mark</a> them, and 
+                     Select a creature within 100ft, <a class="condition" data-tooltip-container>mark</a> them, and
                      take note of their current location. At the end of the creature's next turn the <a class="condition" data-tooltip-container>mark</a>
-                     ends and it suffers Light soul damage for every 5ft it is away from the noted location. 2 WILL points to resist the 
+                     ends and it suffers Light soul damage for every 5ft it is away from the noted location. 1 FORT or WILL points to resist the 
                      <a class="condition" data-tooltip-container>mark</a> and the damaging effect.
                </td>
                <td>A+E, 100ft, Single target
@@ -7284,7 +7266,7 @@
                <td>
                   <strong>Positive energy emanates from you, healing yourself and those who get close.</strong>
                   <p>
-                     <a class="condition" data-tooltip-container>Mark</a> yourself and emit a glowing white light, when a
+                     <a class="condition" data-tooltip-container>Mark</a> yourself, and when a
                      creature moves within 5ft of you, you may heal both yourself and the creature for Light+SPI HP. 
                      This can only happen 3 times per ability use, and only once per creature.
                </td>
@@ -7330,48 +7312,6 @@
                </td>
             </tr>
             <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
                <td>4
                </td>
                <td>Duality
@@ -7382,12 +7322,9 @@
                      Select 2 points within 100ft, create a 10ft radius zone around each, choose 
                      one to be an zone of life and the other an zone of death. At the start of 
                      your next turn all creatures in the zone of death each suffer Medium+SPI soul damage. 
-                     The number of creatures damaged in the zone of death is multiplied by Light, and 
-                     all allies in the zone of life are healed for that amount (up to a maximum of 3*Light). 
-                     For example, 2 creatures damaged would result in 2*Light healing to each ally in the 
-                     zone of life.
+                     All allies in the zone of life are healed for Medium+SPI HP. 
                </td>
-               <td>A+E, 100ft, Creatures of choice within 15ft of 2 points (AoE)
+               <td>A+E, 100ft, Creatures of choice within 10ft of 2 points (AoE)
                </td>
                <td>2
                </td>
@@ -7423,7 +7360,7 @@
                      Medium+SPI healing, an ally can only receive healing from this ability once per cast. 
                      All enemies that end their turn or move into these tiles become
                      immediately <a class="condition" data-tooltip-container>stunned</a>. 
-                     2 WILL points to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     1 FORT or WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 100ft, 5 targets
                </td>
@@ -7453,10 +7390,10 @@
                <td>
                   <strong>Use the power of your victim's souls to bring greater pain.</strong>
                   <p>
-                     Make a versatile SPI attack against all creatures in a 30ft line. If you hit
-                     1 creature this deals Light+SPI soul damage, 2 creatures this deals Medium+SPI
-                     soul damage to both creatures, and 3 or more creatures this deals Heavy+SPI soul
-                     damage to all creatures.
+                     Make a versatile SPI attack against all creatures in a 30ft line dealing Light+MOD soul damage
+                     on a hit. Then you may select one creature damaged by this attack and deal an additional 
+                     Light damage to that creature a number of times equal to the number of creatures damaged by the 
+                     initial attack.
                </td>
                <td>A+E, All within 30ft straight line from self (AoE)
                </td>
@@ -7532,7 +7469,7 @@
                   <strong>Seize up your target and choose their fate.</strong>
                   <p>
                      Select a creature within 100ft and <a class="condition" data-tooltip-container>immobilise</a> them
-                     and then either heal them for Heavy+Heavy+SPI HP or deal Heavy+SPI soul damage to them. 2 WILL points
+                     and then either heal them for Heavy+Heavy+SPI HP or deal Heavy+SPI soul damage to them. 4 FORT or WILL points
                      to resist the <a class="condition" data-tooltip-container>immobilise</a>.
                </td>
                <td>All, 100ft, Single target
@@ -7618,7 +7555,7 @@
                      Select up to 4 unique creatures, where the first is within 100ft, the
                      second is within 10ft of the first, and the third is within 10ft of the second,
                      and the fourth is within 10ft of the third. The first creature suffers Medium+SPI
-                     Soul damage, the second is healed for the same amount, the third suffers soul
+                     soul damage, the second is healed for the same amount, the third suffers soul
                      damage and the fourth is healed.
                </td>
                <td>A+E, 100ft, Up to 4 targets
