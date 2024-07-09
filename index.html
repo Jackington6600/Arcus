@@ -2984,7 +2984,7 @@
             unlimited uses. This ability can be used when you suffer any amount of damage,
             but only once per turn (does not use a reaction): It is reduced by your STR
             modifier in damage (minimum 0). This damage reduction occurs before any other
-            damage reduction. Auto-hit attacks ignore shields.
+            damage reduction. Auto hit attacks ignore shields.
          </p>
          <h4 id="Non-Combat Equipment">Non-Combat Equipment</h4>
          <p>
@@ -4643,7 +4643,7 @@
                <td><strong>Rush forward smashing all enemies in your path.</strong>
                   <p>
                      Move up to 40ft in a straight line, moving through other creatures. 
-                     All creatures moved through suffer Light damage and are 
+                     All creatures moved through suffer Light+MOD damage and are 
                      <a class="condition" data-tooltip-container>stunned</a>. 1 FORT or REFL 
                      point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
@@ -4660,8 +4660,8 @@
                <td><strong>Strike low and take their feet out from under them.</strong>
                   <p>
                      Select 3 connected tiles all within 5ft. Make a melee weapon attack against all 
-                     creatures within these 3 tiles. All creatures hit by the attack suffer Heavy damage
-                     and are knocked <a class="condition" data-tooltip-container>prone</a>. 
+                     creatures within these 3 tiles. All creatures hit by the attack
+                     are knocked <a class="condition" data-tooltip-container>prone</a>. 
                      2 FORT or REFL points to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, Melee, Single target
@@ -5034,7 +5034,7 @@
                   <p>
                      Make a melee weapon attack against a creature. On a hit all creatures (excluding yourself) within
                      10ft of the initial target suffer Light damage and are
-                     knocked <a class="condition" data-tooltip-container>prone</a>. Costs 1 FORT or REFL point to resist the <a class="condition" data-tooltip-container>prone</a>.
+                     knocked <a class="condition" data-tooltip-container>prone</a>. Costs 2 FORT or REFL points to resist the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+E, Melee, All within 10ft of the target (AoE) excluding Self
                </td>
@@ -5894,7 +5894,7 @@
                   <p>
                      Make a ranged weapon attack against a creature. On a hit you may select a second
                      creature within 15ft of the initial target, and a third creature within 15ft of
-                     the second. The first creature suffers Heavy damage, the second and third creatures both suffer Medium damage.
+                     the second. 
                </td>
                <td>A+E, Weapon (Ranged weapon required), 3 targets
                </td>
@@ -6022,10 +6022,10 @@
                </td>
                <td><strong>Unleash a rapid close range volley.</strong>
                   <p>
-                     Make a ranged weapon attack against up to 3 creatures within 20ft, dealing
-                     Medium damage on a hit. The same creature cannot be hit twice.
+                     Make a ranged weapon attack against up to 3 creatures within 15ft. 
+                     The same creature cannot be hit twice.
                </td>
-               <td>A+E, 20ft (Ranged weapon required), 3 targets
+               <td>A+E, 15ft (Ranged weapon required), 3 targets
                </td>
                <td>2
                </td>
@@ -6442,7 +6442,7 @@
                      Make a versatile MOD attack against a creature within 50ft. On a hit the
                      creature suffers Medium+MOD lightning damage and is <a class="condition" data-tooltip-container>stunned</a>, 
                      and you may then select another creature within 5ft of the original target which also becomes 
-                     <a class="condition" data-tooltip-container>stunned</a>. 1 REFL
+                     <a class="condition" data-tooltip-container>stunned</a>. 1 FORT or REFL
                      points to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 50ft, Single target
@@ -6461,7 +6461,7 @@
                      tiles, blocking visibility and ranged attacks. Each wall tile persists until it
                      is destroyed, has an AC of 8, and has 1 HP. If a wall tile is created on the
                      same tile as a creature, the creature is <a class="condition" data-tooltip-container>incapacitated</a> and
-                     <a class="condition" data-tooltip-container>immobilised</a>. 1 FORT point to resist the <a class="condition" data-tooltip-container>incapacitated</a> and
+                     <a class="condition" data-tooltip-container>immobilised</a>. 1 FORT or REFL point to resist the <a class="condition" data-tooltip-container>incapacitated</a> and
                      <a class="condition" data-tooltip-container>immobilised</a> conditions, which destroys all wall tiles they are trapped
                      in. Alternatively the creature may spend 1 AP on its turn to escape in the same
                      way.
@@ -6696,7 +6696,7 @@
                   <p>
                      Select a point within 50ft and then select a creature within 30ft
                      of that point. Pull the creature to this point and <a class="condition" data-tooltip-container>immobilise</a> and knock them 
-                     <a class="condition" data-tooltip-container>prone</a>. 3 FORT points to resist 
+                     <a class="condition" data-tooltip-container>prone</a>. 3 FORT or REFL points to resist 
                      <a class="condition" data-tooltip-container>pull</a>, <a class="condition" data-tooltip-container>immobilise</a>, 
                      and <a class="condition" data-tooltip-container>prone</a>. If they resist they suffer Light damage instead.
                   </p>
@@ -6714,10 +6714,10 @@
                <td>
                   <strong>Their own power will painfully spark across them.</strong>
                   <p>
-                     Auto-Hit a creature within 50ft and <a class="condition" data-tooltip-container>mark</a> it. The creature suffers Medium+MOD lightning
+                     Make an auto hit a creature within 50ft and <a class="condition" data-tooltip-container>mark</a> it. The creature suffers Medium+MOD lightning
                      damage and each time the 
                      creature uses an ability during the <a class="condition" data-tooltip-container>mark</a> it suffers Light lightning damage. 
-                     2 WILL points to resist the <a class="condition" data-tooltip-container>mark</a>.
+                     2 REFL or WILL points to resist the <a class="condition" data-tooltip-container>mark</a>.
                </td>
                <td>A+E, 50ft, Single target
                </td>
@@ -6821,8 +6821,8 @@
                   <p>
                      Make a versatile MOD attack against a creature within 10ft, and then up to 4 additional
                      unique creatures. Each one must be within 10ft of the previously selected creature, forming a single chain.
-                     On a hit deal Light+MOD lightning damage to each creature and <a class="condition" data-tooltip-container>stun</a> them. 
-                     1 REFL point to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     On a hit deal Light lightning damage to each creature and <a class="condition" data-tooltip-container>stun</a> them. 
+                     1 REFL or WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>All, 10ft, 5 targets
                </td>
@@ -7469,7 +7469,7 @@
                   <strong>Seize up your target and choose their fate.</strong>
                   <p>
                      Select a creature within 100ft and <a class="condition" data-tooltip-container>immobilise</a> them
-                     and then either heal them for Heavy+Heavy+SPI HP or deal Heavy+SPI soul damage to them. 4 FORT or WILL points
+                     and then either heal them for Heavy+Heavy+SPI HP or deal Heavy+SPI soul damage to them. 3 FORT or WILL points
                      to resist the <a class="condition" data-tooltip-container>immobilise</a>.
                </td>
                <td>All, 100ft, Single target
@@ -7722,7 +7722,7 @@
                <td>
                   <strong>Conjure a magical armour-like barrier that protects yourself and an ally.</strong>
                   <p>
-                     Select an ally within 100ft. You and that ally each gain 2 + your INT modifier added to AC.
+                     Select an ally within 100ft. You and that ally each gain 4 + your INT modifier added to AC.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
@@ -7788,8 +7788,8 @@
                <td>
                   <strong>Summon a reflective barrier that pummels attackers into the ground.</strong>
                   <p>
-                     Select an ally within 100ft. When a creature hits you or that ally with a Physical attack they are knocked
-                     <a class="condition" data-tooltip-container>prone</a> after the damage is dealt. 1 FORT point to resist
+                     Select an ally within 100ft. When a creature hits you or that ally with a physical attack they are knocked
+                     <a class="condition" data-tooltip-container>prone</a> after the damage is dealt. 2 FORT or REFL points to resist
                      the <a class="condition" data-tooltip-container>prone</a>.
                </td>
                <td>A+Self, 100ft, 2 targets
@@ -7821,12 +7821,11 @@
                <td>
                   <strong>Make every cut on an ally cause a tear in reality that teleports them away from danger.</strong>
                   <p>
-                  <span class="wip">
                      Select an ally within 100ft. Each time this creature suffers
-                     damage until the end of your next turn they teleport 10ft directly away from
-                     the source of the damage (attacker). Cannot be cast on a creature already under the effect of this
+                     damage until the end of your next turn the ally may choose to teleport 10ft directly away from
+                     the source of the damage (attacker). 
+                     Cannot be cast on a creature already under the effect of this
                      ability.
-                  </span>
                </td>
                <td>A, 100ft, Single target
                </td>
@@ -7843,7 +7842,7 @@
                   <p>
                      Select a creature within 25ft, teleport to them and briefly occupy the same space as them.
                      The target suffers Heavy+INT force damage and is pushed to a point of your choice within 5ft of you.
-                     2 FORT points to resist the push. If the creature resists the push it does not move, and you are pushed to
+                     3 FORT or WILL points to resist the push. If the creature resists the push it does not move, and you are pushed to
                      a point within 5ft of the creature.
                </td>
                <td>A+E, 25ft, Single target
@@ -7859,9 +7858,9 @@
                <td>
                   <strong>Manipulate reality itself to instantaneously transport yourself to a nearby position.</strong>
                   <p>
-                     Select a point within 40ft and teleport to it.
+                     Select a point within 50ft and teleport to it.
                </td>
-               <td>Self, 40ft
+               <td>Self, 50ft
                </td>
                <td>1
                </td>
@@ -7874,13 +7873,13 @@
                <td>
                   <strong>Exude an aura that heightens ally's mental and physical capabilities.</strong>
                   <p>
-                     All allies (excluding yourself) within 15ft automatically resist all
+                     All allies (excluding yourself) within 10ft automatically resist all
                      negative status effects. This effect ends the next time you successfully resist
                      an incoming effect, or at the start of your next turn. If multiple creatures are
                      subject to the same incoming effect simultaneously, you choose whether to resist
                      the effect last.
                </td>
-               <td>A, 15ft, All within range (AoE)
+               <td>A, 10ft, All within range (AoE)
                </td>
                <td>1
                </td>
@@ -7895,10 +7894,11 @@
                   <p>
                      Select a point within 100ft and summon an astral guardian creature. This creature is 
                      <a class="condition" data-tooltip-container>invincible</a>, has no stats, and cannot be moved or moved through.
+                     This creature cannot taunt other creatures.
                      When a creature moves into a tile within 5ft of
                      the astral guardian, you may make an melee INT attack using your INT modifier, dealing Medium+INT
-                     force damage on a hit. Each creature may only be attacked in this way
-                     once per cast. In addition to this, the astral guardian may make attacks of opportunity with no limit.
+                     force damage on a hit. In addition to this, the astral guardian may make attacks of opportunity with no limit. 
+                     Each creature may only be damaged by the astral guardian once per cast.
                </td>
                <td>A+E, 100ft, All within 5ft (AoE)
                </td>
@@ -7914,55 +7914,13 @@
                   <strong>Conjure a reactive and unstable barrier that duplicates some damage back to the source.</strong>
                   <p>
                      Yourself and an ally within 100ft gain a shield until the end of your
-                     next turn. Any non Physical damage done to the targets is duplicated back to the
-                     attacker, dealing half the damage dealt Force damage. Cannot be cast on a creature
+                     next turn. Any non physical damage dealt to the targets is duplicated back to the
+                     attacker, dealing half the damage dealt force damage. Cannot be cast on a creature
                      already under the effect of this ability.
                </td>
                <td>A+Self, 100ft, 2 targets
                </td>
                <td>1
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
                </td>
             </tr>
             <tr>
@@ -8007,9 +7965,9 @@
                <td>
                   <strong>Protect all allies around you.</strong>
                   <p>
-                     All allies within 15ft gain Medium+INT temporary HP.
+                     All allies within 10ft gain Medium+INT temporary HP.
                </td>
-               <td>A, 15ft, All within range (AoE)
+               <td>A, 10ft, All within range (AoE)
                </td>
                <td>1
                </td>
@@ -8058,7 +8016,7 @@
                   <strong>Teleport the masses over a short distance.</strong>
                   <p>
                      Select any number of allies within 50ft, each one may immediately
-                     spend their reaction to teleport to a point they can see within 20ft.
+                     spend their reaction to teleport to a point they can see within 25ft.
                </td>
                <td>A, 50ft, Allies within range (AoE)
                </td>
@@ -8074,7 +8032,7 @@
                   <strong>Force another creature to teleport to a point of your choosing.</strong>
                   <p>
                      Select a creature within 100ft, they suffer INT force damage as you teleport
-                     them to a point you can see within 25ft of their current position. 2 WILL points to
+                     them to a point you can see within 25ft of their current position. 3 FORT or WILL points to
                      resist the teleport.
                </td>
                <td>A+E, 100ft, Single target
@@ -8091,8 +8049,9 @@
                   <strong>Diminish powerful capabilities of your enemies.</strong>
                   <p>
                      When a creature within 100ft uses an ability you may spend your reaction
-                     to have them lose all remaining uses of that ability. <span class="wip">Cannot be resisted.</span> On
-                     your next turn you start with 1 fewer AP.
+                     to have them lose all remaining uses of that ability after they finish their action. 
+                     Cannot be resisted. On your next turn you start with 1 fewer AP.
+                     A creature can only be affected by this ability once per combat.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8125,11 +8084,12 @@
                   <strong>Create two portals that can instantly transport things between them.</strong>
                   <p>
                      Select two tiles within 100ft, two 5ft x 5ft portals appear on these
-                     tiles. Moving onto one of these portal tiles immediately teleports you to a tile of your choice within
+                     tiles and remain for up to 10 minutes, or until you dismiss them on your turn for 0 AP. 
+                     Moving onto one of these portal tiles immediately teleports you to a tile of your choice within
                      5ft of the other portal. If there is no space on the other side,
                      you get pushed back to the tile you were in before you entered the portal.
                      All creatures and items can also pass though this portal, so long as they
-                     can fit through it.
+                     can fit through it. You may only have one pair of portals active at any time.
                </td>
                <td>-, 100ft, 2 targets
                </td>
@@ -8158,7 +8118,7 @@
                </td>
                <td>1
                   <p>
-                     2
+                     3
                </td>
             </tr>
             <tr>
@@ -8170,7 +8130,7 @@
                   <strong>Create an overwhelming force of gravity that pulls creatures in.</strong>
                   <p>
                      Select a point within 100ft, all creatures within 20ft are
-                     pulled 10ft closer to the centre if possible. 2 FORT points to resist the pull.
+                     pulled 10ft closer to the centre if possible. 1 FORT or WILL points to resist the pull.
                </td>
                <td>A+E, 100ft, All within 20ft (AoE)
                </td>
@@ -8186,9 +8146,9 @@
                   <strong>Emit a shockwave of gravitational energy that pushes everything back.</strong>
                   <p>
                      Select a point within 100ft, all creatures within 10ft
-                     suffer Medium+INT force damage and are pushed 10ft away from the point. 1 FORT point 
+                     suffer Medium+INT force damage and are pushed 10ft away from the point. 1 FORT or WILL point 
                      to resist the push, and if they resist they suffer
-                     Light+INT force damage instead. Creatures in the centre are not pushed but suffer the
+                     Light force damage instead. Creatures in the centre are not pushed but suffer the
                      damage effect as normal.
                </td>
                <td>A+E, 100ft, All within 10ft (AoE)
@@ -8239,14 +8199,15 @@
                <td>
                   <strong>Completely null any spell a creature casts.</strong>
                   <p>
-                     When a creature within 50ft uses a magic ability, you may spend your reaction
+                     When a creature within 100ft uses a magic ability, you may spend your reaction
                      to cancel it entirely - preventing all effects it would have. This can only be 
                      used before the spell is resolved. The creature still expends 1 use of the canceled ability.
-                     On your next turn you start with 1 fewer AP.
+                     3 FORT REFL or WILL to resist the cancellation.
+                     On your next turn you start with 2 fewer AP.
                </td>
                <td>A+E, 50ft, Single target
                </td>
-               <td>1 (React)
+               <td>2 (React)
                </td>
             </tr>
             <tr>
