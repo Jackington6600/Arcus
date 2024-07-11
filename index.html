@@ -5639,7 +5639,7 @@
                   <p>
                      Make a weapon attack against a creature. If that creature has 0 FORT points
                      remaining, it becomes <a class="condition" data-tooltip-container>paralysed</a>.
-                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted. 
+                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted by spending resistance points in the usual way. 
                      A creature can only be affected by this ability once per combat.
                <td>A+E, Weapon, Single target
                </td>
@@ -5782,7 +5782,7 @@
                      target, and there is an ally within melee range, the ally may spend their reaction 
                      to deal Medium damage the initial target. 3 FORT or REFL points to resist the
                      <a class="condition" data-tooltip-container>immobilise</a>, the 
-                     <a class="condition" data-tooltip-container>hobbled</a> cannot be resisted.
+                     <a class="condition" data-tooltip-container>hobbled</a> cannot be resisted by spending resistance points in the usual way.
                </td>
                <td>A+E, Weapon (Ranged weapon required), Single target
                </td>
@@ -6527,7 +6527,7 @@
                   <p>
                      Select a creature within 50ft. If that creature has 0 FORT points
                      remaining, it becomes <a class="condition" data-tooltip-container>paralysed</a>.
-                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted. 
+                     The <a class="condition" data-tooltip-container>paralysis</a> cannot be resisted by spending resistance points in the usual way. 
                      A creature can only be affected by this ability once per combat.
                </td>
                <td>A+E, 50ft, Single target
@@ -7340,7 +7340,7 @@
                      Select a creature within 100ft. This creature becomes 
                      <a class="condition" data-tooltip-container>poisoned</a> and <a class="condition" data-tooltip-container>frightened</a>. 
                      2 WILL points to resist the <a class="condition" data-tooltip-container>fear</a>, 
-                     the <a class="condition" data-tooltip-container>poison</a> cannot be resisted.
+                     the <a class="condition" data-tooltip-container>poison</a> cannot be resisted by spending resistance points in the usual way.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -7609,7 +7609,8 @@
                      the creature is brought back to life for 1 turn only. This creature is also 
                      <a class="condition" data-tooltip-container>dominated</a> by you, and will take its only turn immediately before your next turn. 
                      It still has all the remaining resistance points and ability uses it had just before it 
-                     died, and you may choose how to use them. The <a class="condition" data-tooltip-container>domination</a> cannot be resisted.
+                     died, and you may choose how to use them. The <a class="condition" data-tooltip-container>domination</a> cannot be resisted, 
+                     even if the creature had immunity to <a class="condition" data-tooltip-container>domination</a> in life.
                </td>
                <td>A+E, 25ft, Single target
                </td>
@@ -7933,7 +7934,8 @@
                   <p>
                      Select a creature within 100ft. If this creature has 0 in any resistance 
                      point type they are <a class="condition" data-tooltip-container>silenced</a>. 
-                     The <a class="condition" data-tooltip-container>silence</a> cannot be resisted.
+                     The <a class="condition" data-tooltip-container>silence</a> cannot be resisted 
+                     by spending resistance points in the usual way.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8432,7 +8434,7 @@
                      Select a point within 100ft and summon an illusion of yourself there. The illusion has Heavy+INT HP, 10 AC, no
                      resistance points, and doesn’t have a turn. All enemies within 10ft of the illusion are <a class="condition" data-tooltip-container>taunted</a> and the 
                      <a class="condition" data-tooltip-container>taunt</a> ends before the start of your next turn if the illusion is destroyed.
-                     1 WILL point to resist the <a class="condition" data-tooltip-container>taunt</a>.
+                     1 REFL or WILL point to resist the <a class="condition" data-tooltip-container>taunt</a>.
                </td>
                <td>E, 100ft, All within 10ft (AoE)
                </td>
@@ -8449,7 +8451,7 @@
                   <p>
                      All enemies within 25ft become <a class="condition" data-tooltip-container>marked</a>, 
                      <a class="condition" data-tooltip-container>hobbled</a> and
-                     <a class="condition" data-tooltip-container>deafened</a>. 1 WILL point to resist the <a class="condition" data-tooltip-container>hobbled</a>.
+                     <a class="condition" data-tooltip-container>deafened</a>. 2 FORT REFL or WILL point to resist the <a class="condition" data-tooltip-container>hobbled</a>.
                </td>
                <td>E, 25ft, All within range (AoE)
                </td>
@@ -8464,7 +8466,7 @@
                <td>
                   <strong>Overstimulate foe's five senses with white noise, causing them to sense nothing.</strong>
                   <p>
-                     Select a creature within 100ft, they become <a class="condition" data-tooltip-container>blind</a> and <a class="condition" data-tooltip-container>deafened</a>. 2 WILL
+                     Select a creature within 100ft, they become <a class="condition" data-tooltip-container>blind</a> and <a class="condition" data-tooltip-container>deafened</a>. 2 FORT REFL or WILL
                      points to resist the <a class="condition" data-tooltip-container>blind</a>.
                </td>
                <td>A+E, 100ft, Single target
@@ -8481,7 +8483,7 @@
                   <strong>Conjure a terrifying image.</strong>
                   <p>
                      Select a point within 100ft. Enemies within 5ft of this point are <a class="condition" data-tooltip-container>frightened</a> 
-                     from this point. 1 WILL point to resist the <a class="condition" data-tooltip-container>fear</a>.
+                     from this point. 1 REFL or WILL point to resist the <a class="condition" data-tooltip-container>fear</a>.
                </td>
                <td>E, 100ft, All within 5ft (AoE)
                </td>
@@ -8513,53 +8515,11 @@
                   <p>
                      Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> it. Every time the creature gains a negative
                      condition while <a class="condition" data-tooltip-container>marked</a> in this way it suffers additional Light psychic damage. 2
-                     WILL points to resist the <a class="condition" data-tooltip-container>mark</a>.
+                     FORT or WILL points to resist the <a class="condition" data-tooltip-container>mark</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
                <td>2
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bear’s Fortitude
-               </td>
-               <td><strong>Your fortitude resembles that of a bear.</strong>
-                  <p>
-                     Gain an additional 5 FORT resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Cat’s Reflexes
-               </td>
-               <td><strong>Your reflexes resemble that of a cat. </strong>
-                  <p>
-                     Gain an additional 5 REFL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
-               </td>
-            </tr>
-            <tr>
-               <td>3
-               </td>
-               <td>Bull’s Will
-               </td>
-               <td><strong>Your will power resembles that of a bull.</strong>
-                  <p>
-                     Gain an additional 5 WILL resistance points.
-               </td>
-               <td>Self
-               </td>
-               <td>Pass
                </td>
             </tr>
             <tr>
@@ -8571,7 +8531,7 @@
                   <strong>Screech directly into the minds of foes and daze them.</strong>
                   <p>
                      Make an auto hit attack against up to 3 creatures within 50ft. Each creature suffers Light+INT psychic damage and
-                     is <a class="condition" data-tooltip-container>stunned</a>. 1 WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
+                     is <a class="condition" data-tooltip-container>stunned</a>. 1 FORT or WILL point to resist the <a class="condition" data-tooltip-container>stun</a>.
                </td>
                <td>A+E, 50ft, 3 targets
                </td>
@@ -8588,7 +8548,7 @@
                   <p>
                      Select a creature within 100ft and <a class="condition" data-tooltip-container>mark</a> them. They must spend 1 WILL point for every
                      5ft they willingly move closer to you while <a class="condition" data-tooltip-container>marked</a> in this way. If they do 
-                     not have the WILL points to spend they may not willingly move closer. This cannot be resisted.
+                     not have the WILL points to spend they may not willingly move closer. Cannot be resisted.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8637,8 +8597,8 @@
                <td>
                   <strong>Overwhelm your foe with bewilderment.</strong>
                   <p>
-                     Select a creature within 100ft, it suffers your INT modifier in psychic damage
-                     for each resistance point it spends until the start of your next turn.
+                     Select a creature within 100ft, it suffers Light psychic damage
+                     for each resistance point it willingly spends (so ignoring resistance point draining) until the start of your next turn.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8653,8 +8613,9 @@
                <td>
                   <strong>You have immense mental resolve.</strong>
                   <p>
-                     Whenever you attempt to resist an effect that requires WILL to resist the 
-                     recommended cost is reduced by 1 (recommended cost cannot be reduced below 1).
+                     Whenever you attempt to resist an effect that requires WILL to resist,
+                     you may reduce the number of successes required by 1 (successes required cannot be reduced below 1).
+                     You may only reduce the cost in this way once per round.
                </td>
                <td>Self
                </td>
@@ -8669,8 +8630,8 @@
                <td>
                   <strong>Invoke widespread suffering.</strong>
                   <p>
-                     All creatures within <span class="wip">50ft</span> that have at least 1 negative condition suffer
-                     Medium+SPI psychic damage.
+                     All creatures within 50ft that have at least 1 negative condition suffer
+                     Light+SPI psychic damage.
                </td>
                <td>A+E, 50ft, All within range (AoE)
                </td>
@@ -8722,8 +8683,8 @@
                   <strong>Crush a foe with massive negative effects.</strong>
                   <p>
                      Select a creature within 100ft. This creature becomes <a class="condition" data-tooltip-container>blind</a>,
-                     <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>silenced</a>, and <a class="condition" data-tooltip-container>frightened</a>. 1 WILL point to resist each
-                     condition separately.
+                     <a class="condition" data-tooltip-container>stunned</a>, <a class="condition" data-tooltip-container>silenced</a>, and <a class="condition" data-tooltip-container>frightened</a>.
+                     1 WILL point to resist each condition separately.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8745,9 +8706,9 @@
                      to 3 other creatures. Then if you target 2 creatures, you could <a class="condition" data-tooltip-container>blind</a> one creature, and <a class="condition" data-tooltip-container>hobble</a> 
                      and <a class="condition" data-tooltip-container>silence</a> another. These conditions last until 
                      the start of your next turn as normal. These creatures 
-                     may resist each incoming conditions separately for 1 WILL point each.
+                     may resist each incoming conditions separately for 1 WILL point.
                </td>
-               <td>A+E, 100ft, Up to 3 targets
+               <td>A+E, 100ft, All within range (AoE)
                </td>
                <td>1
                </td>
@@ -8778,13 +8739,15 @@
                <td>
                   <strong>Create an uncontrollable fury in a creature.</strong>
                   <p>
-                     Make an auto hit attack against a creature within 100ft dealing Medium+INT psychic damage, <a class="condition" data-tooltip-container>taunt</a>
-                     them to attack a second creature of your choosing within 100ft. 2 WILL points to
-                     resist the <a class="condition" data-tooltip-container>taunt</a>.
+                     Select a creature within 100ft. If that creature has 0 WILL points
+                     remaining, <a class="condition" data-tooltip-container>taunt</a> them
+                     to attack a second creature of your choosing within 100ft.
+                     The <a class="condition" data-tooltip-container>taunt</a> cannot be resisted by spending resistance points in the usual way. 
+                     A creature can only be affected by this ability once per combat.
                </td>
                <td>A+E, 100ft, 2 targets
                </td>
-               <td>2
+               <td>3
                </td>
             </tr>
             <tr>
@@ -8843,8 +8806,10 @@
                <td>
                   <strong>Completely take control of a creature's mind.</strong>
                   <p>
-                     Select a creature within 100ft and <a class="condition" data-tooltip-container>dominate</a> it with you controlling 
-                     its actions. 2 WILL points to resist the <a class="condition" data-tooltip-container>domination</a>.
+                     Select a creature within 100ft. If that creature has 0 WILL points
+                     remaining, it becomes <a class="condition" data-tooltip-container>dominated</a> by you.
+                     The <a class="condition" data-tooltip-container>domination</a> cannot be resisted by spending resistance points in the usual way. 
+                     A creature can only be affected by this ability once per combat.
                </td>
                <td>A+E, 100ft, Single target
                </td>
