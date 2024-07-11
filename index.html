@@ -8282,9 +8282,10 @@
                   <strong>Choose harm over hindrance.</strong>
                   <p>
                      Whenever you inflict a condition upon another creature (after they fail to resist)
-                     you may immediately choose to remove the condition from the creature, causing it to have no affect, and deal Light 
-                     damage to the creature. This effect cannot be performed with the <a class="condition" data-tooltip-container>marked</a> 
+                     you may immediately choose to drain 1 additional resistance point of any type from that creature.
+                     This effect cannot be performed with the <a class="condition" data-tooltip-container>marked</a> 
                      or <a class="condition" data-tooltip-container>deafened</a> conditions.
+                     You may only perform this action once per creature per round.
                </td>
                <td>Self
                </td>
@@ -8353,7 +8354,7 @@
                      Select a creature within 100ft, this creature must spend its reaction to 
                      attack the closest creature using a regular attack without moving. If multiple 
                      creatures are the same distance the target is selected randomly.
-                     2 WILL points to resist being forced to make the attack.
+                     2 FORT or WILL points to resist being forced to make the attack.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8370,10 +8371,10 @@
                   <p>
                      Select a creature within 100ft, make note of their current position, and <a class="condition" data-tooltip-container>hobble</a> them. 
                      At the start of your next turn: 
-                     If the selected creature is within 5ft of the noted position it suffers Heavy+MOD psychic damage. 
-                     Or if it is within 20ft of the noted position it suffers Medium+MOD psychic damage. 
-                     Otherwise it suffers Light+MOD psychic damage. 
-                     2 WILL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
+                     If the selected creature is within 5ft of the noted position it suffers Heavy+Heavy+MOD psychic damage. 
+                     Or if it is within 20ft of the noted position it suffers Heavy+MOD psychic damage. 
+                     Otherwise it suffers Medium+MOD psychic damage. 
+                     4 FORT or WILL points to resist the <a class="condition" data-tooltip-container>hobble</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8389,9 +8390,13 @@
                   <strong>Make a joke that cuts so deep it hurts.</strong>
                   <p>
                      Make an auto hit attack against a creature within 100ft,
-                     dealing Medium+INT psychic damage. If the creature
-                     has a negative condition you deal critical damage. The creature is then also <a class="condition" data-tooltip-container>taunted</a> by you. 2 WILL points
-                     to resist the <a class="condition" data-tooltip-container>taunted</a>.
+                     dealing Heavy+INT psychic damage. 
+                     If the creature has any of the following conditions the attack deals critical damage:
+                     <a class="condition" data-tooltip-container>charmed</a>, <a class="condition" data-tooltip-container>dominated</a>, 
+                     <a class="condition" data-tooltip-container>taunted</a>, <a class="condition" data-tooltip-container>frightened</a>,
+                     <a class="condition" data-tooltip-container>feeble</a> or <a class="condition" data-tooltip-container>silenced</a>.
+                     The creature is then also <a class="condition" data-tooltip-container>taunted</a> by you. 2 WILL points
+                     to resist the <a class="condition" data-tooltip-container>taunt</a>.
                </td>
                <td>A+E, 100ft, Single target
                </td>
@@ -8426,7 +8431,7 @@
                   <p>
                      Select a point within 100ft and summon an illusion of yourself there. The illusion has Heavy+INT HP, 10 AC, no
                      resistance points, and doesn’t have a turn. All enemies within 10ft of the illusion are <a class="condition" data-tooltip-container>taunted</a> and the 
-                     <a class="condition" data-tooltip-container>taunt</a> ends before the start of the next turn if the illusion is destroyed.
+                     <a class="condition" data-tooltip-container>taunt</a> ends before the start of your next turn if the illusion is destroyed.
                      1 WILL point to resist the <a class="condition" data-tooltip-container>taunt</a>.
                </td>
                <td>E, 100ft, All within 10ft (AoE)
