@@ -1,0 +1,32 @@
+sections:
+  - id: classes
+    title: Character Classes
+    summary: Heroes of Arcus channel power through diverse archetypes.
+    children:
+      - id: battlemage
+        title: Battlemage
+        body: >-
+          A martial caster who weaves arcana into weapon strikes.
+      - id: warden
+        title: Warden
+        body: >-
+          A stalwart defender that shields allies and controls the field.
+
+classes:
+  battlemage:
+    name: Battlemage
+    table:
+      - level: 1
+        features: ["Spellweave", "Arcane Strike"]
+      - level: 2
+        features: ["Reservoir", "Elemental Infusion"]
+  warden:
+    name: Warden
+    table:
+      - level: 1
+        features: ["Guard", "Sentinel's Mark"]
+      - level: 2
+        features: ["Bulwark", "Hold the Line"]
+
+
+

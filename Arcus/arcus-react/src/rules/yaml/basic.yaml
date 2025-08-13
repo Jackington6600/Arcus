@@ -1,0 +1,30 @@
+sections:
+  - id: introduction
+    title: Introduction
+    summary: >-
+      Welcome to Arcus, a tabletop role playing game of luminous magic and soaring spires.
+    children:
+      - id: what-is-arcus
+        title: What is Arcus?
+        body: >-
+          Arcus is a TTRPG that blends fast tactical combat with character-driven storytelling.
+      - id: core-loop
+        title: Core Loop
+        body: >-
+          Prepare, explore, and face dangerous encounters that challenge your party.
+
+  - id: conditions
+    title: Conditions
+    summary: Universal effects that modify a creature's capabilities.
+    children:
+      - id: stunned
+        title: Stunned
+        body: >-
+          You lose your next action. Attackers have advantage when targeting you.
+      - id: prone
+        title: Prone
+        body: >-
+          Movement is halved and your melee attacks are impaired until you stand.
+
+
+
