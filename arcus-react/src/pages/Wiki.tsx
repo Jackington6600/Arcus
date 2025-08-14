@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
-import { TOOLTIP_MAP } from '@/rules/rulesIndex';
+import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
 
 type Child = { id: string; title: string; body?: string };
@@ -78,6 +78,21 @@ export default function Wiki() {
         };
     }, [menuOpen]);
 
+    // Desktop-only: Expand and highlight active link with a brief animation and ensure visibility
+    useEffect(() => {
+        if (!activeId) return;
+        const isDesktop = window.matchMedia('(min-width: 961px)').matches;
+        if (!isDesktop) return;
+        const aside = document.querySelector('aside.toc');
+        if (!aside) return;
+        const link = aside.querySelector(`a[href="#${activeId}"]`) as HTMLElement | null;
+        if (!link) return;
+        link.classList.add('pulse');
+        link.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        const t = setTimeout(() => link.classList.remove('pulse'), 650);
+        return () => clearTimeout(t);
+    }, [activeId]);
+
     // Close menu on outside clicks while letting underlying click proceed
     useEffect(() => {
         if (!menuOpen) return;
@@ -118,9 +133,9 @@ export default function Wiki() {
                     <SearchResults results={results} onClear={() => setQuery('')} />
                 )}
                 <h4>Browse Wiki</h4>
-				{sections.map((s) => (
-					<SidebarAccordion key={s.id} section={s} activeId={activeId} />
-				))}
+                {sections.map((s) => (
+                    <SidebarAccordion key={s.id} section={s} activeId={activeId} shouldOpen={s.id === activeId || (s.children ?? []).some((c) => c.id === activeId)} />
+                ))}
 			</aside>
 			<article className="doc" id="wiki-article" style={{ maxHeight: 'calc(100dvh - 100px)', overflow: 'auto' }}>
 				{active ? (
@@ -147,7 +162,7 @@ export default function Wiki() {
                         <SearchResults results={results} onClear={() => setQuery('')} />
                     )}
                     {sections.map((s) => (
-                        <SidebarAccordion key={s.id} section={s} activeId={activeId} />
+                        <SidebarAccordion key={s.id} section={s} activeId={activeId} shouldOpen={false} />
                     ))}
                 </div>
             </div>
@@ -155,8 +170,11 @@ export default function Wiki() {
 	);
 }
 
-function SidebarAccordion({ section, activeId }: { section: { id: string; title: string; summary?: string; children?: Child[] }; activeId: string }) {
-	const [open, setOpen] = useState(false);
+function SidebarAccordion({ section, activeId, shouldOpen }: { section: { id: string; title: string; summary?: string; children?: Child[] }; activeId: string; shouldOpen: boolean }) {
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        if (shouldOpen) setOpen(true);
+    }, [shouldOpen]);
 	return (
 		<div className="accordion-item">
 			<div className="accordion-header" onClick={() => setOpen((v) => !v)}>
@@ -192,7 +210,7 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 	return (
 		<div>
 			<h2 id={section.id}>{section.title}</h2>
-            {section.summary && <p style={{ color: 'var(--muted)' }}>{renderWithTooltips(section.summary)}</p>}
+            {section.summary && <p style={{ color: 'var(--muted)' }}>{renderWithLinks(renderWithTooltips(section.summary))}</p>}
 			{section.children && section.children.length > 0 && (
 				<div style={{ display: 'grid', gap: 12 }}>
 					{section.children.map((c) => (
@@ -200,7 +218,7 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 							<h3 id={c.id} style={{ marginTop: 0 }}>
 								<a href={`#${c.id}`}>{c.title}</a>
 							</h3>
-                            {c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithTooltips(c.body)}</p>}
+                            {c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithLinks(renderWithTooltips(c.body))}</p>}
 						</div>
 					))}
 				</div>
@@ -290,4 +308,51 @@ function findRuleById(id: string) {
         }
     }
     return undefined;
+}
+
+function renderWithLinks(node: React.ReactNode) {
+    const queue: React.ReactNode[] = [node];
+    const out: React.ReactNode[] = [];
+    while (queue.length) {
+        const current = queue.shift();
+        if (current === null || current === undefined) continue;
+        if (typeof current === 'string') {
+            out.push(applyLinkMapToString(current));
+        } else if (Array.isArray(current)) {
+            queue.push(...current);
+        } else if (typeof current === 'object' && 'props' in (current as any)) {
+            const el = current as any;
+            if (typeof el.props?.children !== 'undefined') {
+                out.push({ ...el, props: { ...el.props, children: renderWithLinks(el.props.children) } });
+            } else {
+                out.push(current);
+            }
+        } else {
+            out.push(current);
+        }
+    }
+    return <>{out}</>;
+}
+
+function applyLinkMapToString(text: string): React.ReactNode {
+    let parts: (string | JSX.Element)[] = [text];
+    Object.entries(WIKI_LINK_MAP).forEach(([phrase, id]) => {
+        const regex = new RegExp(`(\\b${escapeRegex(phrase)}\\b)`, 'gi');
+        const next: (string | JSX.Element)[] = [];
+        parts.forEach((p) => {
+            if (typeof p !== 'string') { next.push(p); return; }
+            const split = p.split(regex);
+            for (let i = 0; i < split.length; i++) {
+                const segment = split[i];
+                if (!segment) continue;
+                if (regex.test(segment)) {
+                    next.push(<a key={`${id}-${i}-${segment}`} href={`#${id}`}>{segment}</a>);
+                } else {
+                    next.push(segment);
+                }
+            }
+        });
+        parts = next;
+    });
+    return <>{parts}</>;
 }

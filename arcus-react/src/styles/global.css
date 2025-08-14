@@ -338,6 +338,15 @@ a {
 	color: var(--text);
 }
 
+/* Brief pulse to draw attention to active link on navigation */
+.toc a.pulse {
+    animation: pulseLink .65s ease;
+}
+@keyframes pulseLink {
+    0% { background: rgba(62,224,255,0.35); }
+    100% { background: rgba(62,224,255,0.12); }
+}
+
 .doc {
 	border: 1px solid #e5e8ef;
 	border-radius: 12px;

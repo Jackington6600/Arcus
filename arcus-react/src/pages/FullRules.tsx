@@ -33,10 +33,20 @@ export default function FullRules() {
 					}
 				});
 			},
-			{ root: null, rootMargin: '-40% 0px -55% 0px', threshold: [0, 1] }
+			{ root: null, rootMargin: '-70px 0px -85% 0px', threshold: [0] }
 		);
 		headingEls.forEach((el) => observer.observe(el));
 		return () => observer.disconnect();
+	}, []);
+
+	// If no hash/restore present and at page top, default to first heading
+	useEffect(() => {
+		if (window.location.hash) return;
+		if (localStorage.getItem('fullRules.lastId')) return;
+		const container = containerRef.current;
+		if (!container) return;
+		const firstHeading = container.querySelector('h2, h3') as HTMLElement | null;
+		if (firstHeading) setActiveId(firstHeading.id);
 	}, []);
 
 	// On initial load, restore position from hash or last read section

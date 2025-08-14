@@ -25,6 +25,18 @@ export const TOOLTIP_MAP: TooltipMap = {
     'What is Arcus?': 'what-is-arcus',
 };
 
+// Map phrases to wiki anchors (id) that should be turned into links on the Wiki page
+export type LinkMap = Record<string, string>; // phrase -> id
+export const WIKI_LINK_MAP: LinkMap = {
+    // Add phrases you want to become links in the Wiki content
+    'What is Arcus?': 'what-is-arcus',
+    'Core Loop': 'core-loop',
+    'Conditions': 'conditions',
+    'Character Classes': 'classes',
+    'Battlemage': 'battlemage',
+    'Warden': 'warden',
+};
+
 // Load YAML files at build time via Vite. We keep data DRY so both Full Rules and Wiki share it.
 function fetchYamlText(url: string): string {
 	const req = new XMLHttpRequest();
