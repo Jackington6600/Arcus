@@ -12,6 +12,7 @@ export default function FullRules() {
 	const [activeId, setActiveId] = useState<string>('');
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
+	const [query, setQuery] = useState('');
 	
 	// Add layout-page class to body to prevent scrolling
 	useEffect(() => {
@@ -123,6 +124,70 @@ export default function FullRules() {
 		return headings.find((h) => h.id === activeId)?.text || 'Contents';
 	}, [headings, activeId]);
 
+	// Search functionality
+	const searchIndex = useMemo(() => {
+		const entries: { id: string; title: string; preview: string; category: string; haystack: string }[] = [];
+		rules.sections.forEach((section) => {
+			// Add section title and summary
+			const title = section.title;
+			const preview = section.summary || '';
+			const haystack = `${title} ${preview}`.toLowerCase();
+			entries.push({ id: section.id, title, preview, category: section.title, haystack });
+			
+			// Add section children
+			section.children?.forEach((child) => {
+				const cTitle = child.title;
+				const cBody = child.body || '';
+				const cHaystack = `${cTitle} ${cBody} ${title}`.toLowerCase();
+				entries.push({ id: child.id, title: cTitle, preview: cBody, category: title, haystack: cHaystack });
+			});
+			
+			// Add class information if this is the classes section
+			const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
+			if (isClassSection) {
+				const classKeys = Object.keys((rules as any).classes || {});
+				classKeys.forEach((key) => {
+					const info = (rules as any).classes[key] as { name: string; abilities?: any[] };
+					const classId = `class-${key}`;
+					const classTitle = info?.name || key;
+					const classAbilities = info?.abilities || [];
+					
+					// Add class itself
+					entries.push({ 
+						id: classId, 
+						title: classTitle, 
+						preview: `Character class`, 
+						category: 'Character Classes', 
+						haystack: `${classTitle} character class`.toLowerCase() 
+					});
+					
+					// Add class abilities
+					classAbilities.forEach((ability) => {
+						const aTitle = ability.name;
+						const aDesc = Array.isArray(ability.description) ? ability.description.join(' ') : (ability.description || '');
+						const aHaystack = `${aTitle} ${aDesc} ${classTitle}`.toLowerCase();
+						entries.push({ 
+							id: `ability-${key}-${aTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, 
+							title: aTitle, 
+							preview: aDesc, 
+							category: classTitle, 
+							haystack: aHaystack 
+						});
+					});
+				});
+			}
+		});
+		return entries;
+	}, []);
+
+	const results = useMemo(() => {
+		const q = query.trim().toLowerCase();
+		if (!q) return [];
+		// Simple token AND search for better precision
+		const tokens = q.split(/\s+/).filter(Boolean);
+		return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
+	}, [query, searchIndex]);
+
 	return (
 		<div className="container layout">
 			<div className="mobile-only" style={{ margin: '12px 0' }}>
@@ -134,6 +199,17 @@ export default function FullRules() {
 				</button>
 			</div>
 			<aside className="toc">
+				<div className="searchbar">
+					<input
+						className="input"
+						placeholder="Search rules..."
+						value={query}
+						onChange={(e) => setQuery(e.target.value)}
+					/>
+				</div>
+				{query && (
+					<SearchResults results={results} onClear={() => setQuery('')} />
+				)}
 				<h4>On this page</h4>
 				{headings.map((h) => (
 					<a
@@ -167,6 +243,17 @@ export default function FullRules() {
 						<strong>On this page</strong>
 						<span aria-hidden>×</span>
 					</div>
+					<div className="searchbar">
+						<input
+							className="input"
+							placeholder="Search rules..."
+							value={query}
+							onChange={(e) => setQuery(e.target.value)}
+						/>
+					</div>
+					{query && (
+						<SearchResults results={results} onClear={() => setQuery('')} />
+					)}
 					{headings.map((h) => (
 						<a
 							key={h.id}
@@ -231,33 +318,72 @@ function findRuleById(id: string) {
 }
 
 function renderClassTableIfAny(section: { id: string; title: string }) {
-    const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
-    if (!isClassSection) return null;
-    // Map each class in rules.classes to its own table
-    const classKeys = Object.keys(rules.classes || {});
-    if (!classKeys.length) return null;
-    return (
-        <div style={{ display: 'grid', gap: 16 }}>
-            {classKeys.map((key) => {
-                const info = (rules as any).classes[key] as { name: string; abilities: ClassAbility[] };
-                const rows: AbilityRow[] = (info.abilities || []).map((a) => ({
-                    level: a.level,
-                    name: a.name,
-                    description: a.description || [],
-                    target: a.target,
-                    apCost: a.apCost,
-                    tags: a.tags,
-                }));
-                if (!rows.length) return null;
-                return (
-                    <div key={key}>
-                        <h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
-                        <ClassTable title={info.name} rows={rows} />
-                    </div>
-                );
-            })}
-        </div>
-    );
+	const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
+	if (!isClassSection) return null;
+	// Map each class in rules.classes to its own table
+	const classKeys = Object.keys(rules.classes || {});
+	if (!classKeys.length) return null;
+	return (
+		<div style={{ display: 'grid', gap: 16 }}>
+			{classKeys.map((key) => {
+				const info = (rules as any).classes[key] as { name: string; abilities: ClassAbility[] };
+				const rows: AbilityRow[] = (info.abilities || []).map((a) => ({
+					level: a.level,
+					name: a.name,
+					description: a.description || [],
+					target: a.target,
+					apCost: a.apCost,
+					tags: a.tags,
+				}));
+				if (!rows.length) return null;
+				return (
+					<div key={key}>
+						<h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
+						<ClassTable title={info.name} rows={rows} />
+					</div>
+				);
+			})}
+		</div>
+	);
+}
+
+function SearchResults({ results, onClear }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void }) {
+	if (!results.length) {
+		return (
+			<div className="accordion-item" style={{ marginBottom: 10 }}>
+				<div className="accordion-header" style={{ cursor: 'default' }}>
+					<strong>Search Results</strong>
+					<span aria-hidden>0</span>
+				</div>
+				<div className="accordion-content">
+					<p style={{ color: 'var(--muted)', margin: '6px 0 0' }}>No matches. Try different terms.</p>
+				</div>
+			</div>
+		);
+	}
+	return (
+		<div className="accordion-item" style={{ marginBottom: 10 }}>
+			<div className="accordion-header" onClick={onClear}>
+				<strong>Search Results ({results.length})</strong>
+				<span aria-hidden>×</span>
+			</div>
+			<div className="accordion-content">
+				{results.map((e) => (
+					<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
+							<a href={`#${e.id}`} style={{ fontWeight: 600 }}>{e.title}</a>
+							<span className="tag">{e.category}</span>
+						</div>
+						{e.preview && (
+							<p style={{ margin: '6px 0 0', color: 'var(--muted)' }}>
+								{e.preview.slice(0, 160)}{e.preview.length > 160 ? '…' : ''}
+							</p>
+						)}
+					</div>
+				))}
+			</div>
+		</div>
+	);
 }
 
 

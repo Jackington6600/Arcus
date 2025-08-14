@@ -188,6 +188,15 @@ a {
 	padding: 12px 0 16px;
 }
 
+/* Ensure search bar stays at top in mobile overlay */
+.page-menu .searchbar {
+	position: sticky;
+	top: 0;
+	background: linear-gradient(180deg, rgba(233,237,242,0.98), rgba(233,237,242,0.96));
+	padding: 8px 0;
+	z-index: 10;
+}
+
 /* Larger close control in overlay header */
 .page-menu .accordion-header {
 	padding: 16px 14px;
@@ -401,6 +410,11 @@ a {
 	display: flex;
 	gap: 10px;
 	margin-bottom: 14px;
+	position: sticky;
+	top: 0;
+	background: #ffffff;
+	padding: 8px 0;
+	z-index: 10;
 }
 
 .input {
@@ -535,6 +549,15 @@ body.layout-page .layout {
 /* Allow sidebars to scroll their content */
 body.layout-page .toc {
 	overflow: auto !important;
+}
+
+/* Ensure search bar stays at top of sidebar */
+body.layout-page .toc .searchbar {
+	position: sticky;
+	top: 0;
+	background: #ffffff;
+	padding: 8px 0;
+	z-index: 10;
 }
 
 body.layout-page .doc {
