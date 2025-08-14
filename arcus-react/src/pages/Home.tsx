@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Disclaimer from '../components/Disclaimer';
 
 export default function Home() {
+    const [showDisclaimer, setShowDisclaimer] = useState(true);
+    
     useEffect(() => {
         const hero = document.querySelector('.hero');
         if (!hero) return;
@@ -33,6 +36,9 @@ export default function Home() {
 
     return (
         <>
+        <div className="home-background">
+            <img src="/images/arcus_spire_square.png" alt="Arcus Spire" className="background-image" />
+        </div>
         <section className="hero">
             <div className="container">
                 <div className="hero-card">
@@ -55,6 +61,12 @@ export default function Home() {
             </div>
         </section>
         <ContentBelow />
+        {showDisclaimer && (
+          <Disclaimer 
+            text="AI generated art has been used on this page. It will be removed later. We will pay proper artists."
+            onClose={() => setShowDisclaimer(false)}
+          />
+        )}
         </>
 	);
 }

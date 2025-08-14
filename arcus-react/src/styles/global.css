@@ -232,27 +232,11 @@ a {
 	position: relative;
 	display: grid;
 	place-items: center;
-	/* Nebula backdrop */
-	background:
-		radial-gradient(80% 90% at 30% 10%, rgba(66,233,255,0.15), transparent 50%),
-		radial-gradient(90% 100% at 70% 15%, rgba(168,137,255,0.14), transparent 55%),
-		radial-gradient(100% 140% at 50% 80%, rgba(231,207,138,0.08), transparent 55%);
 	color: #f7f7fb;
+	z-index: 1;
 }
 
-/* Soft fade from hero backdrop into page background */
-.hero::after {
-	content: '';
-	position: absolute;
-	left: 0; right: 0; top: 0; bottom: 0;
-	pointer-events: none;
-	background: linear-gradient(
-		to bottom,
-		rgba(7, 9, 14, 0) 55%,
-		rgba(7, 9, 14, 0.6) 78%,
-		var(--bg) 100%
-	);
-}
+
 
 .hero > .container {
 	display: grid;
@@ -566,6 +550,142 @@ body.layout-page .doc {
 
 /* Allow dark background to continue below hero */
 .home-section { background: var(--bg); }
+
+/* Reusable Disclaimer Component */
+.disclaimer {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	background: rgba(139, 0, 0, 0.9);
+	color: #ffffff;
+	padding: 12px 16px;
+	border-radius: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.4;
+	z-index: 1000;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	max-width: 300px;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.disclaimer.closing {
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.disclaimer-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.disclaimer-icon::before {
+	content: '!';
+	font-weight: bold;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.disclaimer-text {
+	flex: 1;
+}
+
+.disclaimer-close {
+	background: none;
+	border: none;
+	color: rgba(255, 255, 255, 0.7);
+	cursor: pointer;
+	padding: 4px;
+	border-radius: 4px;
+	transition: color 0.2s ease, background-color 0.2s ease;
+	flex-shrink: 0;
+}
+
+.disclaimer-close:hover {
+	color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.disclaimer-close::before {
+	content: '×';
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+@media (max-width: 768px) {
+	.disclaimer {
+		bottom: 15px;
+		left: 15px;
+		right: 15px;
+		max-width: none;
+		font-size: 13px;
+		padding: 10px 14px;
+	}
+}
+
+/* Enhanced styling for content below hero */
+.main--home .doc {
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(4px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Home page background image */
+.home-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	overflow: hidden;
+}
+
+/* Ensure content below hero has proper background */
+.main--home {
+	position: relative;
+	z-index: 1;
+}
+ 
+.background-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	filter: brightness(0.7);
+}
+
+/* Fade out effect for background image */
+.home-background::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		to bottom,
+		rgba(7, 9, 14, 0.1) 0%,
+		rgba(7, 9, 14, 0.2) 40%,
+		rgba(7, 9, 14, 0.4) 70%,
+		rgba(7, 9, 14, 0.7) 85%,
+		rgba(7, 9, 14, 0.95) 100%
+	);
+	pointer-events: none;
+}
+
+
 
 
 
