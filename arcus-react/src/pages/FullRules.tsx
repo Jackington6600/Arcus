@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import rules from '@/rules/rulesIndex';
+import { TOOLTIP_MAP } from '@/rules/rulesIndex';
+import Tooltip from '@/components/Tooltip';
 
 type Heading = { id: string; level: number; text: string };
 
@@ -119,11 +121,11 @@ export default function FullRules() {
 				{rules.sections.map((s) => (
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
-						<p style={{ color: 'var(--muted)' }}>{s.summary}</p>
+						<p style={{ color: 'var(--muted)' }}>{renderWithTooltips(s.summary)}</p>
 						{s.children?.map((c) => (
 							<div key={c.id}>
 								<h3 id={c.id}>{c.title}</h3>
-								<p>{c.body}</p>
+								<p>{renderWithTooltips(c.body)}</p>
 							</div>
 						))}
 					</section>
@@ -150,6 +152,52 @@ export default function FullRules() {
 			</div>
 		</div>
 	);
+}
+
+function renderWithTooltips(text?: string) {
+    if (!text) return null;
+    const parts: (string | JSX.Element)[] = [text];
+    // For each phrase, split and inject Tooltip components
+    Object.entries(TOOLTIP_MAP).forEach(([phrase, id]) => {
+        const regex = new RegExp(`(\\b${escapeRegex(phrase)}\\b)`, 'gi');
+        const next: (string | JSX.Element)[] = [];
+        parts.forEach((p) => {
+            if (typeof p !== 'string') { next.push(p); return; }
+            const split = p.split(regex);
+            for (let i = 0; i < split.length; i++) {
+                const segment = split[i];
+                if (!segment) continue;
+                if (regex.test(segment)) {
+                    // Lookup summary/body by id for description
+                    const rule = findRuleById(id);
+                    const desc = rule?.child?.body || rule?.section?.summary || '';
+                    next.push(
+                        <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
+                            {segment}
+                        </Tooltip>
+                    );
+                } else {
+                    next.push(segment);
+                }
+            }
+        });
+        parts.splice(0, parts.length, ...next);
+    });
+    return <>{parts}</>;
+}
+
+function escapeRegex(s: string) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function findRuleById(id: string) {
+    for (const section of rules.sections) {
+        if (section.id === id) return { section };
+        for (const child of section.children ?? []) {
+            if (child.id === id) return { section, child };
+        }
+    }
+    return undefined;
 }
 
 

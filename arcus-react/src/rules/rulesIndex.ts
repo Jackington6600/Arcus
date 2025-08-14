@@ -13,6 +13,18 @@ export type RulesIndex = {
 	sections: RuleSection[];
 };
 
+// Map phrases to rule ids for auto-tooltips
+export type TooltipMap = Record<string, string>; // phrase -> id
+export const TOOLTIP_MAP: TooltipMap = {
+    // Example mappings; extend freely
+    'Stunned': 'stunned',
+    'Prone': 'prone',
+    'Conditions': 'conditions',
+    'Character Classes': 'classes',
+    'Core Loop': 'core-loop',
+    'What is Arcus?': 'what-is-arcus',
+};
+
 // Load YAML files at build time via Vite. We keep data DRY so both Full Rules and Wiki share it.
 function fetchYamlText(url: string): string {
 	const req = new XMLHttpRequest();

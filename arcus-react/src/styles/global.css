@@ -432,7 +432,35 @@ a {
 	padding: 10px 12px;
 	box-shadow: 0 10px 30px rgba(0,0,0,.35);
 	z-index: 100;
+    color: #e9edf2;
 }
+
+/* Fixed-position variant when JS positions it */
+.tooltip-bubble-fixed {
+    animation-duration: .18s;
+    animation-fill-mode: both;
+    will-change: transform, opacity;
+}
+
+@keyframes tooltipEnterUp {
+    from { opacity: 0; transform: translateY(6px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes tooltipEnterDown {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.tooltip-in-up { animation-name: tooltipEnterUp; }
+.tooltip-in-down { animation-name: tooltipEnterDown; }
+
+/* Subtle inline cue for tooltip terms */
+.hint {
+    border-bottom: 1px dashed var(--muted);
+    cursor: help;
+}
+
+.tooltip-bubble strong { color: #ffffff; }
+.tooltip-desc { color: #cfd6e3; }
 
 /* Scroll reveal helper */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }

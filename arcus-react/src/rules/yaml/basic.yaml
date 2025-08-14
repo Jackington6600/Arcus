@@ -2,7 +2,7 @@ sections:
   - id: introduction
     title: Introduction
     summary: >-
-      Welcome to Arcus, a tabletop role playing game of luminous magic and soaring spires.
+      Welcome to Arcus, a tabletop role playing game of luminous magic and soaring spires. Learn more in What is Arcus? and the Core Loop.
     children:
       - id: what-is-arcus
         title: What is Arcus?
@@ -15,7 +15,7 @@ sections:
 
   - id: conditions
     title: Conditions
-    summary: Universal effects that modify a creature's capabilities.
+    summary: Universal effects that modify a creature's capabilities, such as Stunned or Prone.
     children:
       - id: stunned
         title: Stunned

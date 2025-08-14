@@ -1,7 +1,7 @@
 sections:
   - id: classes
     title: Character Classes
-    summary: Heroes of Arcus channel power through diverse archetypes.
+    summary: Heroes of Arcus channel power through diverse archetypes. See Conditions like Prone and Stunned as they often interact with class features.
     children:
       - id: battlemage
         title: Battlemage

@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
+import { TOOLTIP_MAP } from '@/rules/rulesIndex';
+import Tooltip from '@/components/Tooltip';
 
 type Child = { id: string; title: string; body?: string };
 type SearchEntry = { id: string; title: string; preview: string; category: string; haystack: string };
@@ -122,7 +124,7 @@ export default function Wiki() {
 			</aside>
 			<article className="doc" id="wiki-article" style={{ maxHeight: 'calc(100dvh - 100px)', overflow: 'auto' }}>
 				{active ? (
-					<WikiContent section={active.section} child={active.child} />
+                    <WikiContent section={active.section} child={active.child} />
 				) : (
 					<p style={{ color: 'var(--muted)' }}>No content available.</p>
 				)}
@@ -183,14 +185,14 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 			<div>
 				<a href={`#${section.id}`} className="tag">{section.title}</a>
 				<h2 id={child.id} style={{ marginTop: 10 }}>{child.title}</h2>
-				<p style={{ color: 'var(--muted)' }}>{child.body}</p>
+                <p style={{ color: 'var(--muted)' }}>{renderWithTooltips(child.body)}</p>
 			</div>
 		);
 	}
 	return (
 		<div>
 			<h2 id={section.id}>{section.title}</h2>
-			{section.summary && <p style={{ color: 'var(--muted)' }}>{section.summary}</p>}
+            {section.summary && <p style={{ color: 'var(--muted)' }}>{renderWithTooltips(section.summary)}</p>}
 			{section.children && section.children.length > 0 && (
 				<div style={{ display: 'grid', gap: 12 }}>
 					{section.children.map((c) => (
@@ -198,7 +200,7 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 							<h3 id={c.id} style={{ marginTop: 0 }}>
 								<a href={`#${c.id}`}>{c.title}</a>
 							</h3>
-							{c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{c.body}</p>}
+                            {c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithTooltips(c.body)}</p>}
 						</div>
 					))}
 				</div>
@@ -244,4 +246,48 @@ function SearchResults({ results, onClear }: { results: SearchEntry[]; onClear: 
             </div>
         </div>
     );
+}
+
+function renderWithTooltips(text?: string) {
+    if (!text) return null;
+    const parts: (string | JSX.Element)[] = [text];
+    Object.entries(TOOLTIP_MAP).forEach(([phrase, id]) => {
+        const regex = new RegExp(`(\\b${escapeRegex(phrase)}\\b)`, 'gi');
+        const next: (string | JSX.Element)[] = [];
+        parts.forEach((p) => {
+            if (typeof p !== 'string') { next.push(p); return; }
+            const split = p.split(regex);
+            for (let i = 0; i < split.length; i++) {
+                const segment = split[i];
+                if (!segment) continue;
+                if (regex.test(segment)) {
+                    const rule = findRuleById(id);
+                    const desc = rule?.child?.body || rule?.section?.summary || '';
+                    next.push(
+                        <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
+                            {segment}
+                        </Tooltip>
+                    );
+                } else {
+                    next.push(segment);
+                }
+            }
+        });
+        parts.splice(0, parts.length, ...next);
+    });
+    return <>{parts}</>;
+}
+
+function escapeRegex(s: string) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function findRuleById(id: string) {
+    for (const section of rules.sections) {
+        if (section.id === id) return { section };
+        for (const child of section.children ?? []) {
+            if (child.id === id) return { section, child };
+        }
+    }
+    return undefined;
 }
