@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
+import ClassTable, { AbilityRow } from '@/pages/components/ClassTable';
+import type { ClassAbility } from '@/rules/rulesIndex';
 
 type Heading = { id: string; level: number; text: string };
 
@@ -11,15 +13,24 @@ export default function FullRules() {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 
-	const headings = useMemo<Heading[]>(() => {
-		const hs: Heading[] = [];
-		rules.sections.forEach((section) => {
-			const id = section.id;
-			hs.push({ id, level: 2, text: section.title });
-			section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title }));
-		});
-		return hs;
-	}, []);
+    const headings = useMemo<Heading[]>(() => {
+        const hs: Heading[] = [];
+        rules.sections.forEach((section) => {
+            const id = section.id;
+            hs.push({ id, level: 2, text: section.title });
+            section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title }));
+            // Add class headings under the Character Classes section
+            const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
+            if (isClassSection) {
+                const classKeys = Object.keys((rules as any).classes || {});
+                classKeys.forEach((key) => {
+                    const info = (rules as any).classes[key] as { name: string };
+                    hs.push({ id: `class-${key}`, level: 3, text: info?.name || key });
+                });
+            }
+        });
+        return hs;
+    }, []);
 
 	useEffect(() => {
 		const container = containerRef.current;
@@ -132,6 +143,7 @@ export default function FullRules() {
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
 						<p style={{ color: 'var(--muted)' }}>{renderWithTooltips(s.summary)}</p>
+						{renderClassTableIfAny(s)}
 						{s.children?.map((c) => (
 							<div key={c.id}>
 								<h3 id={c.id}>{c.title}</h3>
@@ -208,6 +220,36 @@ function findRuleById(id: string) {
         }
     }
     return undefined;
+}
+
+function renderClassTableIfAny(section: { id: string; title: string }) {
+    const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
+    if (!isClassSection) return null;
+    // Map each class in rules.classes to its own table
+    const classKeys = Object.keys(rules.classes || {});
+    if (!classKeys.length) return null;
+    return (
+        <div style={{ display: 'grid', gap: 16 }}>
+            {classKeys.map((key) => {
+                const info = (rules as any).classes[key] as { name: string; abilities: ClassAbility[] };
+                const rows: AbilityRow[] = (info.abilities || []).map((a) => ({
+                    level: a.level,
+                    name: a.name,
+                    description: a.description || [],
+                    target: a.target,
+                    apCost: a.apCost,
+                    tags: a.tags,
+                }));
+                if (!rows.length) return null;
+                return (
+                    <div key={key}>
+                        <h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
+                        <ClassTable title={info.name} rows={rows} />
+                    </div>
+                );
+            })}
+        </div>
+    );
 }
 
 

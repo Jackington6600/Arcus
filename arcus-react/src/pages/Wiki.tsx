@@ -3,28 +3,56 @@ import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
+import ClassTable from '@/pages/components/ClassTable';
 
 type Child = { id: string; title: string; body?: string };
 type SearchEntry = { id: string; title: string; preview: string; category: string; haystack: string };
+type NodeWithChildren = Child & { children?: Child[] };
 
 export default function Wiki() {
 	const location = useLocation();
-	const sections = rules.sections;
+    const sections = rules.sections;
+    const classKeys = Object.keys((rules as any).classes || {});
+    // Build wiki sections with classes nested under Character Classes
+    const wikiSections = useMemo(() => {
+        return sections.map((s) => {
+            const isClassSection = /character classes/i.test(s.title) || s.id === 'classes';
+            if (!isClassSection) return s;
+            const classChildren = classKeys.map((key) => {
+                const info = (rules as any).classes[key] as { name: string; type?: string; attributes?: string; summary?: string; abilities?: { name: string; description?: string[]; target?: string; apCost?: any; tags?: string[] }[] };
+                const classId = `class-${key}`;
+                const summaryParts: string[] = [];
+                if (info.type) summaryParts.push(`Type: ${info.type}`);
+                if (info.attributes) summaryParts.push(`Attributes: ${info.attributes}`);
+                if (info.summary) summaryParts.push(info.summary);
+                const abilityChildren = (info.abilities || []).map((a) => ({
+                    id: `ability-${key}-${slugify(a.name)}`,
+                    title: a.name,
+                    body: buildAbilityBody(a),
+                }));
+                return { id: classId, title: info.name, body: summaryParts.join('\n'), children: abilityChildren } as any;
+            });
+            return { ...s, children: [...(s.children ?? []), ...classChildren] } as any;
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sections, classKeys.join('|')]);
     const [menuOpen, setMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement>(null);
 
-	const idToSection = useMemo(() => {
-		const map = new Map<string, { section: typeof sections[number]; child?: Child }>();
-		for (const s of sections) {
-			map.set(s.id, { section: s });
-			for (const c of s.children ?? []) {
-				map.set(c.id, { section: s, child: c });
-			}
-		}
-		return map;
-	}, [sections]);
+    const idToSection = useMemo(() => {
+        const map = new Map<string, { section: typeof sections[number]; child?: Child }>();
+        for (const s of wikiSections) {
+            map.set(s.id, { section: s });
+            for (const c of s.children ?? []) {
+                map.set(c.id, { section: s, child: c });
+                const nested: any[] = (c as any).children ?? [];
+                nested.forEach((gc) => map.set(gc.id, { section: s, child: gc }));
+            }
+        }
+        return map;
+    }, [wikiSections]);
 
-	const firstId = sections[0]?.id ?? '';
+    const firstId = wikiSections[0]?.id ?? '';
 	const getHash = () => (location.hash ? location.hash.replace(/^#/, '') : firstId);
 	const [activeId, setActiveId] = useState<string>(getHash());
 
@@ -42,7 +70,7 @@ export default function Wiki() {
     const [query, setQuery] = useState('');
     const searchIndex = useMemo<SearchEntry[]>(() => {
         const entries: SearchEntry[] = [];
-        for (const s of sections) {
+        for (const s of wikiSections) {
             const title = s.title ?? '';
             const preview = s.summary ?? '';
             const haystack = `${s.title ?? ''} ${s.summary ?? ''}`.toLowerCase();
@@ -52,10 +80,17 @@ export default function Wiki() {
                 const cBody = c.body ?? '';
                 const cHaystack = `${c.title ?? ''} ${c.body ?? ''} ${s.title ?? ''}`.toLowerCase();
                 entries.push({ id: c.id, title: cTitle, preview: cBody, category: s.title, haystack: cHaystack });
+                const nested: any[] = (c as any).children ?? [];
+                nested.forEach((gc) => {
+                    const gTitle = gc.title ?? '';
+                    const gBody = gc.body ?? '';
+                    const gHay = `${gTitle} ${gBody} ${cTitle} ${s.title}`.toLowerCase();
+                    entries.push({ id: gc.id, title: gTitle, preview: gBody, category: cTitle, haystack: gHay });
+                });
             }
         }
         return entries;
-    }, [sections]);
+    }, [wikiSections]);
 
     const results = useMemo(() => {
         const q = query.trim().toLowerCase();
@@ -133,9 +168,14 @@ export default function Wiki() {
                     <SearchResults results={results} onClear={() => setQuery('')} />
                 )}
                 <h4>Browse Wiki</h4>
-                {sections.map((s) => (
-                    <SidebarAccordion key={s.id} section={s} activeId={activeId} shouldOpen={s.id === activeId || (s.children ?? []).some((c) => c.id === activeId)} />
-                ))}
+				{wikiSections.map((s) => (
+					<SidebarAccordion
+						key={s.id}
+						section={s}
+						activeId={activeId}
+						shouldOpen={s.id === activeId || (s.children ?? []).some((c: any) => c.id === activeId || (c.children ?? []).some((gc: any) => gc.id === activeId))}
+					/>
+				))}
 			</aside>
 			<article className="doc" id="wiki-article" style={{ maxHeight: 'calc(100dvh - 100px)', overflow: 'auto' }}>
 				{active ? (
@@ -161,7 +201,7 @@ export default function Wiki() {
                     {query && (
                         <SearchResults results={results} onClear={() => setQuery('')} />
                     )}
-                    {sections.map((s) => (
+                    {wikiSections.map((s) => (
                         <SidebarAccordion key={s.id} section={s} activeId={activeId} shouldOpen={false} />
                     ))}
                 </div>
@@ -186,9 +226,39 @@ function SidebarAccordion({ section, activeId, shouldOpen }: { section: { id: st
 					<div style={{ padding: '6px 0' }}>
 						<a href={`#${section.id}`} className={activeId === section.id ? 'active' : ''} style={{ fontWeight: 600 }}>Overview</a>
 					</div>
-					{section.children?.map((c) => (
-						<div key={c.id} style={{ padding: '6px 0' }}>
-							<a href={`#${c.id}`} className={activeId === c.id ? 'active' : ''} style={{ paddingLeft: 12 }}>{c.title}</a>
+					{section.children?.map((c) => {
+						const withKids = c as NodeWithChildren;
+						if (withKids.children && withKids.children.length) {
+							return <ChildAccordion key={withKids.id} item={withKids} activeId={activeId} />;
+						}
+						return (
+							<div key={c.id} style={{ padding: '6px 0' }}>
+								<a href={`#${c.id}`} className={activeId === c.id ? 'active' : ''} style={{ paddingLeft: 12 }}>{c.title}</a>
+							</div>
+						);
+					})}
+				</div>
+			)}
+		</div>
+	);
+}
+
+function ChildAccordion({ item, activeId }: { item: NodeWithChildren; activeId: string }) {
+	const [open, setOpen] = useState(false);
+	useEffect(() => {
+		if (activeId === item.id || (item.children ?? []).some((gc) => gc.id === activeId)) setOpen(true);
+	}, [activeId, item]);
+	return (
+		<div style={{ padding: '6px 0' }}>
+			<div className="accordion-header" onClick={() => setOpen((v) => !v)}>
+				<a href={`#${item.id}`} className={activeId === item.id ? 'active' : ''} style={{ paddingLeft: 12, fontWeight: 600 }}>{item.title}</a>
+				<span aria-hidden>{open ? '−' : '+'}</span>
+			</div>
+			{open && (
+				<div className="accordion-content" style={{ paddingLeft: 6 }}>
+					{item.children?.map((gc) => (
+						<div key={gc.id} style={{ padding: '4px 0' }}>
+							<a href={`#${gc.id}`} className={activeId === gc.id ? 'active' : ''} style={{ paddingLeft: 18 }}>{gc.title}</a>
 						</div>
 					))}
 				</div>
@@ -204,6 +274,7 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 				<a href={`#${section.id}`} className="tag">{section.title}</a>
 				<h2 id={child.id} style={{ marginTop: 10 }}>{child.title}</h2>
                 <p style={{ color: 'var(--muted)' }}>{renderWithTooltips(child.body)}</p>
+                {renderClassTableIfClass({ id: child.id, title: child.title })}
 			</div>
 		);
 	}
@@ -211,16 +282,32 @@ function WikiContent({ section, child }: { section: { id: string; title: string;
 		<div>
 			<h2 id={section.id}>{section.title}</h2>
             {section.summary && <p style={{ color: 'var(--muted)' }}>{renderWithLinks(renderWithTooltips(section.summary))}</p>}
+            {renderClassTableIfClass(section)}
 			{section.children && section.children.length > 0 && (
 				<div style={{ display: 'grid', gap: 12 }}>
-					{section.children.map((c) => (
-						<div key={c.id} className="doc" style={{ padding: 16 }}>
-							<h3 id={c.id} style={{ marginTop: 0 }}>
-								<a href={`#${c.id}`}>{c.title}</a>
-							</h3>
-                            {c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithLinks(renderWithTooltips(c.body))}</p>}
-						</div>
-					))}
+					{section.children.map((c) => {
+						const withKids = c as NodeWithChildren;
+						return (
+							<div key={c.id} className="doc" style={{ padding: 16 }}>
+								<h3 id={c.id} style={{ marginTop: 0 }}>
+									<a href={`#${c.id}`}>{c.title}</a>
+								</h3>
+								{c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithLinks(renderWithTooltips(c.body))}</p>}
+								{withKids.children && withKids.children.length > 0 && (
+									<div style={{ display: 'grid', gap: 10, marginTop: 8 }}>
+										{withKids.children.map((gc) => (
+											<div key={gc.id} className="doc" style={{ padding: 12 }}>
+												<h4 id={gc.id} style={{ marginTop: 0 }}>
+													<a href={`#${gc.id}`}>{gc.title}</a>
+												</h4>
+												{gc.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{renderWithLinks(renderWithTooltips(gc.body))}</p>}
+											</div>
+										))}
+									</div>
+								)}
+							</div>
+						);
+					})}
 				</div>
 			)}
 		</div>
@@ -355,4 +442,35 @@ function applyLinkMapToString(text: string): React.ReactNode {
         parts = next;
     });
     return <>{parts}</>;
+}
+
+function slugify(name: string | undefined): string {
+    if (!name) return '';
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function buildAbilityBody(a: { description?: string[]; target?: string; apCost?: any; tags?: string[] }): string {
+    const parts: string[] = [];
+    if (a.description && a.description.length) parts.push(a.description.join('\n'));
+    if (a.target) parts.push(`Target: ${a.target}`);
+    if (typeof a.apCost !== 'undefined') parts.push(`AP: ${a.apCost}`);
+    if (a.tags && a.tags.length) parts.push(`Tags: ${a.tags.join(', ')}`);
+    return parts.join('\n\n');
+}
+
+function renderClassTableIfClass(section: { id: string; title: string }) {
+    if (!section.id.startsWith('class-')) return null;
+    const key = section.id.replace(/^class-/, '');
+    const info = (rules as any).classes?.[key] as { abilities?: { level: string | number; name: string; description?: string[]; target?: string; apCost?: any; tags?: string[] }[] } | undefined;
+    if (!info || !info.abilities || !info.abilities.length) return null;
+    const rows = info.abilities.map((a) => ({
+        level: a.level,
+        name: a.name,
+        description: a.description ?? [],
+        target: a.target ?? '',
+        apCost: a.apCost ?? '',
+        tags: a.tags,
+    }));
+    const getNameHref = (row: any) => `#ability-${key}-${slugify(row.name)}`;
+    return <div style={{ margin: '12px 0' }}><ClassTable title={`${section.title} Abilities`} rows={rows} getNameHref={getNameHref as any} /></div>;
 }

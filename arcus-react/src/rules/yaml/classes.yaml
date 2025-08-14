@@ -2,31 +2,399 @@ sections:
   - id: classes
     title: Character Classes
     summary: Heroes of Arcus channel power through diverse archetypes. See Conditions like Prone and Stunned as they often interact with class features.
-    children:
-      - id: battlemage
-        title: Battlemage
-        body: >-
-          A martial caster who weaves arcana into weapon strikes.
-      - id: warden
-        title: Warden
-        body: >-
-          A stalwart defender that shields allies and controls the field.
 
 classes:
-  battlemage:
-    name: Battlemage
-    table:
+  warrior:
+    name: Warrior
+    type: Physical
+    attributes: Strength or Dexterity, Constitution
+    summary: Melee, Tanking, Multi-Target Damage, Gap Closing, Crowd Control
+    abilities:
+      - level: Core
+        name: Ignore Pain
+        description:
+          - Focus your defenses on .
+          - You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing. You also ignore the effects of difficult terrain.
+        target: Self
+        apCost: Pass
+        tags: [defensive]
+      - level: Core
+        name: Forceful Shove
+        description:
+          - Push harder and further with great technique.
+          - Select a creature within 5ft and move them 5-15ft (your choice) in any direction. FORT or REFL to resist the push/pull.
+        target: A+E, 5ft, Single target
+        apCost: 1
+        tags: [movement, control]
+      - level: Core
+        name: Provoking Shout
+        description:
+          - Goad an enemy into fighting you.
+          - Select a creature within 50ft and taunt them. WILL to resist the taunt.
+        target: A+E, 5ft, Single target
+        apCost: 1
+        tags: [taunt, control]
       - level: 1
-        features: ["Spellweave", "Arcane Strike"]
-      - level: 2
-        features: ["Reservoir", "Elemental Infusion"]
-  warden:
-    name: Warden
-    table:
+        name: Charge
+        description:
+          - Spend 1 FORT: Move up to 40ft in a straight line, moving through other creatures. Make a melee weapon attack against all creatures moved through targeting FORT.
+          - Spend 1 FORT: All creatures attacked are also dazed. FORT to resist the daze.
+        target: A+E, All within 40ft straight line from self (AoE)
+        apCost: 2
+        tags: [attack, movement, AoE]
       - level: 1
-        features: ["Guard", "Sentinel's Mark"]
+        name: Sweeping Strike
+        description:
+          - Spend 1 FORT or REFL: Select 3 connected tiles all within 5ft. Make a melee weapon attack against all creatures on these tiles targeting FORT or REFL. All creatures attacked are knocked prone. FORT or REFL to resist the prone.
+        target: A+E, Melee, Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 1
+        name: Overpower
+        description:
+          - Spend 1 FORT or REFL: Move up to 15ft and make a melee attack with Light FORT or REFL attack power and push them to another tile within 15ft of you. FORT or REFL to resist the push. The creature is then also knocked prone. FORT or REFL to resist the prone.
+        target: A+E, Melee, Single target
+        apCost: 1
+        tags: [attack, movement, control]
+      - level: 1
+        name: Rage
+        description:
+          - Spend 1 FORT or WILL: Taunt all enemies within 30ft of you. FORT or WILL to resist the taunt. You also gain Physical Resistance 1 and Resistance 1 for one other damage type of your choice until the start of your next turn.
+        target: E, 30ft, All within range (AoE)
+        apCost: 1
+        tags: [taunt, defensive, AoE]
+      - level: 1
+        name: Danger Close
+        description:
+          - Spend 1 FORT or REFL in addition to your reaction: Then, when a creature moves into a tile within 5ft of you (voluntarily or involuntarily), you may make a melee attack that creature with Light attack power. Each creature can only be damaged by this ability once per cast. This ability has no effect when you are the one moving.
+          - Spend 2 FORT or REFL: Increase the attack power to that of your melee weapon.
+        target: E, 5ft, All within range (AoE)
+        apCost: React
+        tags: [attack, reactive]
       - level: 2
-        features: ["Bulwark", "Hold the Line"]
+        name: Whirlwind
+        description:
+          - Ferociously swing your weapon around you, striking all nearby creatures.
+          - Spend 1 FORT or REFL: Make a melee weapon attack against all creatures within melee range, targeting FORT or REFL.
+        target: A+E, Melee, All within range (AoE)
+        apCost: 2
+        tags: [attack, AoE]
+      - level: 2
+        name: Booming Shout
+        description:
+          - Roar with the power to daze nearby creatures.
+          - Spend 1 FORT or WILL: Daze all enemies within 15ft of you. WILL to resist the Daze.
+        target: E, 15ft, All within range (AoE)
+        apCost: 1
+        tags: [control, AoE]
+      - level: 2
+        name: Hooked Chain
+        description:
+          - Throw a hooked chain at your foe and pull them towards you.
+          - Spend 1 FORT: Select a creature within 30ft and pull them to a tile within 5ft of you. FORT or REFL to resist the pull.
+        target: A+E, 30ft, Single target
+        apCost: 1
+        tags: [movement, control]
+      - level: 2
+        name: Sundering Strike
+        description:
+          - Utterly break an enemy's defences.
+          - Spend 1 FORT: Make a melee weapon attack against a creature. The weapon attack has additional Heavy attack power. Damage from this attack can only reduce the creature’s shield, armour, and energy (not HP).
+          - Spend 1 FORT: The creature is then also marked. All attacks that target the marked creature and an energy type that is greater than 0 gain additional Light attack power.
+        target: A+E, Melee, Single target
+        apCost: 2
+        tags: [attack, debuff]
+      - level: 3
+        name: Savage Leap
+        description:
+          - Leap forward and use your momentum to strike harder.
+          - Spend 3 FORT: Select a tile you can see within 20ft and jump to that tile. You may then immediately make a melee attack against a creature targeting FORT. This attack gains additional Medium attack power for each tile you moved (distance in ft divided by 5).
+        target: A+E, 20ft/Melee, Single target
+        apCost: 3
+        tags: [attack, movement]
+      - level: 3
+        name: Hunker Down
+        description:
+          - Adopt a greatly defensive stance.
+          - Spend 2 FORT or WILL: You and an ally within 5ft each regain 4 armour in two energy types of your choice. Any surplus armour gained this way is added as shield instead. You and the ally do not need to choose the same energy types.
+        target: Self
+        apCost: 1
+        tags: [defensive, heal]
+      - level: 3
+        name: Menacing Roar
+        description:
+          - Let out a roar that terrifies those who hear it.
+          - Spend 1 FORT or WILL: Frighten all enemies within 15ft. WILL to resist the fear.
+        target: E, 15ft, All within range (AoE)
+        apCost: 1
+        tags: [control, AoE]
+      - level: 3
+        name: Pin and Crush
+        description:
+          - Pin a foe and ready your weapon for a massive attack.
+          - Select a creature within 5ft and immobilise it. FORT or REFL to resist the immobilise. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 additional AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
+        target: A+E, Melee, Single target
+        apCost: 1
+        tags: [attack, control]
+
+  scoundrel:
+    name: Scoundrel
+    type: Physical
+    attributes: Strength or Dexterity or Perception
+    summary: Melee or Ranged, Single Target Damage, Mobility, Negative Conditions
+    abilities:
+      - level: Core
+        name: Manoeuvrable
+        description:
+          - You know how to be in the right place at the right time.
+          - When you deal damage to a creature you may immediately move up to 5ft without provoking attacks of opportunity. If the creature you damaged was within 5ft, you may immediately move up to 15ft instead. This effect can only trigger once per round and this movement cannot be broken up.
+        target: Self
+        apCost: Pass
+        tags: [movement]
+      - level: Core
+        name: Swift Striker
+        description:
+          - Move fast and strike faster.
+          - At any time on your turn, if you have moved to a position that is 30ft or further away from where you started your turn, your next attack against a single target has Adv (++).
+        target: Self
+        apCost: Pass
+        tags: [attack]
+      - level: 1
+        name: Single Out
+        description:
+          - Spend 1 FORT or REFL: Make a weapon attack against a creature targeting FORT or REFL. The attack gains additional Heavy attack power if there are no other enemies or allies within 10ft of the creature.
+          - Spend 1 FORT or REFL: The creature also gains bleeding. FORT or REFL to resist the bleed.
+        target: A+E, Weapon
+        apCost: 2
+        tags: [attack, debuff]
+      - level: 1
+        name: Entangling Manoeuvre
+        description:
+          - Spend 1 REFL or WILL: Immobilise a creature within 5ft of you, then move yourself to any position within 20ft of that same creature. FORT or WILL to resist the immobilise.
+          - Spend 1 REFL or WILL: The creature also becomes feeble. FORT or WILL to resist the feeble.
+        target: A+E, 5ft, Single target
+        apCost: 1
+        tags: [control, movement]
+      - level: 1
+        name: Flashbang
+        description:
+          - Dazzle your foes with a small explosive.
+          - Spend 1 REFL or WILL: Select a tile within 50ft and blind all creatures within a 10ft. REFL or WILL to resist the blind.
+        target: All, 50ft, All within 10ft (AoE)
+        apCost: 1
+        tags: [control, AoE]
+      - level: 1
+        name: Expose Weakness
+        description:
+          - Reveal your foe’s greatest strengths and weaknesses.
+          - Spend 1 REFL or WILL: Make a weapon attack against a creature targeting REFL or WILL. The creature becomes marked. Then choose any energy type, the creature rolls 3 fewer d6 when attempting to resist incoming conditions for that energy type. You also learn all of the creature’s vulnerabilities, resistances, and immunities.
+        target: A+E, Weapon, Single target
+        apCost: 2
+        tags: [debuff]
+      - level: 1
+        name: Expeditious Retreat
+        description:
+          - Move away from engagements with flawless grace.
+          - Attacks of opportunity have DisAdv (--) against you.
+        target: Self
+        apCost: Pass
+        tags: [movement, defensive]
+      - level: 2
+        name: Poisoned Strike
+        description:
+          - Coat your weapon in a sickening poison.
+          - Spend 2 FORT or REFL: Make a weapon attack against a creature targeting FORT or REFL. Then for each energy type that the creature has no remaining energy, it suffers additional 3 direct poison damage. The creature also becomes poisoned. FORT or WILL to resist the poison.
+        target: A+E, Weapon, Single target
+        apCost: 2
+        tags: [attack, debuff]
+      - level: 2
+        name: Reactive Retreat
+        description:
+          - You can escape danger better than most.
+          - If you are damaged by a melee attack, you may spend 1 REFL and your reaction to immediately move up to 10ft.
+        target: Self, Melee
+        apCost: React
+        tags: [movement, reactive]
+      - level: 2
+        name: Hit and Run
+        description:
+          - Rapidly reposition and attack.
+          - Spend 1 FORT or REFL: Move up to 150ft and make a melee or ranged weapon attack against a creature targeting FORT or REFL. This movement may be broken up by the attack. The creature is also hobbled. FORT or REFL to resist the hobble.
+          - Spend 1 FORT or REFL: The creature additionally gains bleeding. FORT or REFL to resist the bleed.
+        target: A+E, Weapon, Single target
+        apCost: 3
+        tags: [movement, attack]
+      - level: 2
+        name: Smoke Bomb
+        description:
+          - Conceal an area with thick smoke.
+          - Spend 1 REFL or WILL: Select a tile within 50ft, and create a 5ft radius zone that becomes filled with smoke. All creatures in this zone are blinded and invisible. These effects cannot be resisted. The zone lasts until the start of your next turn as normal. Leaving the zone immediately removes the blinded and invisible conditions. The zone also blocks line of sight.
+        target: All, 50ft, All within 5ft (AoE)
+        apCost: 1
+        tags: [control, AoE]
+      - level: 3
+        name: Adrenaline
+        description:
+          - A surge of adrenaline pushes you to new limits, but comes at a cost.
+          - Spend 1 FORT or REFL: Gain 1 additional AP this turn, but next turn your start with 2 fewer AP.
+        target: Self
+        apCost: 0
+        tags: [buff]
+      - level: 3
+        name: Shadow Step
+        description:
+          - Move with unparalleled stealth and haste.
+          - Spend 1 REFL or WILL: Move 40ft without breaking hidden or invisibility. At the end of this movement you may attempt the Hide core ability for no additional AP cost.
+        target: Self
+        apCost: 1
+        tags: [movement]
+      - level: 3
+        name: Surprise Attack
+        description:
+          - Execute the perfect critical strike against a defenceless target.
+          - Spend 3 REFL or WILL: Make a weapon attack against a creature.
+          - "If any of the following conditions are met: 1) You are invisible or hidden from the creature. 2) If the creature has any of the following conditions: blind, prone, immobilised, stunned, restrained, incapacitated, paralysed, or unconscious."
+          - Gain the following benefits: Double the attack power of this attack, and all damage is dealt as direct damage.
+        target: A+E, Weapon, Single target
+        apCost: 2
+        tags: [attack]
+      - level: 3
+        name: Headshot
+        description:
+          - Daze your target with a well timed blow to the head.
+          - Spend 2 REFL or WILL: Make a weapon attack against a creature. On a hit the creature is stunned. FORT or WILL to resist the stun.
+        target: A+E, Weapon, Single target
+        apCost: 2
+        tags: [attack, control]
+
+  marksman:
+    name: Marksman
+    type: Physical
+    attributes: Dexterity or Perception
+    summary: Ranged, Long Range Single and Multi-Target Damage, Shot Calling
+    abilities:
+      - level: Core
+        name: Ranger
+        description:
+          - You are accurate even at the greatest ranges.
+          - For each level in Marksman, increase the range of all short range weapons by 5ft (max bonus 50ft) and all long range weapons by 10ft (max bonus 100ft).
+        target: Self
+        apCost: Pass
+        tags: [buff]
+      - level: Core
+        name: Precision
+        description:
+          - Take aim to bypass the enemy’s defenses.
+          - Before you make a ranged single target attack, you may choose to reduce the attack power by 4d6, 11d6, or 18d6 and deal 1, 3, or 6 direct damage respectively. You cannot reduce the attack power below 0.
+        target: Self
+        apCost: Pass
+        tags: [attack]
+      - level: Core
+        name: Commanding Movement
+        description:
+          - Order others to reposition with the flow of battle.
+          - Whenever you use the core movement ability, you may spend up to 20ft of that movement speed to grant an ally within 50ft up to 10ft of movement to be spent immediately.
+        target: A, 50ft, Single target
+        apCost: Pass
+        tags: [support, movement]
+      - level: 1
+        name: Aim!
+        description:
+          - Command your allies to take aim at the weak points.
+          - Spend 1 REFL or WILL: Mark a creature within 100ft. All attacks against the marked creature that deal damage may convert up to 3 of the damage dealt into direct damage.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [support, debuff]
+      - level: 1
+        name: Forceful Shot
+        description:
+          - Push back your enemies with a projectile of great force.
+          - Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 5ft directly away from you. FORT or REFL to resist the push. This attack ignores any disadvantage due to being within 5ft.
+          - Spend 1 FORT or REFL: Increase the push distance to 20ft.
+        target: A+E, Weapon (Ranged weapon required), Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 1
+        name: Pinning Shot
+        description:
+          - Lock your target in place with pinning fire.
+          - Spend 1 FORT or REFL: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is immobilised and hobbled. If you successfully immobilise the target, and there is an ally within melee range, the ally may spend their reaction to make a melee attack with Heavy attack power to the initial target. FORT or REFL to resist the immobilise, the hobbled cannot be resisted.
+        target: A+E, Weapon (Ranged weapon required), Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 1
+        name: Advance!
+        description:
+          - Command your allies to press the attack.
+          - Spend 1 REFL or WILL: Select a creature within 100ft. All allies within 50ft of you may immediately spend their reaction to move up to 75ft closer to the initial target. They must take the shortest path possible toward the target - avoiding any intentional self harm/endangerment.
+        target: A, 100ft/50ft, Single target
+        apCost: 1
+        tags: [support, movement]
+      - level: 1
+        name: Expeditious Retreat
+        description:
+          - Move away from engagements with flawless grace.
+          - Attacks of opportunity have DisAdv (--) against you.
+        target: Self
+        apCost: Pass
+        tags: [movement, defensive]
+      - level: 2
+        name: Reactive Retreat
+        description:
+          - You can escape danger better than most.
+          - If you are damaged by a melee attack, you may spend 1 REFL and your reaction to immediately move up to 10ft.
+        target: Self, Melee
+        apCost: React
+        tags: [movement, reactive]
+      - level: 2
+        name: Piercing Shot
+        description:
+          - Strike through foes with a piercing projectile.
+          - Spend 1 FORT or REFL: Make a ranged weapon attack against all creatures in a 30ft line originating from you targeting FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
+        target: A+E, All within 30ft straight line from self (AoE) (Ranged weapon required)
+        apCost: 2
+        tags: [attack, AoE]
+      - level: 2
+        name: Suppressive Fire
+        description:
+          - Suppress the hostile ranged offensive.
+          - Spend 1 REFL or WILL: Select a tile within 100ft and create a 15ft radius zone. All enemies within this zone have all ranged attack power reduced by Medium. This effect cannot be resisted but a creature in the zone may suffer 1 direct damage to ignore the attack power reduction effect. If creatures leave the area the attack power reduction effect ends.
+        target: E, 100ft (Ranged weapon required), All enemies within a 15ft (AoE)
+        apCost: 1
+        tags: [control, AoE]
+      - level: 3
+        name: Fire!
+        description:
+          - Command your allies to open fire.
+          - Spend 3 REFL or WILL: Select a creature within 100ft and mark it. The first time each creature attacks the marked target this round, that attack gains Heavy additional attack power. When this additional attack power effect has triggered 3 times, the mark ends. A creature can only be marked by one "Fire!" ability at a time.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [support]
+      - level: 3
+        name: Ricochet
+        description:
+          - Bounce a deadly projectile between foes.
+          - Spend 1 REFL or WILL: Make a ranged weapon attack against a creature targeting FORT or REFL. You may then make the same attack targeting a second creature within 15ft of the initial target.
+          - Spend 1 REFL or WILL: You may then make the same attack targeting a third creature within 15ft of the second creature, and you may then make the same attack targeting a fourth creature within 15ft of the third creature.
+        target: A+E, Weapon (Ranged weapon required), 2 or 4 targets
+        apCost: 2
+        tags: [attack, multi-target]
+      - level: 3
+        name: Long Shot
+        description:
+          - The greater the range, the more devastating the shot.
+          - Spend 3 FORT or REFL: Make a ranged weapon attack against a creature. The attack gains additional Medium attack power for every 20ft past 40ft the creature is away from you (up to a maximum of 4 x Medium additional attack power at 120ft).
+        target: A+E, Weapon (Ranged weapon required), Single target
+        apCost: 2
+        tags: [attack]
+      - level: 3
+        name: Opportunist
+        description:
+          - Seize every opportunity to strike.
+          - When an ally within weapon range makes an attack of opportunity against a creature, you may spend 1 REFL and your reaction to make a ranged weapon attack against the same creature.
+        target: A+E, Weapon (Ranged weapon required), Single target
+        apCost: React
+        tags: [reactive, attack]
 
 
 
