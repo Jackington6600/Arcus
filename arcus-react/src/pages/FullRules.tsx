@@ -12,6 +12,14 @@ export default function FullRules() {
 	const [activeId, setActiveId] = useState<string>('');
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
+	
+	// Add layout-page class to body to prevent scrolling
+	useEffect(() => {
+		document.body.classList.add('layout-page');
+		return () => {
+			document.body.classList.remove('layout-page');
+		};
+	}, []);
 
     const headings = useMemo<Heading[]>(() => {
         const hs: Heading[] = [];

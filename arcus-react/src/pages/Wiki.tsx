@@ -13,6 +13,15 @@ export default function Wiki() {
 	const location = useLocation();
     const sections = rules.sections;
     const classKeys = Object.keys((rules as any).classes || {});
+    
+    // Add layout-page class to body to prevent scrolling
+    useEffect(() => {
+        document.body.classList.add('layout-page');
+        return () => {
+            document.body.classList.remove('layout-page');
+        };
+    }, []);
+    
     // Build wiki sections with classes nested under Character Classes
     const wikiSections = useMemo(() => {
         return sections.map((s) => {
@@ -177,7 +186,7 @@ export default function Wiki() {
 					/>
 				))}
 			</aside>
-			<article className="doc" id="wiki-article" style={{ maxHeight: 'calc(100dvh - 100px)', overflow: 'auto' }}>
+			<article className="doc" id="wiki-article">
 				{active ? (
                     <WikiContent section={active.section} child={active.child} />
 				) : (

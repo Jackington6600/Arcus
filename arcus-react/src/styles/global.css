@@ -39,6 +39,12 @@ a {
 	margin: 0 auto;
 }
 
+/* Override container margins for layout pages to prevent any overflow */
+.layout.container {
+	margin: 0;
+	width: 100%;
+}
+
 .navbar {
 	position: sticky;
 	top: 0;
@@ -205,7 +211,10 @@ a {
 	}
 }
 
-.main--home { background: var(--bg); }
+.main--home { 
+	background: var(--bg); 
+	overflow: auto;
+}
 .main { background: var(--panel); }
 
 .hero {
@@ -297,28 +306,38 @@ a {
 
 
 .layout {
+	position: fixed;
+	top: var(--nav-height);
+	left: 0;
+	right: 0;
+	bottom: 0;
 	display: grid;
 	grid-template-columns: 280px 1fr;
 	gap: 18px;
-	padding: 22px 0 80px;
+	padding: 22px;
+	overflow: hidden;
+	z-index: 1;
+	height: calc(100vh - var(--nav-height));
 }
 
 @media (max-width: 960px) {
 	.layout {
 		grid-template-columns: 1fr;
+		top: calc(var(--nav-height) + 60px);
 	}
 }
 
 .toc {
-	position: sticky;
-	top: 72px;
-	max-height: calc(100dvh - 100px);
+	position: relative;
+	height: 100%;
 	overflow: auto;
 	border: 1px solid #e5e8ef;
 	border-radius: 12px;
 	padding: 10px;
 	background: #ffffff;
 	box-shadow: 0 4px 16px rgba(16,22,30,0.05);
+	min-height: 0;
+	max-height: 100%;
 }
 
 .toc h4 {
@@ -353,6 +372,10 @@ a {
 	background: #ffffff;
 	padding: 18px;
 	box-shadow: 0 6px 24px rgba(16, 22, 30, 0.06);
+	height: 100%;
+	overflow: auto;
+	min-height: 0;
+	max-height: 100%;
 }
 .ornament {
 	position: relative;
@@ -474,6 +497,49 @@ a {
 /* Scroll reveal helper */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* FullRules specific styling */
+.layout .doc {
+	height: 100%;
+	overflow: auto;
+}
+
+/* Ensure layout container has no scrollbars */
+.layout {
+	overflow: hidden !important;
+}
+
+/* Ensure grid items don't expand beyond their allocated space */
+.layout > * {
+	min-height: 0;
+	max-height: 100%;
+}
+
+/* Prevent body scrolling on layout pages */
+body.layout-page {
+	overflow: hidden !important;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+/* Additional overflow prevention for layout pages */
+body.layout-page * {
+	overflow: visible;
+}
+
+body.layout-page .layout {
+	overflow: hidden !important;
+}
+
+/* Allow sidebars to scroll their content */
+body.layout-page .toc {
+	overflow: auto !important;
+}
+
+body.layout-page .doc {
+	overflow: auto !important;
+}
 
 /* Allow dark background to continue below hero */
 .home-section { background: var(--bg); }
