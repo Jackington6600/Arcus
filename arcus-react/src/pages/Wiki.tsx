@@ -5,16 +5,16 @@ import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
 import ClassTable from '@/pages/components/ClassTable';
 
-type Heading = { id: string; level: number; text: string };
+type Heading = { id: string; level: number; text: string; sectionId: string };
 
 export default function Wiki() {
 	const location = useLocation();
 	const containerRef = useRef<HTMLDivElement>(null);
-	const [activeId, setActiveId] = useState<string>('');
+	const [activePageId, setActivePageId] = useState<string>('');
+	const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const [query, setQuery] = useState('');
-	const observerRef = useRef<IntersectionObserver | null>(null);
 	
 	// Add layout-page class to body to prevent scrolling
 	useEffect(() => {
@@ -24,119 +24,88 @@ export default function Wiki() {
 		};
 	}, []);
 
-	// Build headings from wiki sections and classes
+	// Handle page navigation
+	const navigateToPage = (pageId: string) => {
+		setActivePageId(pageId);
+		expandSectionForPage(pageId);
+	};
+
+	// Expand section for a given page
+	const expandSectionForPage = (pageId: string) => {
+		const heading = headings.find(h => h.id === pageId);
+		if (heading) {
+			setExpandedSections(prev => new Set([...prev, heading.sectionId]));
+		}
+	};
+
+	// Build headings for TOC
 	const headings = useMemo<Heading[]>(() => {
 		const hs: Heading[] = [];
 		rules.sections.forEach((section) => {
-			const id = section.id;
-			hs.push({ id, level: 2, text: section.title });
-			section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title }));
+			hs.push({ id: section.id, level: 2, text: section.title, sectionId: section.id });
+			section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title, sectionId: section.id }));
 			// Add class headings under the Character Classes section
 			const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
 			if (isClassSection) {
 				const classKeys = Object.keys((rules as any).classes || {});
 				classKeys.forEach((key) => {
 					const info = (rules as any).classes[key] as { name: string };
-					hs.push({ id: `class-${key}`, level: 3, text: info?.name || key });
+					hs.push({ id: `class-${key}`, level: 3, text: info?.name || key, sectionId: section.id });
 				});
 			}
 		});
 		return hs;
 	}, []);
 
-	// Set up intersection observer for scroll tracking
+	// Set initial page
 	useEffect(() => {
-		const container = containerRef.current;
-		if (!container) return;
-
-		// Clean up any existing observer
-		if (observerRef.current) {
-			observerRef.current.disconnect();
-		}
-
-		// Create new intersection observer with multiple thresholds
-		const observer = new IntersectionObserver(
-			(entries) => {
-				// Find the most prominent visible heading
-				const visibleHeadings = entries.filter(entry => entry.isIntersecting);
-				
-				if (visibleHeadings.length === 0) return;
-				
-				// If multiple headings are visible, determine which one is most prominent
-				let bestHeading = visibleHeadings[0];
-				let bestScore = -Infinity;
-				
-				visibleHeadings.forEach((entry) => {
-					const rect = entry.boundingClientRect;
-					// Score based on how close to the top of the viewport (negative = above, positive = below)
-					// Prefer headings that are slightly above the top (negative values)
-					const score = -rect.top;
-					if (score > bestScore) {
-						bestScore = score;
-						bestHeading = entry;
-					}
-				});
-				
-				// Update active heading
-				if (bestHeading.target.id !== activeId) {
-					setActiveId(bestHeading.target.id);
-				}
-			},
-			{
-				root: null,
-				rootMargin: '-70px 0px -85% 0px',
-				threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
-			}
-		);
+		if (activePageId) return;
 		
-		// Store reference to observer
-		observerRef.current = observer;
-		
-		// Observe all headings
-		const headingElements = container.querySelectorAll('h2, h3');
-		headingElements.forEach((el) => observer.observe(el));
-		
-		// Cleanup function
-		return () => {
-			if (observerRef.current) {
-				observerRef.current.disconnect();
-				observerRef.current = null;
-			}
-		};
-	}, [headings, activeId]);
-
-	// If no hash/restore present and at page top, default to first heading
-	useEffect(() => {
-		if (window.location.hash) return;
-		if (localStorage.getItem('wiki.lastId')) return;
-		const container = containerRef.current;
-		if (!container) return;
-		const firstHeading = container.querySelector('h2, h3') as HTMLElement | null;
-		if (firstHeading) setActiveId(firstHeading.id);
-	}, []);
-
-	// On initial load, restore position from hash or last read section
-	useEffect(() => {
+		// Try to restore from hash
 		const hashId = window.location.hash ? window.location.hash.replace(/^#/, '') : '';
-		const lastId = localStorage.getItem('wiki.lastId') || '';
-		const targetId = hashId || lastId;
-		if (!targetId) return;
-		const el = document.getElementById(targetId);
-		if (el) {
-			el.scrollIntoView();
-			setActiveId(targetId);
+		if (hashId && headings.find(h => h.id === hashId)) {
+			setActivePageId(hashId);
+			expandSectionForPage(hashId);
+			return;
 		}
-	}, []);
+		
+		// Try to restore from localStorage
+		const lastId = localStorage.getItem('wiki.lastPageId');
+		if (lastId && headings.find(h => h.id === lastId)) {
+			setActivePageId(lastId);
+			expandSectionForPage(lastId);
+			return;
+		}
+		
+		// Default to first page
+		if (headings.length > 0) {
+			setActivePageId(headings[0].id);
+			expandSectionForPage(headings[0].id);
+		}
+	}, [headings, activePageId]);
 
-	// Keep URL hash and localStorage in sync with the visible heading
+	// Update URL and localStorage when page changes
 	useEffect(() => {
-		if (!activeId) return;
-		const url = `${window.location.pathname}${window.location.search}#${activeId}`;
+		if (!activePageId) return;
+		const url = `${window.location.pathname}${window.location.search}#${activePageId}`;
 		window.history.replaceState(null, '', url);
-		localStorage.setItem('wiki.lastId', activeId);
-	}, [activeId]);
+		localStorage.setItem('wiki.lastPageId', activePageId);
+	}, [activePageId]);
 
-	// Lock background scroll by disabling overflow (preserves current scroll and sticky navbar)
+	// Toggle section expansion
+	const toggleSection = (sectionId: string) => {
+		setExpandedSections(prev => {
+			const newSet = new Set(prev);
+			if (newSet.has(sectionId)) {
+				newSet.delete(sectionId);
+			} else {
+				newSet.add(sectionId);
+			}
+			return newSet;
+		});
+	};
+
+	// Lock background scroll by disabling overflow
 	useEffect(() => {
 		if (!menuOpen) return;
 		const prevHtmlOverflow = document.documentElement.style.overflow;
@@ -149,12 +118,11 @@ export default function Wiki() {
 		};
 	}, [menuOpen]);
 
-	// Close menu on outside clicks while letting underlying click proceed
+	// Close menu on outside clicks
 	useEffect(() => {
 		if (!menuOpen) return;
 		const handlePointerDown = (e: MouseEvent) => {
 			const target = e.target as Node;
-			// If the toggle button itself was clicked, let its own handler manage toggling
 			if (target instanceof Element && target.closest('.toc-toggle')) {
 				return;
 			}
@@ -166,70 +134,136 @@ export default function Wiki() {
 		return () => document.removeEventListener('pointerdown', handlePointerDown, true);
 	}, [menuOpen]);
 
-	const activeTitle = useMemo(() => {
-		return headings.find((h) => h.id === activeId)?.text || 'Browse Wiki';
-	}, [headings, activeId]);
+	// Render content for the active page
+	const renderPageContent = () => {
+		if (!activePageId) {
+			return (
+				<div style={{ textAlign: 'center', padding: '40px 20px' }}>
+					<h1>Welcome to the Arcus Wiki</h1>
+					<p>Select a topic from the table of contents to get started.</p>
+				</div>
+			);
+		}
+
+		// Check if it's a main section
+		const section = rules.sections.find(s => s.id === activePageId);
+		if (section) {
+			return (
+				<div>
+					<h1>{section.title}</h1>
+					<p style={{ color: 'var(--muted)' }}>{renderWithWikiLinks(section.summary, navigateToPage)}</p>
+					{section.children?.map((child) => (
+						<div key={child.id}>
+							<h2 id={child.id}>{child.title}</h2>
+							<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+						</div>
+					))}
+					{/* Special handling for Character Classes section */}
+					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
+				</div>
+			);
+		}
+
+		// Check if it's a child page
+		for (const s of rules.sections) {
+			const child = s.children?.find(c => c.id === activePageId);
+			if (child) {
+				return (
+					<div>
+						<h1>{child.title}</h1>
+						<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+						<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+							<strong>Part of:</strong> <a href={`#${s.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(s.id); }}>{s.title}</a>
+						</div>
+					</div>
+				);
+			}
+		}
+
+			// Check if it's a class page
+	if (activePageId.startsWith('class-')) {
+		const classKey = activePageId.replace('class-', '');
+		const info = (rules as any).classes[classKey] as { name: string; abilities: any[] };
+		if (info) {
+			return (
+				<div>
+					<h1>{info.name}</h1>
+					<div style={{ marginBottom: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+						<strong>Character Class</strong>
+					</div>
+					{/* Show only this class's table */}
+					<ClassTable title={info.name} rows={(info.abilities || []).map((a) => ({
+						level: a.level,
+						name: a.name,
+						description: a.description || [],
+						target: a.target,
+						apCost: a.apCost,
+						tags: a.tags,
+					}))} />
+					{/* Add navigation back to classes section */}
+					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+						<strong>Back to:</strong> <a href={`#classes`} onClick={(e) => { e.preventDefault(); navigateToPage('classes'); }}>Character Classes</a>
+					</div>
+				</div>
+			);
+		}
+	}
+
+		return (
+			<div style={{ textAlign: 'center', padding: '40px 20px' }}>
+				<h1>Page Not Found</h1>
+				<p>The requested page could not be found.</p>
+			</div>
+		);
+	};
+
+	const activeTitle = headings.find(h => h.id === activePageId)?.text || 'Browse Wiki';
 
 	// Search functionality
 	const searchIndex = useMemo(() => {
 		const entries: { id: string; title: string; preview: string; category: string; haystack: string }[] = [];
+		
+		// Add sections
 		rules.sections.forEach((section) => {
-			// Add section title and summary
-			const title = section.title;
-			const preview = section.summary || '';
-			const haystack = `${title} ${preview}`.toLowerCase();
-			entries.push({ id: section.id, title, preview, category: section.title, haystack });
-			
-			// Add section children
-			section.children?.forEach((child) => {
-				const cTitle = child.title;
-				const cBody = child.body || '';
-				const cHaystack = `${cTitle} ${cBody} ${title}`.toLowerCase();
-				entries.push({ id: child.id, title: cTitle, preview: cBody, category: title, haystack: cHaystack });
+			entries.push({ 
+				id: section.id, 
+				title: section.title, 
+				preview: section.summary || '', 
+				category: 'Section', 
+				haystack: `${section.title} ${section.summary || ''}`.toLowerCase() 
 			});
 			
-			// Add class information if this is the classes section
-			const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
-			if (isClassSection) {
-				const classKeys = Object.keys((rules as any).classes || {});
-				classKeys.forEach((key) => {
-					const info = (rules as any).classes[key] as { name: string; abilities?: any[] };
-					const classId = `class-${key}`;
-					const classTitle = info?.name || key;
-					const classAbilities = info?.abilities || [];
-					
-					// Add class itself
-					entries.push({ 
-						id: classId, 
-						title: classTitle, 
-						preview: `Character class`, 
-						category: 'Character Classes', 
-						haystack: `${classTitle} character class`.toLowerCase() 
-					});
-					
-					// Add class abilities
-					classAbilities.forEach((ability) => {
-						const aTitle = ability.name;
-						const aDesc = Array.isArray(ability.description) ? ability.description.join(' ') : (ability.description || '');
-						const aHaystack = `${aTitle} ${aDesc} ${classTitle}`.toLowerCase();
-						entries.push({ 
-							id: `ability-${key}-${aTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, 
-							title: aTitle, 
-							preview: aDesc, 
-							category: classTitle, 
-							haystack: aHaystack 
-						});
-					});
+			// Add children
+			section.children?.forEach((child) => {
+				entries.push({ 
+					id: child.id, 
+					title: child.title, 
+					preview: child.body || '', 
+					category: section.title, 
+					haystack: `${child.title} ${child.body || ''} ${section.title}`.toLowerCase() 
 				});
-			}
+			});
 		});
+		
+		// Add classes
+		const classKeys = Object.keys((rules as any).classes || {});
+		classKeys.forEach((key) => {
+			const info = (rules as any).classes[key] as { name: string };
+			entries.push({ 
+				id: `class-${key}`, 
+				title: info?.name || key, 
+				preview: 'Character class', 
+				category: 'Character Classes', 
+				haystack: `${info?.name || key} character class`.toLowerCase() 
+			});
+		});
+		
 		return entries;
 	}, []);
 
 	const results = useMemo(() => {
 		const q = query.trim().toLowerCase();
 		if (!q) return [];
-		// Simple token AND search for better precision
 		const tokens = q.split(/\s+/).filter(Boolean);
 		return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
 	}, [query, searchIndex]);
@@ -246,34 +280,64 @@ export default function Wiki() {
 					/>
 				</div>
 				{query && (
-					<SearchResults results={results} onClear={() => setQuery('')} />
+					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={navigateToPage} />
 				)}
 				<h4>Browse Wiki</h4>
-				{headings.map((h) => (
-					<a
-						key={h.id}
-						href={`#${h.id}`}
-						className={activeId === h.id ? 'active' : ''}
-						style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
-					>
-						{h.text}
-					</a>
-				))}
+				<div className="wiki-toc">
+					{rules.sections.map((section) => (
+						<div key={section.id} className="toc-section">
+							<div 
+								className={`toc-section-header ${expandedSections.has(section.id) ? 'expanded' : ''}`}
+								onClick={() => toggleSection(section.id)}
+							>
+								<span className="toc-section-title">{section.title}</span>
+								<span className="toc-section-toggle">{expandedSections.has(section.id) ? '−' : '+'}</span>
+							</div>
+							{expandedSections.has(section.id) && (
+								<div className="toc-section-content">
+									<a
+										href={`#${section.id}`}
+										className={activePageId === section.id ? 'active' : ''}
+										onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}
+									>
+										{section.title}
+									</a>
+									{section.children?.map((child) => (
+										<a
+											key={child.id}
+											href={`#${child.id}`}
+											className={activePageId === child.id ? 'active' : ''}
+											onClick={(e) => { e.preventDefault(); navigateToPage(child.id); }}
+											style={{ paddingLeft: 22 }}
+										>
+											{child.title}
+										</a>
+									))}
+									{/* Add class links if this is the classes section */}
+									{/character classes/i.test(section.title) || section.id === 'classes' ? (
+										Object.keys((rules as any).classes || {}).map((key) => {
+											const info = (rules as any).classes[key] as { name: string };
+											return (
+												<a
+													key={`class-${key}`}
+													href={`#class-${key}`}
+													className={activePageId === `class-${key}` ? 'active' : ''}
+													onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); }}
+													style={{ paddingLeft: 22 }}
+												>
+													{info?.name || key}
+												</a>
+											);
+										})
+									) : null}
+								</div>
+							)}
+						</div>
+					))}
+				</div>
 			</aside>
 			<article className="doc" ref={containerRef}>
-				{rules.sections.map((s) => (
-					<section key={s.id}>
-						<h2 id={s.id}>{s.title}</h2>
-						<p style={{ color: 'var(--muted)' }}>{renderWithTooltips(s.summary)}</p>
-						{renderClassTableIfAny(s)}
-						{s.children?.map((c) => (
-							<div key={c.id}>
-								<h3 id={c.id}>{c.title}</h3>
-								<p>{renderWithTooltips(c.body)}</p>
-							</div>
-						))}
-					</section>
-				))}
+				{renderPageContent()}
 			</article>
 			{/* Floating TOC toggle button for mobile */}
 			<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
@@ -297,19 +361,60 @@ export default function Wiki() {
 						/>
 					</div>
 					{query && (
-						<SearchResults results={results} onClear={() => setQuery('')} />
+						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />
 					)}
-					{headings.map((h) => (
-						<a
-							key={h.id}
-							href={`#${h.id}`}
-							className={activeId === h.id ? 'active' : ''}
-							style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
-							onClick={() => setMenuOpen(false)}
-						>
-							{h.text}
-						</a>
-					))}
+					<div className="wiki-toc">
+						{rules.sections.map((section) => (
+							<div key={section.id} className="toc-section">
+								<div 
+									className={`toc-section-header ${expandedSections.has(section.id) ? 'expanded' : ''}`}
+									onClick={() => toggleSection(section.id)}
+								>
+									<span className="toc-section-title">{section.title}</span>
+									<span className="toc-section-toggle">{expandedSections.has(section.id) ? '−' : '+'}</span>
+								</div>
+								{expandedSections.has(section.id) && (
+									<div className="toc-section-content">
+										<a
+											href={`#${section.id}`}
+											className={activePageId === section.id ? 'active' : ''}
+											onClick={(e) => { e.preventDefault(); navigateToPage(section.id); setMenuOpen(false); }}
+										>
+											{section.title}
+										</a>
+										{section.children?.map((child) => (
+											<a
+												key={child.id}
+												href={`#${child.id}`}
+												className={activePageId === child.id ? 'active' : ''}
+												onClick={(e) => { e.preventDefault(); navigateToPage(child.id); setMenuOpen(false); }}
+												style={{ paddingLeft: 22 }}
+											>
+												{child.title}
+											</a>
+										))}
+										{/* Add class links if this is the classes section */}
+										{/character classes/i.test(section.title) || section.id === 'classes' ? (
+											Object.keys((rules as any).classes || {}).map((key) => {
+												const info = (rules as any).classes[key] as { name: string };
+												return (
+													<a
+														key={`class-${key}`}
+														href={`#class-${key}`}
+														className={activePageId === `class-${key}` ? 'active' : ''}
+														onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); setMenuOpen(false); }}
+														style={{ paddingLeft: 22 }}
+													>
+														{info?.name || key}
+													</a>
+												);
+											})
+										) : null}
+									</div>
+								)}
+							</div>
+						))}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -348,6 +453,59 @@ function renderWithTooltips(text?: string) {
 	return <>{parts}</>;
 }
 
+function renderWithWikiLinks(text?: string, navigateToPage?: (pageId: string) => void) {
+	if (!text) return null;
+	const parts: (string | JSX.Element)[] = [text];
+	
+	// For each phrase in WIKI_LINK_MAP, split and inject clickable links
+	Object.entries(WIKI_LINK_MAP).forEach(([phrase, targetId]) => {
+		const regex = new RegExp(`(\\b${escapeRegex(phrase)}\\b)`, 'gi');
+		const next: (string | JSX.Element)[] = [];
+		
+		parts.forEach((p) => {
+			if (typeof p !== 'string') { 
+				next.push(p); 
+				return; 
+			}
+			
+			const split = p.split(regex);
+			for (let i = 0; i < split.length; i++) {
+				const segment = split[i];
+				if (!segment) continue;
+				
+				if (regex.test(segment)) {
+					// Create a clickable link that navigates to the target page
+					next.push(
+						<a 
+							key={`wiki-link-${targetId}-${i}-${segment}`} 
+							href={`#${targetId}`}
+							onClick={(e) => { 
+								e.preventDefault(); 
+								if (navigateToPage) {
+									navigateToPage(targetId); 
+								}
+							}}
+							style={{ 
+								color: 'var(--accent-2)', 
+								textDecoration: 'underline',
+								cursor: 'pointer'
+							}}
+						>
+							{segment}
+						</a>
+					);
+				} else {
+					next.push(segment);
+				}
+			}
+		});
+		
+		parts.splice(0, parts.length, ...next);
+	});
+	
+	return <>{parts}</>;
+}
+
 function escapeRegex(s: string) {
 	return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -360,6 +518,77 @@ function findRuleById(id: string) {
 		}
 	}
 	return undefined;
+}
+
+function renderClassesList(navigateToPage: (pageId: string) => void) {
+	const classKeys = Object.keys((rules as any).classes || {});
+	if (!classKeys.length) return null;
+	
+	return (
+		<div style={{ marginTop: 24 }}>
+			<h2>Available Classes</h2>
+			<div style={{ display: 'grid', gap: 16 }}>
+				{classKeys.map((key) => {
+					const info = (rules as any).classes[key] as { name: string; type: string; attributes: string; summary: string };
+					return (
+						<div key={key} style={{ 
+							border: '1px solid var(--border-light)', 
+							borderRadius: 8, 
+							padding: 16,
+							background: 'var(--surface-secondary)'
+						}}>
+							<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+								<h3 style={{ margin: 0, color: 'var(--text-primary)' }}>
+									<a 
+										href={`#class-${key}`}
+										onClick={(e) => { 
+											e.preventDefault(); 
+											navigateToPage(`class-${key}`); 
+										}}
+										style={{ 
+											color: 'var(--accent-2)', 
+											textDecoration: 'none'
+										}}
+									>
+										{info?.name || key}
+									</a>
+								</h3>
+								<span style={{ 
+									fontSize: '12px', 
+									padding: '4px 8px', 
+									background: 'var(--accent-2)', 
+									color: 'white', 
+									borderRadius: 4,
+									fontWeight: '600'
+								}}>
+									{info?.type || 'Unknown'}
+								</span>
+							</div>
+							{info?.attributes && (
+								<p style={{ 
+									margin: '8px 0', 
+									fontSize: '14px', 
+									color: 'var(--text-secondary)',
+									fontStyle: 'italic'
+								}}>
+									<strong>Attributes:</strong> {info.attributes}
+								</p>
+							)}
+							{info?.summary && (
+								<p style={{ 
+									margin: '8px 0 0', 
+									color: 'var(--text-primary)',
+									lineHeight: 1.5
+								}}>
+									{info.summary}
+								</p>
+							)}
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
 }
 
 function renderClassTableIfAny(section: { id: string; title: string }) {
@@ -384,7 +613,7 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 				
 				return (
 					<div key={key}>
-						<h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
+						<h2 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h2>
 						<ClassTable title={info.name} rows={rows} />
 					</div>
 				);
@@ -393,7 +622,7 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 	);
 }
 
-function SearchResults({ results, onClear }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void }) {
+function SearchResults({ results, onClear, onItemClick }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void; onItemClick?: (id: string) => void }) {
 	if (!results.length) {
 		return (
 			<div className="accordion-item" style={{ marginBottom: 10 }}>
@@ -417,7 +646,13 @@ function SearchResults({ results, onClear }: { results: { id: string; title: str
 				{results.map((e) => (
 					<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
 						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<a href={`#${e.id}`} style={{ fontWeight: 600 }}>{e.title}</a>
+							<a 
+								href={`#${e.id}`} 
+								style={{ fontWeight: 600 }}
+								onClick={onItemClick ? () => onItemClick(e.id) : undefined}
+							>
+								{e.title}
+							</a>
 							<span className="tag">{e.category}</span>
 						</div>
 						{e.preview && (

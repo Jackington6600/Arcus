@@ -717,6 +717,89 @@ a {
 	100% { background: rgba(62,224,255,0.12); }
 }
 
+/* Wiki Accordion TOC */
+.wiki-toc {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.toc-section {
+	border: 1px solid var(--border-light);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.toc-section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 12px;
+	background: var(--surface-secondary);
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	font-weight: 500;
+	color: var(--text-primary);
+}
+
+.toc-section-header:hover {
+	background: var(--surface-tertiary);
+}
+
+.toc-section-header.expanded {
+	background: var(--accent-2);
+	color: white;
+}
+
+.toc-section-title {
+	font-weight: 600;
+}
+
+.toc-section-toggle {
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.toc-section-content {
+	background: var(--surface);
+	border-top: 1px solid var(--border-light);
+	padding: 8px 0;
+}
+
+.toc-section-content a {
+	margin: 0 8px 4px;
+	padding: 6px 8px;
+	border-radius: 6px;
+	font-size: 14px;
+	transition: all 0.2s ease;
+}
+
+.toc-section-content a:hover {
+	background: var(--surface-secondary);
+	color: var(--text-primary);
+}
+
+.toc-section-content a.active {
+	background: rgba(62,224,255,0.12);
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+/* Wiki Links in Content */
+.doc a[href^="#"] {
+	color: var(--accent-2);
+	text-decoration: underline;
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.doc a[href^="#"]:hover {
+	color: var(--accent);
+	text-decoration: underline;
+}
+
 /* Document Content */
 .doc {
 	border: 1px solid var(--border-medium);
@@ -728,15 +811,17 @@ a {
 	overflow: auto;
 	min-height: 0;
 	max-height: 100%;
+	width: 800px;
 	max-width: 800px;
 	grid-column: 2;
 	grid-row: 1;
-	width: 100%;
 }
 
 @media (max-width: 960px) {
 	.doc {
 		padding: 20px;
+		width: 100%;
+		max-width: 100%;
 	}
 	
 	.doc > div {
@@ -988,6 +1073,13 @@ a {
 	overflow: auto;
 }
 
+/* Wiki page specific styling - override layout width constraints */
+.layout.container .doc {
+	width: 800px !important;
+	max-width: 800px !important;
+	justify-self: center;
+}
+
 .layout > * {
 	min-height: 0;
 	max-height: 100%;
@@ -1015,6 +1107,12 @@ a {
 	body.layout-page .layout {
 		position: relative;
 		overflow: visible !important;
+	}
+	
+	/* Wiki page mobile responsive */
+	.layout.container .doc {
+		width: 100% !important;
+		max-width: 100% !important;
 	}
 }
 
@@ -1225,6 +1323,15 @@ body.layout-page .page-menu {
 /* Dark theme: Force paragraphs to maintain their color regardless of content */
 [data-theme="dark"] .doc p {
 	color: var(--text-primary) !important;
+}
+
+/* Dark theme wiki links */
+[data-theme="dark"] .doc a[href^="#"] {
+	color: var(--accent-2);
+}
+
+[data-theme="dark"] .doc a[href^="#"]:hover {
+	color: var(--accent);
 }
 
 /* Scrollbar Styling */

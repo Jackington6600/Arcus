@@ -34,8 +34,11 @@ export const WIKI_LINK_MAP: LinkMap = {
     'Core Loop': 'core-loop',
     'Conditions': 'conditions',
     'Character Classes': 'classes',
-    'Battlemage': 'battlemage',
-    'Warden': 'warden',
+    'Warrior': 'class-warrior',
+    'Scoundrel': 'class-scoundrel',
+    'Ranger': 'class-ranger',
+    'Stunned': 'stunned',
+    'Prone': 'prone',
 };
 
 // Extended class ability schema

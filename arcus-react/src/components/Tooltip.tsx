@@ -63,8 +63,8 @@ function useAutoPosition(open: boolean, containerRef: React.RefObject<HTMLElemen
             const vh = window.innerHeight;
             const spaceAbove = tRect.top;
             const spaceBelow = vh - tRect.bottom;
-            const placeAbove = spaceAbove >= bRect.height + 8 || spaceAbove >= spaceBelow;
-            const top = placeAbove ? (tRect.top - bRect.height - 8) : (tRect.bottom + 8);
+            const placeAbove = spaceAbove >= bRect.height + 2 || spaceAbove >= spaceBelow;
+            const top = placeAbove ? (tRect.top - bRect.height - 2) : (tRect.bottom + 2);
             const left = clamp(tRect.left + tRect.width / 2 - bRect.width / 2, 8, vw - bRect.width - 8);
             setPos({ top, left, placement: placeAbove ? 'above' : 'below' });
         };
