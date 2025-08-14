@@ -1,61 +1,74 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 
-type Entry = { id: string; title: string; text: string; category: string };
-
-function flattenRules(): Entry[] {
-	const entries: Entry[] = [];
-	rules.sections.forEach((s) => {
-		entries.push({ id: s.id, title: s.title, text: s.summary ?? '', category: 'Sections' });
-		s.children?.forEach((c) => entries.push({ id: c.id, title: c.title, text: c.body ?? '', category: s.title }));
-	});
-	return entries;
-}
+type Child = { id: string; title: string; body?: string };
 
 export default function Wiki() {
-	const [query, setQuery] = useState('');
-	const entries = useMemo(() => flattenRules(), []);
-	const categories = useMemo(() => Array.from(new Set(entries.map((e) => e.category))), [entries]);
+	const location = useLocation();
+	const sections = rules.sections;
 
-	const filtered = useMemo(() => {
-		const q = query.trim().toLowerCase();
-		if (!q) return entries;
-		return entries.filter((e) => `${e.title} ${e.text}`.toLowerCase().includes(q));
-	}, [entries, query]);
+	const idToSection = useMemo(() => {
+		const map = new Map<string, { section: typeof sections[number]; child?: Child }>();
+		for (const s of sections) {
+			map.set(s.id, { section: s });
+			for (const c of s.children ?? []) {
+				map.set(c.id, { section: s, child: c });
+			}
+		}
+		return map;
+	}, [sections]);
 
-    return (
-        <div className="container" style={{ padding: '22px 0 80px' }}>
-			<div className="searchbar">
-				<input className="input" placeholder="Search rules, conditions, items..." value={query} onChange={(e) => setQuery(e.target.value)} />
-			</div>
-			<div className="accordion">
-				{categories.map((cat) => {
-					const items = filtered.filter((e) => e.category === cat);
-					if (!items.length) return null;
-					return <Accordion key={cat} title={`${cat} (${items.length})`} entries={items} />;
-				})}
-			</div>
+	const firstId = sections[0]?.id ?? '';
+	const getHash = () => (location.hash ? location.hash.replace(/^#/, '') : firstId);
+	const [activeId, setActiveId] = useState<string>(getHash());
+
+	useEffect(() => {
+		setActiveId(getHash());
+	}, [location.hash]);
+
+	useEffect(() => {
+		const article = document.getElementById('wiki-article');
+		article?.scrollTo({ top: 0 });
+	}, [activeId]);
+
+	const active = idToSection.get(activeId) ?? (firstId ? { section: sections[0] } : undefined);
+
+	return (
+		<div className="container layout">
+			<aside className="toc">
+				<h4>Browse Wiki</h4>
+				{sections.map((s) => (
+					<SidebarAccordion key={s.id} section={s} activeId={activeId} />
+				))}
+			</aside>
+			<article className="doc" id="wiki-article" style={{ maxHeight: 'calc(100dvh - 100px)', overflow: 'auto' }}>
+				{active ? (
+					<WikiContent section={active.section} child={active.child} />
+				) : (
+					<p style={{ color: 'var(--muted)' }}>No content available.</p>
+				)}
+			</article>
 		</div>
 	);
 }
 
-function Accordion({ title, entries }: { title: string; entries: Entry[] }) {
+function SidebarAccordion({ section, activeId }: { section: { id: string; title: string; summary?: string; children?: Child[] }; activeId: string }) {
 	const [open, setOpen] = useState(true);
 	return (
 		<div className="accordion-item">
 			<div className="accordion-header" onClick={() => setOpen((v) => !v)}>
-				<strong>{title}</strong>
+				<strong>{section.title}</strong>
 				<span aria-hidden>{open ? '−' : '+'}</span>
 			</div>
 			{open && (
 				<div className="accordion-content">
-					{entries.map((e) => (
-						<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
-							<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-								<a href={`/rules#${e.id}`} style={{ fontWeight: 600 }}>{e.title}</a>
-								<span className="tag">Ref</span>
-							</div>
-							<p style={{ margin: '6px 0 0', color: 'var(--muted)' }}>{e.text.slice(0, 160)}{e.text.length > 160 ? '…' : ''}</p>
+					<div style={{ padding: '6px 0' }}>
+						<a href={`#${section.id}`} className={activeId === section.id ? 'active' : ''} style={{ fontWeight: 600 }}>Overview</a>
+					</div>
+					{section.children?.map((c) => (
+						<div key={c.id} style={{ padding: '6px 0' }}>
+							<a href={`#${c.id}`} className={activeId === c.id ? 'active' : ''} style={{ paddingLeft: 12 }}>{c.title}</a>
 						</div>
 					))}
 				</div>
@@ -64,5 +77,32 @@ function Accordion({ title, entries }: { title: string; entries: Entry[] }) {
 	);
 }
 
-
-
+function WikiContent({ section, child }: { section: { id: string; title: string; summary?: string; children?: Child[] }; child?: Child }) {
+	if (child) {
+		return (
+			<div>
+				<a href={`#${section.id}`} className="tag">{section.title}</a>
+				<h2 id={child.id} style={{ marginTop: 10 }}>{child.title}</h2>
+				<p style={{ color: 'var(--muted)' }}>{child.body}</p>
+			</div>
+		);
+	}
+	return (
+		<div>
+			<h2 id={section.id}>{section.title}</h2>
+			{section.summary && <p style={{ color: 'var(--muted)' }}>{section.summary}</p>}
+			{section.children && section.children.length > 0 && (
+				<div style={{ display: 'grid', gap: 12 }}>
+					{section.children.map((c) => (
+						<div key={c.id} className="doc" style={{ padding: 16 }}>
+							<h3 id={c.id} style={{ marginTop: 0 }}>
+								<a href={`#${c.id}`}>{c.title}</a>
+							</h3>
+							{c.body && <p style={{ color: 'var(--muted)', marginBottom: 0 }}>{c.body}</p>}
+						</div>
+					))}
+				</div>
+			)}
+		</div>
+	);
+}
