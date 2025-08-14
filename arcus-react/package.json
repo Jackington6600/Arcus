@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 5173"
+    "preview": "vite preview --port 5173",
+    "postbuild": "node ./scripts/spa-fallback.js"
   },
   "dependencies": {
     "js-yaml": "^4.1.0",

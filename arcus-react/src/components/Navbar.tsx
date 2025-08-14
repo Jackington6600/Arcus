@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function Navbar() {
@@ -21,10 +21,10 @@ export default function Navbar() {
     return (
         <nav className="navbar">
             <div className="container navbar-inner">
-                <a className="brand" href="/">
-                    <img src="/favicon-black.ico" width="24" height="24" alt="Arcus" />
+                <Link className="brand" to="/">
+                    <img src={`${import.meta.env.BASE_URL}favicon-black.ico`} width="24" height="24" alt="Arcus" />
                     <span className="name">Arcus RPG</span>
-                </a>
+                </Link>
                 <div className="nav-title mobile-only" aria-live="polite">{currentTitle}</div>
                 <button className="burger mobile-only" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
                     <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">

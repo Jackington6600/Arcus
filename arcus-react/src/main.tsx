@@ -25,7 +25,7 @@ const router = createBrowserRouter([
 			{ path: 'blog', element: <Blog /> },
 		],
 	},
-]);
+], { basename: import.meta.env.BASE_URL });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
