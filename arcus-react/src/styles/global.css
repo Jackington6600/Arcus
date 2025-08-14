@@ -104,18 +104,21 @@ a {
 	.brand .name { display: none; }
 	.nav-title { flex: 1; justify-content: center; font-weight: 800; font-family: Cinzel, serif; font-size: 22px; color: var(--nav-text); display: inline-flex; }
 	.burger { background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; }
+	/* Hide sticky TOC sidebars on small screens; use overlay menu instead */
+	.toc { display: none; }
 }
 
 .mobile-menu {
-	position: fixed;
-	inset: 0 0 auto 0;
-	top: var(--nav-height);
-	transform: translateY(-8px);
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity .25s ease, transform .25s ease;
-	background: linear-gradient(180deg, rgba(233,237,242,0.98), rgba(233,237,242,0.96));
-	border-bottom: 1px solid var(--border);
+    position: fixed;
+    inset: 0 0 0 0;
+    top: var(--nav-height);
+    bottom: 0;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+    background: transparent;
+    z-index: 60;
 }
 .mobile-menu.open {
 	opacity: 1;
@@ -123,10 +126,84 @@ a {
 	pointer-events: auto;
 }
 .mobile-menu .menu-inner {
-	display: grid; gap: 6px; padding: 12px 0 16px;
+    display: grid;
+    gap: 6px;
+    padding: 12px 0 16px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(16,22,30,0.12);
+    margin: 8px auto 16px;
+    max-height: calc(100dvh - var(--nav-height) - 24px);
+    overflow: auto;
 }
 .mobile-menu .m-link { padding: 10px 12px; border-radius: 8px; color: var(--nav-text); }
 .mobile-menu .m-link.active, .mobile-menu .m-link:hover { background: rgba(0,0,0,0.06); }
+
+.toc-toggle {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	background: #ffffff;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	padding: 12px 14px;
+	font-weight: 600;
+	font-size: 15px;
+	color: var(--nav-text);
+	box-shadow: 0 3px 12px rgba(16,22,30,0.06);
+}
+.toc-toggle svg { width: 18px; height: 18px; }
+
+.page-menu {
+	position: fixed;
+	inset: 0 0 0 0;
+	top: var(--nav-height);
+	bottom: 0;
+	transform: translateY(-8px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .25s ease, transform .25s ease;
+	background: linear-gradient(180deg, rgba(233,237,242,0.98), rgba(233,237,242,0.96));
+	border-bottom: 1px solid var(--border);
+	z-index: 60;
+	overflow: auto;
+}
+.page-menu.open {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+.page-menu .menu-inner {
+	width: min(1200px, 92%);
+	margin: 0 auto;
+	display: grid;
+	gap: 10px;
+	padding: 12px 0 16px;
+}
+
+/* Larger close control in overlay header */
+.page-menu .accordion-header {
+	padding: 16px 14px;
+}
+.page-menu .accordion-header span[aria-hidden] {
+	font-size: 24px;
+	line-height: 1;
+}
+
+@media (max-width: 960px) {
+	/* Float the contents toggle button so it's always accessible */
+	.toc-toggle {
+		position: fixed;
+		right: 14px;
+		bottom: 14px;
+		z-index: 70;
+		max-width: 86vw;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
 
 .main--home { background: var(--bg); }
 .main { background: var(--panel); }

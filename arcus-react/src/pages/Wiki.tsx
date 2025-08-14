@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 
@@ -8,6 +8,8 @@ type SearchEntry = { id: string; title: string; preview: string; category: strin
 export default function Wiki() {
 	const location = useLocation();
 	const sections = rules.sections;
+    const [menuOpen, setMenuOpen] = useState(false);
+    const menuRef = useRef<HTMLDivElement>(null);
 
 	const idToSection = useMemo(() => {
 		const map = new Map<string, { section: typeof sections[number]; child?: Child }>();
@@ -61,9 +63,47 @@ export default function Wiki() {
         return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
     }, [query, searchIndex]);
 
+    // Lock background scroll by disabling overflow (preserves current scroll and sticky navbar)
+    useEffect(() => {
+        if (!menuOpen) return;
+        const prevHtmlOverflow = document.documentElement.style.overflow;
+        const prevBodyOverflow = document.body.style.overflow;
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.documentElement.style.overflow = prevHtmlOverflow;
+            document.body.style.overflow = prevBodyOverflow;
+        };
+    }, [menuOpen]);
+
+    // Close menu on outside clicks while letting underlying click proceed
+    useEffect(() => {
+        if (!menuOpen) return;
+        const handlePointerDown = (e: MouseEvent) => {
+            const target = e.target as Node;
+            // If the toggle button itself was clicked, let its own handler manage toggling
+            if (target instanceof Element && target.closest('.toc-toggle')) {
+                return;
+            }
+            if (menuRef.current && !menuRef.current.contains(target)) {
+                setMenuOpen(false);
+            }
+        };
+        document.addEventListener('pointerdown', handlePointerDown, true);
+        return () => document.removeEventListener('pointerdown', handlePointerDown, true);
+    }, [menuOpen]);
+
 	return (
 		<div className="container layout">
-			<aside className="toc">
+			<div className="mobile-only" style={{ margin: '12px 0' }}>
+				<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+						<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
+					</svg>
+					{active?.child?.title || active?.section.title || 'Browse Wiki'}
+				</button>
+			</div>
+            <aside className="toc">
                 <div className="searchbar">
                     <input
                         className="input"
@@ -87,12 +127,34 @@ export default function Wiki() {
 					<p style={{ color: 'var(--muted)' }}>No content available.</p>
 				)}
 			</article>
+            <div className={`page-menu ${menuOpen ? 'open' : ''}`}>
+                <div className="menu-inner" ref={menuRef}>
+                    <div className="accordion-header" onClick={() => setMenuOpen(false)}>
+                        <strong>Browse Wiki</strong>
+                        <span aria-hidden>×</span>
+                    </div>
+                    <div className="searchbar">
+                        <input
+                            className="input"
+                            placeholder="Search titles and content..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                        />
+                    </div>
+                    {query && (
+                        <SearchResults results={results} onClear={() => setQuery('')} />
+                    )}
+                    {sections.map((s) => (
+                        <SidebarAccordion key={s.id} section={s} activeId={activeId} />
+                    ))}
+                </div>
+            </div>
 		</div>
 	);
 }
 
 function SidebarAccordion({ section, activeId }: { section: { id: string; title: string; summary?: string; children?: Child[] }; activeId: string }) {
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	return (
 		<div className="accordion-item">
 			<div className="accordion-header" onClick={() => setOpen((v) => !v)}>

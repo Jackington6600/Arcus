@@ -7,6 +7,27 @@ export default function Navbar() {
 
     useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
+    // Prevent background scroll when mobile menu is open
+    useEffect(() => {
+        if (!menuOpen) return;
+        const prevHtmlOverflow = document.documentElement.style.overflow;
+        const prevBodyOverflow = document.body.style.overflow;
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.documentElement.style.overflow = prevHtmlOverflow;
+            document.body.style.overflow = prevBodyOverflow;
+        };
+    }, [menuOpen]);
+
+    // Close on Escape key
+    useEffect(() => {
+        if (!menuOpen) return;
+        const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [menuOpen]);
+
     const titles: Record<string, string> = {
         '/': 'Home',
         '/rules': 'Full Rules',
@@ -41,15 +62,15 @@ export default function Navbar() {
                     <NavLink to="/blog" className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>Blog</NavLink>
                 </div>
             </div>
-            <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
-                <div className="menu-inner container">
-                    <NavLink to="/" end className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>Home</NavLink>
-                    <NavLink to="/rules" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>Full Rules</NavLink>
-                    <NavLink to="/wiki" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>Wiki</NavLink>
-                    <NavLink to="/character-sheets" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>Character Sheets</NavLink>
-                    <NavLink to="/world" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>The World</NavLink>
-                    <NavLink to="/gm" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>GM Resources</NavLink>
-                    <NavLink to="/blog" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`}>Blog</NavLink>
+            <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>
+                <div className="menu-inner container" onClick={(e) => e.stopPropagation()}>
+                    <NavLink to="/" end className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Home</NavLink>
+                    <NavLink to="/rules" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Full Rules</NavLink>
+                    <NavLink to="/wiki" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Wiki</NavLink>
+                    <NavLink to="/character-sheets" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Character Sheets</NavLink>
+                    <NavLink to="/world" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>The World</NavLink>
+                    <NavLink to="/gm" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>GM Resources</NavLink>
+                    <NavLink to="/blog" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Blog</NavLink>
                 </div>
             </div>
         </nav>
