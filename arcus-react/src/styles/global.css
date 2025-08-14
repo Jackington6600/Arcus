@@ -145,6 +145,20 @@ a {
 	color: #f7f7fb;
 }
 
+/* Soft fade from hero backdrop into page background */
+.hero::after {
+	content: '';
+	position: absolute;
+	left: 0; right: 0; top: 0; bottom: 0;
+	pointer-events: none;
+	background: linear-gradient(
+		to bottom,
+		rgba(7, 9, 14, 0) 55%,
+		rgba(7, 9, 14, 0.6) 78%,
+		var(--bg) 100%
+	);
+}
+
 .hero > .container {
 	display: grid;
 	place-items: center;

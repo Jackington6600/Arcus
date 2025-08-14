@@ -1,6 +1,36 @@
 import React, { useEffect, useRef } from 'react';
 
 export default function Home() {
+    useEffect(() => {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const animated = Array.from(hero.querySelectorAll('.enter')) as HTMLElement[];
+
+        const resetAndRun = () => {
+            animated.forEach((el) => {
+                el.classList.remove('enter');
+                // force reflow
+                void el.offsetWidth;
+                el.classList.add('enter');
+            });
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        resetAndRun();
+                    } else {
+                        animated.forEach((el) => el.classList.remove('enter'));
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+        observer.observe(hero);
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <>
         <section className="hero">
@@ -63,7 +93,7 @@ function ContentBelow() {
 
 function Reveal({ children }: { children: React.ReactNode }) {
 	const ref = useRef<HTMLDivElement>(null);
-	useEffect(() => {
+    useEffect(() => {
 		const el = ref.current;
 		if (!el) return;
 		const obs = new IntersectionObserver(
@@ -71,7 +101,8 @@ function Reveal({ children }: { children: React.ReactNode }) {
 				entries.forEach((e) => {
 					if (e.isIntersecting) {
 						el.classList.add('visible');
-						obs.disconnect();
+					} else {
+						el.classList.remove('visible');
 					}
 				});
 			},
