@@ -37,7 +37,7 @@ export default function Home() {
     return (
         <>
         <div className="home-background">
-            <img src="/images/arcus_spire_square.png" alt="Arcus Spire" className="background-image" />
+            <img src="./images/arcus_spire_square.png" alt="Arcus Spire" className="background-image" />
         </div>
         <section className="hero">
             <div className="container">
