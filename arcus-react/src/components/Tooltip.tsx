@@ -34,7 +34,7 @@ export default function Tooltip({ title, description, children, variant = 'inlin
                     style={pos ? { position: 'fixed', top: pos.top, left: pos.left, bottom: 'auto', maxWidth: 'min(320px, calc(100vw - 16px))' } : undefined}
                 >
                     <strong>{title}</strong>
-                    {description && <div className="tooltip-desc" style={{ marginTop: 6 }}>{description}</div>}
+                    {description && <span className="tooltip-desc" style={{ display: 'block', marginTop: 6 }}>{description}</span>}
                 </div>
             )}
         </span>

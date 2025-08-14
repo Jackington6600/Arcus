@@ -13,6 +13,8 @@ export default function FullRules() {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const [query, setQuery] = useState('');
+	const observerRef = useRef<IntersectionObserver | null>(null);
+	const isScrollingRef = useRef<boolean>(false);
 	
 	// Add layout-page class to body to prevent scrolling
 	useEffect(() => {
@@ -41,12 +43,17 @@ export default function FullRules() {
         return hs;
     }, []);
 
+	// Set up intersection observer for scroll tracking
 	useEffect(() => {
 		const container = containerRef.current;
 		if (!container) return;
-		const headingEls = Array.from(container.querySelectorAll('h2, h3')) as HTMLElement[];
+
+		const headingEls = container.querySelectorAll('h2, h3');
 		const observer = new IntersectionObserver(
 			(entries) => {
+				// Only update if we're not in the middle of a programmatic scroll
+				if (isScrollingRef.current) return;
+				
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
 						setActiveId(entry.target.id);
@@ -55,9 +62,22 @@ export default function FullRules() {
 			},
 			{ root: null, rootMargin: '-70px 0px -85% 0px', threshold: [0] }
 		);
+		
+		observerRef.current = observer;
 		headingEls.forEach((el) => observer.observe(el));
 		return () => observer.disconnect();
 	}, []);
+
+	// Handle TOC item clicks
+	const handleTocClick = (id: string) => {
+		setActiveId(id);
+		isScrollingRef.current = true;
+		
+		// Re-enable observer after scroll settles
+		setTimeout(() => {
+			isScrollingRef.current = false;
+		}, 100);
+	};
 
 	// If no hash/restore present and at page top, default to first heading
 	useEffect(() => {
@@ -89,6 +109,8 @@ export default function FullRules() {
 		window.history.replaceState(null, '', url);
 		localStorage.setItem('fullRules.lastId', activeId);
 	}, [activeId]);
+
+	// No custom hook needed - using native IntersectionObserver
 
 	// Lock background scroll by disabling overflow (preserves current scroll and sticky navbar)
 	useEffect(() => {
@@ -190,14 +212,6 @@ export default function FullRules() {
 
 	return (
 		<div className="container layout">
-			<div className="mobile-only" style={{ margin: '12px 0' }}>
-				<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
-					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-						<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
-					</svg>
-					{activeTitle}
-				</button>
-			</div>
 			<aside className="toc">
 				<div className="searchbar">
 					<input
@@ -208,7 +222,7 @@ export default function FullRules() {
 					/>
 				</div>
 				{query && (
-					<SearchResults results={results} onClear={() => setQuery('')} />
+					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
 				)}
 				<h4>On this page</h4>
 				{headings.map((h) => (
@@ -217,6 +231,7 @@ export default function FullRules() {
 						href={`#${h.id}`}
 						className={activeId === h.id ? 'active' : ''}
 						style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
+						onClick={() => handleTocClick(h.id)}
 					>
 						{h.text}
 					</a>
@@ -226,7 +241,7 @@ export default function FullRules() {
 				{rules.sections.map((s) => (
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
-						<p style={{ color: 'var(--muted)' }}>{renderWithTooltips(s.summary)}</p>
+						<p>{renderWithTooltips(s.summary)}</p>
 						{renderClassTableIfAny(s)}
 						{s.children?.map((c) => (
 							<div key={c.id}>
@@ -237,6 +252,13 @@ export default function FullRules() {
 					</section>
 				))}
 			</article>
+			{/* Floating TOC toggle button for mobile */}
+			<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+					<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
+				</svg>
+				{activeTitle}
+			</button>
 			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>
 					<div className="accordion-header" onClick={() => setMenuOpen(false)}>
@@ -252,7 +274,7 @@ export default function FullRules() {
 						/>
 					</div>
 					{query && (
-						<SearchResults results={results} onClear={() => setQuery('')} />
+						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
 					)}
 					{headings.map((h) => (
 						<a
@@ -260,7 +282,10 @@ export default function FullRules() {
 							href={`#${h.id}`}
 							className={activeId === h.id ? 'active' : ''}
 							style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
-							onClick={() => setMenuOpen(false)}
+							onClick={() => {
+								handleTocClick(h.id);
+								setMenuOpen(false);
+							}}
 						>
 							{h.text}
 						</a>
@@ -336,10 +361,15 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 					tags: a.tags,
 				}));
 				if (!rows.length) return null;
+				
 				return (
 					<div key={key}>
 						<h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
-						<ClassTable title={info.name} rows={rows} />
+						<ClassTable 
+							title={info.name} 
+							rows={rows} 
+							getNameHref={(row) => `#ability-${key}-${row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+						/>
 					</div>
 				);
 			})}
@@ -347,7 +377,7 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 	);
 }
 
-function SearchResults({ results, onClear }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void }) {
+function SearchResults({ results, onClear, onItemClick }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void; onItemClick?: (id: string) => void }) {
 	if (!results.length) {
 		return (
 			<div className="accordion-item" style={{ marginBottom: 10 }}>
@@ -371,7 +401,13 @@ function SearchResults({ results, onClear }: { results: { id: string; title: str
 				{results.map((e) => (
 					<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
 						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<a href={`#${e.id}`} style={{ fontWeight: 600 }}>{e.title}</a>
+							<a 
+								href={`#${e.id}`} 
+								style={{ fontWeight: 600 }}
+								onClick={onItemClick ? () => onItemClick(e.id) : undefined}
+							>
+								{e.title}
+							</a>
 							<span className="tag">{e.category}</span>
 						</div>
 						{e.preview && (

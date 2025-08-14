@@ -1,5 +1,6 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
     const location = useLocation();
@@ -55,16 +56,12 @@ export default function Navbar() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
             <div className="container navbar-inner">
                 <Link className="brand" to="/">
-                    <img src={`${import.meta.env.BASE_URL}favicon-black.ico`} width="24" height="24" alt="Arcus" />
+                    <img id="brand-logo" src={`${import.meta.env.BASE_URL}favicon-black.ico`} width="24" height="24" alt="Arcus" />
                     <span className="name">Arcus RPG</span>
                 </Link>
-                <div className="nav-title mobile-only" aria-live="polite">{currentTitle}</div>
-                <button className="burger mobile-only" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>
-                    <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 2h24M1 10h24M1 18h24" stroke="#222" strokeWidth="2.5" strokeLinecap="round"/>
-                    </svg>
-                </button>
-                <div className="navlinks desktop-only">
+                
+                {/* Desktop navigation */}
+                <div className="navlinks">
                     <NavLink to="/" end className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>Home</NavLink>
                     <NavLink to="/rules" className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>Full Rules</NavLink>
                     <NavLink to="/wiki" className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>Wiki</NavLink>
@@ -73,7 +70,30 @@ export default function Navbar() {
                     <NavLink to="/gm" className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>GM Resources</NavLink>
                     <NavLink to="/blog" className={({ isActive }) => `navlink ${isActive ? 'active' : ''}`}>Blog</NavLink>
                 </div>
+
+                {/* Right side controls - always visible */}
+                <div className="navbar-controls">
+                    <ThemeToggle />
+                    {/* Burger menu - shown on mobile */}
+                    <button 
+                        className="burger" 
+                        aria-label="Open menu" 
+                        aria-expanded={menuOpen} 
+                        onClick={() => setMenuOpen(v => !v)}
+                    >
+                        <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Mobile title - shown on mobile */}
+                <div className="nav-title" aria-live="polite">
+                    {currentTitle}
+                </div>
             </div>
+            
+            {/* Mobile menu */}
             <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>
                 <div className="menu-inner container" onClick={(e) => e.stopPropagation()}>
                     <NavLink to="/" end className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Home</NavLink>

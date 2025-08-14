@@ -88,11 +88,11 @@ function ContentBelow() {
 	];
 
 	return (
-		<div id="more" className="container" style={{ padding: '56px 0 96px' }}>
-			<div style={{ display: 'grid', gap: 18 }}>
+		<div id="more" className="container home-content-container">
+			<div className="home-content-grid">
 				{blocks.map((b, i) => (
 					<Reveal key={i}>
-						<div className="doc" style={{ padding: 22 }}>
+						<div className="doc">
 							<h3 style={{ marginTop: 0 }}>{b.title}</h3>
 							<p style={{ color: 'var(--muted)', marginBottom: 0 }}>{b.text}</p>
 						</div>

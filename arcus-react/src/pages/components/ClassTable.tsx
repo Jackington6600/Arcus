@@ -11,15 +11,15 @@ export type AbilityRow = {
 
 export default function ClassTable({ title, rows, getNameHref }: { title: string; rows: AbilityRow[]; getNameHref?: (row: AbilityRow, index: number) => string | undefined }) {
     return (
-        <div className="doc" style={{ padding: 0 }}>
-            <div style={{ padding: '12px 14px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="class-table" style={{ padding: 0 }}>
+            <div style={{ padding: '12px 14px', borderBottom: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <strong>{title}</strong>
                 <span style={{ color: 'var(--muted)', fontSize: 12 }}>{rows.length} abilities</span>
             </div>
-            <div style={{ overflowX: 'auto' }}>
+            <div>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead>
-                        <tr style={{ background: '#fafbfe' }}>
+                    <tr style={{ background: 'var(--surface-tertiary)' }}>
                             <th style={th}>Level</th>
                             <th style={th}>Name</th>
                             <th style={th}>Description</th>
@@ -30,7 +30,11 @@ export default function ClassTable({ title, rows, getNameHref }: { title: string
                     </thead>
                     <tbody>
                         {rows.map((r, i) => (
-                            <tr key={i} style={{ borderTop: '1px solid var(--border)' }}>
+                            <tr 
+                                key={i} 
+                                style={{ borderTop: '1px solid var(--border-light)' }}
+                                id={getNameHref ? getNameHref(r, i)?.replace('#', '') : undefined}
+                            >
                                 <td style={td}>{r.level}</td>
                                 <td style={{ ...td, fontWeight: 600 }}>
                                     {getNameHref ? (
@@ -58,7 +62,7 @@ export default function ClassTable({ title, rows, getNameHref }: { title: string
     );
 }
 
-const th: React.CSSProperties = { textAlign: 'left', padding: '10px 12px', borderBottom: '1px solid var(--border)', fontSize: 13, color: 'var(--muted)' };
+const th: React.CSSProperties = { textAlign: 'left', padding: '10px 12px', borderBottom: '1px solid var(--border-light)', fontSize: 13, color: 'var(--muted)' };
 const td: React.CSSProperties = { padding: '10px 12px', verticalAlign: 'top' };
 
 
