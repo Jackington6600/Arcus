@@ -344,7 +344,7 @@ export default function Wiki() {
 				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
 					<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
 				</svg>
-				{activeTitle}
+				Navigate Wiki
 			</button>
 			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>

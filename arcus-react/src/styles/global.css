@@ -273,7 +273,7 @@ a {
 	background: transparent; 
 	border: 1px solid var(--border-light); 
 	border-radius: 8px; 
-	padding: 6px 8px; 
+	padding: 9px 9px; 
 	transition: all 0.2s ease;
 	cursor: pointer;
 	margin-left: auto;
@@ -326,42 +326,8 @@ a {
 	}
 }
 
-@media (max-width: 600px) {
-	.navbar-inner {
-		padding: var(--nav-padding) 0;
-		gap: 12px;
-	}
-	
-	.brand {
-		font-size: 20px;
-	}
-	
-	.nav-title {
-		font-size: 20px;
-	}
-	
-	.theme-toggle {
-		width: 36px;
-		height: 36px;
-	}
-	
-	.theme-toggle svg {
-		width: 18px;
-		height: 18px;
-	}
-	
-	.burger {
-		padding: 5px 7px;
-	}
-	
-	.burger svg {
-		width: 22px;
-		height: 18px;
-	}
-}
-
 /* Hide TOC on small screens */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
 	.toc { 
 		display: none; 
 	}
@@ -454,7 +420,7 @@ a {
 	border-radius: 10px;
 	padding: 12px 14px;
 	font-weight: 600;
-	font-size: 15px;
+	font-size: 20px;
 	color: var(--text-primary);
 	box-shadow: 0 3px 12px var(--shadow-light);
 	width: auto !important;
@@ -491,7 +457,6 @@ a {
 .page-menu .menu-inner {
 	width: min(1200px, 92%);
 	margin: 0 auto;
-	display: grid;
 	gap: 10px;
 	padding: 12px 0 16px;
 }
@@ -514,12 +479,12 @@ a {
 }
 
 /* Mobile TOC Toggle */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
 	.toc-toggle {
 		display: flex;
 		position: fixed;
-		right: 14px;
-		bottom: 14px;
+		right: 16px;
+		bottom: 24px;
 		z-index: 70;
 		max-width: 86vw;
 		width: auto !important;
@@ -632,7 +597,7 @@ a {
 	gap: 16px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
 	.layout {
 		place-items: stretch;
 		top: calc(var(--nav-height) + 12px) !important;
@@ -774,6 +739,7 @@ a {
 	border-radius: 6px;
 	font-size: 14px;
 	transition: all 0.2s ease;
+	display: flex;
 }
 
 .toc-section-content a:hover {
@@ -817,7 +783,7 @@ a {
 	grid-row: 1;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
 	.doc {
 		padding: 20px;
 		width: 100%;
@@ -1007,10 +973,7 @@ a {
 }
 
 .tooltip-bubble {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: calc(100% + 8px);
+	position: fixed;
 	min-width: 220px;
 	max-width: 320px;
 	background: var(--surface);
@@ -1096,7 +1059,7 @@ a {
 }
 
 /* Mobile Layout Adjustments */
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
 	body.layout-page {
 		overflow: hidden !important;
 		position: fixed;

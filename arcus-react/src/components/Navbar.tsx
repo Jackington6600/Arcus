@@ -81,7 +81,7 @@ export default function Navbar() {
                         aria-expanded={menuOpen} 
                         onClick={() => setMenuOpen(v => !v)}
                     >
-                        <svg width="26" height="20" viewBox="0 0 26 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
                         </svg>
                     </button>
