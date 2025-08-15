@@ -57,6 +57,43 @@ export default function Wiki() {
 		return hs;
 	}, []);
 
+	// Helper function to determine TOC item highlighting classes
+	const getTocItemClasses = (itemId: string) => {
+		if (activePageId === itemId) return 'active';
+		
+		// Check if this is a parent of the active page
+		const activeHeading = headings.find(h => h.id === activePageId);
+		if (!activeHeading) return '';
+		
+		// Check if this item is the section containing the active page
+		if (itemId === activeHeading.sectionId) return 'parent-active';
+		
+		// Check if this is a grandparent (section containing the active page's section)
+		const activeSection = rules.sections.find(s => s.id === activeHeading.sectionId);
+		if (activeSection && itemId === activeSection.id) return 'grandparent-active';
+		
+		return '';
+	};
+
+	// Helper function to determine section header highlighting classes
+	const getSectionHeaderClasses = (sectionId: string) => {
+		const baseClasses = expandedSections.has(sectionId) ? 'expanded' : '';
+		
+		if (activePageId === sectionId) return `${baseClasses} active`;
+		
+		// Check if this section contains the active page
+		const activeHeading = headings.find(h => h.id === activePageId);
+		if (!activeHeading) return baseClasses;
+		
+		if (activeHeading.sectionId === sectionId) return `${baseClasses} parent-active`;
+		
+		// Check if this section contains the active page's section
+		const activeSection = rules.sections.find(s => s.id === activeHeading.sectionId);
+		if (activeSection && activeSection.id === sectionId) return `${baseClasses} grandparent-active`;
+		
+		return baseClasses;
+	};
+
 	// Set initial page
 	useEffect(() => {
 		if (activePageId) return;
@@ -287,7 +324,7 @@ export default function Wiki() {
 					{rules.sections.map((section) => (
 						<div key={section.id} className="toc-section">
 							<div 
-								className={`toc-section-header ${expandedSections.has(section.id) ? 'expanded' : ''}`}
+								className={`toc-section-header ${getSectionHeaderClasses(section.id)}`}
 								onClick={() => toggleSection(section.id)}
 							>
 								<span className="toc-section-title">{section.title}</span>
@@ -297,7 +334,7 @@ export default function Wiki() {
 								<div className="toc-section-content">
 									<a
 										href={`#${section.id}`}
-										className={activePageId === section.id ? 'active' : ''}
+										className={getTocItemClasses(section.id)}
 										onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}
 									>
 										{section.title}
@@ -306,7 +343,7 @@ export default function Wiki() {
 										<a
 											key={child.id}
 											href={`#${child.id}`}
-											className={activePageId === child.id ? 'active' : ''}
+											className={getTocItemClasses(child.id)}
 											onClick={(e) => { e.preventDefault(); navigateToPage(child.id); }}
 											style={{ paddingLeft: 22 }}
 										>
@@ -321,7 +358,7 @@ export default function Wiki() {
 												<a
 													key={`class-${key}`}
 													href={`#class-${key}`}
-													className={activePageId === `class-${key}` ? 'active' : ''}
+													className={getTocItemClasses(`class-${key}`)}
 													onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); }}
 													style={{ paddingLeft: 22 }}
 												>
@@ -367,7 +404,7 @@ export default function Wiki() {
 						{rules.sections.map((section) => (
 							<div key={section.id} className="toc-section">
 								<div 
-									className={`toc-section-header ${expandedSections.has(section.id) ? 'expanded' : ''}`}
+									className={`toc-section-header ${getSectionHeaderClasses(section.id)}`}
 									onClick={() => toggleSection(section.id)}
 								>
 									<span className="toc-section-title">{section.title}</span>
@@ -377,7 +414,7 @@ export default function Wiki() {
 									<div className="toc-section-content">
 										<a
 											href={`#${section.id}`}
-											className={activePageId === section.id ? 'active' : ''}
+											className={getTocItemClasses(section.id)}
 											onClick={(e) => { e.preventDefault(); navigateToPage(section.id); setMenuOpen(false); }}
 										>
 											{section.title}
@@ -386,7 +423,7 @@ export default function Wiki() {
 											<a
 												key={child.id}
 												href={`#${child.id}`}
-												className={activePageId === child.id ? 'active' : ''}
+												className={getTocItemClasses(child.id)}
 												onClick={(e) => { e.preventDefault(); navigateToPage(child.id); setMenuOpen(false); }}
 												style={{ paddingLeft: 22 }}
 											>
@@ -401,7 +438,7 @@ export default function Wiki() {
 													<a
 														key={`class-${key}`}
 														href={`#class-${key}`}
-														className={activePageId === `class-${key}` ? 'active' : ''}
+														className={getTocItemClasses(`class-${key}`)}
 														onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); setMenuOpen(false); }}
 														style={{ paddingLeft: 22 }}
 													>

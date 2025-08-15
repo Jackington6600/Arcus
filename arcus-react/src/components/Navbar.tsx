@@ -82,7 +82,7 @@ export default function Navbar() {
                         onClick={() => setMenuOpen(v => !v)}
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                            <path d="M1 2h20M1 10h20M1 18h20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
                         </svg>
                     </button>
                 </div>

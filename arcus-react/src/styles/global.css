@@ -665,12 +665,26 @@ a {
 	display: block;
 	padding: 8px 10px;
 	border-radius: 8px;
-	color: var(--text-secondary);
+	color: var(--text-primary);
+	transition: all 0.2s ease;
 }
 
 .toc a.active {
 	background: rgba(62,224,255,0.12);
 	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.toc a.parent-active {
+	background: rgba(62,224,255,0.06);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+.toc a.grandparent-active {
+	background: rgba(62,224,255,0.03);
+	color: var(--text-primary);
+	font-weight: 400;
 }
 
 .toc a.pulse {
@@ -713,8 +727,26 @@ a {
 }
 
 .toc-section-header.expanded {
-	background: var(--accent-2);
-	color: white;
+	background: var(--surface-tertiary);
+	color: var(--text-primary);
+}
+
+.toc-section-header.active {
+	background: rgba(62,224,255,0.08);
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.toc-section-header.parent-active {
+	background: rgba(62,224,255,0.04);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+.toc-section-header.grandparent-active {
+	background: rgba(62,224,255,0.02);
+	color: var(--text-primary);
+	font-weight: 400;
 }
 
 .toc-section-title {
@@ -753,6 +785,18 @@ a {
 	font-weight: 600;
 }
 
+.toc-section-content a.parent-active {
+	background: rgba(62,224,255,0.06);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+.toc-section-content a.grandparent-active {
+	background: rgba(62,224,255,0.03);
+	color: var(--text-primary);
+	font-weight: 400;
+}
+
 /* Wiki Links in Content */
 .doc a[href^="#"] {
 	color: var(--accent-2);
@@ -785,7 +829,7 @@ a {
 
 @media (max-width: 1100px) {
 	.doc {
-		padding: 20px;
+		padding: 32px;
 		width: 100%;
 		max-width: 100%;
 	}
@@ -843,20 +887,10 @@ a {
 	color: inherit;
 }
 
-/* Other spans in documents */
-.doc span:not(.tooltip) {
-	color: var(--text-primary);
-}
-
-/* Ensure paragraphs with tooltips maintain normal color */
-.doc p:has(.tooltip),
-.doc p .tooltip {
-	color: inherit;
-}
-
 /* Force paragraphs to maintain their color regardless of content */
 .doc p {
-	color: var(--text-primary) !important;
+	color: var(--text-secondary) !important;
+	padding-left: 20px;
 }
 
 /* Document Tables */
@@ -906,6 +940,40 @@ a {
 	overflow-wrap: break-word;
 	color: var(--text-primary);
 	border-color: var(--border-light);
+}
+
+/* Responsive ClassTable - horizontal scrolling on mobile */
+@media (max-width: 700px) {
+	.class-table {
+		overflow-x: auto;
+		overflow-y: visible;
+		/* Add subtle scroll indicators */
+		background: 
+			linear-gradient(90deg, var(--surface) 0%, transparent 5%),
+			linear-gradient(90deg, transparent 95%, var(--surface) 100%);
+		background-size: 20px 100%;
+		background-repeat: no-repeat;
+		background-position: left center, right center;
+	}
+	
+	.class-table table {
+		min-width: 600px; /* Ensure table never gets narrower than this */
+		width: 600px; /* Force exact width to prevent layout shifts */
+	}
+
+	
+	/* Add scroll hint text for mobile users */
+	.class-table::before {
+		content: '← Scroll horizontally to see all columns →';
+		display: block;
+		text-align: center;
+		padding: 8px 12px;
+		font-size: 12px;
+		color: var(--muted);
+		background: var(--surface-secondary);
+		border-bottom: 1px solid var(--border-light);
+		font-style: italic;
+	}
 }
 
 /* Search Bar */
@@ -1007,7 +1075,7 @@ a {
 .hint {
 	border-bottom: 1px dashed var(--text-secondary);
 	cursor: help;
-	color: inherit;
+	color: var(--text-primary);
 }
 
 .tooltip-bubble strong { 
@@ -1079,27 +1147,6 @@ a {
 	}
 }
 
-/* Layout Page Overflow Control */
-body.layout-page * {
-	overflow: visible;
-}
-
-body.layout-page .layout {
-	overflow: hidden !important;
-}
-
-body.layout-page .toc {
-	overflow: auto !important;
-}
-
-body.layout-page .doc {
-	overflow: auto !important;
-}
-
-body.layout-page .page-menu {
-	overflow: auto !important;
-}
-
 /* Home Page Background */
 .home-background {
 	position: fixed;
@@ -1137,183 +1184,10 @@ body.layout-page .page-menu {
 	pointer-events: none;
 }
 
-/* Home Page Content Styling */
-.main--home .doc {
-	background: rgba(255, 255, 255, 0.95);
-	backdrop-filter: blur(4px);
-	border: 1px solid rgba(255, 255, 255, 0.2);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
 .main--home .doc p {
 	color: var(--muted);
 }
 
-/* Dark Theme Overrides */
-[data-theme="dark"] .cta {
-	box-shadow: 0 6px 20px rgba(66,233,255,0.35);
-}
-
-[data-theme="dark"] .ornament::before {
-	background: linear-gradient(90deg, transparent, var(--gold), transparent);
-	opacity: 0.8;
-}
-
-[data-theme="dark"] .hero-title,
-[data-theme="dark"] .hero-subtitle {
-	color: #f7f7fb;
-}
-
-[data-theme="dark"] .main--home .doc {
-	background: rgba(26, 29, 38, 0.95);
-	border: 1px solid rgba(26, 29, 38, 0.2);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-[data-theme="dark"] .main--home .doc p {
-	color: var(--muted);
-}
-
-/* Dark Theme Component Overrides */
-[data-theme="dark"] .mobile-menu .menu-inner,
-[data-theme="dark"] .page-menu,
-[data-theme="dark"] .toc-toggle,
-[data-theme="dark"] .searchbar,
-[data-theme="dark"] .input,
-[data-theme="dark"] .accordion-item,
-[data-theme="dark"] .toc,
-[data-theme="dark"] .doc {
-	background: var(--surface);
-	border-color: var(--border-light);
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] .page-menu {
-	background: linear-gradient(180deg, var(--overlay-medium), var(--overlay-light));
-}
-
-[data-theme="dark"] .input {
-	box-shadow: 0 3px 12px var(--shadow-light) inset, 0 1px 0 var(--surface);
-}
-
-[data-theme="dark"] .burger,
-[data-theme="dark"] .theme-toggle {
-	border-color: var(--border-light);
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] .burger:hover,
-[data-theme="dark"] .theme-toggle:hover {
-	background: var(--shadow-light);
-}
-
-[data-theme="dark"] .mobile-menu .m-link.active,
-[data-theme="dark"] .mobile-menu .m-link:hover {
-	background: transparent;
-}
-
-[data-theme="dark"] a {
-	color: var(--accent-2);
-}
-
-[data-theme="dark"] a:hover {
-	color: var(--accent);
-}
-
-[data-theme="dark"] strong,
-[data-theme="dark"] b {
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] em,
-[data-theme="dark"] i {
-	color: var(--text-secondary);
-}
-
-[data-theme="dark"] .tag {
-	background: var(--shadow-light);
-	color: var(--text-secondary);
-}
-
-[data-theme="dark"] .tooltip-bubble strong {
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] .tooltip-bubble .tooltip-desc {
-	color: var(--text-secondary);
-}
-
-[data-theme="dark"] .hint {
-	border-bottom-color: var(--text-secondary);
-	color: inherit;
-}
-
-[data-theme="dark"] .reveal,
-[data-theme="dark"] .enter {
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] .doc ul,
-[data-theme="dark"] .doc ol,
-[data-theme="dark"] .doc blockquote,
-[data-theme="dark"] .doc code,
-[data-theme="dark"] .doc pre {
-	color: var(--text-primary);
-}
-
-[data-theme="dark"] .doc blockquote {
-	color: var(--text-secondary);
-	border-left-color: var(--border-light);
-}
-
-[data-theme="dark"] .doc code,
-[data-theme="dark"] .doc pre {
-	background: var(--surface-tertiary);
-	border-color: var(--border-light);
-}
-
-/* Dark theme tooltip spans should inherit color from parent */
-[data-theme="dark"] .doc .tooltip {
-	color: inherit;
-}
-
-/* Dark theme: Ensure paragraphs with tooltips maintain normal color */
-[data-theme="dark"] .doc p:has(.tooltip),
-[data-theme="dark"] .doc p .tooltip {
-	color: inherit;
-}
-
-/* Dark theme: Force paragraphs to maintain their color regardless of content */
-[data-theme="dark"] .doc p {
-	color: var(--text-primary) !important;
-}
-
-/* Dark theme wiki links */
-[data-theme="dark"] .doc a[href^="#"] {
-	color: var(--accent-2);
-}
-
-[data-theme="dark"] .doc a[href^="#"]:hover {
-	color: var(--accent);
-}
-
-/* Scrollbar Styling */
-[data-theme="dark"] ::-webkit-scrollbar {
-	width: 12px;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-track {
-	background: var(--surface-tertiary);
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb {
-	background: var(--border-medium);
-	border-radius: 6px;
-}
-
-[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-	background: var(--border-light);
-}
 
 /* Disclaimer Component */
 .disclaimer {

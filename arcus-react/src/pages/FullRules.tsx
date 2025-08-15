@@ -43,6 +43,42 @@ export default function FullRules() {
         return hs;
     }, []);
 
+	// Helper function to determine TOC item highlighting classes
+	const getTocItemClasses = (itemId: string) => {
+		if (activeId === itemId) return 'active';
+		
+		// Check if this is a parent of the active item
+		const activeHeading = headings.find(h => h.id === activeId);
+		if (!activeHeading) return '';
+		
+		// For level 2 headings, check if they contain the active level 3 heading
+		if (itemId === activeHeading.id) return 'parent-active';
+		
+		// For level 2 headings, check if they contain the active level 3 heading
+		const activeSection = rules.sections.find(s => s.id === activeId);
+		if (activeSection) {
+			// This is a section heading, check if it contains the active child
+			const hasActiveChild = activeSection.children?.some(child => child.id === activeId);
+			if (hasActiveChild) return 'parent-active';
+		}
+		
+		// Check if this section contains the active heading
+		const section = rules.sections.find(s => s.id === itemId);
+		if (section) {
+			const hasActiveChild = section.children?.some(child => child.id === activeId);
+			if (hasActiveChild) return 'parent-active';
+			
+			// Check for class headings
+			if (/character classes/i.test(section.title) || section.id === 'classes') {
+				const classKeys = Object.keys((rules as any).classes || {});
+				const hasActiveClass = classKeys.some(key => `class-${key}` === activeId);
+				if (hasActiveClass) return 'parent-active';
+			}
+		}
+		
+		return '';
+	};
+
 	// Set up intersection observer for scroll tracking
 	useEffect(() => {
 		const container = containerRef.current;
@@ -229,7 +265,7 @@ export default function FullRules() {
 					<a
 						key={h.id}
 						href={`#${h.id}`}
-						className={activeId === h.id ? 'active' : ''}
+						className={getTocItemClasses(h.id)}
 						style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
 						onClick={() => handleTocClick(h.id)}
 					>
@@ -280,7 +316,7 @@ export default function FullRules() {
 						<a
 							key={h.id}
 							href={`#${h.id}`}
-							className={activeId === h.id ? 'active' : ''}
+							className={getTocItemClasses(h.id)}
 							style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
 							onClick={() => {
 								handleTocClick(h.id);

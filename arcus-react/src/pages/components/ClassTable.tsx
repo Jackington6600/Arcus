@@ -32,7 +32,10 @@ export default function ClassTable({ title, rows, getNameHref }: { title: string
                         {rows.map((r, i) => (
                             <tr 
                                 key={i} 
-                                style={{ borderTop: '1px solid var(--border-light)' }}
+                                style={{ 
+                                    borderTop: '1px solid var(--border-light)',
+                                    background: i % 2 === 0 ? 'var(--surface-primary)' : 'var(--surface-secondary)'
+                                }}
                                 id={getNameHref ? getNameHref(r, i)?.replace('#', '') : undefined}
                             >
                                 <td style={td}>{r.level}</td>
