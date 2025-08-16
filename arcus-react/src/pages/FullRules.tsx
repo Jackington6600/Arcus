@@ -14,6 +14,7 @@ export default function FullRules() {
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const [query, setQuery] = useState('');
+	const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
 	const observerRef = useRef<IntersectionObserver | null>(null);
 	const isScrollingRef = useRef<boolean>(false);
 	const isUserScrollingTocRef = useRef<boolean>(false);
@@ -26,6 +27,18 @@ export default function FullRules() {
 			document.body.classList.remove('layout-page');
 		};
 	}, []);
+
+	// Add body class when mobile menu is open for CSS targeting
+	useEffect(() => {
+		if (menuOpen) {
+			document.body.classList.add('mobile-toc-open');
+		} else {
+			document.body.classList.remove('mobile-toc-open');
+		}
+		return () => {
+			document.body.classList.remove('mobile-toc-open');
+		};
+	}, [menuOpen]);
 
     const headings = useMemo<Heading[]>(() => {
         const hs: Heading[] = [];
@@ -113,6 +126,83 @@ export default function FullRules() {
 		}
 		
 		return '';
+	};
+
+	// Helper function to determine section header highlighting classes
+	const getSectionHeaderClasses = (sectionId: string) => {
+		const baseClasses = expandedSections.has(sectionId) ? 'expanded' : '';
+		
+		if (activeId === sectionId) return `${baseClasses} active`;
+		
+		// Check if this section contains the active heading
+		const section = rules.sections.find(s => s.id === sectionId);
+		if (!section) return baseClasses;
+		
+		// Helper function to recursively check if an item contains the active heading
+		const hasActiveDescendant = (section: any): boolean => {
+			if (section.children && Array.isArray(section.children)) {
+				for (const child of section.children) {
+					if (child.id === activeId) return true;
+					if (hasActiveDescendant(child)) return true;
+				}
+			}
+			
+			// Check for class headings if this is the classes section
+			if (/character classes/i.test(section.title) || section.id === 'classes') {
+				const classKeys = Object.keys((rules as any).classes || {});
+				const hasActiveClass = classKeys.some(key => `class-${key}` === activeId);
+				if (hasActiveClass) return true;
+			}
+			
+			return false;
+		};
+		
+		if (hasActiveDescendant(section)) return `${baseClasses} parent-active`;
+		
+		return baseClasses;
+	};
+
+	// Toggle section expansion
+	const toggleSection = (sectionId: string) => {
+		setExpandedSections(prev => {
+			const newSet = new Set(prev);
+			if (newSet.has(sectionId)) {
+				newSet.delete(sectionId);
+			} else {
+				newSet.add(sectionId);
+			}
+			return newSet;
+		});
+	};
+
+	// Helper function to render TOC children recursively
+	const renderTocChildren = (children: any[] | undefined, level: number, onItemClick?: (id: string) => void) => {
+		if (!children || !children.length) return null;
+		return (
+			<>
+				{children.map((child) => (
+					<div key={child.id}>
+						<a
+							href={`#${child.id}`}
+							className={getTocItemClasses(child.id)}
+							onClick={(e) => { 
+								e.preventDefault(); 
+								if (onItemClick) {
+									onItemClick(child.id);
+								} else {
+									handleTocClick(child.id);
+								}
+							}}
+							style={{ paddingLeft: level * 10 }}
+						>
+							{child.title}
+						</a>
+						{/* Recursively render nested children */}
+						{child.children && Array.isArray(child.children) && renderTocChildren(child.children, level + 1, onItemClick)}
+					</div>
+				))}
+			</>
+		);
 	};
 
 	// Auto-center TOC on active heading change
@@ -213,6 +303,31 @@ export default function FullRules() {
 	const handleTocClick = (id: string) => {
 		setActiveId(id);
 		isScrollingRef.current = true;
+		
+		// Close mobile menu if open
+		if (menuOpen) {
+			setMenuOpen(false);
+		}
+		
+		// Scroll to the clicked heading with smooth behavior
+		const el = document.getElementById(id);
+		if (el) {
+			// Use a more reliable smooth scroll approach
+			const container = containerRef.current;
+			if (container) {
+				const containerRect = container.getBoundingClientRect();
+				const elementRect = el.getBoundingClientRect();
+				const scrollTop = container.scrollTop + (elementRect.top - containerRect.top) - 80; // 80px offset for header
+				
+				container.scrollTo({
+					top: scrollTop,
+					behavior: 'smooth'
+				});
+			} else {
+				// Fallback to native scrollIntoView
+				el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			}
+		}
 		
 		// Re-enable observer after scroll settles
 		setTimeout(() => {
@@ -366,7 +481,7 @@ export default function FullRules() {
 
 	return (
 		<div className="container layout">
-			<aside className="toc" ref={tocRef}>
+			<aside className={`toc ${query ? 'searching' : ''}`} ref={tocRef}>
 				<div className="searchbar">
 					<input
 						className="input"
@@ -384,8 +499,11 @@ export default function FullRules() {
 						</button>
 					)}
 				</div>
+				{/* Floating search results container */}
 				{query && (
-					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
+					<div className="search-results-overlay">
+						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
+					</div>
 				)}
 				<h4>On this page</h4>
 				{headings.map((h) => (
@@ -394,7 +512,10 @@ export default function FullRules() {
 						href={`#${h.id}`}
 						className={getTocItemClasses(h.id)}
 						style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
-						onClick={() => handleTocClick(h.id)}
+						onClick={(e) => {
+							e.preventDefault();
+							handleTocClick(h.id);
+						}}
 					>
 						{h.text}
 					</a>
@@ -417,11 +538,11 @@ export default function FullRules() {
 				</svg>
 				Navigate Rules
 			</button>
-			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
+			<div className={`page-menu ${menuOpen ? 'open' : ''} ${query ? 'searching' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>
 					<div className="sticky-header">
 						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
-							<strong>On this page</strong>
+							<strong>Browse Rules</strong>
 							<span aria-hidden>×</span>
 						</div>
 						<div className="searchbar">
@@ -443,18 +564,18 @@ export default function FullRules() {
 						</div>
 					</div>
 					{query && (
-						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
+						<div className="search-results-overlay">
+							<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { handleTocClick(id); setMenuOpen(false); }} />
+						</div>
 					)}
+					{/* Simple TOC list for mobile - no accordion structure */}
 					{headings.map((h) => (
 						<a
 							key={h.id}
 							href={`#${h.id}`}
 							className={getTocItemClasses(h.id)}
 							style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
-							onClick={() => {
-								handleTocClick(h.id);
-								setMenuOpen(false);
-							}}
+							onClick={(e) => { e.preventDefault(); handleTocClick(h.id); setMenuOpen(false); }}
 						>
 							{h.text}
 						</a>
@@ -606,15 +727,20 @@ function SearchResults({ results, onClear, onItemClick }: { results: { id: strin
 			</div>
 			<div className="accordion-content">
 				{results.map((e) => (
-					<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+					<div 
+						key={e.id} 
+						className="search-result-item"
+						style={{ 
+							padding: '8px 0', 
+							borderBottom: '1px solid var(--border)',
+							cursor: 'pointer'
+						}}
+						onClick={onItemClick ? () => onItemClick(e.id) : undefined}
+					>
 						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<a 
-								href={`#${e.id}`} 
-								style={{ fontWeight: 600 }}
-								onClick={onItemClick ? () => onItemClick(e.id) : undefined}
-							>
+							<span style={{ fontWeight: 600 }}>
 								{e.title}
-							</a>
+							</span>
 							<span className="tag">{e.category}</span>
 						</div>
 						{e.preview && (

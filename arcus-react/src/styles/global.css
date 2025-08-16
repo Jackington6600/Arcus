@@ -545,6 +545,35 @@ a {
 		left: -12px;
 		padding: 0 12px;
 	}
+	
+	/* Hide desktop TOC on mobile when mobile menu is open */
+	.layout .toc {
+		display: none !important;
+	}
+	
+	/* Ensure mobile page menu is properly positioned and styled */
+	.page-menu {
+		position: fixed;
+		inset: 0 0 0 0;
+		top: calc(var(--nav-height) + 12px);
+		bottom: 0;
+		transform: translateY(-8px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .25s ease, transform .25s ease;
+		background: linear-gradient(180deg, var(--overlay-medium), var(--overlay-light));
+		border-bottom: 1px solid var(--border-light);
+		z-index: 100;
+		overflow: auto;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.page-menu.open {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
 }
 
 /* Hero Section */
@@ -661,7 +690,7 @@ a {
 	}
 	
 	.layout .toc {
-		display: none;
+		display: none !important;
 	}
 	
 	.layout .doc {
@@ -1031,6 +1060,154 @@ a {
 	padding: 8px 0;
 	z-index: 10;
 	position: relative;
+}
+
+/* Floating search results overlay */
+.search-results-overlay {
+	position: relative;
+	background: var(--surface);
+	border: 1px solid var(--border-medium);
+	border-radius: 0 0 12px 12px;
+	box-shadow: 0 8px 32px var(--shadow-heavy);
+	z-index: 100;
+	max-height: calc(100vh - 200px);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	border-top: none;
+	margin-top: 0;
+}
+
+/* Ensure search results overlay covers the full TOC height on Wiki page */
+.toc.searching .search-results-overlay {
+	flex: 1;
+	min-height: calc(100vh - 300px);
+}
+
+.search-results-overlay .accordion-item {
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	margin-bottom: 0;
+}
+
+.search-results-overlay .accordion-header {
+	border-bottom: 1px solid var(--border-light);
+	border-radius: 0;
+	background: var(--surface-secondary);
+}
+
+.search-results-overlay .accordion-content {
+	max-height: calc(100vh - 300px);
+	overflow-y: auto;
+	padding: 12px 14px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-track {
+	background: var(--surface-secondary);
+	border-radius: 4px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-thumb {
+	background: var(--border-medium);
+	border-radius: 4px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-thumb:hover {
+	background: var(--border-light);
+}
+
+/* Change TOC layout when searching */
+.toc.searching {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Hide TOC content when search is active */
+.toc.searching h4,
+.toc.searching > a:not(.searchbar),
+.toc.searching .wiki-toc {
+	display: none;
+}
+
+/* Ensure search bar stays visible during search */
+.toc.searching .searchbar {
+	z-index: 101;
+	background: var(--surface);
+	border-radius: 12px 12px 0 0;
+	margin-bottom: 0;
+	padding-bottom: 12px;
+	position: sticky;
+	top: 0;
+}
+
+/* Mobile menu search results overlay */
+.page-menu .search-results-overlay {
+	position: relative;
+	background: var(--surface);
+	border: 1px solid var(--border-light);
+	border-radius: 8px;
+	box-shadow: 0 4px 16px var(--shadow-light);
+	margin: 8px 0;
+	max-height: calc(100vh - 400px);
+	overflow: hidden;
+}
+
+.page-menu .search-results-overlay .accordion-item {
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	margin-bottom: 0;
+}
+
+.page-menu .search-results-overlay .accordion-content {
+	max-height: calc(100vh - 450px);
+	overflow-y: auto;
+	padding: 12px 14px;
+}
+
+/* Mobile-specific search results styling */
+@media (max-width: 1100px) {
+	.page-menu .search-results-overlay {
+		margin: 8px 12px;
+		border-radius: 8px;
+		max-height: calc(100vh - 300px);
+	}
+	
+	.page-menu .search-results-overlay .accordion-content {
+		max-height: calc(100vh - 350px);
+	}
+}
+
+/* Search result item styling */
+.search-results-overlay .accordion-content > div {
+	transition: background-color 0.2s ease;
+	border-radius: 6px;
+	padding: 8px 12px;
+	margin: 4px 0;
+}
+
+.search-results-overlay .accordion-content > div:hover {
+	background: var(--surface-secondary);
+}
+
+.search-results-overlay .accordion-content > div:last-child {
+	border-bottom: none;
+}
+
+/* Mobile menu search results specific styling */
+.page-menu .search-results-overlay .accordion-content > div {
+	padding: 8px 0;
+	margin: 0;
+	border-bottom: 1px solid var(--border-light);
+}
+
+.page-menu .search-results-overlay .accordion-content > div:last-child {
+	border-bottom: none;
 }
 
 .searchbar .search-clear {
@@ -1495,6 +1672,171 @@ a {
 	.home-content-section .doc,
 	.home-content-grid .doc {
 		padding: 18px;
+	}
+}
+
+/* Ensure mobile TOC toggle button properly hides desktop TOC */
+@media (max-width: 1100px) {
+	/* When mobile TOC is open, hide desktop TOC completely */
+	.layout .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+	}
+	
+	/* Ensure mobile page menu takes full precedence */
+	.page-menu {
+		z-index: 1000 !important;
+	}
+	
+	/* Hide any potential duplicate search bars */
+	.layout .toc .searchbar {
+		display: none !important;
+	}
+}
+
+/* Ensure mobile page menu completely hides desktop TOC */
+@media (max-width: 1100px) {
+	/* When any mobile menu is open, hide desktop TOC completely */
+	body:has(.page-menu.open) .layout .toc,
+	body:has(.mobile-menu.open) .layout .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -1 !important;
+	}
+	
+	/* Fallback for browsers that don't support :has() */
+	.layout .page-menu.open ~ .toc,
+	.layout .page-menu.open + .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -1 !important;
+	}
+	
+	/* Alternative approach: hide TOC when page-menu exists and is open */
+	.layout:has(.page-menu.open) .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -1 !important;
+	}
+	
+	/* Use body class approach for reliable targeting */
+	body.mobile-toc-open .layout .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -1 !important;
+	}
+	
+	/* Also hide TOC when mobile menu is open */
+	body.mobile-menu-open .layout .toc {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -1 !important;
+	}
+}
+
+/* Z-index management for proper layering */
+.navbar {
+	z-index: 50;
+}
+
+.mobile-menu {
+	z-index: 60;
+}
+
+.page-menu {
+	z-index: 100;
+}
+
+.toc-toggle {
+	z-index: 70;
+}
+
+/* Ensure proper layering on mobile */
+@media (max-width: 1100px) {
+	.mobile-menu {
+		z-index: 60;
+	}
+	
+	.page-menu {
+		z-index: 1000;
+	}
+	
+	.toc-toggle {
+		z-index: 70;
+	}
+	
+	/* Ensure desktop TOC is completely hidden on mobile */
+	.layout .toc {
+		z-index: -1 !important;
+	}
+}
+
+/* Mobile page menu specific styling */
+@media (max-width: 1100px) {
+	.page-menu {
+		position: fixed !important;
+		inset: 0 0 0 0 !important;
+		top: calc(var(--nav-height) + 12px) !important;
+		bottom: 0 !important;
+		transform: translateY(-8px);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .25s ease, transform .25s ease;
+		background: linear-gradient(180deg, var(--overlay-medium), var(--overlay-light)) !important;
+		border-bottom: 1px solid var(--border-light);
+		z-index: 1000 !important;
+		overflow: auto;
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.page-menu.open {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+	
+	/* Ensure the mobile page menu search is the only visible search */
+	.page-menu .searchbar {
+		display: flex !important;
+		z-index: 1001 !important;
+	}
+	
+	/* Hide any other search bars when mobile page menu is open */
+	body.mobile-toc-open .layout .toc .searchbar,
+	body.mobile-menu-open .layout .toc .searchbar {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+	}
+	
+	/* Hide regular TOC list in FullRules mobile TOC when searching */
+	.page-menu.searching .menu-inner > a {
+		display: none !important;
+	}
+	
+	/* Hide Wiki TOC content when searching in mobile TOC */
+	.page-menu.searching .wiki-toc {
+		display: none !important;
+	}
+	
+	/* Ensure search results take full height when searching */
+	.page-menu.searching .search-results-overlay {
+		flex: 1;
+		min-height: calc(100vh - 300px);
 	}
 }
 

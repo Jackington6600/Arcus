@@ -185,8 +185,8 @@ sections:
         body: >-
           Healing can only heal a creature's HP. However, if a creature regains HP/is healed for more HP than they are missing, any surplus healing may be gained as shield in one energy type of their choice.
       
-      - id: conditions
-        title: Conditions
+      - id: condition-mechanics
+        title: Condition Mechanics
         body: >-
           There are various conditions that will always last until the start of the source's next turn unless stated otherwise. Anything that applies a condition or immediate effect will also state which energy types must be used to resist it, such as: FORT to resist the push, or FORT or REFL (source of the condition decides which one the target must use) to resist being knocked prone. The target must roll 3d6 plus a number of d6 equal to their remaining points in that energy type (including shield, armour and energy) and require only one success to avoid the condition or effect. Therefore, you should generally aim to get an enemy's energy to 0 before attempting to apply conditions.
       

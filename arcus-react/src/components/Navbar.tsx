@@ -21,6 +21,18 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Add body class when mobile menu is open for CSS targeting
+    useEffect(() => {
+        if (menuOpen) {
+            document.body.classList.add('mobile-menu-open');
+        } else {
+            document.body.classList.remove('mobile-menu-open');
+        }
+        return () => {
+            document.body.classList.remove('mobile-menu-open');
+        };
+    }, [menuOpen]);
+
     // Prevent background scroll when mobile menu is open
     useEffect(() => {
         if (!menuOpen) return;
@@ -56,6 +68,10 @@ export default function Navbar() {
             const target = event.target as HTMLElement;
             // Don't close if clicking on the burger button itself
             if (target.closest('.burger')) {
+                return;
+            }
+            // Don't close if clicking on NavLink elements (they handle their own closing)
+            if (target.closest('a')) {
                 return;
             }
             // Close menu when clicking on any other navbar element
@@ -125,8 +141,8 @@ export default function Navbar() {
             </div>
             
             {/* Mobile menu */}
-            <div className={`mobile-menu ${menuOpen ? 'open' : ''}`} onClick={() => setMenuOpen(false)}>
-                <div className="menu-inner container" onClick={(e) => e.stopPropagation()}>
+            <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+                <div className="menu-inner container">
                     <NavLink to="/" end className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Home</NavLink>
                     <NavLink to="/rules" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Full Rules</NavLink>
                     <NavLink to="/wiki" className={({ isActive }) => `m-link ${isActive ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>Wiki</NavLink>
@@ -139,6 +155,3 @@ export default function Navbar() {
         </nav>
     );
 }
-
-
-

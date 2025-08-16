@@ -24,10 +24,27 @@ export default function Wiki() {
 		};
 	}, []);
 
+	// Add body class when mobile menu is open for CSS targeting
+	useEffect(() => {
+		if (menuOpen) {
+			document.body.classList.add('mobile-toc-open');
+		} else {
+			document.body.classList.remove('mobile-toc-open');
+		}
+		return () => {
+			document.body.classList.remove('mobile-toc-open');
+		};
+	}, [menuOpen]);
+
 	// Handle page navigation
 	const navigateToPage = (pageId: string) => {
 		setActivePageId(pageId);
 		expandSectionForPage(pageId);
+		
+		// Close mobile menu if open
+		if (menuOpen) {
+			setMenuOpen(false);
+		}
 	};
 
 	// Expand section for a given page
@@ -408,7 +425,7 @@ export default function Wiki() {
 
 	return (
 		<div className="container layout">
-			<aside className="toc">
+			<aside className={`toc ${query ? 'searching' : ''}`}>
 				<div className="searchbar">
 					<input
 						className="input"
@@ -426,8 +443,11 @@ export default function Wiki() {
 						</button>
 					)}
 				</div>
+				{/* Floating search results container */}
 				{query && (
-					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={navigateToPage} />
+					<div className="search-results-overlay">
+						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={navigateToPage} />
+					</div>
 				)}
 				<h4>Browse Wiki</h4>
 				<div className="wiki-toc">
@@ -483,7 +503,7 @@ export default function Wiki() {
 				</svg>
 				Navigate Wiki
 			</button>
-			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
+			<div className={`page-menu ${menuOpen ? 'open' : ''} ${query ? 'searching' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>
 					<div className="sticky-header">
 						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
@@ -509,7 +529,9 @@ export default function Wiki() {
 						</div>
 					</div>
 					{query && (
-						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />
+						<div className="search-results-overlay">
+							<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />
+						</div>
 					)}
 					<div className="wiki-toc">
 						{rules.sections.map((section) => (
@@ -801,15 +823,20 @@ function SearchResults({ results, onClear, onItemClick }: { results: { id: strin
 			</div>
 			<div className="accordion-content">
 				{results.map((e) => (
-					<div key={e.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border)' }}>
+					<div 
+						key={e.id} 
+						className="search-result-item"
+						style={{ 
+							padding: '8px 0', 
+							borderBottom: '1px solid var(--border)',
+							cursor: 'pointer'
+						}}
+						onClick={onItemClick ? () => onItemClick(e.id) : undefined}
+					>
 						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<a 
-								href={`#${e.id}`} 
-								style={{ fontWeight: 600 }}
-								onClick={onItemClick ? () => onItemClick(e.id) : undefined}
-							>
+							<span style={{ fontWeight: 600 }}>
 								{e.title}
-							</a>
+							</span>
 							<span className="tag">{e.category}</span>
 						</div>
 						{e.preview && (
