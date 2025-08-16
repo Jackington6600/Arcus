@@ -419,26 +419,28 @@ export default function FullRules() {
 			</button>
 			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>
-					<div className="accordion-header" onClick={() => setMenuOpen(false)}>
-						<strong>On this page</strong>
-						<span aria-hidden>×</span>
-					</div>
-					<div className="searchbar">
-						<input
-							className="input"
-							placeholder="Search rules..."
-							value={query}
-							onChange={(e) => setQuery(e.target.value)}
-						/>
-						{query && (
-							<button 
-								className="search-clear" 
-								onClick={() => setQuery('')}
-								aria-label="Clear search"
-							>
-								×
-							</button>
-						)}
+					<div className="sticky-header">
+						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
+							<strong>On this page</strong>
+							<span aria-hidden>×</span>
+						</div>
+						<div className="searchbar">
+							<input
+								className="input"
+								placeholder="Search rules..."
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+							/>
+							{query && (
+								<button 
+									className="search-clear" 
+									onClick={() => setQuery('')}
+									aria-label="Clear search"
+								>
+									×
+								</button>
+							)}
+						</div>
 					</div>
 					{query && (
 						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />

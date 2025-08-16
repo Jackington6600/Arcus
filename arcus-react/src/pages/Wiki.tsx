@@ -485,26 +485,28 @@ export default function Wiki() {
 			</button>
 			<div className={`page-menu ${menuOpen ? 'open' : ''}`}>
 				<div className="menu-inner" ref={menuRef}>
-					<div className="accordion-header" onClick={() => setMenuOpen(false)}>
-						<strong>Browse Wiki</strong>
-						<span aria-hidden>×</span>
-					</div>
-					<div className="searchbar">
-						<input
-							className="input"
-							placeholder="Search wiki..."
-							value={query}
-							onChange={(e) => setQuery(e.target.value)}
-						/>
-						{query && (
-							<button 
-								className="search-clear" 
-								onClick={() => setQuery('')}
-								aria-label="Clear search"
-							>
-								×
-							</button>
-						)}
+					<div className="sticky-header">
+						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
+							<strong>Browse Wiki</strong>
+							<span aria-hidden>×</span>
+						</div>
+						<div className="searchbar">
+							<input
+								className="input"
+								placeholder="Search wiki..."
+								value={query}
+								onChange={(e) => setQuery(e.target.value)}
+							/>
+							{query && (
+								<button 
+									className="search-clear" 
+									onClick={() => setQuery('')}
+									aria-label="Clear search"
+								>
+									×
+								</button>
+							)}
+						</div>
 					</div>
 					{query && (
 						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />

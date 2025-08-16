@@ -1,11 +1,12 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 export default function Navbar() {
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const navbarRef = useRef<HTMLElement>(null);
 
     useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
@@ -41,6 +42,36 @@ export default function Navbar() {
         return () => window.removeEventListener('keydown', onKey);
     }, [menuOpen]);
 
+    // Close menu when clicking outside
+    useEffect(() => {
+        if (!menuOpen) return;
+        
+        const handleClickOutside = (event: MouseEvent) => {
+            if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
+                setMenuOpen(false);
+            }
+        };
+
+        const handleNavbarClick = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            // Don't close if clicking on the burger button itself
+            if (target.closest('.burger')) {
+                return;
+            }
+            // Close menu when clicking on any other navbar element
+            if (navbarRef.current && navbarRef.current.contains(target)) {
+                setMenuOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleNavbarClick);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleNavbarClick);
+        };
+    }, [menuOpen]);
+
     const titles: Record<string, string> = {
         '/': 'Home',
         '/rules': 'Full Rules',
@@ -53,7 +84,7 @@ export default function Navbar() {
     const currentTitle = titles[location.pathname] ?? 'Arcus';
 
     return (
-        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} ref={navbarRef}>
             <div className="container navbar-inner">
                 <Link className="brand" to="/">
                     <img id="brand-logo" src={`${import.meta.env.BASE_URL}favicon-black.ico`} width="24" height="24" alt="Arcus" />

@@ -466,25 +466,54 @@ a {
 	padding: 12px 0 16px;
 }
 
-.page-menu .searchbar {
+/* Create a sticky container that holds both search and header */
+.page-menu .sticky-header {
 	position: sticky;
 	top: 0;
 	background: linear-gradient(180deg, var(--overlay-medium), var(--overlay-light));
+	z-index: 20;
+	width: calc(100% + 24px);
+	left: -12px;
+	box-sizing: border-box;
+	border-bottom: 1px solid var(--border-light);
+	padding: 0 12px;
+	/* Ensure the sticky header covers the full width of TOC content */
+	overflow: hidden;
+}
+
+.page-menu .searchbar {
 	padding: 8px 0;
-	z-index: 10;
 	width: 100%;
 	box-sizing: border-box;
+	/* Ensure search bar extends to full width of sticky header */
+	min-width: 100%;
 }
 
 .page-menu .accordion-header {
 	padding: 16px 14px;
 	width: 100%;
 	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* Ensure accordion header extends to full width of sticky header */
+	min-width: 100%;
 }
 
 .page-menu .accordion-header span[aria-hidden] {
 	font-size: 24px;
 	line-height: 1;
+	cursor: pointer;
+	transition: color 0.2s ease;
+	display: inline-block;
+	padding: 4px;
+	border-radius: 4px;
+	transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.page-menu .accordion-header span[aria-hidden]:hover {
+	color: var(--accent-2);
+	background-color: var(--surface-secondary);
 }
 
 /* Mobile TOC Toggle */
@@ -509,6 +538,12 @@ a {
 	
 	.page-menu {
 		top: calc(var(--nav-height) + 12px);
+	}
+	
+	.page-menu .sticky-header {
+		width: calc(100% + 24px);
+		left: -12px;
+		padding: 0 12px;
 	}
 }
 
