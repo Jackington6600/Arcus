@@ -13,7 +13,7 @@ classes:
       - level: Core
         name: Ignore Pain
         description:
-          - Focus your defenses on .
+          - Focus your defenses despite the agony.
           - You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing. You also ignore the effects of difficult terrain.
         target: Self
         apCost: Pass
@@ -395,6 +395,557 @@ classes:
         target: A+E, Weapon (Ranged weapon required), Single target
         apCost: React
         tags: [reactive, attack]
+      - level: 3
+        name: Prone Sniper
+        description:
+          - Lay prone for greater stability and accuracy.
+          - You now gain Adv (++) instead of DisAdv (--) while attacking with ranged weapons when prone. This does not include thrown weapon attacks.
+        target: Self
+        apCost: Pass
+        tags: [buff]
+      - level: 3
+        name: Bring It Down!
+        description:
+          - Command your allies to bring a foe to its knees.
+          - Spend 1 FORT or REFL: Select a creature within 100ft and mark it. Also select one energy type for which it has 1 or more points remaining. At the start of your next turn if the creature has 0 points remaining in the chosen type you may force the creature to lose resistance points equal to half the number of points it lost in the chosen type (rounded up).
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [support, debuff]
+
+  elemental:
+    name: Elemental
+    type: Magical
+    attributes: Intelligence or Spirit
+    summary: Melee or Ranged, Brawling, Crowd Control, Multi Target Elemental Damage
+    abilities:
+      - level: Core
+        name: Elemental Balance
+        description:
+          - You have mastered the balance of mind and spirit.
+          - You may use either INT or SPI as your modifiers for any elemental abilities. In this table it will be referred to as MOD and Modifiers (modifiers of your choice). E.g. Medium+Modifiers attack power = Medium+INT+INT or Medium+SPI+SPI attack power.
+        target: Self
+        apCost: Pass
+        tags: [buff]
+      - level: Core
+        name: Elemental Blast
+        description:
+          - Conjure a burst of elemental power.
+          - Make a melee MOD attack against a creature with Medium+Modifiers (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+Modifiers (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
+        target: A+E, 50ft, Single target
+        apCost: 2
+        tags: [attack]
+      - level: Core
+        name: Stone Skin
+        description:
+          - Your skin is as tough as stone.
+          - You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing.
+        target: Self
+        apCost: Pass
+        tags: [defensive]
+      - level: 1
+        name: Ice Spikes
+        description:
+          - Summon shards of ice that orbit around you.
+          - Spend 1 FORT or WILL: Create 3 ice daggers that persist with you until the end of your next turn. You cannot have more than 3 ice daggers at any one time.
+          - Spend 1 Ice Dagger: Make a ranged MOD attack against a creature within 50ft with Light+Modifiers FORT or REFL frost attack power.
+        target: A+E, 50ft, Single target
+        apCost: 0
+        tags: [attack]
+      - level: 1
+        name: Gust
+        description:
+          - Push your foes with a forceful gust.
+          - Spend 1 REFL or WILL: Make a versatile MOD attack against a creature within 50ft with Medium+Modifiers FORT or REFL attack power. The creature is pushed 15ft in a straight line in a direction of your choice. FORT or REFL to resist the push.
+        target: A+E, 50ft, Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 1
+        name: Sun Beam
+        description:
+          - Unleash a ray as powerful as the sun.
+          - Spend 1 FORT or WILL: Make a versatile MOD attack against all creatures in up to a 20ft line originating from you with Medium+Modifiers REFL fire attack power.
+        target: A+E, All within 20ft straight line from self (AoE)
+        apCost: 2
+        tags: [attack, AoE]
+      - level: 1
+        name: Elemental Grapple
+        description:
+          - Launch an elemental grapple that pulls a foe to you.
+          - Spend 1 FORT or WILL: Select a creature within 40ft and pull it to an unoccupied space within 5ft of you. The target suffers 1 (fire, frost, lightning, or physical) damage for every 10ft the creature is moved. For example, a distance of 25ft would result in 2 damage. FORT or REFL to resist the pull.
+        target: A+E, 40ft, Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 2
+        name: Elemental Shield
+        description:
+          - Conjure the elements to protect you.
+          - Spend 2 FORT or WILL: Gain 5 shield in any two energy types.
+        target: Self
+        apCost: 1
+        tags: [defensive]
+      - level: 2
+        name: Stalagmite
+        description:
+          - A large rock erupts from the ground and then explodes.
+          - Spend 1 FORT or WILL: Select a tile on the ground within 50ft, any creature stood on this tile is knocked prone. Then all prone creatures within 5ft of this tile, including the initial target, suffer 2 damage. REFL or FORT to resist the prone.
+        target: A+E, 50ft, Single target
+        apCost: 1
+        tags: [attack, control]
+      - level: 2
+        name: Fireball
+        description:
+          - Throw an explosive ball of flame.
+          - Spend 2 WILL: Select a tile within 50ft. Make a versatile MOD attack all creatures within 5ft are attacked with Heavy+Modifiers REFL fire attack power.
+          - Spend 2 additional WILL: Double the attack power.
+        target: All, 50ft, All within 5ft (AoE)
+        apCost: 2
+        tags: [attack, AoE]
+      - level: 2
+        name: Lightning Strike
+        description:
+          - Invoke a shocking bolt of lightning.
+          - Spend 1 REFL or WILL: Make a versatile MOD attack against a creature within 50ft with Medium+Modifiers REFL or WILL lightning attack power. The creature is also dazed, and you may then select another creature within 5ft of the original target which also becomes dazed. REFL or WILL to resist the daze.
+        target: A+E, 50ft, Single target
+        apCost: 2
+        tags: [attack, control]
+      - level: 2
+        name: Ice Wall
+        description:
+          - Construct walls of ice to control the battlefield.
+          - Spend 2 FORT or WILL: Select 5 connected tiles within 50ft. Create 10ft high walls of ice in these tiles, blocking visibility and ranged attacks. Each wall tile persists until it is destroyed and has 2 HP. If a wall tile is created on the same tile as a creature, the creature is incapacitated and immobilised. FORT or REFL to resist the incapacitated and immobilised conditions, which destroys all wall tiles they are trapped in. Alternatively the creature may spend 1 AP on its turn to escape in the same way.
+        target: All, 50ft, 5 targets
+        apCost: 1
+        tags: [control, AoE]
+      - level: 3
+        name: Flame On
+        description:
+          - Engulf yourself in flames to fight back.
+          - When you are hit by a melee attack, you may spend 1 REFL or WILL and your reaction to make a melee MOD attack against the attacking creature with Light+Modifiers REFL or WILL fire attack power.
+        target: A+E, Melee, Single target
+        apCost: React
+        tags: [attack, reactive]
+      - level: 3
+        name: Thunder Jump
+        description:
+          - Leap away with a thunderous blast.
+          - Spend 1 REFL or WILL: Make a versatile MOD attack against all creatures within 10ft with Medium REFL lightning attack power. Then you may jump to a tile within 30ft.
+        target: A+E, 10ft, All within range (AoE)
+        apCost: 2
+        tags: [attack, movement, AoE]
+      - level: 3
+        name: Stalactite
+        description:
+          - Drop a large spiked rock on your foe.
+          - Spend 1 FORT or WILL: Make a versatile MOD attack against a creature within 50ft with Medium+Modifiers FORT or REFL attack power. If the creature is prone or immobilised, double the attack power of this attack.
+        target: A+E, 50ft, Single target
+        apCost: 2
+        tags: [attack]
+      - level: 3
+        name: Freeze
+        description:
+          - Encase your enemy in ice.
+          - Spend 2 FORT or WILL: Stun a creature within 50ft. FORT to resist the stun.
+        target: A+E, 50ft, Single target
+        apCost: 1
+        tags: [control]
+      - level: 3
+        name: Elemental Brawler
+        description:
+          - These elements were made for fighting, and that's just what they'll do.
+          - You permanently gain Vulnerability 2 to all damage types.
+          - Immediately after you damage a creature you may gain 5 shield in all energy types for each hostile creature within 10ft of you. You may only do this once per round.
+        target: Self
+        apCost: Pass
+        tags: [defensive, buff]
+
+  mortality:
+    name: Mortality
+    type: Magical
+    attributes: Spirit, Constitution, Intelligence (instead of Spirit using a trait)
+    summary: Ranged, Healing, Soul Damage, Soul Manipulation, Necromancy, Curses
+    abilities:
+      - level: Core
+        name: Soul Strike
+        description:
+          - Lash out at another's soul.
+          - Make a ranged SPI attack against a creature within 100ft with Medium+Modifiers soul attack power.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [attack]
+      - level: Core
+        name: Vital Exchange
+        description:
+          - Sacrifice your own health to maximise your power.
+          - Whenever you heal or attack a creature, you may choose to suffer any amount of direct damage to increase the healing by the same amount or gain additional Light attack power per damage suffered. You cannot suffer more direct damage than you have remaining HP.
+        target: Self
+        apCost: Pass
+        tags: [buff]
+      - level: 1
+        name: Healing Lance
+        description:
+          - Restore part of a being's soul.
+          - Spend 1 FORT or WILL: Deadly Escalation. Select a creature within 100ft and heal them for 3+SPI HP.
+        target: All, 100ft, Single target
+        apCost: 1
+        tags: [heal]
+      - level: 1
+        name: Well of Renewal
+        description:
+          - Create a burst of healing energy that restores all in proximity.
+          - Spend 2 FORT or WILL: Deadly Escalation. Select a tile within 100ft, heal all creatures within 5ft for 1+SPI HP.
+        target: All, 100ft, All within 5ft (AoE)
+        apCost: 1
+        tags: [heal, AoE]
+      - level: 1
+        name: Soul Tether
+        description:
+          - Bind your soul to another, they will know your suffering.
+          - Spend 1 FORT or WILL: Link yourself to another creature within 100ft, all HP and energy that you lose from sources other than yourself is also lost by the creature. Health and energy lost due to this ability cannot be affected by damage resistance or vulnerability.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 1
+        name: Toll The Dead
+        description:
+          - Exploit the last of a creature's essence to maim your foe.
+          - When you reduce a creature within 100ft to 0 HP, you may spend 1 WILL and your reaction to make a versatile SPI attack against another creature within 15ft of the initial target with Medium+Modifiers soul attack power. It must specifically be you and your damage that reduces the creature to 0 HP.
+        target: A+E, 100ft, Single target within 15ft
+        apCost: React
+        tags: [attack, reactive]
+      - level: 2
+        name: Soul Cage
+        description:
+          - Bind a soul to a cell of agony.
+          - Spend 2 WILL: Select a creature within 100ft, mark them, and take note of their current location. At the end of the creature's next turn the mark ends and it suffers 1 WILL soul damage for every 5ft it is away from the noted location. WILL to resist the mark and the damaging effect.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 2
+        name: Siphon Life
+        description:
+          - Drain life and grant it to another.
+          - Spend 1 FORT or WILL: Make a versatile SPI attack against a creature within 100ft with Medium+Modifiers FORT or WILL soul attack power. Then heal a creature for HP equal to the damage you dealt with this ability.
+        target: All, 100ft, Single target
+        apCost: 2
+        tags: [attack, heal]
+      - level: 2
+        name: Burst of Essence
+        description:
+          - Explode with restorative or destructive energy.
+          - "Spend 2 FORT or WILL: Deadly Escalation. Select any number of creatures within 10ft and then either: heal each creature for 2+SPI HP (includes self); or remove the Deadly Escalation effect and make a versatile SPI attack against each creature with Light+Modifiers FORT or WILL soul attack power (excludes self). You cannot both heal and deal damage with one use of this ability."
+        target: A+Self or E, 10ft, All within range (AoE)
+        apCost: 2
+        tags: [heal, attack, AoE]
+      - level: 2
+        name: Cursed Aura
+        description:
+          - Taint a soul to spite those who get too close.
+          - Spend 2 FORT or WILL: Select a creature within 100ft and mark it. All other creatures that end their turn within 5ft of this creature or move into within 5ft of this creature (excluding when this occurs due to the marked creature moving) immediately suffer 1 FORT or WILL soul damage. Any given creature can only suffer damage from this ability once. Cannot be cast on a creature already under the effect of this ability.
+        target: A+E, 100ft, All within 5ft (AoE)
+        apCost: 1
+        tags: [debuff, AoE]
+      - level: 3
+        name: Don't Die On Me!
+        description:
+          - Save an ally from death at the last possible moment.
+          - Spend 1 REFL or 1 WILL: When a creature within 25ft suffers damage that would reduce it to 0HP, you can have it reduced to 1HP instead and it becomes unconscious. The creature can only be woken up by another creature using the help action for 1 minute. On your next turn you start with 1 fewer AP.
+        target: A+E, 25ft, Single target
+        apCost: React
+        tags: [heal, reactive]
+      - level: 3
+        name: Tormented Soul
+        description:
+          - Your foe will destroy itself by harming others.
+          - Spend 2 WILL: Select a creature within 100ft and mark it. Half of all damage that this creature deals to other creatures is also dealt to themselves. WILL to resist the mark and the damage effect. Cannot be cast on a creature already under the effect of this ability.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 3
+        name: Blessed Aura
+        description:
+          - Positive energy emanates from you, healing yourself and those who get close.
+          - Spend 2 FORT or WILL: Deadly Escalation. Mark yourself, and when a creature moves within 5ft of you, you may heal both yourself and the creature for 2+SPI HP. This can only happen 3 times per ability use, and only once per creature.
+        target: A+Self, 5ft, 3 within range (AoE)
+        apCost: 1
+        tags: [heal, AoE]
+      - level: 3
+        name: Summon The Dead
+        description:
+          - Raise an undead horde to fight for you.
+          - Spend 1 FORT or WILL: Suffer 3 direct damage and select 3 tiles within 10ft. Summon an undead creature on each of these tiles - see the appendix for a relevant stat block. Each of these creatures are fully controlled by you and may each immediately take their turn upon being summoned. In future rounds they will take turns immediately before yours. On your turn you may spend 0 AP to destroy any of these creatures. You may have a maximum of 3 undead creatures summoned at any time, and they will persist until you take a short or long rest.
+        target: -, 10ft, 3 targets
+        apCost: 2
+        tags: [summon]
+      - level: 3
+        name: Guide Soul
+        description:
+          - Detach a soul from a creature and shift it with lethal force.
+          - Spend 2 FORT or WILL: Select a creature within 100ft and draw a 20ft line in a direction of your choice. Make a versatile SPI attack against all creatures in the line with Medium+SPI soul attack power.
+        target: A+E, 100ft, All within 20ft straight line from target (AoE)
+        apCost: 2
+        tags: [attack, AoE]
+
+  arcane:
+    name: Arcane
+    type: Magical
+    attributes: Intelligence
+    summary: Ranged, Utility, Teleportation, Force Damage, Protection, Anti-Magic
+    abilities:
+      - level: Core
+        name: Arcane Snap
+        description:
+          - Create a spark of force if you have not caused harm.
+          - Immediately before you end your turn, if you have dealt no damage since the start of your turn you may immediately spend 1 WILL to make an attack against a creature within 100ft with Light+Modifiers force attack power. Your turn then immediately ends.
+        target: A+E, 100ft, Single target
+        apCost: 0
+        tags: [attack]
+      - level: Core
+        name: Arcane Bolt
+        description:
+          - Launch a beam of pure force at your foe.
+          - Make a ranged INT attack against a creature within 100ft with Medium+Modifiers force damage.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [attack]
+      - level: Core
+        name: Magic Momentum
+        description:
+          - Maintain your spellcasting momentum to grant additional protection.
+          - Once per turn, if you cast at least two 1 AP abilities on the same turn, you may grant a creature within 100ft 1 shield in any energy type.
+        target: All, 100ft, Single target
+        apCost: Pass
+        tags: [defensive, support]
+      - level: 1
+        name: Spectral Ally
+        description:
+          - Summon a creature of arcane energy to extend your capabilities or distract enemies.
+          - Spend 1 WILL: Select a tile within 50ft and summon a spectral ally creature there. This spectral ally is considered a creature. It has 1 HP, no energy points, and doesn't have a turn. You may choose to cast abilities from the Arcane class as if you were standing where the spectral ally is. The spectral ally remains until it is destroyed, you cast Spectral Ally again, or at the start of your turn when you have not cast Arcane abilities through the spectral ally since the start of your last turn.
+        target: -, 50ft, Single target
+        apCost: 1
+        tags: [summon]
+      - level: 1
+        name: Fortify
+        description:
+          - Conjure a magical armour-like barrier that protects yourself or an ally.
+          - Spend 1 FORT or WILL: Select a creature within 100ft. That creature regains 3 armour in two energy types of your choice.
+        target: All, 100ft, Single target
+        apCost: 1
+        tags: [defensive]
+      - level: 1
+        name: Sonic Pulse
+        description:
+          - Emit a powerful short range blast to escape your enemies.
+          - Spend 1 REFL or WILL: Make a melee INT attack against a creature with Heavy+Modifiers REFL or WILL force damage and then you are moved up to 20ft directly away from the target.
+        target: A+E, Melee, Single target
+        apCost: 2
+        tags: [attack, movement]
+      - level: 1
+        name: Status Resist
+        description:
+          - Grant yourself or an ally the power to overcome negative effects.
+          - Spend 1 FORT or WILL: Select a creature within 100ft. That creature gains Status Resist until the end of your next turn. The creature automatically resists the next 2 resistible incoming effects. Cannot be cast on a creature already under the effect of this ability.
+        target: All, 100ft, Single target
+        apCost: 1
+        tags: [defensive, support]
+      - level: 2
+        name: Shuffle
+        description:
+          - Cause a small area to shift in space and time, locking foes and transporting allies.
+          - Spend 2 REFL or WILL: Select a tile within 100ft. All enemies within 5ft of this tile are immobilised. WILL to resist the immobilise. Then all allies within this same area may teleport up to 10ft to an unoccupied space of their choice that they can see.
+        target: A+E, 100ft, All within 5ft (AoE)
+        apCost: 1
+        tags: [control, movement, AoE]
+      - level: 2
+        name: Armour of Force
+        description:
+          - Summon a reflective barrier that pummels attackers into the ground.
+          - Spend 1 FORT or WILL: Select a creature within 100ft. When another creature damages the target with a melee attack they are knocked prone after the damage is dealt. FORT to resist the prone.
+        target: All, 100ft, Single target
+        apCost: 1
+        tags: [defensive, control]
+      - level: 2
+        name: Astral Switch
+        description:
+          - Perfectly swap positions in an instant.
+          - Spend 1 REFL or WILL: Select 2 allies (including self) and have them switch places. They must both be within 50ft of you.
+        target: A+Self, 50ft, 2 targets
+        apCost: 1
+        tags: [movement]
+      - level: 2
+        name: Defensive Blink
+        description:
+          - Make every cut on an ally cause a tear in reality that teleports them away from danger.
+          - Spend 2 REFL or WILL: Select a creature within 100ft. Each time this creature suffers damage the creature may choose to teleport 10ft directly away from the source of the damage (attacker). Cannot be cast on a creature already under the effect of this ability.
+        target: A, 100ft, Single target
+        apCost: 1
+        tags: [defensive, movement]
+      - level: 2
+        name: Force Displace
+        description:
+          - Aggressively teleport towards a foe, forcing them out of your way.
+          - Spend 2 FORT or WILL: Select a creature within 25ft, teleport to them and briefly occupy the same space as them. Make a melee INT attack against the initial target with Heavy+Modifiers FORT or WILL force damage and is pushed to a tile of your choice within 5ft of you. FORT or WILL to resist the push. If the creature resists the push it does not move, and you are pushed to a tile within 5ft of the creature instead.
+        target: A+E, 25ft, Single target
+        apCost: 2
+        tags: [attack, movement, control]
+      - level: 3
+        name: Teleport
+        description:
+          - Manipulate reality itself to instantaneously transport yourself to a nearby position.
+          - Spend 1 REFL or WILL: Deadly Escalation. Select a tile within 50ft and teleport to it.
+        target: Self, 50ft
+        apCost: 1
+        tags: [movement]
+      - level: 3
+        name: Aura of Focus
+        description:
+          - Exude an aura that heightens ally's mental and physical capabilities.
+          - Spend 2 WILL: All allies (excluding yourself) within 10ft automatically resist all negative status effects. This effect ends the next time you successfully resist an incoming effect, or at the start of your next turn. If multiple creatures are subject to the same incoming effect simultaneously, you choose whether to resist the effect last.
+        target: A, 10ft, All within range (AoE)
+        apCost: 1
+        tags: [defensive, support, AoE]
+      - level: 3
+        name: Astral Guardian
+        description:
+          - Summon an invincible creature of pure energy that stands vigilant.
+          - Spend 2 FORT or WILL: Select a tile within 100ft and summon an astral guardian creature. This creature is Large and takes up 3 tiles on a hex grid, and 4 on a square grid. Other creatures can move through this creature as if it were difficult terrain. This creature is invincible, has no stats, and cannot be moved. This creature cannot taunt other creatures. When a creature moves into a tile within 5ft of the astral guardian from outside this range, you may make an melee INT attack with Medium+Modifiers WILL force damage on a hit. In addition to this, the astral guardian may make attacks of opportunity with no limit. Each creature may only be damaged by the astral guardian once per round.
+        target: A+E, 100ft, All within 5ft (AoE)
+        apCost: 2
+        tags: [summon, defensive]
+      - level: 3
+        name: Riposte Shield
+        description:
+          - Conjure a reactive and unstable barrier that duplicates some damage back to the source.
+          - Spend 1 REFL or WILL: Select a creature within 100ft. Any non physical damage dealt to the target is duplicated back to the attacker, dealing half the damage dealt force damage. Cannot be cast on a creature already under the effect of this ability.
+        target: A+Self, 100ft, 2 targets
+        apCost: 1
+        tags: [defensive, reactive]
+
+  psionic:
+    name: Psionic
+    type: Magical
+    attributes: Intelligence
+    summary: Ranged, Mental Manipulation, Psychic Damage, Negative Conditions, Illusions
+    abilities:
+      - level: Core
+        name: Psychic Pierce
+        description:
+          - Puncture a creatures mind as if taking a blade to their synapses.
+          - Make a ranged INT attack against a creature within 100ft with Medium+Modifiers psychic attack power. If the target currently has 3 or more distinct negative conditions, the attack gains additional Light attack power.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [attack]
+      - level: Core
+        name: Painful Inhibition
+        description:
+          - Choose harm over hindrance.
+          - Whenever you inflict a negative condition upon another creature (after they fail to resist) you may immediately choose to deal 1 psychic damage to that creature. This effect cannot be performed with the marked or deafened conditions. You may only perform this action once per creature per round.
+        target: Self
+        apCost: Pass
+        tags: [buff]
+      - level: 1
+        name: Mind Prism
+        description:
+          - Enhance or degrade a creature's focus.
+          - Spend 1 REFL or WILL: Select a creature within 100ft. This creature gains Adv (+++) or DisAdv (---) (your choice) on all their rolls. REFL or WILL to resist the DisAdv (---).
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff, buff]
+      - level: 1
+        name: Neglect
+        description:
+          - Make a creature blind to you as a threat.
+          - Spend 1 REFL or WILL: Select a creature within 100ft and mark it. This creature cannot select you as a target, unless you are the only hostile remaining. If you are also taunting the target, the taunt remains but has no effect. You can still be affected by AoE abilities.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 1
+        name: Psychic Link
+        description:
+          - Bind yourself to another's mental state, feeling what they feel.
+          - Spend 1 FORT or WILL: Select a creature within 100ft and link yourself to it. When you are inflicted with a condition, both you and the linked creature are inflicted with the condition and may attempt to resist it separately as normal.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 1
+        name: Panic Attack
+        description:
+          - Trigger a creature to lose control and strike wildly.
+          - Spend 1 REFL or WILL: Select a creature within 100ft, this creature must spend its reaction to attack the closest creature using a regular attack without moving. If multiple creatures are the same distance the target is selected randomly. FORT or WILL to resist being forced to make the attack.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [control]
+      - level: 2
+        name: Radiating Anguish
+        description:
+          - Slowly emit a sense of pain and suffering.
+          - Spend 2 WILL: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 5+INT WILL psychic damage. Or if it is within 20ft of the noted position it suffers 1+INT WILL psychic damage. Otherwise it suffers 2 WILL psychic damage. FORT or WILL to resist the hobble."
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [attack, debuff]
+      - level: 2
+        name: Cruel Joke
+        description:
+          - Make a joke that cuts so deep it hurts.
+          - Spend 3 WILL: "Make a versatile INT attack against a creature within 100ft, dealing Heavy+Modifiers WILL psychic damage. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. WILL to resist the taunt."
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [attack, debuff]
+      - level: 2
+        name: Silence!
+        description:
+          - Mute yourself and another in an instant.
+          - Spend 1 WILL: Select a creature within 100ft and silence them and yourself. WILL to resist the silence - you must both resist the condition separately. If you are silenced by this ability the other creature suffers 1 psychic damage.
+        target: A+E, 100ft, Single target
+        apCost: 0
+        tags: [debuff]
+      - level: 2
+        name: Mirror Image
+        description:
+          - Conjure an illusion of yourself that animates as if real.
+          - Spend 1 REFL or WILL: Select a tile within 100ft and summon an illusion of yourself there. The illusion has 2 HP, no energy, is unaffected by all conditions, and doesn't have a turn. All enemies within 10ft of the illusion are taunted. The taunt ends if the illusion is destroyed. REFL or WILL to resist the taunt.
+        target: E, 100ft, All within 10ft (AoE)
+        apCost: 1
+        tags: [summon, debuff, AoE]
+      - level: 2
+        name: Nerve Blight
+        description:
+          - Radiate a power that decays nerve endings.
+          - Spend 1 FORT or WILL: All enemies within 25ft become marked, hobbled and deafened. FORT, REFL, or WILL to resist the hobble.
+        target: E, 25ft, All within range (AoE)
+        apCost: 1
+        tags: [debuff, AoE]
+      - level: 3
+        name: Sensory Overload
+        description:
+          - Overstimulate foe's five senses with white noise, causing them to sense nothing.
+          - Spend 1 REFL or WILL: Select a creature within 100ft, they become blind and deafened. REFL or WILL to resist the blind.
+        target: A+E, 100ft, Single target
+        apCost: 1
+        tags: [debuff]
+      - level: 3
+        name: Horrifying Visage
+        description:
+          - Conjure a terrifying image.
+          - Spend 1 FORT or WILL: Select a tile within 100ft. Enemies within 5ft of this tile are frightened from this tile. REFL or WILL to resist the fear.
+        target: E, 100ft, All within 5ft (AoE)
+        apCost: 1
+        tags: [debuff, AoE]
+      - level: 3
+        name: Blur
+        description:
+          - Your appearance darts and shimmers.
+          - Spend 3 REFL or WILL: All attacks against you have their attack power reduced by Medium.
+        target: Self
+        apCost: 1
+        tags: [defensive]
+      - level: 3
+        name: Agony
+        description:
+          - Inflict greater pain upon those you debilitate.
+          - Spend 2 FORT or WILL: Select a creature within 100ft and mark it. Every time the creature gains a negative condition while marked in this way it suffers additional 1 psychic damage. FORT or WILL to resist the mark.
+        target: A+E, 100ft, Single target
+        apCost: 2
+        tags: [debuff]
 
 
 

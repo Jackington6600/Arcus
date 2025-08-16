@@ -26,10 +26,23 @@ export default function FullRules() {
 
     const headings = useMemo<Heading[]>(() => {
         const hs: Heading[] = [];
+        
+        // Helper function to recursively add headings
+        const addHeadings = (items: any[], level: number) => {
+            items.forEach((item) => {
+                hs.push({ id: item.id, level, text: item.title });
+                if (item.children && Array.isArray(item.children)) {
+                    addHeadings(item.children, level + 1);
+                }
+            });
+        };
+        
         rules.sections.forEach((section) => {
             const id = section.id;
             hs.push({ id, level: 2, text: section.title });
-            section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title }));
+            if (section.children && Array.isArray(section.children)) {
+                addHeadings(section.children, 3);
+            }
             // Add class headings under the Character Classes section
             const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
             if (isClassSection) {
@@ -45,34 +58,54 @@ export default function FullRules() {
 
 	// Helper function to determine TOC item highlighting classes
 	const getTocItemClasses = (itemId: string) => {
+		if (!activeId) return '';
 		if (activeId === itemId) return 'active';
 		
-		// Check if this is a parent of the active item
-		const activeHeading = headings.find(h => h.id === activeId);
-		if (!activeHeading) return '';
-		
-		// For level 2 headings, check if they contain the active level 3 heading
-		if (itemId === activeHeading.id) return 'parent-active';
-		
-		// For level 2 headings, check if they contain the active level 3 heading
-		const activeSection = rules.sections.find(s => s.id === activeId);
-		if (activeSection) {
-			// This is a section heading, check if it contains the active child
-			const hasActiveChild = activeSection.children?.some(child => child.id === activeId);
-			if (hasActiveChild) return 'parent-active';
-		}
-		
-		// Check if this section contains the active heading
-		const section = rules.sections.find(s => s.id === itemId);
-		if (section) {
-			const hasActiveChild = section.children?.some(child => child.id === activeId);
-			if (hasActiveChild) return 'parent-active';
+		// Helper function to recursively check if an item contains the active heading
+		const hasActiveDescendant = (section: any): boolean => {
+			// Check direct children
+			if (section.children && Array.isArray(section.children)) {
+				for (const child of section.children) {
+					if (child.id === activeId) return true;
+					// Recursively check nested children
+					if (hasActiveDescendant(child)) return true;
+				}
+			}
 			
-			// Check for class headings
+			// Check for class headings if this is the classes section
 			if (/character classes/i.test(section.title) || section.id === 'classes') {
 				const classKeys = Object.keys((rules as any).classes || {});
 				const hasActiveClass = classKeys.some(key => `class-${key}` === activeId);
-				if (hasActiveClass) return 'parent-active';
+				if (hasActiveClass) return true;
+			}
+			
+			return false;
+		};
+		
+		// Check if this TOC item is a section that contains the active heading
+		const section = rules.sections.find(s => s.id === itemId);
+		if (section && hasActiveDescendant(section)) {
+			return 'parent-active';
+		}
+		
+		// Check if this TOC item is a child that contains the active heading
+		const findParentSection = (children: any[]): any | null => {
+			for (const child of children) {
+				if (child.id === itemId) return child;
+				if (child.children && Array.isArray(child.children)) {
+					const found = findParentSection(child.children);
+					if (found) return found;
+				}
+			}
+			return null;
+		};
+		
+		for (const section of rules.sections) {
+			if (section.children && Array.isArray(section.children)) {
+				const child = findParentSection(section.children);
+				if (child && child.id === itemId && hasActiveDescendant(child)) {
+					return 'parent-active';
+				}
 			}
 		}
 		
@@ -84,7 +117,12 @@ export default function FullRules() {
 		const container = containerRef.current;
 		if (!container) return;
 
-		const headingEls = container.querySelectorAll('h2, h3');
+		// Clean up previous observer
+		if (observerRef.current) {
+			observerRef.current.disconnect();
+		}
+
+		const headingEls = container.querySelectorAll('h2, h3, h4, h5, h6');
 		const observer = new IntersectionObserver(
 			(entries) => {
 				// Only update if we're not in the middle of a programmatic scroll
@@ -102,7 +140,18 @@ export default function FullRules() {
 		observerRef.current = observer;
 		headingEls.forEach((el) => observer.observe(el));
 		return () => observer.disconnect();
-	}, []);
+	}, []); // Only run once on mount, observer will be updated when content changes
+
+	// Update observer when headings change (e.g., after content renders)
+	useEffect(() => {
+		if (!observerRef.current || !containerRef.current) return;
+		
+		// Disconnect and reconnect observer to pick up new headings
+		observerRef.current.disconnect();
+		
+		const headingEls = containerRef.current.querySelectorAll('h2, h3, h4, h5, h6');
+		headingEls.forEach((el) => observerRef.current?.observe(el));
+	}, [headings]); // Re-run when headings array changes
 
 	// Handle TOC item clicks
 	const handleTocClick = (id: string) => {
@@ -121,7 +170,7 @@ export default function FullRules() {
 		if (localStorage.getItem('fullRules.lastId')) return;
 		const container = containerRef.current;
 		if (!container) return;
-		const firstHeading = container.querySelector('h2, h3') as HTMLElement | null;
+		const firstHeading = container.querySelector('h2, h3, h4, h5, h6') as HTMLElement | null;
 		if (firstHeading) setActiveId(firstHeading.id);
 	}, []);
 
@@ -185,6 +234,22 @@ export default function FullRules() {
 	// Search functionality
 	const searchIndex = useMemo(() => {
 		const entries: { id: string; title: string; preview: string; category: string; haystack: string }[] = [];
+		
+		// Helper function to recursively add search entries
+		const addSearchEntries = (items: any[], category: string) => {
+			items.forEach((item) => {
+				const title = item.title;
+				const body = item.body || '';
+				const haystack = `${title} ${body} ${category}`.toLowerCase();
+				entries.push({ id: item.id, title, preview: body, category, haystack });
+				
+				// Recursively add nested children
+				if (item.children && Array.isArray(item.children)) {
+					addSearchEntries(item.children, category);
+				}
+			});
+		};
+		
 		rules.sections.forEach((section) => {
 			// Add section title and summary
 			const title = section.title;
@@ -192,13 +257,10 @@ export default function FullRules() {
 			const haystack = `${title} ${preview}`.toLowerCase();
 			entries.push({ id: section.id, title, preview, category: section.title, haystack });
 			
-			// Add section children
-			section.children?.forEach((child) => {
-				const cTitle = child.title;
-				const cBody = child.body || '';
-				const cHaystack = `${cTitle} ${cBody} ${title}`.toLowerCase();
-				entries.push({ id: child.id, title: cTitle, preview: cBody, category: title, haystack: cHaystack });
-			});
+			// Add section children (including nested ones)
+			if (section.children && Array.isArray(section.children)) {
+				addSearchEntries(section.children, title);
+			}
 			
 			// Add class information if this is the classes section
 			const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
@@ -266,7 +328,7 @@ export default function FullRules() {
 						key={h.id}
 						href={`#${h.id}`}
 						className={getTocItemClasses(h.id)}
-						style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
+						style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
 						onClick={() => handleTocClick(h.id)}
 					>
 						{h.text}
@@ -279,12 +341,7 @@ export default function FullRules() {
 						<h2 id={s.id}>{s.title}</h2>
 						<p>{renderWithTooltips(s.summary)}</p>
 						{renderClassTableIfAny(s)}
-						{s.children?.map((c) => (
-							<div key={c.id}>
-								<h3 id={c.id}>{c.title}</h3>
-								<p>{renderWithTooltips(c.body)}</p>
-							</div>
-						))}
+						{renderChildren(s.children, 3)}
 					</section>
 				))}
 			</article>
@@ -317,7 +374,7 @@ export default function FullRules() {
 							key={h.id}
 							href={`#${h.id}`}
 							className={getTocItemClasses(h.id)}
-							style={{ paddingLeft: h.level === 3 ? 22 : 10 }}
+							style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
 							onClick={() => {
 								handleTocClick(h.id);
 								setMenuOpen(false);
@@ -369,13 +426,32 @@ function escapeRegex(s: string) {
 }
 
 function findRuleById(id: string) {
-    for (const section of rules.sections) {
-        if (section.id === id) return { section };
-        for (const child of section.children ?? []) {
-            if (child.id === id) return { section, child };
-        }
-    }
-    return undefined;
+	// Helper function to recursively search through children
+	const searchChildren = (children: any[]): { section: any; child: any } | undefined => {
+		for (const child of children) {
+			if (child.id === id) {
+				return { section: null, child };
+			}
+			if (child.children && Array.isArray(child.children)) {
+				const result = searchChildren(child.children);
+				if (result) return result;
+			}
+		}
+		return undefined;
+	};
+	
+	for (const section of rules.sections) {
+		if (section.id === id) return { section };
+		
+		// Search through children and nested children
+		if (section.children && Array.isArray(section.children)) {
+			const result = searchChildren(section.children);
+			if (result) {
+				return { section, child: result.child };
+			}
+		}
+	}
+	return undefined;
 }
 
 function renderClassTableIfAny(section: { id: string; title: string }) {
@@ -410,6 +486,25 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 				);
 			})}
 		</div>
+	);
+}
+
+function renderChildren(children: any[] | undefined, level: number) {
+	if (!children || !children.length) return null;
+	
+	const HeadingTag = level === 3 ? 'h3' : level === 4 ? 'h4' : level === 5 ? 'h5' : 'h6';
+	
+	return (
+		<>
+			{children.map((child) => (
+				<div key={child.id} style={{ marginLeft: (level - 3) * 24 }}>
+					<HeadingTag id={child.id}>{child.title}</HeadingTag>
+					<p>{renderWithTooltips(child.body)}</p>
+					{renderClassTableIfAny(child)}
+					{renderChildren(child.children, level + 1)}
+				</div>
+			))}
+		</>
 	);
 }
 

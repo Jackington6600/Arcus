@@ -354,7 +354,8 @@ a {
 }
 
 .mobile-menu .menu-inner {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	gap: 6px;
 	padding: 12px 0 16px;
 	background: var(--surface);
@@ -446,6 +447,8 @@ a {
 	border-bottom: 1px solid var(--border-light);
 	z-index: 100;
 	overflow: auto;
+	display: flex;
+	flex-direction: column;
 }
 
 .page-menu.open {
@@ -457,6 +460,8 @@ a {
 .page-menu .menu-inner {
 	width: min(1200px, 92%);
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
 	gap: 10px;
 	padding: 12px 0 16px;
 }
@@ -467,10 +472,14 @@ a {
 	background: linear-gradient(180deg, var(--overlay-medium), var(--overlay-light));
 	padding: 8px 0;
 	z-index: 10;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .page-menu .accordion-header {
 	padding: 16px 14px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .page-menu .accordion-header span[aria-hidden] {
@@ -1051,6 +1060,8 @@ a {
 	box-shadow: 0 10px 30px var(--shadow-heavy);
 	z-index: 100;
 	color: var(--text-primary);
+	pointer-events: none;
+	user-select: none;
 }
 
 .tooltip-bubble-fixed {

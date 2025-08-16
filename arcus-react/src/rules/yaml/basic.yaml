@@ -2,29 +2,422 @@ sections:
   - id: introduction
     title: Introduction
     summary: >-
-      Welcome to Arcus, a tabletop role playing game of luminous magic and soaring spires. Learn more in What is Arcus? and the Core Loop.
+      A lightweight TTRPG that focuses on swift gameplay, tactical combat, and simple yet rewarding progression.
     children:
       - id: what-is-arcus
         title: What is Arcus?
         body: >-
-          Arcus is a TTRPG that blends fast tactical combat with character-driven storytelling.
-      - id: core-loop
-        title: Core Loop
+          A lightweight TTRPG that focuses on swift gameplay, tactical combat, and simple yet rewarding progression.
+
+  - id: resolution-mechanics
+    title: Resolution Mechanics
+    summary: How to resolve challenges and conflicts by rolling dice.
+    children:
+      - id: dice-system
+        title: Core Dice System
+        summary: "The three types of dice rolls in Arcus: Challenge, Attack, and Resistance. Always 3d6 plus some number of additional dice."
         body: >-
-          Prepare, explore, and face dangerous encounters that challenge your party.
+          The three types of dice rolls in Arcus: Challenge, Attack, and Resistance. Always 3d6 plus some number of additional dice.
+        children:
+          - id: challenge-roll
+            title: Challenge Roll
+            summary: "A roll to resolve a challenge or conflict."
+            body: >-
+              A challenge roll is a roll to resolve a challenge or conflict. It is used to determine if a character succeeds at a task, or if they fail.
+          - id: attack-roll
+            title: Attack Roll
+            summary: "A roll to resolve an attack or damage."
+            body: >-
+              An attack roll is a roll to resolve an attack or damage. It is used to determine if a character hits an enemy, and how much damage they deal.
+          - id: resistance-roll
+            title: Resistance Roll
+            summary: "A roll to resolve a resistance or defense."
+            body: >-
+              A resistance roll is a roll to resolve a resistance or defense. It is used to determine if a character resists an attack or effect.
+        # body: >-
+        #   Whenever the GM poses a challenges or conflict, you will roll dice to resolve it. You will always roll 3d6 and 2 attributes will add to the number of d6 rolled. Every 5 or 6 counts as 1 success. The 2 attributes required for the roll are decided by the GM, and they may both be the same attribute.
+          
+        #   Additional dice may be added to the roll based on skills, advantages, weapon dice etc. Similarly but less commonly, dice will be removed from the roll.
+          
+        #   Very Easy challenges will require at least 1 success to be won, Easy challenges will require 2 successes, Moderate challenges will require 3 successes, Hard challenges will require 4 successes, Very Hard challenges will require 5 successes. Anything harder than this will be less common.
+      
+      - id: advantage-disadvantage
+        title: Advantage and Disadvantage (Adv/DisAdv)
+        body: >-
+          Advantage and Disadvantage (Adv/DisAdv) can be added to the roll to add or take away 1, 2, or 3 d6 from the dice in a roll. Adv/DisAdv can negate each other, for example, if you are given 2 Adv and 1 DisAdv due to various circumstances for the roll, this will result in just 1 Adv.
+      
+      - id: push-for-success
+        title: Push for Success
+        body: >-
+          If a roll has failed and requires 2 or fewer additional successes to be won, a character may 'push for success'. When a character pushes for success they succeed the roll instead of failing. The GM (and other players at the table can suggest ideas too) will decide on a minor setback if the roll required 1 additional success, or a major setback if the roll required 2 additional successes. In rare cases the GM might allow a player to push for success when they fail by 3 successes, leading to a critical setback - this will often involve character death.
+          
+          A push for success can only be successful if the GM or a player at the table can suggest a reasonable setback.
+          
+          **Minor Setbacks Examples:**
+          - Unlocking the door with a lockpick, but making a lot more noise than you'd like when doing so
+          - Pulling a muscle as you make a physical check, reducing your movement speed slightly until the next long rest
+          - Taking a 1 or 2 direct damage from pushing too hard when achieving something
+          - Damaging your armour or weapon slightly, reducing its protection or attack power capabilities by 1
+          - Managing to persuade or deceive someone, but making someone else nearby suspicious leading them to question your actions
+          - Managing to persuade someone, but you end up having to pay them some gold
+          
+          **Major Setbacks Examples:**
+          - Taking 5 direct damage from dangerous circumstances while making the check
+          - Directly alerting the guards of your location
+          - Having your movement speed halved until the next long rest
+          - Persuading or deceiving someone, but they learn a secret of your own, which they will likely want to pursue
+          - Casting a powerful spell to solve the problem, but the power disturbs some ancient or otherworldly power that wants to make some demands of the player
+          - Having to go against your deity's will to achieve your goal, you'll need to redeem yourself
+
+  - id: characters
+    title: Characters
+    summary: Character creation, attributes, energy systems, and progression mechanics.
+    children:
+      - id: attributes
+        title: Attributes
+        body: >-
+          Characters will have 6 attributes: Strength (STR), Constitution (CON), Dexterity (DEX), Perception (PER), Intelligence (INT), and Spirit (SPI).
+          
+          **Strength (STR)** - a character's physical strength and brute force. In addition to strength based skill checks, your strength value (STR) can be used for all melee weapons, and to reduce incoming damage with a shield.
+          
+          **Constitution (CON)** - a combination of the character's overall health and endurance. In addition to constitution based skill checks, your starting Hit Points are equal to 10 + your constitution value (CON).
+          
+          **Dexterity (DEX)** - a character's hand-eye coordination, balance, and overall grace. In addition to dexterity based skill checks, your dexterity value (DEX) can be used for light and medium melee weapons, thrown weapon attacks.
+          
+          **Perception (PER)** - a character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. In addition to perception based skill checks, your perception value (PER) is used for ranged weapons and sometimes your initiative - how early you go in combat.
+          
+          **Intelligence (INT)** - a character's logic and reasoning capabilities as well as memory and knowledge. In addition to intelligence based skill checks, your intelligence value (INT) is used for some spells, and every additional modifier grants you an additional skill at (+) level.
+          
+          **Spirit (SPI)** - a character's mental resolve, confidence and creativity. In addition to spirit based skill checks, your spirit modifier (SPI) is used for some spells, and every additional modifier grants you an additional resistance point of your choice.
+          
+          Values of these attributes will initially range from 0-3, but may go as high as 5 when leveling up. Having 2 in an attribute is average for heroic characters.
+          
+          The value of an attribute is equal to the number of additional dice you will roll when making a roll that includes that attribute type. 2 attributes will be added to almost all rolls.
+      
+      - id: energy
+        title: Energy
+        body: >-
+          Characters will have 3 types of Energy: Fortitude, Reflex, and Will. (FORT, REFL, and WILL).
+          
+          Energy is a resource that can be spent by characters to cast more powerful abilities, and can be lost when characters suffer damage that targets those energy types.
+          
+          FORT is a sum of STR and CON. REFL is a sum of DEX and PER. WILL is a sum of INT and SPI.
+          
+          The values of these Energies will initially range from 0-6 initially, but may go as high as 10 when leveling up. Having 3 in an Energy is about average.
+          
+          Characters will also have hit points (HP) equal to 6 plus 3 times their CON attribute. 2 CON would lead to 6 + 3*2 = 12 HP. HP can be fully regained on a long rest.
+      
+      - id: progression
+        title: Progression
+        body: >-
+          Progression will primarily allow characters to gain more abilities from a fluid class system. These abilities will be the core of what makes a character interesting and fun to play in combat.
+          
+          Skills will consist of specific things agreed with your GM that your character is specially trained in (think of jobs or tasks your character might have done so often in their life that they've become proficient). These skills will offer additional dice to roll in addition to your stats. Skills will most commonly allow you to roll 1, 2, or 3 additional dice when the character's skill applies.
+
+  - id: equipment
+    title: Equipment
+    summary: Weapons, armour, shields, and other gear that characters can use.
+    children:
+      - id: weapons
+        title: Weapons
+        body: >-
+          Weapons work the same as in regular Arcus: Light, Medium, or Heavy. Thrown, Ranged, Versatile, or Melee. See rules there for details.
+      
+      - id: armour
+        title: Armour
+        body: >-
+          Armour grants additional energy to a creature in a separate Armour pool, which can only be used as a form of HP and cannot be spent for casting abilities etc. Armour will reduce movement speed as a cost - most commonly: Light armour increases the armour energy by 5 and reduces 1AP movement speed by 10ft; Heavy armour increases the armour energy by 11 and reduces speed by 20ft. Both of these will be available for FORT, REFL, or WILL in various combinations. For example:
+          
+          **Light Armour:** 2 FORT, 2 REFL, 1 WILL. These points can be shifted in any combination that totals 5, including some being 0.
+          
+          **Heavy Armour:** 4 FORT, 4 REFL, 3 WILL. These points can be shifted in any combination that totals 11, including some being 0.
+      
+      - id: shields
+        title: Shields
+        body: >-
+          Shields unlock the Shield core action that allows you to gain 1 shield in each energy type for 1 AP.
+
+  - id: combat
+    title: Combat
+    summary: Turn order, action points, energy mechanics, and combat resolution.
+    children:
+      - id: combat-basics
+        title: Combat Basics
+        body: >-
+          Combat is hex or square grid based. 5ft per tile.
+          
+          **Initiative:** Highest roll/initiator of combat acts first and then clockwise around the table. GM may place 1 group of enemies between each player, if there are too many enemy groups, the remaining groups are placed after the last player to act. The initiative remains static for the rest of the fight.
+          
+          Alternating initiative between PCs and GM where 1 creature or player from each side takes a turn and then it is passed back to the other side. The GM decides who is going first based on who initiated the combat, if there is no clear initiator then PCs roll for REFL and if one of them gets the SR determined by the GM for this combat, the PCs may go first. If it is the PCs turn they may decide amongst them who will take that turn, after that player's turn is complete they cannot take another turn this round. Then it is the GMs turn and they will choose which creature will take their turn, and after that it is passed back to the PCs to choose who will go next, and so on.
+      
+      - id: action-points
+        title: Action Points
+        body: >-
+          Every turn a character has 3 action points (AP) to spend on movement, attacks, spells, and so on. Attacks and damaging effects will generally always cost 2 AP to use. 1 AP movement grants 50ft of movement.
+          
+          Reactions will be a part of the game, only some actions can be triggered as a reaction.
+      
+      - id: energy-combat
+        title: Energy in Combat
+        body: >-
+          While in combat, energy (FORT, REFL, and WILL) will be both a resource pool for casting more powerful abilities, as well as a form of hit points that will be lost when a character suffers damage. If a character has 0 left in an energy type and that energy is damaged, it will instead reduce the character's HP.
+          
+          At the start of each character's turn, they will regain 2 energy in any combination of one or two energy types, up to their maximum.
+          
+          All attacks will target one of the three energy types: FORT, REFL, or WILL. For example: think of this as using a sword to attack the torso (FORT), the limbs (REFL), or the head (WILL). The attacking characters are encouraged to describe how they formulate their attack to target the chosen energy type, to add to the thematics of combat.
+          
+          Equally players can describe how they avoid suffering damage to their HP pool by losing their energy instead, such as suffering damage to REFL energy to dodge an attack, or suffering damage to WILL energy to outsmart their opponent by using some spell or item in the environment to throw the attacker off balance.
+      
+      - id: attacks
+        title: Attacks
+        body: >-
+          When attacking, a character will select one of the energy types to target and roll a number of d6 equal to the attack power (3, 6, or 9 for Light, Medium, or Heavy respectively) plus a number of d6 equal to 2 other attributes required for the attack (most commonly the same attribute twice). Each success (hit) will deal 1 damage to the target energy type. If the damage is greater than the number of energy points then the damage will carry over into the target's HP.
+      
+      - id: resistance-vulnerability
+        title: Resistance and Vulnerability
+        body: >-
+          Resistance X to damage will reduce the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this resistance to - such as Fire Resistance 2.
+          
+          Vulnerability X will increase the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this vulnerability to - such as Fire Vulnerability 2.
+      
+      - id: healing
+        title: Healing
+        body: >-
+          Healing can only heal a creature's HP. However, if a creature regains HP/is healed for more HP than they are missing, any surplus healing may be gained as shield in one energy type of their choice.
+      
+      - id: conditions
+        title: Conditions
+        body: >-
+          There are various conditions that will always last until the start of the source's next turn unless stated otherwise. Anything that applies a condition or immediate effect will also state which energy types must be used to resist it, such as: FORT to resist the push, or FORT or REFL (source of the condition decides which one the target must use) to resist being knocked prone. The target must roll 3d6 plus a number of d6 equal to their remaining points in that energy type (including shield, armour and energy) and require only one success to avoid the condition or effect. Therefore, you should generally aim to get an enemy's energy to 0 before attempting to apply conditions.
+      
+      - id: abilities
+        title: Abilities
+        body: >-
+          There are many abilities available to the characters (and other creatures) which will attack with increased attack power, AoE, apply conditions, push and pull creatures, grant boons and additional movement, gain or transfer energy point pools, and so on. Many of these also require (or have optional) additional energy costs to be able to use them.
+      
+      - id: unconscious-death
+        title: Unconscious and Death
+        body: >-
+          A character will fall unconscious when it is reduced to 0HP. Other creatures will die when they reach 0HP (unless the attacker was trying to knock them unconscious). Characters that are unconscious cannot regain energy at the start of each turn. They will remain stable and only lose energy if they suffer any damage of any type.
+          
+          A character will die when it has 0HP and also 0 points in all 3 energy types.
+
+  - id: core-abilities
+    title: Core Abilities
+    summary: Universal abilities available to all characters from level 1.
+    children:
+      - id: move
+        title: Move
+        body: >-
+          Gain movement equal to your base movement speed. This ability can be used as many times as you like in a turn. This movement can be split up however you wish on your turn and does not all need to be used. All movement left at the end of your turn is lost. This movement can include jumping, climbing, swimming, crawling etc. However, this may require skill checks.
+      
+      - id: disengage
+        title: Disengage
+        body: >-
+          You take on an evasive stance. During this turn, you do not provoke attacks of opportunity.
+      
+      - id: shift
+        title: Shift
+        body: >-
+          Spend 1 energy: Gain 10ft of movement. This ability can be used up to 3 times in a turn. This movement can be split up however you wish on your turn and does not all need to be used. All movement left at the end of your turn is lost. This movement can include jumping, climbing, swimming, crawling etc. However, this may require skill checks.
+      
+      - id: regular-attack
+        title: Regular Attack
+        body: >-
+          Make a weapon attack or attack using a class core ability.
+      
+      - id: hold-regular-attack
+        title: Hold Regular Attack
+        body: >-
+          Unlock the opportunity to make a regular attack outside of your turn when a specific trigger, that you choose, is met. For example: "I will make an attack with my greatsword when an enemy steps within range". Making this attack also requires you to spend your reaction.
+      
+      - id: attack-of-opportunity
+        title: Attack of Opportunity
+        body: >-
+          If you have a melee weapon equipped or melee attack from a core ability available when a creature moves out of melee range, you can spend your reaction to make a regular melee attack against that target immediately before they step out of range. Movement used as part of any non Core ability (such as Charge, Hit and Run, or Advance!), involuntary movement (such as being pushed or pulled), or teleportation movement does not trigger attacks of opportunity. The Move and Shift core abilities do trigger attacks of opportunity.
+      
+      - id: inspect-creature
+        title: Inspect Creature
+        body: >-
+          Have the GM roughly describe a creature's strengths and weaknesses - this may require an INT+PER check (GM's discretion). This is an opportunity for the GM to give clues to the players as to what might be a good strategy to take down the enemies and what abilities they might have. Without a skill check, a player can ask the GM to describe the creature's resistance points as "exposed"/"vulnerable" if they have 0 resistance points of that type, "weak" if they have 1 point, and "strong"/"capable" if they have 2+ points. This is a key part of making sure your abilities have a good chance of taking effect on your enemies.
+      
+      - id: hide
+        title: Hide
+        body: >-
+          Make a DEX+DEX stealth check to become hidden. Any creature that cannot see you as you use this action is no longer aware of where you are if you roll higher than their passive perception. Most creatures still have object permanence so they may come looking for you using a perception check. If they roll higher than your stealth check or have direct line of sight to you, you are revealed.
+      
+      - id: help
+        title: Help
+        body: >-
+          Help a creature within 5ft. This might be to wake them from being unconscious, give them Adv (+) in a skill check, or to help them by removing a condition from them (specifically hobbled, prone, immobilised, stunned, frightened, restrained, incapacitated, unconscious). This must be within reason (GM's discretion) - such as the GM may describe the condition as being a particular nature that cannot be removed with any help.
+      
+      - id: push-pull
+        title: Push/Pull
+        body: >-
+          Select a creature within 5ft and move them 5ft in any direction. 1 FORT or REFL SR to resist the push/pull.
+      
+      - id: stand-up
+        title: Stand Up
+        body: >-
+          If you are currently prone you may remove the prone condition and stand up again.
+      
+      - id: draw-weapon
+        title: Draw Weapon
+        body: >-
+          If either hand is empty, you may draw and equip a weapon from your inventory to that hand.
+      
+      - id: swap-weapon
+        title: Swap Weapon
+        body: >-
+          Change the weapons in your hands for another weapon in your inventory. This could also include just stowing your weapons.
+      
+      - id: drop-item
+        title: Drop Item
+        body: >-
+          Drop whatever item you have into your hand onto the floor.
+      
+      - id: pick-up-item
+        title: Pick Up Item
+        body: >-
+          Pick up one or more items from the floor within 5ft into one or more free hands. All of these items must fit in your free hands to all be picked up in one ability use, otherwise this ability must be used multiple times.
+      
+      - id: drink-potion
+        title: Drink Potion
+        body: >-
+          Drink a potion from your inventory or hand.
+      
+      - id: talk-to-allies
+        title: Talk to Allies
+        body: >-
+          The GM will decide roughly how much you can chat to other players in and out of character during combat. Preferably the players can discuss tactics freely out of character, and exchange a few words in character.
+      
+      - id: improvise
+        title: Improvise
+        body: >-
+          Describe something you do with extra flair or improvise a fun way to use your abilities, allies, and/or surroundings to your advantage. Your GM may choose to reward you with bonuses or Adv on your actions depending on what you describe. Bear in mind that this should not be a consistent source of advantage, damage, or conditions for any player, and should primarily reward creativity. This should not be something you're doing every round and you should not be rewarded for the same creative action or description more than once.
+      
+      - id: other
+        title: Other
+        body: >-
+          The GM will allow you to do other actions on your turn, just say what you would like to do and they will describe the AP and dice rolls required to succeed.
 
   - id: conditions
     title: Conditions
-    summary: Universal effects that modify a creature's capabilities, such as Stunned or Prone.
+    summary: Universal effects that modify a creature's capabilities.
     children:
-      - id: stunned
-        title: Stunned
+      - id: blind
+        title: Blind
         body: >-
-          You lose your next action. Attackers have advantage when targeting you.
+          The creature cannot see. The creature cannot select or target anything that is not within 5ft of the creature. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (++).
+      
+      - id: deaf
+        title: Deaf
+        body: >-
+          The creature cannot hear. The creature automatically fails on all checks requiring hearing. The creature will have appropriate levels of DisAdv for other checks that partially involve hearing (DMs discretion).
+      
+      - id: marked
+        title: Marked
+        body: >-
+          The creature has a mark placed on it. The effects of this mark are dependent on the ability it is associated with. Many abilities will have bonuses when used against the creature. The creature cannot become hidden or invisible while it has this condition. A hidden or invisible creature that becomes marked immediately becomes visible and a marked creature in cover no longer imposes DisAdv (--) on its attacker.
+      
+      - id: charmed
+        title: Charmed
+        body: >-
+          The creature cannot attack the creature that has charmed it (the charmer) or target them with harmful abilities or magical effects. The creature treats the charmer as though they were a close friend. The charmer has Adv (++) on any ability check to interact socially with the creature.
+      
+      - id: dominated
+        title: Dominated
+        body: >-
+          The creature is completely controlled by another creature (the dominator). Dominated creatures can attempt to harm themselves but will still need to make attack rolls as they struggle against the domination. When it comes to the dominated creature's turn in combat - the dominator takes their turn for them. All movement the creature makes is considered voluntary for the duration.
+      
+      - id: taunted
+        title: Taunted
+        body: >-
+          The creature has DisAdv (--) on all attacks against creatures that aren't the source of the taunt (the taunter).
+      
+      - id: frightened
+        title: Frightened
+        body: >-
+          The creature gains DisAdv (--) on all ability checks and attacks while the creature can see the source of the fear. The creature also cannot willingly move closer to the source of the fear.
+      
       - id: prone
         title: Prone
         body: >-
-          Movement is halved and your melee attacks are impaired until you stand.
+          The creature's movement speed is halved and rounded down. This includes movement for abilities. Ranged attacks have DisAdv (--) against the creature, but melee attacks have Adv (++). The creature's attacks have DisAdv (--). 1AP must be spent to stand up. The creature cannot use abilities that involve movement except for teleportation which is still possible - the creature can still be pushed/pulled while prone.
+      
+      - id: hobbled
+        title: Hobbled
+        body: >-
+          The creature's movement speed is halved and rounded down. This includes movement for abilities.
+      
+      - id: immobilised
+        title: Immobilised
+        body: >-
+          The creature's base movement speed becomes 0ft. The creature cannot use abilities that involve movement except for teleportation which is still possible. The creature can also be pushed/pulled unless the GM deems it unreasonable.
+      
+      - id: dazed
+        title: Dazed
+        body: >-
+          The creature starts its next turn with 1AP fewer and cannot use reactions while dazed. If the creature is dazed during its turn it immediately spends up to 1AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the stun still lasts until the start of the creature's turn that was the source of the daze as normal. If a creature that is dazed becomes dazed again, the most recent daze is upgraded to a stun instead.
+      
+      - id: stunned
+        title: Stunned
+        body: >-
+          The creature starts its next turn with 2AP fewer and cannot use reactions while stunned. If the creature is stunned during its turn it immediately spends up to 2AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the stun still lasts until the start of the creature's turn that was the source of the stun as normal.
+      
+      - id: silenced
+        title: Silenced
+        body: >-
+          The creature cannot use abilities. Passive abilities work as normal.
+      
+      - id: restrained
+        title: Restrained
+        body: >-
+          The creature can only spend AP on movement or restraint specific actions such as escaping from the restraint.
+      
+      - id: incapacitated
+        title: Incapacitated
+        body: >-
+          The creature can only spend AP on movement or restraint specific actions such as escaping from the restraint. The creature also cannot talk.
+      
+      - id: paralysed
+        title: Paralysed
+        body: >-
+          The creature becomes rigid and cannot do anything while paralysed. All attack rolls against the creature have Adv (+++). Double the attack power of any attack against the creature if the attacker is within 5ft of the creature.
+      
+      - id: poisoned
+        title: Poisoned
+        body: >-
+          The creature cannot heal or regain health or regain any energy type. This condition is removed by healing.
+      
+      - id: bleeding
+        title: Bleeding
+        body: >-
+          The creature suffers 1 damage in any energy type each time it spends 1 AP. This condition is removed by healing.
+      
+      - id: feeble
+        title: Feeble
+        body: >-
+          All attacks this creature makes gain DisAdv (--).
+      
+      - id: vulnerability
+        title: Vulnerability X
+        body: >-
+          The creature gains Vulnerability X to a specified damage type (such as physical, fire or psychic) where X is a number. All incoming damage of that type is increased by X.
+      
+      - id: unconscious
+        title: Unconscious
+        body: >-
+          The creature falls limp and prone and cannot do anything while unconscious. It is unaware of its surroundings and all attacks against the creature gain Adv (+++). The creature remains unconscious until it is helped by another creature.
+
+  - id: class-tables
+    title: Class Tables
+    summary: Special rules and mechanics that apply to specific class abilities.
+    children:
+      - id: deadly-escalation
+        title: Deadly Escalation
+        body: >-
+          An ability affected by Deadly Escalation will cause you to suffer direct damage equal to the number of times you have completed casting that ability since your last long rest. This damage occurs at the same time as you would spend other costs for the ability. For example, the first time you cast the ability you suffer no damage, but the second and third times you will suffer 1 and 2 direct damage respectively, and so on.
 
 
 

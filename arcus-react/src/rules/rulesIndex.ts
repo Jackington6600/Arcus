@@ -2,11 +2,18 @@ import classesYaml from './yaml/classes.yaml?url';
 import basicYaml from './yaml/basic.yaml?url';
 import yaml from 'js-yaml';
 
+export type RuleChild = {
+	id: string;
+	title: string;
+	body?: string;
+	children?: RuleChild[]; // Support for nested children
+};
+
 export type RuleSection = {
 	id: string;
 	title: string;
 	summary?: string;
-	children?: { id: string; title: string; body?: string }[];
+	children?: RuleChild[];
 };
 
 export type RulesIndex = {
@@ -24,6 +31,20 @@ export const TOOLTIP_MAP: TooltipMap = {
     'Character Classes': 'classes',
     'Core Loop': 'core-loop',
     'What is Arcus?': 'what-is-arcus',
+    'Warrior': 'class-warrior',
+    'Scoundrel': 'class-scoundrel',
+    'Marksman': 'class-marksman',
+    'Elemental': 'class-elemental',
+    'Mortality': 'class-mortality',
+    'Arcane': 'class-arcane',
+    'Psionic': 'class-psionic',
+    'Push for Success': 'push-for-success',
+    'Advantage and Disadvantage': 'advantage-disadvantage',
+    'Outcome Resolution': 'outcome-resolution',
+    'Attributes': 'attributes',
+    'Energy': 'energy',
+    'Combat': 'combat',
+    'Core Abilities': 'core-abilities',
 };
 
 // Map phrases to wiki anchors (id) that should be turned into links on the Wiki page
@@ -36,9 +57,20 @@ export const WIKI_LINK_MAP: LinkMap = {
     'Character Classes': 'classes',
     'Warrior': 'class-warrior',
     'Scoundrel': 'class-scoundrel',
-    'Ranger': 'class-ranger',
+    'Marksman': 'class-marksman',
+    'Elemental': 'class-elemental',
+    'Mortality': 'class-mortality',
+    'Arcane': 'class-arcane',
+    'Psionic': 'class-psionic',
     'Stunned': 'stunned',
     'Prone': 'prone',
+    'Push for Success': 'push-for-success',
+    'Advantage and Disadvantage': 'advantage-disadvantage',
+    'Outcome Resolution': 'outcome-resolution',
+    'Attributes': 'attributes',
+    'Energy': 'energy',
+    'Combat': 'combat',
+    'Core Abilities': 'core-abilities',
 };
 
 // Extended class ability schema
@@ -101,7 +133,7 @@ function load(): RulesIndex {
 					id: s.id,
 					title: s.title,
 					summary: s.summary,
-					children: s.children ?? [],
+					children: processChildren(s.children) ?? [],
 				});
 			}
 		}
@@ -139,6 +171,18 @@ function load(): RulesIndex {
         }
 	}
     return { sections, classes };
+}
+
+// Helper function to recursively process children and nested children
+function processChildren(children: any[] | undefined): RuleChild[] | undefined {
+	if (!Array.isArray(children)) return undefined;
+	
+	return children.map(child => ({
+		id: child.id,
+		title: child.title,
+		body: child.body,
+		children: processChildren(child.children), // Recursively process nested children
+	}));
 }
 
 const rules: RulesIndex = load();

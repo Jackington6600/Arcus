@@ -41,9 +41,22 @@ export default function Wiki() {
 	// Build headings for TOC
 	const headings = useMemo<Heading[]>(() => {
 		const hs: Heading[] = [];
+		
+		// Helper function to recursively add headings
+		const addHeadings = (items: any[], level: number, sectionId: string) => {
+			items.forEach((item) => {
+				hs.push({ id: item.id, level, text: item.title, sectionId });
+				if (item.children && Array.isArray(item.children)) {
+					addHeadings(item.children, level + 1, sectionId);
+				}
+			});
+		};
+		
 		rules.sections.forEach((section) => {
 			hs.push({ id: section.id, level: 2, text: section.title, sectionId: section.id });
-			section.children?.forEach((c) => hs.push({ id: c.id, level: 3, text: c.title, sectionId: section.id }));
+			if (section.children && Array.isArray(section.children)) {
+				addHeadings(section.children, 3, section.id);
+			}
 			// Add class headings under the Character Classes section
 			const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
 			if (isClassSection) {
@@ -92,6 +105,36 @@ export default function Wiki() {
 		if (activeSection && activeSection.id === sectionId) return `${baseClasses} grandparent-active`;
 		
 		return baseClasses;
+	};
+
+	// Helper function to render TOC children recursively
+	const renderTocChildren = (children: any[] | undefined, level: number, onItemClick?: (id: string) => void) => {
+		if (!children || !children.length) return null;
+		return (
+			<>
+				{children.map((child) => (
+					<div key={child.id}>
+						<a
+							href={`#${child.id}`}
+							className={getTocItemClasses(child.id)}
+							onClick={(e) => { 
+								e.preventDefault(); 
+								if (onItemClick) {
+									onItemClick(child.id);
+								} else {
+									navigateToPage(child.id);
+								}
+							}}
+							style={{ paddingLeft: level * 10 }}
+						>
+							{child.title}
+						</a>
+						{/* Recursively render nested children */}
+						{child.children && Array.isArray(child.children) && renderTocChildren(child.children, level + 1, onItemClick)}
+					</div>
+				))}
+			</>
+		);
 	};
 
 	// Set initial page
@@ -182,6 +225,25 @@ export default function Wiki() {
 			);
 		}
 
+		// Helper function to recursively render children
+		const renderChildren = (children: any[] | undefined, level: number) => {
+			if (!children || !children.length) return null;
+			const HeadingTag = level === 2 ? 'h2' : level === 3 ? 'h3' : level === 4 ? 'h4' : level === 5 ? 'h5' : 'h6';
+			
+			return (
+				<>
+					{children.map((child) => (
+						<div key={child.id} style={{ marginLeft: (level - 2) * 24 }}>
+							<HeadingTag id={child.id}>{child.title}</HeadingTag>
+							<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+							{/* Recursively render nested children */}
+							{renderChildren(child.children, level + 1)}
+						</div>
+					))}
+				</>
+			);
+		};
+
 		// Check if it's a main section
 		const section = rules.sections.find(s => s.id === activePageId);
 		if (section) {
@@ -189,62 +251,92 @@ export default function Wiki() {
 				<div>
 					<h1>{section.title}</h1>
 					<p style={{ color: 'var(--muted)' }}>{renderWithWikiLinks(section.summary, navigateToPage)}</p>
-					{section.children?.map((child) => (
-						<div key={child.id}>
-							<h2 id={child.id}>{child.title}</h2>
-							<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
-						</div>
-					))}
+					{renderChildren(section.children, 2)}
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
 				</div>
 			);
 		}
 
-		// Check if it's a child page
-		for (const s of rules.sections) {
-			const child = s.children?.find(c => c.id === activePageId);
-			if (child) {
+		// Check if it's a child page (including nested children)
+		const findChildPage = (sections: any[], targetId: string): { section: any; child: any; level: number } | null => {
+			for (const section of sections) {
+				if (section.children) {
+					for (const child of section.children) {
+						if (child.id === targetId) {
+							return { section, child, level: 2 };
+						}
+						// Check nested children
+						if (child.children) {
+							const result = findNestedChild(child.children, targetId, 3);
+							if (result) {
+								return { section, child: result.child, level: result.level };
+							}
+						}
+					}
+				}
+			}
+			return null;
+		};
+
+		const findNestedChild = (children: any[], targetId: string, level: number): { child: any; level: number } | null => {
+			for (const child of children) {
+				if (child.id === targetId) {
+					return { child, level };
+				}
+				if (child.children) {
+					const result = findNestedChild(child.children, targetId, level + 1);
+					if (result) return result;
+				}
+			}
+			return null;
+		};
+
+		const childResult = findChildPage(rules.sections, activePageId);
+		if (childResult) {
+			const { section, child, level } = childResult;
+			const HeadingTag = level === 2 ? 'h1' : level === 3 ? 'h2' : level === 4 ? 'h3' : level === 5 ? 'h4' : 'h5';
+			
+			return (
+				<div>
+					<HeadingTag>{child.title}</HeadingTag>
+					<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+					{/* Show breadcrumb navigation */}
+					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+						<strong>Part of:</strong> <a href={`#${section.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}>{section.title}</a>
+					</div>
+				</div>
+			);
+		}
+
+		// Check if it's a class page
+		if (activePageId.startsWith('class-')) {
+			const classKey = activePageId.replace('class-', '');
+			const info = (rules as any).classes[classKey] as { name: string; abilities: any[] };
+			if (info) {
 				return (
 					<div>
-						<h1>{child.title}</h1>
-						<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+						<h1>{info.name}</h1>
+						<div style={{ marginBottom: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+							<strong>Character Class</strong>
+						</div>
+						{/* Show only this class's table */}
+						<ClassTable title={info.name} rows={(info.abilities || []).map((a) => ({
+							level: a.level,
+							name: a.name,
+							description: a.description || [],
+							target: a.target,
+							apCost: a.apCost,
+							tags: a.tags,
+						}))} />
+						{/* Add navigation back to classes section */}
 						<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
-							<strong>Part of:</strong> <a href={`#${s.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(s.id); }}>{s.title}</a>
+							<strong>Back to:</strong> <a href={`#classes`} onClick={(e) => { e.preventDefault(); navigateToPage('classes'); }}>Character Classes</a>
 						</div>
 					</div>
 				);
 			}
 		}
-
-			// Check if it's a class page
-	if (activePageId.startsWith('class-')) {
-		const classKey = activePageId.replace('class-', '');
-		const info = (rules as any).classes[classKey] as { name: string; abilities: any[] };
-		if (info) {
-			return (
-				<div>
-					<h1>{info.name}</h1>
-					<div style={{ marginBottom: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
-						<strong>Character Class</strong>
-					</div>
-					{/* Show only this class's table */}
-					<ClassTable title={info.name} rows={(info.abilities || []).map((a) => ({
-						level: a.level,
-						name: a.name,
-						description: a.description || [],
-						target: a.target,
-						apCost: a.apCost,
-						tags: a.tags,
-					}))} />
-					{/* Add navigation back to classes section */}
-					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
-						<strong>Back to:</strong> <a href={`#classes`} onClick={(e) => { e.preventDefault(); navigateToPage('classes'); }}>Character Classes</a>
-					</div>
-				</div>
-			);
-		}
-	}
 
 		return (
 			<div style={{ textAlign: 'center', padding: '40px 20px' }}>
@@ -260,6 +352,21 @@ export default function Wiki() {
 	const searchIndex = useMemo(() => {
 		const entries: { id: string; title: string; preview: string; category: string; haystack: string }[] = [];
 		
+		// Helper function to recursively add search entries
+		const addSearchEntries = (items: any[], category: string) => {
+			items.forEach((item) => {
+				const title = item.title;
+				const body = item.body || '';
+				const haystack = `${title} ${body} ${category}`.toLowerCase();
+				entries.push({ id: item.id, title, preview: body, category, haystack });
+				
+				// Recursively add nested children
+				if (item.children && Array.isArray(item.children)) {
+					addSearchEntries(item.children, category);
+				}
+			});
+		};
+		
 		// Add sections
 		rules.sections.forEach((section) => {
 			entries.push({ 
@@ -270,16 +377,10 @@ export default function Wiki() {
 				haystack: `${section.title} ${section.summary || ''}`.toLowerCase() 
 			});
 			
-			// Add children
-			section.children?.forEach((child) => {
-				entries.push({ 
-					id: child.id, 
-					title: child.title, 
-					preview: child.body || '', 
-					category: section.title, 
-					haystack: `${child.title} ${child.body || ''} ${section.title}`.toLowerCase() 
-				});
-			});
+			// Add children (including nested ones)
+			if (section.children && Array.isArray(section.children)) {
+				addSearchEntries(section.children, section.title);
+			}
 		});
 		
 		// Add classes
@@ -339,17 +440,7 @@ export default function Wiki() {
 									>
 										{section.title}
 									</a>
-									{section.children?.map((child) => (
-										<a
-											key={child.id}
-											href={`#${child.id}`}
-											className={getTocItemClasses(child.id)}
-											onClick={(e) => { e.preventDefault(); navigateToPage(child.id); }}
-											style={{ paddingLeft: 22 }}
-										>
-											{child.title}
-										</a>
-									))}
+									{renderTocChildren(section.children, 3)}
 									{/* Add class links if this is the classes section */}
 									{/character classes/i.test(section.title) || section.id === 'classes' ? (
 										Object.keys((rules as any).classes || {}).map((key) => {
@@ -419,17 +510,7 @@ export default function Wiki() {
 										>
 											{section.title}
 										</a>
-										{section.children?.map((child) => (
-											<a
-												key={child.id}
-												href={`#${child.id}`}
-												className={getTocItemClasses(child.id)}
-												onClick={(e) => { e.preventDefault(); navigateToPage(child.id); setMenuOpen(false); }}
-												style={{ paddingLeft: 22 }}
-											>
-												{child.title}
-											</a>
-										))}
+										{renderTocChildren(section.children, 3, (id) => { navigateToPage(id); setMenuOpen(false); })}
 										{/* Add class links if this is the classes section */}
 										{/character classes/i.test(section.title) || section.id === 'classes' ? (
 											Object.keys((rules as any).classes || {}).map((key) => {
@@ -548,10 +629,29 @@ function escapeRegex(s: string) {
 }
 
 function findRuleById(id: string) {
+	// Helper function to recursively search through children
+	const searchChildren = (children: any[]): { section: any; child: any } | undefined => {
+		for (const child of children) {
+			if (child.id === id) {
+				return { section: null, child };
+			}
+			if (child.children && Array.isArray(child.children)) {
+				const result = searchChildren(child.children);
+				if (result) return result;
+			}
+		}
+		return undefined;
+	};
+	
 	for (const section of rules.sections) {
 		if (section.id === id) return { section };
-		for (const child of section.children ?? []) {
-			if (child.id === id) return { section, child };
+		
+		// Search through children and nested children
+		if (section.children && Array.isArray(section.children)) {
+			const result = searchChildren(section.children);
+			if (result) {
+				return { section, child: result.child };
+			}
 		}
 	}
 	return undefined;
