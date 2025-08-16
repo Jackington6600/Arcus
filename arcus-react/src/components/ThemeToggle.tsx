@@ -12,7 +12,7 @@ export default function ThemeToggle() {
             existingFavicons.forEach(favicon => favicon.remove());
             
             // Use light icon for dark theme, dark icon for light theme (for better contrast)
-            const faviconPath = theme === 'light' ? '/favicon-white.ico' : '/favicon-black.ico';
+            const faviconPath = theme === 'light' ? `${import.meta.env.BASE_URL}favicon-white.ico` : `${import.meta.env.BASE_URL}favicon-black.ico`;
             
             // Create favicon link
             const favicon = document.createElement('link');
@@ -40,7 +40,7 @@ export default function ThemeToggle() {
             const logoElement = document.getElementById('brand-logo');
             if (logoElement) {
                 // Use the actual Arcus logo SVGs - light logo for dark theme, dark logo for light theme
-                const logoSrc = theme === 'light' ? '/images/Arcus Logo Dark.svg' : '/images/Arcus Logo Light.svg';
+                const logoSrc = theme === 'light' ? `${import.meta.env.BASE_URL}images/Arcus Logo Dark.svg` : `${import.meta.env.BASE_URL}images/Arcus Logo Light.svg`;
                 
                 // Create new img element with the appropriate logo
                 const newLogo = document.createElement('img');

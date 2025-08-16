@@ -995,6 +995,39 @@ a {
 	background: var(--surface);
 	padding: 8px 0;
 	z-index: 10;
+	position: relative;
+}
+
+.searchbar .search-clear {
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: var(--surface-secondary);
+	border: 1px solid var(--border-medium);
+	color: var(--text-secondary);
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+
+.searchbar .search-clear:hover {
+	background: var(--surface-tertiary);
+	color: var(--text-primary);
+	border-color: var(--border-light);
+}
+
+.searchbar .search-clear:active {
+	transform: translateY(-50%) scale(0.95);
 }
 
 .input {
@@ -1004,6 +1037,7 @@ a {
 	color: var(--text-primary);
 	border-radius: 10px;
 	padding: 10px 12px;
+	padding-right: 40px;
 	box-shadow: 0 3px 12px var(--shadow-light) inset, 0 1px 0 var(--surface);
 }
 
@@ -1047,6 +1081,11 @@ a {
 .tooltip {
 	position: relative;
 	color: inherit;
+	/* Improve touch experience on mobile */
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .tooltip-bubble {
@@ -1095,6 +1134,37 @@ a {
 
 .tooltip-desc { 
 	color: var(--text-secondary); 
+}
+
+/* Mobile-specific tooltip improvements */
+@media (max-width: 768px) {
+	.tooltip {
+		/* Ensure tooltips are easily tappable on mobile */
+		cursor: pointer;
+	}
+	
+	.hint {
+		/* Increase touch target size on mobile without breaking layout */
+		padding: 4px 0;
+		/* Use pseudo-element to extend touch area without affecting visual layout */
+		position: relative;
+	}
+	
+	.hint::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		bottom: -4px;
+		left: -4px;
+		right: -4px;
+		/* This creates a larger touch target without visual changes */
+	}
+	
+	.tooltip-bubble {
+		/* Ensure tooltip bubble is properly sized for mobile */
+		max-width: calc(100vw - 32px);
+		min-width: 200px;
+	}
 }
 
 /* Scroll Reveal */

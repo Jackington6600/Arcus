@@ -416,6 +416,15 @@ export default function Wiki() {
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 					/>
+					{query && (
+						<button 
+							className="search-clear" 
+							onClick={() => setQuery('')}
+							aria-label="Clear search"
+						>
+							×
+						</button>
+					)}
 				</div>
 				{query && (
 					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={navigateToPage} />
@@ -487,6 +496,15 @@ export default function Wiki() {
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
 						/>
+						{query && (
+							<button 
+								className="search-clear" 
+								onClick={() => setQuery('')}
+								aria-label="Clear search"
+							>
+								×
+							</button>
+						)}
 					</div>
 					{query && (
 						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />

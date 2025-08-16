@@ -13,15 +13,88 @@ export default function Tooltip({ title, description, children, variant = 'inlin
     const [pos, setPos] = useState<BubblePosition>(null);
     const containerRef = useRef<HTMLSpanElement>(null);
     const bubbleRef = useRef<HTMLDivElement>(null);
-    const toggle = () => setOpen((v) => !v);
+    const touchStartTime = useRef(0);
+    const isTouchInteraction = useRef(false);
+    
+    const handleMouseEnter = () => {
+        // Only open on mouse enter if we haven't been touching
+        if (!isTouchInteraction.current) {
+            setOpen(true);
+        }
+    };
+    
+    const handleMouseLeave = () => {
+        // Only close on mouse leave if we haven't been touching
+        if (!isTouchInteraction.current) {
+            setOpen(false);
+        }
+    };
+    
+    const handleTouchStart = () => {
+        touchStartTime.current = Date.now();
+        isTouchInteraction.current = true;
+    };
+    
+    const handleTouchEnd = () => {
+        const touchDuration = Date.now() - touchStartTime.current;
+        // Only toggle if it's a quick tap (less than 300ms) to avoid conflicts with long press
+        if (touchDuration < 300) {
+            setOpen(prev => !prev);
+        }
+        // Reset touch interaction flag after a short delay to allow mouse events to work
+        setTimeout(() => {
+            isTouchInteraction.current = false;
+        }, 100);
+    };
+    
+    const handleClick = (e: React.MouseEvent) => {
+        // Prevent click from interfering with touch events
+        e.preventDefault();
+        e.stopPropagation();
+    };
+    
+    // Close tooltip when clicking outside or scrolling
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+        
+        const handleTouchStartOutside = (event: TouchEvent) => {
+            if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+        
+        const handleScroll = () => {
+            setOpen(false);
+        };
+        
+        if (open) {
+            document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('touchstart', handleTouchStartOutside);
+            window.addEventListener('scroll', handleScroll, true);
+        }
+        
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleTouchStartOutside);
+            window.removeEventListener('scroll', handleScroll, true);
+        };
+    }, [open]);
+    
     useAutoPosition(open, containerRef, bubbleRef, setPos);
+    
     return (
         <span
             className="tooltip"
             ref={containerRef}
-            onMouseEnter={() => setOpen(true)}
-            onMouseLeave={() => setOpen(false)}
-            onClick={toggle}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onClick={handleClick}
             aria-haspopup="true"
             aria-expanded={open}
         >

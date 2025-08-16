@@ -9,12 +9,15 @@ type Heading = { id: string; level: number; text: string };
 
 export default function FullRules() {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const tocRef = useRef<HTMLDivElement>(null);
 	const [activeId, setActiveId] = useState<string>('');
 	const [menuOpen, setMenuOpen] = useState<boolean>(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const [query, setQuery] = useState('');
 	const observerRef = useRef<IntersectionObserver | null>(null);
 	const isScrollingRef = useRef<boolean>(false);
+	const isUserScrollingTocRef = useRef<boolean>(false);
+	const tocScrollTimeoutRef = useRef<number | null>(null);
 	
 	// Add layout-page class to body to prevent scrolling
 	useEffect(() => {
@@ -111,6 +114,59 @@ export default function FullRules() {
 		
 		return '';
 	};
+
+	// Auto-center TOC on active heading change
+	useEffect(() => {
+		if (!activeId || !tocRef.current || isUserScrollingTocRef.current) return;
+		
+		// Find the active TOC item
+		const activeTocItem = tocRef.current.querySelector(`[href="#${activeId}"]`) as HTMLElement;
+		if (!activeTocItem) return;
+		
+		// Calculate the scroll position to center the active item
+		const tocContainer = tocRef.current;
+		const tocRect = tocContainer.getBoundingClientRect();
+		const itemRect = activeTocItem.getBoundingClientRect();
+		
+		// Calculate the target scroll position to center the item
+		const targetScrollTop = tocContainer.scrollTop + (itemRect.top - tocRect.top) - (tocRect.height / 2) + (itemRect.height / 2);
+		
+		// Smooth scroll to center the active item
+		tocContainer.scrollTo({
+			top: targetScrollTop,
+			behavior: 'smooth'
+		});
+	}, [activeId]);
+
+	// Handle TOC scroll events to detect user scrolling
+	useEffect(() => {
+		const tocContainer = tocRef.current;
+		if (!tocContainer) return;
+		
+		const handleTocScroll = () => {
+			// Mark that user is scrolling the TOC
+			isUserScrollingTocRef.current = true;
+			
+			// Clear any existing timeout
+			if (tocScrollTimeoutRef.current) {
+				clearTimeout(tocScrollTimeoutRef.current);
+			}
+			
+			// Reset the flag after user stops scrolling
+			tocScrollTimeoutRef.current = window.setTimeout(() => {
+				isUserScrollingTocRef.current = false;
+			}, 150);
+		};
+		
+		tocContainer.addEventListener('scroll', handleTocScroll, { passive: true });
+		
+		return () => {
+			tocContainer.removeEventListener('scroll', handleTocScroll);
+			if (tocScrollTimeoutRef.current) {
+				window.clearTimeout(tocScrollTimeoutRef.current);
+			}
+		};
+	}, []);
 
 	// Set up intersection observer for scroll tracking
 	useEffect(() => {
@@ -310,7 +366,7 @@ export default function FullRules() {
 
 	return (
 		<div className="container layout">
-			<aside className="toc">
+			<aside className="toc" ref={tocRef}>
 				<div className="searchbar">
 					<input
 						className="input"
@@ -318,6 +374,15 @@ export default function FullRules() {
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 					/>
+					{query && (
+						<button 
+							className="search-clear" 
+							onClick={() => setQuery('')}
+							aria-label="Clear search"
+						>
+							×
+						</button>
+					)}
 				</div>
 				{query && (
 					<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
@@ -365,6 +430,15 @@ export default function FullRules() {
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
 						/>
+						{query && (
+							<button 
+								className="search-clear" 
+								onClick={() => setQuery('')}
+								aria-label="Clear search"
+							>
+								×
+							</button>
+						)}
 					</div>
 					{query && (
 						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
