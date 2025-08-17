@@ -1,0 +1,35 @@
+/* Accordion Component */
+.accordion {
+	display: grid;
+	gap: 10px;
+}
+
+.accordion-item {
+	border: 1px solid var(--border-medium);
+	border-radius: 10px;
+	background: var(--surface);
+	box-shadow: 0 4px 16px var(--shadow-light);
+}
+
+.accordion-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 14px;
+	cursor: pointer;
+}
+
+.accordion-content {
+	padding: 0 14px 14px;
+}
+
+/* Tags */
+.tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background: var(--shadow-light);
+	color: var(--text-secondary);
+	font-size: 12px;
+}

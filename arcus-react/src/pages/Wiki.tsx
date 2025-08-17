@@ -426,6 +426,25 @@ export default function Wiki() {
 									>
 										{section.title}
 									</a>
+									{/* Add child headings recursively with support for unlimited nesting */}
+									{section.children && (() => {
+										const renderNestedChildren = (children: any[], level: number) => {
+											return children.map((child) => (
+												<div key={child.id}>
+													<a
+														href={`#${child.id}`}
+														onClick={(e) => { e.preventDefault(); navigateToPage(child.id); setMenuOpen(false); }}
+														style={{ paddingLeft: 22 * level }}
+													>
+														{child.title}
+													</a>
+													{/* Recursively render nested children */}
+													{child.children && child.children.length > 0 && renderNestedChildren(child.children, level + 1)}
+												</div>
+											));
+										};
+										return renderNestedChildren(section.children, 1);
+									})()}
 									{/* Add class links if this is the classes section */}
 									{/character classes/i.test(section.title) || section.id === 'classes' ? (
 										Object.keys(rules.classes || {}).map((key) => {

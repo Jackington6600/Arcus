@@ -1,0 +1,44 @@
+:root {
+	/* Ethereal fantasy palette - Light Theme (Default) */
+	--bg: #07090e; /* deep night - stays same for hero */
+	--accent: #42e9ff; /* aurora aqua */
+	--accent-2: #a889ff; /* amethyst */
+	--gold: #e7cf8a; /* elegant highlight */
+	--nav-height: 68px;
+	--nav-padding: 16px;
+	--layout-top-spacing: 24px;
+	
+	/* Theme-specific variables */
+	--surface: #ffffff;
+	--surface-secondary: #f7f8fb;
+	--surface-tertiary: #f0f2f5;
+	--text-primary: #11131a;
+	--text-secondary: #4b4f59;
+	--text-tertiary: #6b7280;
+	--muted: #4b4f59;
+	--border-light: #d6d8de;
+	--border-medium: #e5e8ef;
+	--shadow-light: rgba(0, 0, 0, 0.05);
+	--shadow-medium: rgba(0, 0, 0, 0.08);
+	--shadow-heavy: rgba(16, 22, 30, 0.12);
+	--overlay-light: rgba(233, 237, 242, 0.95);
+	--overlay-medium: rgba(233, 237, 242, 0.98);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+	--surface: #1a1d26;
+	--surface-secondary: #252830;
+	--surface-tertiary: #2d313a;
+	--text-primary: #e9edf2;
+	--text-secondary: #b0b8c1;
+	--text-tertiary: #8b929a;
+	--muted: #b0b8c1;
+	--border-light: #3a3f4a;
+	--border-medium: #4a4f5a;
+	--shadow-light: rgba(0, 0, 0, 0.2);
+	--shadow-medium: rgba(0, 0, 0, 0.3);
+	--shadow-heavy: rgba(0, 0, 0, 0.4);
+	--overlay-light: rgba(26, 29, 38, 0.95);
+	--overlay-medium: rgba(26, 29, 38, 0.98);
+}

@@ -1,0 +1,60 @@
+/* Class Table Component */
+.class-table {
+	border: 1px solid var(--border-medium);
+	border-radius: 12px;
+	background: var(--surface);
+	padding: 0;
+	box-shadow: 0 6px 24px var(--shadow-light);
+	width: 100%;
+	max-width: 100%;
+	overflow: visible;
+}
+
+.class-table table {
+	width: 100%;
+	max-width: 100%;
+	table-layout: auto;
+	overflow: visible;
+}
+
+.class-table table th,
+.class-table table td {
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--text-primary);
+	border-color: var(--border-light);
+}
+
+/* Responsive ClassTable - horizontal scrolling on mobile */
+@media (max-width: 700px) {
+	.class-table {
+		overflow-x: auto;
+		overflow-y: visible;
+		/* Add subtle scroll indicators */
+		background: 
+			linear-gradient(90deg, var(--surface) 0%, transparent 5%),
+			linear-gradient(90deg, transparent 95%, var(--surface) 100%);
+		background-size: 20px 100%;
+		background-repeat: no-repeat;
+		background-position: left center, right center;
+	}
+	
+	.class-table table {
+		min-width: 600px; /* Ensure table never gets narrower than this */
+		width: 600px; /* Force exact width to prevent layout shifts */
+	}
+
+	
+	/* Add scroll hint text for mobile users */
+	.class-table::before {
+		content: '← Scroll horizontally to see all columns →';
+		display: block;
+		text-align: center;
+		padding: 8px 12px;
+		font-size: 12px;
+		color: var(--muted);
+		background: var(--surface-secondary);
+		border-bottom: 1px solid var(--border-light);
+		font-style: italic;
+	}
+}

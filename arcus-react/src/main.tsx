@@ -9,7 +9,7 @@ import CharacterSheets from './pages/CharacterSheets';
 import TheWorld from './pages/TheWorld';
 import GMResources from './pages/GMResources';
 import Blog from './pages/Blog';
-import './styles/global.css';
+import './styles/index.css';
 
 const router = createBrowserRouter([
 	{

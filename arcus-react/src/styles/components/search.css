@@ -1,0 +1,154 @@
+/* Search Components */
+.searchbar {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 14px;
+	position: sticky;
+	top: 0;
+	background: var(--surface);
+	padding: 8px 0;
+	z-index: 10;
+	position: relative;
+}
+
+.searchbar .search-clear {
+	position: absolute;
+	right: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	background: var(--surface-secondary);
+	border: 1px solid var(--border-medium);
+	color: var(--text-secondary);
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1;
+	transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+
+.searchbar .search-clear:hover {
+	background: var(--surface-tertiary);
+	color: var(--text-primary);
+	border-color: var(--border-light);
+}
+
+.searchbar .search-clear:active {
+	transform: translateY(-50%) scale(0.95);
+}
+
+.input {
+	flex: 1;
+	background: var(--surface);
+	border: 1px solid var(--border-medium);
+	color: var(--text-primary);
+	border-radius: 10px;
+	padding: 10px 12px;
+	padding-right: 40px;
+	box-shadow: 0 3px 12px var(--shadow-light) inset, 0 1px 0 var(--surface);
+}
+
+/* Floating search results overlay */
+.search-results-overlay {
+	position: relative;
+	background: var(--surface);
+	border: 1px solid var(--border-medium);
+	border-radius: 0 0 12px 12px;
+	box-shadow: 0 8px 32px var(--shadow-heavy);
+	z-index: 100;
+	max-height: calc(100vh - 200px);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	border-top: none;
+	margin-top: 0;
+}
+
+/* Ensure search results overlay covers the full TOC height on Wiki page */
+.toc.searching .search-results-overlay {
+	flex: 1;
+	min-height: calc(100vh - 300px);
+}
+
+.search-results-overlay .accordion-item {
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	margin-bottom: 0;
+}
+
+.search-results-overlay .accordion-header {
+	border-bottom: 1px solid var(--border-light);
+	border-radius: 0;
+	background: var(--surface-secondary);
+}
+
+.search-results-overlay .accordion-content {
+	max-height: calc(100vh - 300px);
+	overflow-y: auto;
+	padding: 12px 14px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-track {
+	background: var(--surface-secondary);
+	border-radius: 4px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-thumb {
+	background: var(--border-medium);
+	border-radius: 4px;
+}
+
+.search-results-overlay .accordion-content::-webkit-scrollbar-thumb:hover {
+	background: var(--border-light);
+}
+
+/* Change TOC layout when searching */
+.toc.searching {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Hide TOC content when search is active */
+.toc.searching h4,
+.toc.searching > a:not(.searchbar),
+.toc.searching .wiki-toc {
+	display: none;
+}
+
+/* Ensure search bar stays visible during search */
+.toc.searching .searchbar {
+	z-index: 101;
+	background: var(--surface);
+	border-radius: 12px 12px 0 0;
+	margin-bottom: 0;
+	padding-bottom: 12px;
+	position: sticky;
+	top: 0;
+}
+
+/* Search result item styling */
+.search-results-overlay .accordion-content > div {
+	transition: background-color 0.2s ease;
+	border-radius: 6px;
+	padding: 8px 12px;
+	margin: 4px 0;
+}
+
+.search-results-overlay .accordion-content > div:hover {
+	background: var(--surface-secondary);
+}
+
+.search-results-overlay .accordion-content > div:last-child {
+	border-bottom: none;
+}

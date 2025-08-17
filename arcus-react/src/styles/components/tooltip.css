@@ -1,0 +1,89 @@
+/* Tooltip Component */
+.tooltip {
+	position: relative;
+	color: inherit;
+	/* Improve touch experience on mobile */
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.tooltip-bubble {
+	position: fixed;
+	min-width: 220px;
+	max-width: 320px;
+	background: var(--surface);
+	border: 1px solid var(--border-light);
+	border-radius: 10px;
+	padding: 10px 12px;
+	box-shadow: 0 10px 30px var(--shadow-heavy);
+	z-index: 100;
+	color: var(--text-primary);
+	pointer-events: none;
+	user-select: none;
+}
+
+.tooltip-bubble-fixed {
+	animation-duration: .18s;
+	animation-fill-mode: both;
+	will-change: transform, opacity;
+}
+
+@keyframes tooltipEnterUp {
+	from { opacity: 0; transform: translateY(6px) scale(0.98); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes tooltipEnterDown {
+	from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+	to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tooltip-in-up { animation-name: tooltipEnterUp; }
+.tooltip-in-down { animation-name: tooltipEnterDown; }
+
+.hint {
+	border-bottom: 1px dashed var(--text-secondary);
+	cursor: help;
+	color: var(--text-primary);
+}
+
+.tooltip-bubble strong { 
+	color: var(--text-primary); 
+}
+
+.tooltip-desc { 
+	color: var(--text-secondary); 
+}
+
+/* Mobile-specific tooltip improvements */
+@media (max-width: 768px) {
+	.tooltip {
+		/* Ensure tooltips are easily tappable on mobile */
+		cursor: pointer;
+	}
+	
+	.hint {
+		/* Increase touch target size on mobile without breaking layout */
+		padding: 4px 0;
+		/* Use pseudo-element to extend touch area without affecting visual layout */
+		position: relative;
+	}
+	
+	.hint::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		bottom: -4px;
+		left: -4px;
+		right: -4px;
+		/* This creates a larger touch target without visual changes */
+	}
+	
+	.tooltip-bubble {
+		/* Ensure tooltip bubble is properly sized for mobile */
+		max-width: calc(100vw - 32px);
+		min-width: 200px;
+	}
+}

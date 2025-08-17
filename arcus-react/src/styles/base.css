@@ -1,0 +1,72 @@
+/* Base styles and resets */
+* {
+	box-sizing: border-box;
+}
+
+/* Smooth theme transitions */
+html {
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html * {
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html, body, #root {
+	height: 100%;
+}
+
+/* Body and scrolling behavior */
+body {
+	margin: 0;
+	font-family: Spectral, Georgia, 'Times New Roman', serif;
+	background: var(--surface-secondary);
+	color: var(--text-primary);
+	transition: background-color 0.3s ease, color 0.3s ease;
+	overflow-x: hidden;
+	overflow-y: auto;
+	min-height: 100%;
+}
+
+/* Layout pages override scrolling behavior */
+body.layout-page {
+	overflow: hidden !important;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+/* Non-layout pages can scroll normally */
+body:not(.layout-page) {
+	position: static;
+	overflow: auto;
+	height: auto;
+	min-height: 100%;
+}
+
+/* Links */
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Container */
+.container {
+	width: min(1200px, 92%);
+	margin: 0 auto;
+}
+
+/* Main content areas */
+.main:not(.main--home) {
+	min-height: 100vh;
+	height: auto;
+}
+
+.main--home {
+	background: var(--bg);
+	overflow: auto;
+	min-height: 100vh;
+	height: auto;
+	position: relative;
+	z-index: 1;
+}

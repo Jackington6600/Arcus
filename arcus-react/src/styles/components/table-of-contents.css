@@ -1,0 +1,66 @@
+/* Table of Contents Component */
+.toc {
+	position: relative;
+	height: 100%;
+	overflow: auto;
+	border: 1px solid var(--border-medium);
+	border-radius: 12px;
+	padding: 16px;
+	background: var(--surface);
+	box-shadow: 0 4px 16px var(--shadow-light);
+	min-height: 0;
+	max-height: 100%;
+	grid-column: 1;
+	grid-row: 1;
+	width: 280px;
+	min-width: 280px;
+	max-width: 280px;
+	box-sizing: border-box;
+}
+
+.toc h4 {
+	margin: 8px 8px 6px;
+	color: var(--text-secondary);
+}
+
+.toc a {
+	display: block;
+	padding: 8px 10px;
+	border-radius: 8px;
+	color: var(--text-primary);
+	transition: all 0.2s ease;
+}
+
+.toc a.active {
+	background: rgba(62,224,255,0.12);
+	color: var(--text-primary);
+	font-weight: 600;
+}
+
+.toc a.parent-active {
+	background: rgba(62,224,255,0.06);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+.toc a.grandparent-active {
+	background: rgba(62,224,255,0.03);
+	color: var(--text-primary);
+	font-weight: 400;
+}
+
+.toc a.pulse {
+	animation: pulseLink .65s ease;
+}
+
+@keyframes pulseLink {
+	0% { background: rgba(62,224,255,0.35); }
+	100% { background: rgba(62,224,255,0.12); }
+}
+
+/* Hide TOC on small screens */
+@media (max-width: 1100px) {
+	.toc { 
+		display: none; 
+	}
+}
