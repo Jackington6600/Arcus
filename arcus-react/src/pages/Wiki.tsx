@@ -1,11 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
 import ClassTable from '@/pages/components/ClassTable';
-
-type Heading = { id: string; level: number; text: string; sectionId: string };
+import WikiTableOfContents, { WikiHeading } from '@/components/WikiTableOfContents';
+import MobileTableOfContents from '@/components/MobileTableOfContents';
+import DocumentContent from '@/components/DocumentContent';
+import TocToggleButton from '@/components/TocToggleButton';
+import { SearchResult } from '@/components/SearchResults';
 
 export default function Wiki() {
 	const location = useLocation();
@@ -56,8 +59,8 @@ export default function Wiki() {
 	};
 
 	// Build headings for TOC
-	const headings = useMemo<Heading[]>(() => {
-		const hs: Heading[] = [];
+	const headings = useMemo<WikiHeading[]>(() => {
+		const hs: WikiHeading[] = [];
 		
 		// Helper function to recursively add headings
 		const addHeadings = (items: any[], level: number, sectionId: string) => {
@@ -86,73 +89,6 @@ export default function Wiki() {
 		});
 		return hs;
 	}, []);
-
-	// Helper function to determine TOC item highlighting classes
-	const getTocItemClasses = (itemId: string) => {
-		if (activePageId === itemId) return 'active';
-		
-		// Check if this is a parent of the active page
-		const activeHeading = headings.find(h => h.id === activePageId);
-		if (!activeHeading) return '';
-		
-		// Check if this item is the section containing the active page
-		if (itemId === activeHeading.sectionId) return 'parent-active';
-		
-		// Check if this is a grandparent (section containing the active page's section)
-		const activeSection = rules.sections.find(s => s.id === activeHeading.sectionId);
-		if (activeSection && itemId === activeSection.id) return 'grandparent-active';
-		
-		return '';
-	};
-
-	// Helper function to determine section header highlighting classes
-	const getSectionHeaderClasses = (sectionId: string) => {
-		const baseClasses = expandedSections.has(sectionId) ? 'expanded' : '';
-		
-		if (activePageId === sectionId) return `${baseClasses} active`;
-		
-		// Check if this section contains the active page
-		const activeHeading = headings.find(h => h.id === activePageId);
-		if (!activeHeading) return baseClasses;
-		
-		if (activeHeading.sectionId === sectionId) return `${baseClasses} parent-active`;
-		
-		// Check if this section contains the active page's section
-		const activeSection = rules.sections.find(s => s.id === activeHeading.sectionId);
-		if (activeSection && activeSection.id === sectionId) return `${baseClasses} grandparent-active`;
-		
-		return baseClasses;
-	};
-
-	// Helper function to render TOC children recursively
-	const renderTocChildren = (children: any[] | undefined, level: number, onItemClick?: (id: string) => void) => {
-		if (!children || !children.length) return null;
-		return (
-			<>
-				{children.map((child) => (
-					<div key={child.id}>
-						<a
-							href={`#${child.id}`}
-							className={getTocItemClasses(child.id)}
-							onClick={(e) => { 
-								e.preventDefault(); 
-								if (onItemClick) {
-									onItemClick(child.id);
-								} else {
-									navigateToPage(child.id);
-								}
-							}}
-							style={{ paddingLeft: level * 10 }}
-						>
-							{child.title}
-						</a>
-						{/* Recursively render nested children */}
-						{child.children && Array.isArray(child.children) && renderTocChildren(child.children, level + 1, onItemClick)}
-					</div>
-				))}
-			</>
-		);
-	};
 
 	// Set initial page
 	useEffect(() => {
@@ -423,38 +359,60 @@ export default function Wiki() {
 		return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
 	}, [query, searchIndex]);
 
+	// Convert search results to SearchResult format
+	const searchResults: SearchResult[] = results.map(result => ({
+		id: result.id,
+		title: result.title,
+		preview: result.preview,
+		category: result.category
+	}));
+
 	return (
 		<div className="container layout">
-			<aside className={`toc ${query ? 'searching' : ''}`}>
-				<div className="searchbar">
-					<input
-						className="input"
-						placeholder="Search wiki..."
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-					{query && (
-						<button 
-							className="search-clear" 
-							onClick={() => setQuery('')}
-							aria-label="Clear search"
-						>
-							×
-						</button>
-					)}
-				</div>
-				{/* Floating search results container */}
-				{query && (
-					<div className="search-results-overlay">
-						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={navigateToPage} />
-					</div>
-				)}
-				<h4>Browse Wiki</h4>
+			<WikiTableOfContents
+				headings={headings}
+				sections={rules.sections}
+				classes={rules.classes}
+				activePageId={activePageId}
+				query={query}
+				onQueryChange={setQuery}
+				searchResults={searchResults}
+				onSearchResultClick={navigateToPage}
+				onHeadingClick={navigateToPage}
+				expandedSections={expandedSections}
+				onToggleSection={toggleSection}
+				title="Browse Wiki"
+				searchPlaceholder="Search wiki..."
+			/>
+			
+			<DocumentContent ref={containerRef}>
+				{renderPageContent()}
+			</DocumentContent>
+			
+			{/* Floating TOC toggle button for mobile */}
+			<TocToggleButton
+				isOpen={menuOpen}
+				onToggle={() => setMenuOpen((v) => !v)}
+				label="Navigate Wiki"
+			/>
+			
+			{/* Mobile TOC */}
+			<MobileTableOfContents
+				isOpen={menuOpen}
+				onClose={() => setMenuOpen(false)}
+				query={query}
+				onQueryChange={setQuery}
+				searchResults={searchResults}
+				onSearchResultClick={(id) => { navigateToPage(id); setMenuOpen(false); }}
+				onHeadingClick={(id) => { navigateToPage(id); setMenuOpen(false); }}
+				title="Browse Wiki"
+				searchPlaceholder="Search wiki..."
+			>
 				<div className="wiki-toc">
 					{rules.sections.map((section) => (
 						<div key={section.id} className="toc-section">
 							<div 
-								className={`toc-section-header ${getSectionHeaderClasses(section.id)}`}
+								className={`toc-section-header ${expandedSections.has(section.id) ? 'expanded' : ''}`}
 								onClick={() => toggleSection(section.id)}
 							>
 								<span className="toc-section-title">{section.title}</span>
@@ -464,22 +422,19 @@ export default function Wiki() {
 								<div className="toc-section-content">
 									<a
 										href={`#${section.id}`}
-										className={getTocItemClasses(section.id)}
-										onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}
+										onClick={(e) => { e.preventDefault(); navigateToPage(section.id); setMenuOpen(false); }}
 									>
 										{section.title}
 									</a>
-									{renderTocChildren(section.children, 3)}
 									{/* Add class links if this is the classes section */}
 									{/character classes/i.test(section.title) || section.id === 'classes' ? (
-										Object.keys((rules as any).classes || {}).map((key) => {
-											const info = (rules as any).classes[key] as { name: string };
+										Object.keys(rules.classes || {}).map((key) => {
+											const info = rules.classes[key] as { name: string };
 											return (
 												<a
 													key={`class-${key}`}
 													href={`#class-${key}`}
-													className={getTocItemClasses(`class-${key}`)}
-													onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); }}
+													onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); setMenuOpen(false); }}
 													style={{ paddingLeft: 22 }}
 												>
 													{info?.name || key}
@@ -492,91 +447,7 @@ export default function Wiki() {
 						</div>
 					))}
 				</div>
-			</aside>
-			<article className="doc" ref={containerRef}>
-				{renderPageContent()}
-			</article>
-			{/* Floating TOC toggle button for mobile */}
-			<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-					<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
-				</svg>
-				Navigate Wiki
-			</button>
-			<div className={`page-menu ${menuOpen ? 'open' : ''} ${query ? 'searching' : ''}`}>
-				<div className="menu-inner" ref={menuRef}>
-					<div className="sticky-header">
-						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
-							<strong>Browse Wiki</strong>
-							<span aria-hidden>×</span>
-						</div>
-						<div className="searchbar">
-							<input
-								className="input"
-								placeholder="Search wiki..."
-								value={query}
-								onChange={(e) => setQuery(e.target.value)}
-							/>
-							{query && (
-								<button 
-									className="search-clear" 
-									onClick={() => setQuery('')}
-									aria-label="Clear search"
-								>
-									×
-								</button>
-							)}
-						</div>
-					</div>
-					{query && (
-						<div className="search-results-overlay">
-							<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { navigateToPage(id); setMenuOpen(false); }} />
-						</div>
-					)}
-					<div className="wiki-toc">
-						{rules.sections.map((section) => (
-							<div key={section.id} className="toc-section">
-								<div 
-									className={`toc-section-header ${getSectionHeaderClasses(section.id)}`}
-									onClick={() => toggleSection(section.id)}
-								>
-									<span className="toc-section-title">{section.title}</span>
-									<span className="toc-section-toggle">{expandedSections.has(section.id) ? '−' : '+'}</span>
-								</div>
-								{expandedSections.has(section.id) && (
-									<div className="toc-section-content">
-										<a
-											href={`#${section.id}`}
-											className={getTocItemClasses(section.id)}
-											onClick={(e) => { e.preventDefault(); navigateToPage(section.id); setMenuOpen(false); }}
-										>
-											{section.title}
-										</a>
-										{renderTocChildren(section.children, 3, (id) => { navigateToPage(id); setMenuOpen(false); })}
-										{/* Add class links if this is the classes section */}
-										{/character classes/i.test(section.title) || section.id === 'classes' ? (
-											Object.keys((rules as any).classes || {}).map((key) => {
-												const info = (rules as any).classes[key] as { name: string };
-												return (
-													<a
-														key={`class-${key}`}
-														href={`#class-${key}`}
-														className={getTocItemClasses(`class-${key}`)}
-														onClick={(e) => { e.preventDefault(); navigateToPage(`class-${key}`); setMenuOpen(false); }}
-														style={{ paddingLeft: 22 }}
-													>
-														{info?.name || key}
-													</a>
-												);
-											})
-										) : null}
-									</div>
-								)}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
+			</MobileTableOfContents>
 		</div>
 	);
 }
@@ -801,52 +672,4 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 	);
 }
 
-function SearchResults({ results, onClear, onItemClick }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void; onItemClick?: (id: string) => void }) {
-	if (!results.length) {
-		return (
-			<div className="accordion-item" style={{ marginBottom: 10 }}>
-				<div className="accordion-header" style={{ cursor: 'default' }}>
-					<strong>Search Results</strong>
-					<span aria-hidden>0</span>
-				</div>
-				<div className="accordion-content">
-					<p style={{ color: 'var(--muted)', margin: '6px 0 0' }}>No matches. Try different terms.</p>
-				</div>
-			</div>
-		);
-	}
-	return (
-		<div className="accordion-item" style={{ marginBottom: 10 }}>
-			<div className="accordion-header" onClick={onClear}>
-				<strong>Search Results ({results.length})</strong>
-				<span aria-hidden>×</span>
-			</div>
-			<div className="accordion-content">
-				{results.map((e) => (
-					<div 
-						key={e.id} 
-						className="search-result-item"
-						style={{ 
-							padding: '8px 0', 
-							borderBottom: '1px solid var(--border)',
-							cursor: 'pointer'
-						}}
-						onClick={onItemClick ? () => onItemClick(e.id) : undefined}
-					>
-						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<span style={{ fontWeight: 600 }}>
-								{e.title}
-							</span>
-							<span className="tag">{e.category}</span>
-						</div>
-						{e.preview && (
-							<p style={{ margin: '6px 0 0', color: 'var(--muted)' }}>
-								{e.preview.slice(0, 160)}{e.preview.length > 160 ? '…' : ''}
-							</p>
-						)}
-					</div>
-				))}
-			</div>
-		</div>
-	);
-}
+

@@ -3,9 +3,12 @@ import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
 import ClassTable, { AbilityRow } from '@/pages/components/ClassTable';
+import TableOfContents, { Heading } from '@/components/TableOfContents';
+import MobileTableOfContents from '@/components/MobileTableOfContents';
+import DocumentContent from '@/components/DocumentContent';
+import TocToggleButton from '@/components/TocToggleButton';
+import { SearchResult } from '@/components/SearchResults';
 import type { ClassAbility } from '@/rules/rulesIndex';
-
-type Heading = { id: string; level: number; text: string };
 
 export default function FullRules() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -366,8 +369,6 @@ export default function FullRules() {
 		localStorage.setItem('fullRules.lastId', activeId);
 	}, [activeId]);
 
-	// No custom hook needed - using native IntersectionObserver
-
 	// Lock background scroll by disabling overflow (preserves current scroll and sticky navbar)
 	useEffect(() => {
 		if (!menuOpen) return;
@@ -479,49 +480,30 @@ export default function FullRules() {
 		return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
 	}, [query, searchIndex]);
 
+	// Convert search results to SearchResult format
+	const searchResults: SearchResult[] = results.map(result => ({
+		id: result.id,
+		title: result.title,
+		preview: result.preview,
+		category: result.category
+	}));
+
 	return (
 		<div className="container layout">
-			<aside className={`toc ${query ? 'searching' : ''}`} ref={tocRef}>
-				<div className="searchbar">
-					<input
-						className="input"
-						placeholder="Search rules..."
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-					{query && (
-						<button 
-							className="search-clear" 
-							onClick={() => setQuery('')}
-							aria-label="Clear search"
-						>
-							×
-						</button>
-					)}
-				</div>
-				{/* Floating search results container */}
-				{query && (
-					<div className="search-results-overlay">
-						<SearchResults results={results} onClear={() => setQuery('')} onItemClick={handleTocClick} />
-					</div>
-				)}
-				<h4>On this page</h4>
-				{headings.map((h) => (
-					<a
-						key={h.id}
-						href={`#${h.id}`}
-						className={getTocItemClasses(h.id)}
-						style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
-						onClick={(e) => {
-							e.preventDefault();
-							handleTocClick(h.id);
-						}}
-					>
-						{h.text}
-					</a>
-				))}
-			</aside>
-			<article className="doc" ref={containerRef}>
+			<TableOfContents
+				ref={tocRef}
+				headings={headings}
+				query={query}
+				onQueryChange={setQuery}
+				searchResults={searchResults}
+				onSearchResultClick={handleTocClick}
+				onHeadingClick={handleTocClick}
+				title="On this page"
+				searchPlaceholder="Search rules..."
+				getItemClasses={getTocItemClasses}
+			/>
+			
+			<DocumentContent ref={containerRef}>
 				{rules.sections.map((s) => (
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
@@ -530,58 +512,40 @@ export default function FullRules() {
 						{renderChildren(s.children, 3)}
 					</section>
 				))}
-			</article>
+			</DocumentContent>
+			
 			{/* Floating TOC toggle button for mobile */}
-			<button className="toc-toggle" onClick={() => setMenuOpen((v) => !v)} aria-expanded={menuOpen}>
-				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-					<path d="M4 19.5V6.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2V19.5l-3-1.5-3 1.5-3-1.5-3 1.5Z"/>
-				</svg>
-				Navigate Rules
-			</button>
-			<div className={`page-menu ${menuOpen ? 'open' : ''} ${query ? 'searching' : ''}`}>
-				<div className="menu-inner" ref={menuRef}>
-					<div className="sticky-header">
-						<div className="accordion-header" onClick={() => setMenuOpen(false)}>
-							<strong>Browse Rules</strong>
-							<span aria-hidden>×</span>
-						</div>
-						<div className="searchbar">
-							<input
-								className="input"
-								placeholder="Search rules..."
-								value={query}
-								onChange={(e) => setQuery(e.target.value)}
-							/>
-							{query && (
-								<button 
-									className="search-clear" 
-									onClick={() => setQuery('')}
-									aria-label="Clear search"
-								>
-									×
-								</button>
-							)}
-						</div>
-					</div>
-					{query && (
-						<div className="search-results-overlay">
-							<SearchResults results={results} onClear={() => setQuery('')} onItemClick={(id) => { handleTocClick(id); setMenuOpen(false); }} />
-						</div>
-					)}
-					{/* Simple TOC list for mobile - no accordion structure */}
-					{headings.map((h) => (
-						<a
-							key={h.id}
-							href={`#${h.id}`}
-							className={getTocItemClasses(h.id)}
-							style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
-							onClick={(e) => { e.preventDefault(); handleTocClick(h.id); setMenuOpen(false); }}
-						>
-							{h.text}
-						</a>
-					))}
-				</div>
-			</div>
+			<TocToggleButton
+				isOpen={menuOpen}
+				onToggle={() => setMenuOpen((v) => !v)}
+				label="Navigate Rules"
+			/>
+			
+			{/* Mobile TOC */}
+			<MobileTableOfContents
+				isOpen={menuOpen}
+				onClose={() => setMenuOpen(false)}
+				query={query}
+				onQueryChange={setQuery}
+				searchResults={searchResults}
+				onSearchResultClick={handleTocClick}
+				onHeadingClick={handleTocClick}
+				title="Browse Rules"
+				searchPlaceholder="Search rules..."
+			>
+				{/* Simple TOC list for mobile - no accordion structure */}
+				{headings.map((h) => (
+					<a
+						key={h.id}
+						href={`#${h.id}`}
+						className={getTocItemClasses(h.id)}
+						style={{ paddingLeft: Math.max(10, (h.level - 2) * 12 + 10) }}
+						onClick={(e) => { e.preventDefault(); handleTocClick(h.id); setMenuOpen(false); }}
+					>
+						{h.text}
+					</a>
+				))}
+			</MobileTableOfContents>
 		</div>
 	);
 }
@@ -705,55 +669,7 @@ function renderChildren(children: any[] | undefined, level: number) {
 	);
 }
 
-function SearchResults({ results, onClear, onItemClick }: { results: { id: string; title: string; preview: string; category: string }[]; onClear: () => void; onItemClick?: (id: string) => void }) {
-	if (!results.length) {
-		return (
-			<div className="accordion-item" style={{ marginBottom: 10 }}>
-				<div className="accordion-header" style={{ cursor: 'default' }}>
-					<strong>Search Results</strong>
-					<span aria-hidden>0</span>
-				</div>
-				<div className="accordion-content">
-					<p style={{ color: 'var(--muted)', margin: '6px 0 0' }}>No matches. Try different terms.</p>
-				</div>
-			</div>
-		);
-	}
-	return (
-		<div className="accordion-item" style={{ marginBottom: 10 }}>
-			<div className="accordion-header" onClick={onClear}>
-				<strong>Search Results ({results.length})</strong>
-				<span aria-hidden>×</span>
-			</div>
-			<div className="accordion-content">
-				{results.map((e) => (
-					<div 
-						key={e.id} 
-						className="search-result-item"
-						style={{ 
-							padding: '8px 0', 
-							borderBottom: '1px solid var(--border)',
-							cursor: 'pointer'
-						}}
-						onClick={onItemClick ? () => onItemClick(e.id) : undefined}
-					>
-						<div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'center' }}>
-							<span style={{ fontWeight: 600 }}>
-								{e.title}
-							</span>
-							<span className="tag">{e.category}</span>
-						</div>
-						{e.preview && (
-							<p style={{ margin: '6px 0 0', color: 'var(--muted)' }}>
-								{e.preview.slice(0, 160)}{e.preview.length > 160 ? '…' : ''}
-							</p>
-						)}
-					</div>
-				))}
-			</div>
-		</div>
-	);
-}
+
 
 
 
