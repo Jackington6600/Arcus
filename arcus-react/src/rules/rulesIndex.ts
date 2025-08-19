@@ -5,7 +5,7 @@ import yaml from 'js-yaml';
 export type RuleChild = {
 	id: string;
 	title: string;
-	body?: string;
+	body?: string | string[];
 	children?: RuleChild[]; // Support for nested children
 };
 

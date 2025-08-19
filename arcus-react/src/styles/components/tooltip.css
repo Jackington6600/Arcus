@@ -44,9 +44,14 @@
 .tooltip-in-down { animation-name: tooltipEnterDown; }
 
 .hint {
-	border-bottom: 1px dashed var(--text-secondary);
+	text-decoration: underline;
+	text-decoration-style: dashed;
+	text-decoration-color: var(--text-secondary);
+	text-underline-offset: 3px;
 	cursor: help;
 	color: var(--text-primary);
+	text-decoration-skip-ink: none;
+	line-height: 1;
 }
 
 .tooltip-bubble strong { 
@@ -65,9 +70,7 @@
 	}
 	
 	.hint {
-		/* Increase touch target size on mobile without breaking layout */
-		padding: 4px 0;
-		/* Use pseudo-element to extend touch area without affecting visual layout */
+		/* Remove padding that was pushing underline down */
 		position: relative;
 	}
 	

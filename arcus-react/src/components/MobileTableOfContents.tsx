@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
 import SearchResults, { SearchResult } from './SearchResults';
 
@@ -29,8 +29,34 @@ export default function MobileTableOfContents({
 	children,
 	className = ""
 }: MobileTableOfContentsProps) {
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	// Close on Escape key
+	useEffect(() => {
+		if (!isOpen) return;
+		const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+		window.addEventListener('keydown', onKey);
+		return () => window.removeEventListener('keydown', onKey);
+	}, [isOpen, onClose]);
+
+	// Close when clicking outside
+	useEffect(() => {
+		if (!isOpen) return;
+		
+		const handleClickOutside = (event: MouseEvent) => {
+			if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+				onClose();
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isOpen, onClose]);
+
 	return (
-		<div className={`page-menu ${isOpen ? 'open' : ''} ${query ? 'searching' : ''} ${className}`}>
+		<div className={`page-menu ${isOpen ? 'open' : ''} ${query ? 'searching' : ''} ${className}`} ref={menuRef}>
 			<div className="menu-inner">
 				<div className="sticky-header">
 					<div className="accordion-header" onClick={onClose}>

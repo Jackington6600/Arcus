@@ -1,8 +1,9 @@
 /* Mobile Menu Component */
 .mobile-menu {
 	position: fixed;
-	inset: 0 0 0 0;
 	top: calc(var(--nav-height) + var(--layout-top-spacing));
+	left: 0;
+	right: 0;
 	bottom: 0;
 	transform: translateY(-8px);
 	opacity: 0;
@@ -28,7 +29,7 @@
 	border-radius: 12px;
 	box-shadow: 0 10px 30px var(--shadow-heavy);
 	margin: 8px auto 16px;
-	max-height: calc(100dvh - var(--nav-height) - var(--layout-top-spacing) - 24px);
+	max-height: calc(100vh - var(--nav-height) - var(--layout-top-spacing) - 24px);
 	overflow: auto;
 }
 

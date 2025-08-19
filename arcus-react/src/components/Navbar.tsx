@@ -36,13 +36,18 @@ export default function Navbar() {
     // Prevent background scroll when mobile menu is open
     useEffect(() => {
         if (!menuOpen) return;
-        const prevHtmlOverflow = document.documentElement.style.overflow;
-        const prevBodyOverflow = document.body.style.overflow;
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
+        
+        // Instead of hiding overflow on body, add a class to the main content
+        // This preserves navbar sticky positioning while preventing content scroll
+        const mainContent = document.querySelector('main') || document.querySelector('.layout') || document.body;
+        if (mainContent) {
+            mainContent.style.overflow = 'hidden';
+        }
+        
         return () => {
-            document.documentElement.style.overflow = prevHtmlOverflow;
-            document.body.style.overflow = prevBodyOverflow;
+            if (mainContent) {
+                mainContent.style.overflow = '';
+            }
         };
     }, [menuOpen]);
 

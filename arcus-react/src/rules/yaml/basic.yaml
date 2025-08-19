@@ -15,25 +15,28 @@ sections:
     children:
       - id: dice-system
         title: Core Dice System
-        summary: "The three types of dice rolls in Arcus: Challenge, Attack, and Resistance. Always 3d6 plus some number of additional dice."
+        summary: "Arcus uses a dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance."
         body: >-
-          The three types of dice rolls in Arcus: Challenge, Attack, and Resistance. Always 3d6 plus some number of additional dice.
+          Arcus uses a dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance.
         children:
           - id: challenge-roll
             title: Challenge Roll
-            summary: "A roll to resolve a challenge or conflict."
-            body: >-
-              A challenge roll is a roll to resolve a challenge or conflict. It is used to determine if a character succeeds at a task, or if they fail.
+            summary: "A roll to resolve a challenging task. 3d6 plus 2 modifiers."
+            body: 
+              - Whenever a player or creature attempts to do something that is challenging (not trivial or impossible), the GM will ask them to roll a challenge roll. The number of dice rolled will always be 3d6 plus additional d6 equal to 2 attributes added together. Every 5 or 6 counts as 1 success. The GM will secretly decide a number of successes required (SR) to succeed, rolling a number successes equal to or greater than the SR succeeds.
+              - The 2 attributes required for the roll are decided by the GM, and they may both be the same attribute. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
           - id: attack-roll
             title: Attack Roll
-            summary: "A roll to resolve an attack or damage."
-            body: >-
-              An attack roll is a roll to resolve an attack or damage. It is used to determine if a character hits an enemy, and how much damage they deal.
+            summary: "A roll to resolve an attack and deal damage. Weapon power plus 2 modifiers."
+            body: 
+              - Whenever a player or creature attempts an attack, they will roll d6 equal to the attack power of the attack. The attack power will depend on the weapon or attack used, but will most commonly be Light, Medium, or Heavy (3, 6, or 9 d6) plus additional d6 equal to 2 attributes added together. Every success (5 or 6 rolled) counts as 1 damage dealt to the target of the attack.
+              - The weapon or attack type will decide what attributes are used for the roll. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
           - id: resistance-roll
             title: Resistance Roll
-            summary: "A roll to resolve a resistance or defense."
-            body: >-
-              A resistance roll is a roll to resolve a resistance or defense. It is used to determine if a character resists an attack or effect.
+            summary: "A roll to resist an incoming negative effect. 3d6 plus one energy type."
+            body:
+              - Whenever a player or creature is inflicted with a negative effect they may roll 3d6 plus additional d6 equal to the number of energy points they have remaining in one of the energy types required. Only 1 success is needed to successfully resist the incoming effect.
+              - The energy type required is determined by the source of the effect, usually an ability description. If there are multiple energy types, the player will always get to decide which energy type they use to resist. If a player inflicts a creature with a negative condition, the player gets to choose which energy type the creature must use to attempt to resist.
         # body: >-
         #   Whenever the GM poses a challenges or conflict, you will roll dice to resolve it. You will always roll 3d6 and 2 attributes will add to the number of d6 rolled. Every 5 or 6 counts as 1 success. The 2 attributes required for the roll are decided by the GM, and they may both be the same attribute.
           

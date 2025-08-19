@@ -9,6 +9,7 @@ import MobileTableOfContents from '@/components/MobileTableOfContents';
 import DocumentContent from '@/components/DocumentContent';
 import TocToggleButton from '@/components/TocToggleButton';
 import { SearchResult } from '@/components/SearchResults';
+import { renderBodyContent } from '@/utils/contentRenderer';
 
 export default function Wiki() {
 	const location = useLocation();
@@ -188,7 +189,7 @@ export default function Wiki() {
 					{children.map((child) => (
 						<div key={child.id} style={{ marginLeft: (level - 2) * 24 }}>
 							<HeadingTag id={child.id}>{child.title}</HeadingTag>
-							<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+							{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
 							{/* Recursively render nested children */}
 							{renderChildren(child.children, level + 1)}
 						</div>
@@ -203,7 +204,9 @@ export default function Wiki() {
 			return (
 				<div>
 					<h1>{section.title}</h1>
-					<p style={{ color: 'var(--muted)' }}>{renderWithWikiLinks(section.summary, navigateToPage)}</p>
+					{section.summary && (
+						<p style={{ color: 'var(--muted)' }}>{renderWithWikiLinks(section.summary, navigateToPage)}</p>
+					)}
 					{renderChildren(section.children, 2)}
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
@@ -253,7 +256,7 @@ export default function Wiki() {
 			return (
 				<div>
 					<HeadingTag>{child.title}</HeadingTag>
-					<p>{renderWithWikiLinks(child.body, navigateToPage)}</p>
+					{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
 					{/* Show breadcrumb navigation */}
 					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
 						<strong>Part of:</strong> <a href={`#${section.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}>{section.title}</a>
@@ -309,7 +312,11 @@ export default function Wiki() {
 		const addSearchEntries = (items: any[], category: string) => {
 			items.forEach((item) => {
 				const title = item.title;
-				const body = item.body || '';
+				let body = item.body || '';
+				// If body is an array, join the items for search indexing
+				if (Array.isArray(body)) {
+					body = body.join(' ');
+				}
 				const haystack = `${title} ${body} ${category}`.toLowerCase();
 				entries.push({ id: item.id, title, preview: body, category, haystack });
 				
@@ -485,14 +492,18 @@ function renderWithTooltips(text?: string) {
 				const segment = split[i];
 				if (!segment) continue;
 				if (regex.test(segment)) {
-					// Lookup summary/body by id for description
-					const rule = findRuleById(id);
-					const desc = rule?.child?.body || rule?.section?.summary || '';
-					next.push(
-						<Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
-							{segment}
-						</Tooltip>
-					);
+					                    // Lookup summary/body by id for description
+                    const rule = findRuleById(id);
+                    let desc = rule?.child?.body || rule?.section?.summary || '';
+                    // If body is an array, join the items for tooltip display
+                    if (Array.isArray(desc)) {
+                        desc = desc.join(' ');
+                    }
+                    next.push(
+                        <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
+                            {segment}
+                        </Tooltip>
+                    );
 				} else {
 					next.push(segment);
 				}

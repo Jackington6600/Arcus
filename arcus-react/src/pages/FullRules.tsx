@@ -9,6 +9,7 @@ import DocumentContent from '@/components/DocumentContent';
 import TocToggleButton from '@/components/TocToggleButton';
 import { SearchResult } from '@/components/SearchResults';
 import type { ClassAbility } from '@/rules/rulesIndex';
+import { renderBodyContent } from '@/utils/contentRenderer';
 
 export default function FullRules() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -411,7 +412,11 @@ export default function FullRules() {
 		const addSearchEntries = (items: any[], category: string) => {
 			items.forEach((item) => {
 				const title = item.title;
-				const body = item.body || '';
+				let body = item.body || '';
+				// If body is an array, join the items for search indexing
+				if (Array.isArray(body)) {
+					body = body.join(' ');
+				}
 				const haystack = `${title} ${body} ${category}`.toLowerCase();
 				entries.push({ id: item.id, title, preview: body, category, haystack });
 				
@@ -507,7 +512,9 @@ export default function FullRules() {
 				{rules.sections.map((s) => (
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
-						<p>{renderWithTooltips(s.summary)}</p>
+						{s.summary && (
+							<p>{renderWithTooltips(s.summary)}</p>
+						)}
 						{renderClassTableIfAny(s)}
 						{renderChildren(s.children, 3)}
 					</section>
@@ -566,7 +573,11 @@ function renderWithTooltips(text?: string) {
                 if (regex.test(segment)) {
                     // Lookup summary/body by id for description
                     const rule = findRuleById(id);
-                    const desc = rule?.child?.body || rule?.section?.summary || '';
+                    let desc = rule?.child?.body || rule?.section?.summary || '';
+                    // If body is an array, join the items for tooltip display
+                    if (Array.isArray(desc)) {
+                        desc = desc.join(' ');
+                    }
                     next.push(
                         <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
                             {segment}
@@ -660,7 +671,7 @@ function renderChildren(children: any[] | undefined, level: number) {
 			{children.map((child) => (
 				<div key={child.id} style={{ marginLeft: (level - 3) * 24 }}>
 					<HeadingTag id={child.id}>{child.title}</HeadingTag>
-					<p>{renderWithTooltips(child.body)}</p>
+					{renderBodyContent(child.body, renderWithTooltips)}
 					{renderClassTableIfAny(child)}
 					{renderChildren(child.children, level + 1)}
 				</div>
