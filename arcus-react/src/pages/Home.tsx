@@ -75,15 +75,15 @@ function ContentBelow() {
 	const blocks = [
 		{
 			title: 'Fast, Tactical Combat',
-			text: 'Every choice matters. Exploit terrain, combine abilities, and outsmart foes with synergies.',
+			text: 'Every choice matters. Use unique powerful abilities, coordinate with allies, and outsmart foes by exploiting weaknesses.',
 		},
 		{
 			title: 'Luminous Fantasy',
-			text: 'Explore soaring spires and radiant storms. Uncover ancient engines humming beneath the world.',
+			text: 'Explore cities protected by soaring spires from radiant elemental storms. Uncover ancient stories across the vibrant world.',
 		},
 		{
 			title: 'Elegant Design',
-			text: 'An RPG designed with elegance and simplicity in mind. Rules are built to fit together and fit the fantasy.',
+			text: 'An RPG designed with elegance and simplicity in mind. Rules are built to fit together, and fit the fantasy.',
 		},
 	];
 
