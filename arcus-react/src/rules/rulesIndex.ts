@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 export type RuleChild = {
 	id: string;
 	title: string;
+	summary?: string;
 	body?: string | string[];
 	children?: RuleChild[]; // Support for nested children
 };
@@ -13,6 +14,7 @@ export type RuleSection = {
 	id: string;
 	title: string;
 	summary?: string;
+	body?: string | string[];
 	children?: RuleChild[];
 };
 
@@ -135,6 +137,7 @@ function load(): RulesIndex {
 					id: s.id,
 					title: s.title,
 					summary: s.summary,
+					body: s.body,
 					children: processChildren(s.children) ?? [],
 				});
 			}
@@ -182,6 +185,7 @@ function processChildren(children: any[] | undefined): RuleChild[] | undefined {
 	return children.map(child => ({
 		id: child.id,
 		title: child.title,
+		summary: child.summary,
 		body: child.body,
 		children: processChildren(child.children), // Recursively process nested children
 	}));

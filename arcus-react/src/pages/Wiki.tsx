@@ -204,9 +204,7 @@ export default function Wiki() {
 			return (
 				<div>
 					<h1>{section.title}</h1>
-					{section.summary && (
-						<p style={{ color: 'var(--muted)' }}>{renderWithWikiLinks(section.summary, navigateToPage)}</p>
-					)}
+					{renderBodyContent(section.body, (text) => renderWithWikiLinks(text, navigateToPage))}
 					{renderChildren(section.children, 2)}
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
@@ -492,18 +490,25 @@ function renderWithTooltips(text?: string) {
 				const segment = split[i];
 				if (!segment) continue;
 				if (regex.test(segment)) {
-					                    // Lookup summary/body by id for description
-                    const rule = findRuleById(id);
-                    let desc = rule?.child?.body || rule?.section?.summary || '';
-                    // If body is an array, join the items for tooltip display
-                    if (Array.isArray(desc)) {
-                        desc = desc.join(' ');
-                    }
-                    next.push(
-                        <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
-                            {segment}
-                        </Tooltip>
-                    );
+					// Lookup description by id, prioritizing child summary, then child body, then section summary
+					const rule = findRuleById(id);
+					let desc = rule?.child?.summary || rule?.child?.body || rule?.section?.summary;
+					
+					// If still no description, show an error message
+					if (!desc) {
+						desc = `Missing tooltip description for "${phrase}". Please add a summary or body field to the corresponding YAML section.`;
+					}
+					
+					// If description is an array, join the items for tooltip display
+					if (Array.isArray(desc)) {
+						desc = desc.join(' ');
+					}
+					
+					next.push(
+						<Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
+							{segment}
+						</Tooltip>
+					);
 				} else {
 					next.push(segment);
 				}

@@ -512,9 +512,7 @@ export default function FullRules() {
 				{rules.sections.map((s) => (
 					<section key={s.id}>
 						<h2 id={s.id}>{s.title}</h2>
-						{s.summary && (
-							<p>{renderWithTooltips(s.summary)}</p>
-						)}
+						{renderBodyContent(s.body, renderWithTooltips)}
 						{renderClassTableIfAny(s)}
 						{renderChildren(s.children, 3)}
 					</section>
@@ -571,13 +569,20 @@ function renderWithTooltips(text?: string) {
                 const segment = split[i];
                 if (!segment) continue;
                 if (regex.test(segment)) {
-                    // Lookup summary/body by id for description
+                    // Lookup description by id, prioritizing child summary, then child body, then section summary
                     const rule = findRuleById(id);
-                    let desc = rule?.child?.body || rule?.section?.summary || '';
-                    // If body is an array, join the items for tooltip display
+                    let desc = rule?.child?.summary || rule?.child?.body || rule?.section?.summary;
+                    
+                    // If still no description, show an error message
+                    if (!desc) {
+                        desc = `Missing tooltip description for "${phrase}". Please add a summary or body field to the corresponding YAML section.`;
+                    }
+                    
+                    // If description is an array, join the items for tooltip display
                     if (Array.isArray(desc)) {
                         desc = desc.join(' ');
                     }
+                    
                     next.push(
                         <Tooltip key={`${id}-${i}-${segment}`} title={phrase} description={desc}>
                             {segment}
