@@ -3,11 +3,9 @@ sections:
     title: Introduction
     summary: >-
       A lightweight TTRPG that focuses on swift gameplay, tactical combat, and simple yet rewarding progression.
-    children:
-      - id: what-is-arcus
-        title: What is Arcus?
-        body: >-
-          A lightweight TTRPG that focuses on swift gameplay, tactical combat, and simple yet rewarding progression.
+    body: 
+      - Arcus is a pen and paper tabletop role playing game (TTRPG). This system is designed for a fantasy adventure setting and draws inspiration from a wide variety of TTRPG, video game, and board game systems to deliver an expressly simple, yet versatile and powerful ruleset. Arcus' unique take on combat and abilities grants players an abundance of choices in fights and in character progression, encourages teamwork, and provides greater tactical depth. 
+      - If you like games such as Divinity Original Sin 2, Baldur's Gate 3, or Gloom/Frosthaven, and wish there was a way to enjoy their fun combat systems within a simple, immersive, and flexible tabletop RPG format - this might be the game for you. If you enjoy Dungeons and Dragons 5e, Pathfinder 2e, or Draw Steel and want something a little more from combat without too much additional complexity or heroic elements - this might be the game for you.
 
   - id: resolution-mechanics
     title: Resolution Mechanics
@@ -15,9 +13,8 @@ sections:
     children:
       - id: dice-system
         title: Core Dice System
-        summary: "Arcus uses a dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance."
         body: >-
-          Arcus uses a dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance.
+          Arcus uses a d6 dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance.
         children:
           - id: challenge-roll
             title: Challenge Roll
@@ -37,20 +34,15 @@ sections:
             body:
               - Whenever a player or creature is inflicted with a negative effect they may roll 3d6 plus additional d6 equal to the number of energy points they have remaining in one of the energy types required. Only 1 success is needed to successfully resist the incoming effect.
               - The energy type required is determined by the source of the effect, usually an ability description. If there are multiple energy types, the player will always get to decide which energy type they use to resist. If a player inflicts a creature with a negative condition, the player gets to choose which energy type the creature must use to attempt to resist.
-        # body: >-
-        #   Whenever the GM poses a challenges or conflict, you will roll dice to resolve it. You will always roll 3d6 and 2 attributes will add to the number of d6 rolled. Every 5 or 6 counts as 1 success. The 2 attributes required for the roll are decided by the GM, and they may both be the same attribute.
-          
-        #   Additional dice may be added to the roll based on skills, advantages, weapon dice etc. Similarly but less commonly, dice will be removed from the roll.
-          
-        #   Very Easy challenges will require at least 1 success to be won, Easy challenges will require 2 successes, Moderate challenges will require 3 successes, Hard challenges will require 4 successes, Very Hard challenges will require 5 successes. Anything harder than this will be less common.
       
       - id: advantage-disadvantage
         title: Advantage and Disadvantage (Adv/DisAdv)
         body: >-
-          Advantage and Disadvantage (Adv/DisAdv) can be added to the roll to add or take away 1, 2, or 3 d6 from the dice in a roll. Adv/DisAdv can negate each other, for example, if you are given 2 Adv and 1 DisAdv due to various circumstances for the roll, this will result in just 1 Adv.
+          Advantage and Disadvantage (Adv/DisAdv) can be applied to the roll to add or remove up to three (3) d6 from the number of dice rolled. Adv/DisAdv can negate each other, for example, if 2 Adv and 1 DisAdv are applied to the roll due to various circumstances for the roll, this will result in just 1 Adv, leading to 1 additional d6.
       
       - id: push-for-success
         title: Push for Success
+        summary: 
         body: >-
           If a roll has failed and requires 2 or fewer additional successes to be won, a character may 'push for success'. When a character pushes for success they succeed the roll instead of failing. The GM (and other players at the table can suggest ideas too) will decide on a minor setback if the roll required 1 additional success, or a major setback if the roll required 2 additional successes. In rare cases the GM might allow a player to push for success when they fail by 3 successes, leading to a critical setback - this will often involve character death.
           
@@ -99,6 +91,7 @@ sections:
       
       - id: energy
         title: Energy
+        summary: FORT, REFL, and WILL. Acts as an HP pool, a resource to spend to use abilities, and determines the ability to resist incoming negative effects.
         body: >-
           Characters will have 3 types of Energy: Fortitude, Reflex, and Will. (FORT, REFL, and WILL).
           

@@ -82,8 +82,8 @@ function ContentBelow() {
 			text: 'Explore soaring spires and radiant storms. Uncover ancient engines humming beneath the world.',
 		},
 		{
-			title: 'Built For Tables',
-			text: 'Readable rules, class tables, and tools that run at the table—online or in person.',
+			title: 'Elegant Design',
+			text: 'An RPG designed with elegance and simplicity in mind. Rules are built to fit together and fit the fantasy.',
 		},
 	];
 
