@@ -37,79 +37,98 @@ sections:
       
       - id: advantage-disadvantage
         title: Advantage and Disadvantage (Adv/DisAdv)
+        summary: A roll with advantage rolls up to 3 additional d6 (+), (++), or (+++). With disadvantage roll up to 3 fewer d6 (-), (--), or (---).
         body: >-
           Advantage and Disadvantage (Adv/DisAdv) can be applied to the roll to add or remove up to three (3) d6 from the number of dice rolled. Adv/DisAdv can negate each other, for example, if 2 Adv and 1 DisAdv are applied to the roll due to various circumstances for the roll, this will result in just 1 Adv, leading to 1 additional d6.
       
       - id: push-for-success
         title: Push for Success
-        summary: 
-        body: >-
-          If a roll has failed and requires 2 or fewer additional successes to be won, a character may 'push for success'. When a character pushes for success they succeed the roll instead of failing. The GM (and other players at the table can suggest ideas too) will decide on a minor setback if the roll required 1 additional success, or a major setback if the roll required 2 additional successes. In rare cases the GM might allow a player to push for success when they fail by 3 successes, leading to a critical setback - this will often involve character death.
+        summary: Automatically succeed a roll where you failed by 1 or 2 successes. Take a minor or major setback as a result.
+        body: 
+          - If a roll has failed and requires 2 or fewer additional successes to be won, a character may 'push for success'. When a character pushes for success they succeed the roll instead of failing. The GM will decide on a minor setback if the roll required 1 additional success, or a major setback if the roll required 2 additional successes. 
+          - In rare cases the GM might allow a player to push for success when they fail by 3 successes, leading to a critical setback - this will often involve character death. A push for success can only be successful if the GM or a player at the table can suggest a reasonable setback.
+        children:
+          - id: minor-setback-examples
+            title: Minor Setback Examples
+            body:
+              - "- Unlocking the door with a lockpick, but making a lot more noise than you'd like when doing so."
+              - "- Pulling a muscle as you make a physical check, reducing your movement speed slightly until the next long rest."
+              - "- Taking a 1 or 2 direct damage from pushing too hard when achieving something."
+              - "- Damaging your armour or weapon slightly, reducing its protection or attack power capabilities by 1."
+              - "- Managing to persuade or deceive someone, but making someone else nearby suspicious leading them to question your actions."
+              - "- Managing to persuade someone, but you end up having to pay them some gold."
           
-          A push for success can only be successful if the GM or a player at the table can suggest a reasonable setback.
-          
-          **Minor Setbacks Examples:**
-          - Unlocking the door with a lockpick, but making a lot more noise than you'd like when doing so
-          - Pulling a muscle as you make a physical check, reducing your movement speed slightly until the next long rest
-          - Taking a 1 or 2 direct damage from pushing too hard when achieving something
-          - Damaging your armour or weapon slightly, reducing its protection or attack power capabilities by 1
-          - Managing to persuade or deceive someone, but making someone else nearby suspicious leading them to question your actions
-          - Managing to persuade someone, but you end up having to pay them some gold
-          
-          **Major Setbacks Examples:**
-          - Taking 5 direct damage from dangerous circumstances while making the check
-          - Directly alerting the guards of your location
-          - Having your movement speed halved until the next long rest
-          - Persuading or deceiving someone, but they learn a secret of your own, which they will likely want to pursue
-          - Casting a powerful spell to solve the problem, but the power disturbs some ancient or otherworldly power that wants to make some demands of the player
-          - Having to go against your deity's will to achieve your goal, you'll need to redeem yourself
+          - id: major-setback-examples
+            title: Major Setback Examples
+            body:
+              - "- Taking 5 direct damage from dangerous circumstances while making the check."
+              - "- Directly alerting the guards of your location."
+              - "- Having your movement speed halved until the next long rest."
+              - "- Persuading or deceiving someone, but they learn a secret of your own, which they will likely want to pursue."
+              - "- Casting a powerful spell to solve the problem, but the power disturbs some ancient or otherworldly power that wants to make some demands of the player."
+              - "- Having to go against your deity's will to achieve your goal, you'll need to redeem yourself."
 
-  - id: characters
-    title: Characters
-    summary: Character creation, attributes, energy systems, and progression mechanics.
+  - id: creating-a-character
+    title: Creating A Character
     children:
       - id: attributes
         title: Attributes
-        body: >-
-          Characters will have 6 attributes: Strength (STR), Constitution (CON), Dexterity (DEX), Perception (PER), Intelligence (INT), and Spirit (SPI).
+        summary: "Characters have 6 attributes: Strength (STR), Constitution (CON), Dexterity (DEX), Perception (PER), Intelligence (INT), and Spirit (SPI)."
+        body:
+          - "Characters have 6 attributes: Strength (STR), Constitution (CON), Dexterity (DEX), Perception (PER), Intelligence (INT), and Spirit (SPI)."
+                    
+          - At level 1, characters have 1 point in each attribute and 6 additional points to assign in any combination of attributes they choose.
           
-          **Strength (STR)** - a character's physical strength and brute force. In addition to strength based skill checks, your strength value (STR) can be used for all melee weapons, and to reduce incoming damage with a shield.
+          - The value of an attribute is equal to the number of additional dice you will roll when making a roll that includes that attribute type. 2 attributes will be added to almost all rolls. The value will also increase your energy in the corresponding type.
+        children: 
+          - id: strength 
+            title: Strength (STR)
+            body: A character's physical strength and brute force. In addition to strength based rolls, your strength value (STR) can be used for all melee weapons, and to reduce incoming damage with a shield.
           
-          **Constitution (CON)** - a combination of the character's overall health and endurance. In addition to constitution based skill checks, your starting Hit Points are equal to 10 + your constitution value (CON).
-          
-          **Dexterity (DEX)** - a character's hand-eye coordination, balance, and overall grace. In addition to dexterity based skill checks, your dexterity value (DEX) can be used for light and medium melee weapons, thrown weapon attacks.
-          
-          **Perception (PER)** - a character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. In addition to perception based skill checks, your perception value (PER) is used for ranged weapons and sometimes your initiative - how early you go in combat.
-          
-          **Intelligence (INT)** - a character's logic and reasoning capabilities as well as memory and knowledge. In addition to intelligence based skill checks, your intelligence value (INT) is used for some spells, and every additional modifier grants you an additional skill at (+) level.
-          
-          **Spirit (SPI)** - a character's mental resolve, confidence and creativity. In addition to spirit based skill checks, your spirit modifier (SPI) is used for some spells, and every additional modifier grants you an additional resistance point of your choice.
-          
-          Values of these attributes will initially range from 0-3, but may go as high as 5 when leveling up. Having 2 in an attribute is average for heroic characters.
-          
-          The value of an attribute is equal to the number of additional dice you will roll when making a roll that includes that attribute type. 2 attributes will be added to almost all rolls.
+          - id: constitution 
+            title: Constitution (CON)
+            body: A combination of the character's overall health and endurance. In addition to constitution based rolls, characters will also have hit points (HP) equal to 6 plus 3 times their CON attribute.
+
+          - id: dexterity 
+            title: Dexterity (DEX)
+            body: A character's hand-eye coordination, balance, and overall grace. In addition to dexterity based rolls, your dexterity value (DEX) can be used for light and medium melee weapons, thrown weapon attacks.
+
+          - id: perception 
+            title: Perception (PER)
+            body: A character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. In addition to perception based rolls, your perception value (PER) is used for ranged weapons and sometimes your initiative - how early you go in combat.
+
+          - id: intelligence 
+            title: Intelligence (INT)
+            body: a character's logic and reasoning capabilities as well as memory and knowledge. In addition to intelligence based rolls, your intelligence value (INT) is used for some spells, and every additional modifier grants you an additional skill at (+) level.
+
+          - id: spirit 
+            title: Spirit (SPI)
+            body: A character's mental resolve, confidence and creativity. In addition to spirit based rolls, your spirit modifier (SPI) is used for some spells.
       
       - id: energy
         title: Energy
         summary: FORT, REFL, and WILL. Acts as an HP pool, a resource to spend to use abilities, and determines the ability to resist incoming negative effects.
-        body: >-
-          Characters will have 3 types of Energy: Fortitude, Reflex, and Will. (FORT, REFL, and WILL).
+        body:
+          - "Characters will have 3 types of Energy: Fortitude, Reflex, and Will. (FORT, REFL, and WILL)."
           
-          Energy is a resource that can be spent by characters to cast more powerful abilities, and can be lost when characters suffer damage that targets those energy types.
+          - Energy is a resource that can be spent by characters to cast more powerful abilities, and can be lost when characters suffer damage that targets those energy types.
           
-          FORT is a sum of STR and CON. REFL is a sum of DEX and PER. WILL is a sum of INT and SPI.
+          - FORT is a sum of STR and CON values. REFL is a sum of DEX and PER values. WILL is a sum of INT and SPI values.
           
-          The values of these Energies will initially range from 0-6 initially, but may go as high as 10 when leveling up. Having 3 in an Energy is about average.
-          
-          Characters will also have hit points (HP) equal to 6 plus 3 times their CON attribute. 2 CON would lead to 6 + 3*2 = 12 HP. HP can be fully regained on a long rest.
+          - Characters will also have hit points (HP) equal to 6 plus 3 times their CON attribute. 2 CON would lead to 6 + 3*2 = 12 HP. HP can be fully regained on a long rest.
       
-      - id: progression
-        title: Progression
-        body: >-
-          Progression will primarily allow characters to gain more abilities from a fluid class system. These abilities will be the core of what makes a character interesting and fun to play in combat.
-          
-          Skills will consist of specific things agreed with your GM that your character is specially trained in (think of jobs or tasks your character might have done so often in their life that they've become proficient). These skills will offer additional dice to roll in addition to your stats. Skills will most commonly allow you to roll 1, 2, or 3 additional dice when the character's skill applies.
-
+      - id: skills
+        title: Skills
+        summary: Apply up to 3 Adv on a roll where a particular skill is applicable to the roll.
+        body: 
+          - Skills will consist of specific things agreed with your GM that your character is specially trained in - think of jobs or tasks your character might have done so often in their life that they've become proficient. These skills apply up to 3 Adv on a roll where your skill is relevant and applicable (decided by the GM).
+          - "There are three degrees of skill:  Proficient (+), Expert (++), and Master (+++)."
+        children:
+          - id: skill-ideas
+            title: Skill ideas
+            body:
+              - "Below is a list of potential skill ideas, but do aim to be more creative when you can:"
+              - Animal Handling, Athletics, Acrobatics, Stealth, Sleight of Hand, Mechanics, Survival, Insight, Investigation, Arcana, Culture, Streetwise, Intimidation, Deception, Persuasion, Performance, Climbing, Rituals, Anatomy, Foraging, Commanding, Hunting, Etiquette, Impersonation, Astrology, Astronomy, Fortune Telling, Music, Religion, Dancing, Tactics, Sailing, Repairs, Bargaining, Politics, Interrogation, Trivia on a Topic, Calligraphy, Clothing, Acting, Cooking, Navigation, Cartography, Surgery, Fishing, Metal, Wood, Stone, Oceans, Mountains, Forests, Jungles, Rivers, Sewers.
   - id: equipment
     title: Equipment
     summary: Weapons, armour, shields, and other gear that characters can use.
