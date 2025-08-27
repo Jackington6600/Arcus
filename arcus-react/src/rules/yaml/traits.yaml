@@ -1,7 +1,56 @@
 trait_groups:
-  - name: "Combat Traits"
-    id: "combat"
-    description: "Traits that enhance combat abilities and martial prowess"
+  - name: "Ancestral Traits"
+    id: "ancestral"
+    description: "These are a collection of traits which are specific to certain species inside of Arcus. These are optional to gain like other traits, but have to make sense for your character. Get GM approval before taking any of these traits, just because they are options does not mean they are suitable for all campaigns."
+    traits:
+      - name: "Long-lived"
+        desc: "You live significantly longer than most. Where most might live 80 years, you could live much longer - such as 300 years. You should discuss with your GM how long and why you have a higher life expectancy."
+        usage: "Passive"
+        requirements: "Suitable Ancestry"
+      
+      - name: "Amphibious"
+        desc: "You may breathe underwater."
+        usage: "Passive"
+        requirements: "Suitable Ancestry"
+      
+      - name: "Poison Glands"
+        desc: "Damage you deal from unarmed attacks may be dealt as poison damage instead."
+        usage: "Passive"
+        requirements: "Suitable Ancestry"
+      
+      - name: "Minimal Sustenance"
+        desc: "You require little to no food and/or water to survive and thrive. For example, a plant creature might gain all the nourishment they need through photosynthesis, rooting themselves in earth with viable nutrients overnight, and a litre or two of water a day."
+        usage: "Passive"
+        requirements: "Suitable Ancestry"
+      
+      - name: "Tiny"
+        desc: "You are incredibly small. This means you can be pushed with ease. Any successful push/pull movement can affect you by up to an additional 10ft - caster's choice. Due to your size, you find it easier to take cover and only suffer 2 fall damage per 5ft instead of the normal 5."
+        usage: "Passive"
+        requirements: "Max size 1ft in the largest dimension"
+      
+      - name: "Small"
+        desc: "You are small. This means you can be pushed with ease. Any successful push/pull movement can affect you by up to an additional 5ft - caster's choice. Due to your size, you find it easier to take cover and only suffer 3 fall damage per 5ft instead of the normal 5."
+        usage: "Passive"
+        requirements: "Max size 3ft in the largest dimension"
+      
+      - name: "Large"
+        desc: "You are large. This makes it harder to move you. The maximum distance of push/pull movement inflicted on you by a creature smaller than you is reduced by 5ft. Due to your size, you find it harder to take cover and suffer 7 fall damage per 5ft instead of the normal 5."
+        usage: "Passive"
+        requirements: "At least 9ft in one dimension"
+      
+      - name: "Giant"
+        desc: "You are giant. This makes it harder to move you. The maximum distance of push/pull movement inflicted on you by a creature smaller than you is reduced by 5ft if the creature pushing you is large, and 10ft if the creature is medium sized or smaller. Due to your size, you find it harder to take cover and suffer 8 fall damage per 5ft instead of the normal 5."
+        usage: "Passive"
+        requirements: "At least 14ft in one dimension"
+      
+      - name: "Undead"
+        desc: "You become weak to soul damage and receive half healing from all sources. You do not die when you are reduced to 0 HP and you instead fall unconscious. You can then only be woken by healing. This healing may partially reconstruct the creature's body if the detached or broken pieces are nearby, however missing limbs don't regrow and if there is major desecration you will not be able to be reanimated."
+        usage: "Passive"
+        requirements: "None"
+
+  - name: "General Traits"
+    id: "general"
+    description: "General traits that provide various benefits and abilities"
     traits:
       - name: "Dual Wield Master"
         desc: "You may remove the -2 to attack rolls made when attacking with a Medium and Light weapon."
@@ -18,15 +67,6 @@ trait_groups:
         usage: "Passive"
         requirements: "None"
       
-      - name: "Mounted Specialist"
-        desc: "Attacks you make while mounted are no longer made with DisAdv (-)."
-        usage: "Passive"
-        requirements: "None"
-  
-  - name: "Movement Traits"
-    id: "movement"
-    description: "Traits that enhance movement and mobility"
-    traits:
       - name: "Remarkable Climber"
         desc: "Your movement speed is not halved when climbing - you instead move at full speed. However, this climbing will still require a skill check in most cases."
         usage: "Passive"
@@ -37,15 +77,11 @@ trait_groups:
         usage: "Passive"
         requirements: "None"
       
-      - name: "Graceful"
-        desc: "You suffer no falling damage up to 25ft. 5 damage if the creature falls 30ft or more. Increases by an additional 5 damage for every 5ft above 30ft. For example 40ft would be 10, 65ft would be 40 etc."
+      - name: "Mounted Specialist"
+        desc: "Attacks you make while mounted are no longer made with DisAdv (-)."
         usage: "Passive"
         requirements: "None"
-  
-  - name: "Social Traits"
-    id: "social"
-    description: "Traits that enhance social interactions and influence"
-    traits:
+      
       - name: "Inspirational (Speaker, Entertainer, Cook)"
         desc: "When you take a short rest and take the Rally action you may give 2 allies resting with you 1 point of inspiration instead of just 1. As always you should describe how you help rally your allies - if your inspiration is particularly good, perhaps your GM will offer inspiration to more of your allies. This point of inspiration can be used at any time to give Adv (+) on a roll of any kind."
         usage: "Once per Short Rest"
@@ -61,6 +97,21 @@ trait_groups:
         usage: "Passive"
         requirements: "None"
       
+      - name: "Camouflage"
+        desc: "You may spend 30 minutes giving yourself and up to 5 allies camouflage that remains effective until your next short or long rest. This grants Adv (+) on all checks to sneak or hide that are affected by vision. This can be done during a short rest."
+        usage: "30 minutes - No Use Limit"
+        requirements: "Master of Disguise or Global Level 5"
+      
+      - name: "Graceful"
+        desc: "You suffer no falling damage up to 25ft. 5 damage if the creature falls 30ft or more. Increases by an additional 5 damage for every 5ft above 30ft. For example 40ft would be 10, 65ft would be 40 etc."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Multiclass Master"
+        desc: "You gain 2 additional attribute points to assign. Cannot be spent increasing any attribute that is already 18 or higher."
+        usage: "Passive"
+        requirements: "3 Levels in a Physical Class and 3 Levels in a Magical Class"
+      
       - name: "Linguist"
         desc: "You learn a new language (can be gained multiple times)."
         usage: "Passive"
@@ -70,24 +121,6 @@ trait_groups:
         desc: "You learn how to play a musical instrument and gain Adv (++) on all skill checks to play this instrument (can be gained multiple times). This also gives you advantage (+) on checks on similar instruments. You can then gain a skill in the same instrument to raise the level of Adv from (++) to (+++)."
         usage: "Passive"
         requirements: "None"
-  
-  - name: "Stealth Traits"
-    id: "stealth"
-    description: "Traits that enhance stealth and subterfuge"
-    traits:
-      - name: "Camouflage"
-        desc: "You may spend 30 minutes giving yourself and up to 5 allies camouflage that remains effective until your next short or long rest. This grants Adv (+) on all checks to sneak or hide that are affected by vision. This can be done during a short rest."
-        usage: "30 minutes - No Use Limit"
-        requirements: "Master of Disguise or Global Level 5"
-  
-  - name: "Utility Traits"
-    id: "utility"
-    description: "Traits that provide general utility and versatility"
-    traits:
-      - name: "Multiclass Master"
-        desc: "You gain 2 additional attribute points to assign. Cannot be spent increasing any attribute that is already 18 or higher."
-        usage: "Passive"
-        requirements: "3 Levels in a Physical Class and 3 Levels in a Magical Class"
       
       - name: "Perceptive"
         desc: "You have very good recall of visual memory and your passive perception is increased by 6."
@@ -113,3 +146,287 @@ trait_groups:
         desc: "If an ally is adjacent to you, you can take cover behind them. If the creature is not an ally, they must be either restrained, incapacitated, paralysed, or unconscious. Normal coverage rules apply, so if a creature is smaller than you or unable to cover you, you cannot take cover behind them."
         usage: "1AP - 3 Uses"
         requirements: "None"
+
+  - name: "Arcane Traits"
+    id: "arcane"
+    description: "Traits that provide arcane magical abilities"
+    traits:
+      - name: "Arcane Light"
+        desc: "You may create a small source of light within 100ft that floats and persists until you create a new arcane light, or you move more than 100ft away from the light. The light spreads roughly 25ft from the arcane light."
+        usage: "0 AP - No Use Limit"
+        requirements: "Arcane Level 1"
+      
+      - name: "Detect Magic"
+        desc: "You may sense areas and vague sources of magic within 15ft. You learn the direction, vague level of power, and which schools of magic they might relate to - Arcane, Elemental, Psionic, Mortality or Nature. GM's discretion as to how specifically these are described."
+        usage: "1 AP - 3 Uses"
+        requirements: "Arcane Level 1"
+      
+      - name: "Spectral Hand"
+        desc: "You may create a spectral hand that can float, move, and mimics your own hand within 25ft. It has an AC of 14, Light HP, no resistance points, a STR value of 2 (-4 modifier), and a base movement speed of 5ft. You can make INT+DEX checks to perform more challenging dexterous actions with the hand using your own modifiers. The hand persists for 6 seconds before disappearing."
+        usage: "1 AP - 3 Uses"
+        requirements: "Arcane Level 3"
+      
+      - name: "Spectral Object"
+        desc: "You may create a spectral object within 5ft that occupies up to a 5*5*5ft cube. This object is solid and takes a form of your desire (e.g. chair, ramp, barricade). You may decide whether the object is moveable or not: if moveable it will weigh around 1kg; if not moveable it will exist solidly floating in space and can support a weight of 200kg before breaking. It has an AC of 6 and Light HP. You can dismiss this at any time for no cost, and it persists till the end of your next long rest."
+        usage: "1 Minute - 3 Uses"
+        requirements: "Arcane Level 3"
+      
+      - name: "Create Sanctuary"
+        desc: "You may take 10 minutes to create a sanctuary around yourself in a 10ft radius which only creatures you choose may enter. Within it maintains a comfortable temperature, a dim source of ambient light, and shields all within from bad weather such as rain wind and snow. Creatures may spend 4 WILL points to force their way into the sanctuary if they have not been permitted entry."
+        usage: "10 Minutes - 1 Use"
+        requirements: "Arcane Level 5"
+      
+      - name: "Identify"
+        desc: "You may touch and identify the specific nature and capability of a magical object or area within 5ft. This might include learning all of the magical properties of an enchanted item or weapon, or learning all of the magical effects that affect the area you are specifically and currently stood in. In very rare cases, some objects or areas may still remain unidentifiable."
+        usage: "3 AP - 3 Uses"
+        requirements: "Arcane Level 5"
+      
+      - name: "Lesser Dispel Magic"
+        desc: "You may dispel the magic properties from a lesser magical item or area of weak magic within 5ft. This might include a lesser magical scroll or potion, a very simple weapon enchantment, a lesser magical trap or rune, or an area cursed or empowered by a weak source of magic. The specific capabilities of this ability will be up to the GM's discretion."
+        usage: "3 AP - 3 Uses"
+        requirements: "Arcane Level 5"
+      
+      - name: "Flight"
+        desc: "You may grant yourself 25ft of flying movement for 2AP. This movement speed is separate from your other movement speed. You may recast this for 2AP each turn after the initial cast without expending more uses of the ability. If you do not recast in the following turn the effect ends and you must spend another use of the ability the next time you use this ability."
+        usage: "2 AP - 3 Uses"
+        requirements: "Arcane Level 10"
+      
+      - name: "Teleportation Symbol"
+        desc: "This is an optional ability that is not used by default in all campaigns. It is not a part of the Arcus lore but GM's may still wish to use it for other campaigns. You may spend an hour creating a magical symbol on the ground that is 10ft in diameter. This symbol will have a unique set of markings to identify it so it can be reused, as the symbol will remain until removed through magical means. It also remains visibly etched into the floor. On completion you may immediately open a gateway to another teleportation symbol by using the target's teleportation symbol's unique markings. The gateway is open for 6 seconds and any number of creatures may pass through it in either direction - so long as they can fit through the 10ft gateway. You may alternatively use this ability to use a preexisting teleportation symbol and open a gateway, skipping the creation step. Using this ability in this way only costs 3 AP (6 seconds) to cast."
+        usage: "1 Hour - 1 Use"
+        requirements: "Arcane Level 10"
+      
+      - name: "Greater Dispel Magic"
+        desc: "This is an optional ability that is not used by default in all campaigns. It is not a part of the Arcus lore but GM's may still wish to use it for other campaigns. You may dispel the magic properties from a greater magical item or area of stronger magic within 5ft. This might include most magical scroll or potion, a more complex weapon enchantment, most magical traps or runes, or most areas cursed or empowered by a stronger source of magic. The specific capabilities of this ability will be up to the GM's discretion."
+        usage: "3 AP - 1 Use"
+        requirements: "Arcane Level 10"
+      
+      - name: "Phase Shift"
+        desc: "You may grant yourself 25ft of special movement for 2AP which can be used to pass through walls, creatures, and other solid objects without harm - you are also immune to attacks of opportunity while using this movement. This movement cannot be broken up and must be used immediately after using the ability."
+        usage: "2 AP - 3 Uses"
+        requirements: "Arcane Level 10"
+
+  - name: "Psionic Traits"
+    id: "psionic"
+    description: "Traits that provide psionic mental abilities"
+    traits:
+      - name: "Charm Person"
+        desc: "You may charm a creature within 50ft to treat you as a close friend for 10 minutes. The target must be currently not aggressive towards you. 2 WILL SR to resist. If they successfully resist the effect the target creature will be aware something tried to control their thoughts, but will not know the source unless you cast the ability right in front of them or they are very knowledgeable in psionic magic."
+        usage: "3 AP - 3 Uses"
+        requirements: "Psionic Level 1"
+      
+      - name: "Minor Illusion"
+        desc: "You may create a small visual and auditory illusion (1ft x 1ft) within 50ft. This illusion cannot be animated. A creature within 25ft can inspect the illusion with a PER+INT check, realising it is an illusion on a roll which is the same as your INT value or higher."
+        usage: "1 AP - No Use Limit"
+        requirements: "Psionic Level 1"
+      
+      - name: "Telepathy"
+        desc: "You gain the ability to communicate telepathically to other creatures within 50ft. They must still understand the language you communicate in. They cannot respond telepathically, only you may communicate to them."
+        usage: "Passive"
+        requirements: "Psionic Level 1"
+      
+      - name: "Telekinesis"
+        desc: "You gain the ability to move small objects (up to 1kg) within 50ft at a rate of 5ft per AP (up to 15ft total movement per use)."
+        usage: "3 AP - 3 Uses"
+        requirements: "Psionic Level 1"
+      
+      - name: "Create Vision"
+        desc: "You may touch a creature to make them see a vivid vision of your choosing. This can persist as long as you remain in contact with the creature. They are free to move away and are aware of the source of the vision."
+        usage: "1 AP - 3 Uses"
+        requirements: "Psionic Level 3"
+      
+      - name: "Detect Thoughts"
+        desc: "You may sense intelligent creatures within 15ft of you as spots of light when you close your eyes. This includes seeing them through walls. This vision persists for 6 seconds. Creatures have to have an intelligence of at least 8 for you to be able to see them, and the more intelligent the creature, the brighter the spots of light."
+        usage: "1 Minute - 1 Use"
+        requirements: "Psionic Level 3"
+      
+      - name: "Disguise Self"
+        desc: "You may create an illusory image around yourself to make yourself appear like another humanoid creature for 10 minutes. Your physical attributes do not change. You may end this effect at any time for no cost. A creature within 25ft can inspect the illusion with a PER+INT check, realising it is an illusion on a roll which is the same as your INT value or higher. You can use this on a an ally within 25ft but the effect will only last 1 minute."
+        usage: "3 AP - 3 Uses"
+        requirements: "Psionic Level 5"
+      
+      - name: "Compel Truth"
+        desc: "You may ask a creature a question and compel them to answer truthfully if they fail to resist. They must still be able to understand the question to be able to answer. The creature may still choose to remain silent if they fail to resist. 2 WILL SR to resist. You will always know if the creature resisted the effect or not. If they successfully resist the effect the target creature will be aware something tried to control their thoughts, but will not know the source unless you cast the ability right in front of them or they are very knowledgeable in psionic magic."
+        usage: "1 AP - 1 Use"
+        requirements: "Psionic Level 5"
+      
+      - name: "Invisibility"
+        desc: "You may become invisible for 10 minutes. You can use this on an ally within 25ft but the effect will only last 1 minute."
+        usage: "3 AP - 3 Uses"
+        requirements: "Psionic Level 5"
+      
+      - name: "Sleep"
+        desc: "You may send a target within 50ft to sleep. They receive the unconscious condition, but if they receive any damage or negative status effect they immediately wake up and are no longer unconscious. This lasts for up to 8 hours (or however long the creature would normally sleep). A creature that cannot sleep is unaffected by this ability. 2 WILL SR to resist. If they successfully resist the effect the target creature will be aware something tried to control their thoughts, but will not know the source unless you cast the ability right in front of them or they are very knowledgeable in psionic magic."
+        usage: "3 AP - 1 Use"
+        requirements: "Psionic Level 5"
+      
+      - name: "Occupy"
+        desc: "You may touch a creature to occupy it's head. You share its senses and can communicate back and forth with it via thoughts. While this is happening are and are paralysed and only slightly aware of your surroundings. You can end this at any time for no cost and it automatically ends if you (not the creature) suffer damage. 2 WILL SR to resist, and a further 1 WILL SR resist check every 5 minutes. This can last up to 1 hour."
+        usage: "3 AP - 1 Use"
+        requirements: "Psionic Level 7"
+      
+      - name: "Insight"
+        desc: "You may select a creature within 25ft to gain insight into their deepest desires. You learn whatever primary motivations they might have - if any. GM's discretion as to how specifically these are described. 2 WILL SR to resist. If they successfully resist the effect the target creature will be aware something tried to control their thoughts, but will not know the source unless you cast the ability right in front of them or they are very knowledgeable in psionic magic."
+        usage: "3 AP - 1 Use"
+        requirements: "Psionic Level 7"
+      
+      - name: "Modify Memory"
+        desc: "You may modify any 10 minutes of memory from a creature from the last week. The change in memory lasts until their next long rest - at which point they do not realise they have been affected. 2 WILL SR to resist. If they successfully resist the effect the target creature will be aware something tried to control their thoughts, but will not know the source unless you cast the ability right in front of them or they are very knowledgeable in psionic magic."
+        usage: "3 AP - 1 Use"
+        requirements: "Psionic Level 10"
+      
+      - name: "Optic Separation"
+        desc: "You may detach your vision from your body, and your mental eye can move up to 25ft including movement through all physical objects and walls. It is partially transparent and glows ever so slightly. A creature within 25ft can make a PER+INT check, spotting the eye on a roll which is the same as your INT value or higher. They will automatically notice it if their passive perception is higher than your INT value and see it in their peripheral vision. You may continue to move this eye for 1 AP on this and subsequent turns without spending additional ability uses. The eye will be dispelled if you are more than 100ft from it at any time."
+        usage: "1 AP - 3 Uses"
+        requirements: "Psionic Level 10"
+      
+      - name: "Memory Walk"
+        desc: "You may touch a creature to walk through it's mind, glimpsing memories of its past. You can direct what you see by asking to recall specific events. These memories may be imperfect, hazy, or nonexistant. You and the creature are paralysed and blind for the duration of this trait. You may end this at any time for no cost. The effect also ends if either of you suffer damage during this effect. 2 WILL SR to resist, and a further 1 WILL SR to resist check every 6 seconds. This can last up to 1 minute."
+        usage: "3 AP - 1 Use"
+        requirements: "Psionic Level 10"
+
+  - name: "Nature Traits"
+    id: "nature"
+    description: "Traits that provide nature and beast-related abilities"
+    traits:
+      - name: "Commune with Nature"
+        desc: "You may take 10 minutes to commune with the nature of the area. Learn about the local wildlife and plantlife - anything that may be of interest. Also learn about some of what the wildlife has witnessed in the last 7 days. GM's discretion as to how specifically these are described."
+        usage: "1 Use"
+        requirements: "Nature Level 1"
+      
+      - name: "Clean Water"
+        desc: "You may convert a cup of muddy, undrinkable water into clean drinking water."
+        usage: "1 AP - No Use Limit"
+        requirements: "Nature Level 1 or Mortality level 1"
+      
+      - name: "Fertility Rites"
+        desc: "You gain the ability to accelerate the growth of small plants, vines and vegetation in areas within 10ft. The longer you spend on the spell, the more significant the changes. Causing a flower to go from seed to bloom takes approximately 10 minutes."
+        usage: "No Use Limit"
+        requirements: "Nature Level 1"
+      
+      - name: "Speak with Animals"
+        desc: "You gain the ability to speak with animals for 10 minutes. The animal's intelligence remains the same, so they may not be able to communicate very effectively. You can use this on an ally within 25ft but the effect will only last 1 minute."
+        usage: "3 AP - 3 Uses"
+        requirements: "Nature Level 1"
+      
+      - name: "Anthropomorphic Beast"
+        desc: "Your Beast Form is more anthropomorphic and can stand on hind legs. While in Beast Form, you can manipulate objects and wield weapons. This still uses your Beast's stats, and you can't wield a weapon which is disproportionate for the beast (e.g. a Tiny Beast Form cannot wield a Medium or Heavy weapon)."
+        usage: "Passive"
+        requirements: "Nature Level 3"
+      
+      - name: "Ridable Beast"
+        desc: "While in Beast Shape, a creature the same size or smaller than you can mount you without causing you any disadvantages. They follow normal mounted combat rules."
+        usage: "Passive"
+        requirements: "Nature Level 3"
+      
+      - name: "Decompose"
+        desc: "You gain the ability to touch and decompose a dead creature, causing it to rot and sprout maggots. The longer you spend on the spell, the more complete the decomposition. You can entirely decompose a body in approximately 5 minutes."
+        usage: "1 AP - No Use Limit"
+        requirements: "Nature Level 3 or Mortality level 3"
+      
+      - name: "Spider Climb"
+        desc: "you may grant any number of allies within 25ft the ability to climb at full speed with advantage (+) on their skill check. This lasts 1 minute."
+        usage: "3 AP - 3 Uses"
+        requirements: "Nature Level 5"
+      
+      - name: "Webbed Feet"
+        desc: "You may grant any number of allies within 25ft the ability to swim at full speed with advantage (+) on their skill check. This lasts 1 minute."
+        usage: "3 AP - 3 Uses"
+        requirements: "Nature Level 5"
+
+  - name: "Mortality Traits"
+    id: "mortality"
+    description: "Traits that provide mortality and death-related abilities"
+    traits:
+      - name: "Mind Over Soul"
+        desc: "You may use INT instead of SPI for all Mortality abilities."
+        usage: "Passive"
+        requirements: "Mortality Level 1"
+      
+      - name: "Clean Water"
+        desc: "You may convert a cup of muddy, undrinkable water into clean drinking water."
+        usage: "1 AP - No Use Limit"
+        requirements: "Nature Level 1 or Mortality level 1"
+      
+      - name: "Decompose"
+        desc: "You gain the ability to touch and decompose a dead creature, causing it to rot and sprout maggots. The longer you spend on the spell, the more complete the decomposition. You can entirely decompose a body in approximately 5 minutes."
+        usage: "1 AP - No Use Limit"
+        requirements: "Nature Level 3 or Mortality level 3"
+      
+      - name: "Detect Life"
+        desc: "You may sense living creatures within 10ft of you as spots of soul energy when you close your eyes The larger the creature, the larger and brighter the the spots are. This includes seeing them through walls. This vision persists for 6 seconds."
+        usage: "1 Minute - 1 Use"
+        requirements: "Mortality Level 3"
+      
+      - name: "Speak with Dead"
+        desc: "You may talk to a single dead creature within 25ft for up to 10 minutes. The creature's intelligence remains the same, and the amount of time they've been dead will cause their memory to decay and reduce their ability to communicate effectively. They must still be able to understand the language you speak to them."
+        usage: "3 AP - 3 Uses"
+        requirements: "Mortality Level 5"
+      
+      - name: "True Resurrection"
+        desc: "You may select an ally within 25ft that has died in the past hour and bring it back to life. You choose how much HP to give it by spending from your own current pool of HP, and this healing may partially reconstruct the creature's body if the detached or broken pieces are nearby, however missing limbs don't regrow and if there is major desecration you will not be able to be reanimated. The creature has DisAdv (---) on all of it's rolls until it takes a long rest."
+        usage: "3 AP - 1 Use"
+        requirements: "Mortality Level 10"
+      
+      - name: "True Necromancy"
+        desc: "You may select a creature within 25ft that has died at any time and bring it back as an undead. You choose how much HP to give it by spending from your own current pool of HP, and this healing may partially reconstruct the creature's body if the detached or broken pieces are nearby, however missing limbs don't regrow and if there is major desecration you will not be able to be reanimated. The creature has DisAdv (---) on all of it's rolls until it takes a long rest. The creature also gains the Undead trait permanently."
+        usage: "3 AP - 1 Use"
+        requirements: "Mortality Level 10"
+
+  - name: "Elemental Traits"
+    id: "elemental"
+    description: "Traits that provide elemental control abilities"
+    traits:
+      - name: "Frost Walker"
+        desc: "You may turn water to ice that is strong enough to walk over. This can be used to freeze any water that you touch. You can convert approximately 5ft cubed of water into ice per 3 AP spent. This ice will naturally melt after you no longer touch it based on the surrounding temperature."
+        usage: "2 AP - No Use Limit"
+        requirements: "Elemental Level 1"
+      
+      - name: "Shape Element"
+        desc: "You may control a small amount of an element (water, fire, air, electricity) to move and take a form of your will within 25ft. Think fire dancing in your palm, smoke rings, or puddles avoiding your foot."
+        usage: "1 AP - No Use Limit"
+        requirements: "Elemental Level 1"
+      
+      - name: "Control Weather"
+        desc: "You may summon localised weather, such as making it rain or sunny on command. The weather reverts to normal after 10 minutes. This weather cannot be extreme or harmful."
+        usage: "3 AP - 1 Use"
+        requirements: "Elemental Level 3"
+      
+      - name: "Unnatural Wind"
+        desc: "You may create a strong wind in any direction in an area within 25ft. This has a limited capability to push objects, up to around 1kg."
+        usage: "3 AP - 3 Uses"
+        requirements: "Elemental Level 3"
+      
+      - name: "Elemental Weapons"
+        desc: "You may wield a weapon made out of the elements, either by summoning a new weapon or coating an existing weapon with the elemental of your choice for 1AP. This causes them to deal either fire, frost, or lightning damage instead of the weapon's normal damage type. You can only select one type of damage when taking this trait. These are still wielded using the modifiers (STR or DEX) of their physical counterparts. You can gain this trait multiple times to unlock the other types of damage. You can dismiss this at any time for no cost, and the elemental effect ends when you let go of the weapon, rest, are silenced or unconscious."
+        usage: "1 AP - No Use Limit"
+        requirements: "Elemental Level 3"
+
+  - name: "Engineer Traits"
+    id: "engineer"
+    description: "Traits that provide engineering and mechanical abilities"
+    traits:
+      - name: "Better sights"
+        desc: "You can use your INT instead of PER when using ranged weapons such as a bow or a crossbow."
+        usage: "Passive"
+        requirements: "Engineer Level 1"
+      
+      - name: "Repair"
+        desc: "You may repair a damaged non magical object. You can repair approximately 1 cubic foot of material per minute of using this ability, though this will be longer if the item/material is more complex, and you will require the physical materials and tools necessary to repair the object."
+        usage: "3 AP - No Use Limit"
+        requirements: "Engineer Level 1"
+      
+      - name: "Alarm"
+        desc: "You may place a 15ft long tripwire between 2 tiles. When this wire is touched without being disarmed, you are aware it has been set off and the size of the creature/object which triggered it. You may also have the tripwire then create a loud noise at the location of the tripwire. This will wake you up if it occurs during a long rest, and it persists until you deconstruct them, they are triggered, or until the end of a long rest. The tripwire can be spotted by a creature with a passive perception value or a PER+PER roll greater than your INT value. It can also be disarmed by a creature with an INT+DEX roll greater than your INT value."
+        usage: "1 AP - 3 Uses"
+        requirements: "Engineer Level 1"
+      
+      - name: "Windup Toy"
+        desc: "You may place a 0.5ft tall wind up toy that moves forward up to 30ft, creating a simple noise of your choice. If you recover your toy, you can reuse it without having to make another over a long rest."
+        usage: "1 AP - 1 Use (Recoverable)"
+        requirements: "Engineer Level 1"
+      
+      - name: "Mechanical Modification"
+        desc: "You may slightly modify or increase the efficiency of a mechanical object permanently. Such as modifying a lock to make it pick resistant or not work with the original key, or spend some time increasing the efficiency of a lumber mill. This doesn't work on the engineer's own constructs, as they are already at the best of their ability."
+        usage: "1 Minute - 3 Uses"
+        requirements: "Engineer Level 3"
