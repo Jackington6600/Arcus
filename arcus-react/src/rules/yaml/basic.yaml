@@ -121,14 +121,19 @@ sections:
         title: Skills
         summary: Apply up to 3 Adv on a roll where a particular skill is applicable to the roll.
         body: 
-          - Skills will consist of specific things agreed with your GM that your character is specially trained in - think of jobs or tasks your character might have done so often in their life that they've become proficient. These skills apply up to 3 Adv on a roll where your skill is relevant and applicable (decided by the GM).
-          - "There are three degrees of skill:  Proficient (+), Expert (++), and Master (+++)."
+          - Skills are specific things that your character is specially trained in - think of jobs or tasks your character might have done so often in their life that they've become proficient. These skills apply up to 3 Adv on a roll where your skill is relevant and applicable (decided by the GM).
+          - "There are three degrees of skill:  Proficient (+), Expert (++), and Master (+++). At level 1 you are Proficient in 3 skills of your choice. These skills should be discussed with your GM, as they should not be too generic or specific. Don't spend too much time worrying about this, they can always be adjusted later in play."
         children:
           - id: skill-ideas
             title: Skill ideas
             body:
               - "Below is a list of potential skill ideas, but do aim to be more creative when you can:"
               - Animal Handling, Athletics, Acrobatics, Stealth, Sleight of Hand, Mechanics, Survival, Insight, Investigation, Arcana, Culture, Streetwise, Intimidation, Deception, Persuasion, Performance, Climbing, Rituals, Anatomy, Foraging, Commanding, Hunting, Etiquette, Impersonation, Astrology, Astronomy, Fortune Telling, Music, Religion, Dancing, Tactics, Sailing, Repairs, Bargaining, Politics, Interrogation, Trivia on a Topic, Calligraphy, Clothing, Acting, Cooking, Navigation, Cartography, Surgery, Fishing, Metal, Wood, Stone, Oceans, Mountains, Forests, Jungles, Rivers, Sewers.
+      - id: traits
+        title: Traits
+        summary: Non-combat abilities for adding utility and flavour to a character's ancestry and talents.
+        body: 
+          - 
   - id: equipment
     title: Equipment
     summary: Weapons, armour, shields, and other gear that characters can use.
