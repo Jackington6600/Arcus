@@ -1,0 +1,115 @@
+trait_groups:
+  - name: "Combat Traits"
+    id: "combat"
+    description: "Traits that enhance combat abilities and martial prowess"
+    traits:
+      - name: "Dual Wield Master"
+        desc: "You may remove the -2 to attack rolls made when attacking with a Medium and Light weapon."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Sparring Master"
+        desc: "You gain a +2 bonus to attack rolls made when attacking with a 1 handed weapon and an empty off-hand."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Unarmed Combat Master"
+        desc: "You can add your modifier to damage on unarmed attacks."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Mounted Specialist"
+        desc: "Attacks you make while mounted are no longer made with DisAdv (-)."
+        usage: "Passive"
+        requirements: "None"
+  
+  - name: "Movement Traits"
+    id: "movement"
+    description: "Traits that enhance movement and mobility"
+    traits:
+      - name: "Remarkable Climber"
+        desc: "Your movement speed is not halved when climbing - you instead move at full speed. However, this climbing will still require a skill check in most cases."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Remarkable Swimmer"
+        desc: "Your movement speed is not halved when swimming - you instead move at full speed. However, this swimming will still require a skill check in some cases."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Graceful"
+        desc: "You suffer no falling damage up to 25ft. 5 damage if the creature falls 30ft or more. Increases by an additional 5 damage for every 5ft above 30ft. For example 40ft would be 10, 65ft would be 40 etc."
+        usage: "Passive"
+        requirements: "None"
+  
+  - name: "Social Traits"
+    id: "social"
+    description: "Traits that enhance social interactions and influence"
+    traits:
+      - name: "Inspirational (Speaker, Entertainer, Cook)"
+        desc: "When you take a short rest and take the Rally action you may give 2 allies resting with you 1 point of inspiration instead of just 1. As always you should describe how you help rally your allies - if your inspiration is particularly good, perhaps your GM will offer inspiration to more of your allies. This point of inspiration can be used at any time to give Adv (+) on a roll of any kind."
+        usage: "Once per Short Rest"
+        requirements: "None"
+      
+      - name: "Master of Disguise"
+        desc: "You may spend 30 minutes with the relevant necessary materials and equipment disguising yourself as another person (within reason). This can be done during a short rest. You can also apply a disguise to an ally."
+        usage: "30 minutes - No Use Limit"
+        requirements: "None"
+      
+      - name: "Mimicry"
+        desc: "You gain the ability to mimic sounds, voices and creatures almost perfectly with your voice. You must hear a sound before it can be replicated accurately, and to mimic a voice you must hear the voice in conversation for at least a minute - up to GM's discretion."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Linguist"
+        desc: "You learn a new language (can be gained multiple times)."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Musician"
+        desc: "You learn how to play a musical instrument and gain Adv (++) on all skill checks to play this instrument (can be gained multiple times). This also gives you advantage (+) on checks on similar instruments. You can then gain a skill in the same instrument to raise the level of Adv from (++) to (+++)."
+        usage: "Passive"
+        requirements: "None"
+  
+  - name: "Stealth Traits"
+    id: "stealth"
+    description: "Traits that enhance stealth and subterfuge"
+    traits:
+      - name: "Camouflage"
+        desc: "You may spend 30 minutes giving yourself and up to 5 allies camouflage that remains effective until your next short or long rest. This grants Adv (+) on all checks to sneak or hide that are affected by vision. This can be done during a short rest."
+        usage: "30 minutes - No Use Limit"
+        requirements: "Master of Disguise or Global Level 5"
+  
+  - name: "Utility Traits"
+    id: "utility"
+    description: "Traits that provide general utility and versatility"
+    traits:
+      - name: "Multiclass Master"
+        desc: "You gain 2 additional attribute points to assign. Cannot be spent increasing any attribute that is already 18 or higher."
+        usage: "Passive"
+        requirements: "3 Levels in a Physical Class and 3 Levels in a Magical Class"
+      
+      - name: "Perceptive"
+        desc: "You have very good recall of visual memory and your passive perception is increased by 6."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Field Medic"
+        desc: "You gain a new action for short resting called Recuperate: You may heal an ally for a quarter of your max HP (max HP/4) rounded down."
+        usage: "Once per Short Rest"
+        requirements: "None"
+      
+      - name: "Test for Poison"
+        desc: "You may check food, drink, and affected creatures for signs of poisons. This tells you what poison has been used and what the cure might be."
+        usage: "3AP - 3 Uses"
+        requirements: "Global Level 3 or Nature Level 1"
+      
+      - name: "Grit"
+        desc: "When spending resistance points, you may instead choose to sacrifice 3HP instead of each resistance point."
+        usage: "Passive"
+        requirements: "None"
+      
+      - name: "Cowardice"
+        desc: "If an ally is adjacent to you, you can take cover behind them. If the creature is not an ally, they must be either restrained, incapacitated, paralysed, or unconscious. Normal coverage rules apply, so if a creature is smaller than you or unable to cover you, you cannot take cover behind them."
+        usage: "1AP - 3 Uses"
+        requirements: "None"

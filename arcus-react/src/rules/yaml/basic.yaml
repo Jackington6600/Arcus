@@ -133,7 +133,7 @@ sections:
         title: Traits
         summary: Non-combat abilities for adding utility and flavour to a character's ancestry and talents.
         body: 
-          - 
+          - Traits are special abilities that provide utility and flavor to your character's background and talents.
   - id: equipment
     title: Equipment
     summary: Weapons, armour, shields, and other gear that characters can use.

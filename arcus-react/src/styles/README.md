@@ -18,7 +18,7 @@ styles/
 │   ├── search.css           # Search components and results
 │   ├── mobile-toc.css       # Mobile TOC and page menu
 │   ├── document.css         # Document content styling
-│   ├── class-table.css      # Class table component
+│   ├── table.css            # Generic table component
 │   ├── tooltip.css          # Tooltip component
 │   ├── accordion.css        # Accordion component
 │   └── disclaimer.css       # Disclaimer component

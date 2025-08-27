@@ -15,21 +15,46 @@ export function renderBodyContent(
 ): React.ReactNode {
   if (!body) return null;
   
+  // Handle case where body might be an object or other unexpected type
+  if (typeof body !== 'string' && !Array.isArray(body)) {
+    console.warn('Unexpected body type:', body);
+    return null;
+  }
+  
   // If body is an array, render each item as a separate paragraph
   if (Array.isArray(body)) {
     return (
       <React.Fragment>
-        {body.map((item, index) => (
-          <p key={index} style={{ marginBottom: '1em' }}>
-            {renderContent(item)}
-          </p>
-        ))}
+        {body.map((item, index) => {
+          // Handle case where item might be an object or invalid type
+          if (typeof item !== 'string') {
+            console.warn('Invalid body item type:', item);
+            return null;
+          }
+          
+          // Skip empty strings
+          if (!item.trim()) {
+            return null;
+          }
+          
+          return (
+            <p key={index} style={{ marginBottom: '1em' }}>
+              {renderContent(item)}
+            </p>
+          );
+        })}
       </React.Fragment>
     );
   }
   
   // If body is a string, render as a single paragraph
-  return <p>{renderContent(body)}</p>;
+  if (typeof body === 'string') {
+    return <p>{renderContent(body)}</p>;
+  }
+  
+  // Handle unexpected types gracefully
+  console.warn('Unexpected body type:', body);
+  return null;
 }
 
 /**
@@ -46,19 +71,44 @@ export function renderBodyContentRaw(
 ): React.ReactNode {
   if (!body) return null;
   
+  // Handle case where body might be an object or other unexpected type
+  if (typeof body !== 'string' && !Array.isArray(body)) {
+    console.warn('Unexpected body type:', body);
+    return null;
+  }
+  
   // If body is an array, render each item separately
   if (Array.isArray(body)) {
     return (
       <React.Fragment>
-        {body.map((item, index) => (
-          <React.Fragment key={index}>
-            {renderContent(item)}
-          </React.Fragment>
-        ))}
+        {body.map((item, index) => {
+          // Handle case where item might be an object or invalid type
+          if (typeof item !== 'string') {
+            console.warn('Invalid body item type:', item);
+            return null;
+          }
+          
+          // Skip empty strings
+          if (!item.trim()) {
+            return null;
+          }
+          
+          return (
+            <React.Fragment key={index}>
+              {renderContent(item)}
+            </React.Fragment>
+          );
+        })}
       </React.Fragment>
     );
   }
   
   // If body is a string, render as-is
-  return renderContent(body);
+  if (typeof body === 'string') {
+    return renderContent(body);
+  }
+  
+  // Handle unexpected types gracefully
+  console.warn('Unexpected body type:', body);
+  return null;
 }

@@ -1,5 +1,6 @@
 import classesYaml from './yaml/classes.yaml?url';
 import basicYaml from './yaml/basic.yaml?url';
+import traitsYaml from './yaml/traits.yaml?url';
 import yaml from 'js-yaml';
 
 export type RuleChild = {
@@ -18,9 +19,24 @@ export type RuleSection = {
 	children?: RuleChild[];
 };
 
+export type TraitInfo = {
+	name: string;
+	desc: string;
+	usage: string;
+	requirements: string;
+};
+
+export type TraitGroup = {
+	name: string;
+	id: string;
+	description: string;
+	traits: TraitInfo[];
+};
+
 export type RulesIndex = {
     sections: RuleSection[];
     classes: ClassesIndex;
+    traitGroups: TraitGroup[];
 };
 
 // Map phrases to rule ids for auto-tooltips
@@ -123,12 +139,13 @@ function fetchYamlText(url: string): string {
 
 function load(): RulesIndex {
 	const docs: any[] = [];
-	for (const url of [basicYaml, classesYaml]) {
+	for (const url of [basicYaml, classesYaml, traitsYaml]) {
 		const text = fetchYamlText(url);
 		docs.push(yaml.load(text));
 	}
     const sections: RuleSection[] = [];
     const classes: ClassesIndex = {};
+    const traitGroups: TraitGroup[] = [];
 	for (const doc of docs) {
 		if (!doc) continue;
 		if (Array.isArray(doc.sections)) {
@@ -174,8 +191,25 @@ function load(): RulesIndex {
                 classes[key] = info;
             }
         }
+        if (doc.trait_groups && Array.isArray(doc.trait_groups)) {
+            for (const group of doc.trait_groups) {
+                if (!group) continue;
+                const traitGroup: TraitGroup = {
+                    name: group.name ?? '',
+                    id: group.id ?? '',
+                    description: group.description ?? '',
+                    traits: Array.isArray(group.traits) ? group.traits.map((trait: any) => ({
+                        name: trait.name ?? '',
+                        desc: trait.desc ?? '',
+                        usage: trait.usage ?? '',
+                        requirements: trait.requirements ?? '',
+                    })) : [],
+                };
+                traitGroups.push(traitGroup);
+            }
+        }
 	}
-    return { sections, classes };
+    return { sections, classes, traitGroups };
 }
 
 // Helper function to recursively process children and nested children

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
-import ClassTable, { AbilityRow } from '@/pages/components/ClassTable';
+import Table, { createClassTableColumns, createTraitsTableColumns, AbilityRow, TraitRow, TraitGroup, renderTraitGroupTable } from '@/components/Table';
 import TableOfContents, { Heading } from '@/components/TableOfContents';
 import MobileTableOfContents from '@/components/MobileTableOfContents';
 import DocumentContent from '@/components/DocumentContent';
@@ -474,6 +474,23 @@ export default function FullRules() {
 				});
 			}
 		});
+		
+		// Add traits to search index
+		if (rules.traitGroups && Array.isArray(rules.traitGroups)) {
+			rules.traitGroups.forEach((group) => {
+				group.traits.forEach((trait) => {
+					const haystack = `${trait.name} ${trait.desc} ${trait.usage} ${trait.requirements} ${group.name} trait`.toLowerCase();
+					entries.push({ 
+						id: `trait-${group.id}-${trait.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, 
+						title: trait.name, 
+						preview: trait.desc, 
+						category: group.name, 
+						haystack: haystack 
+					});
+				});
+			});
+		}
+		
 		return entries;
 	}, []);
 
@@ -514,6 +531,7 @@ export default function FullRules() {
 						<h2 id={s.id}>{s.title}</h2>
 						{renderBodyContent(s.body, renderWithTooltips)}
 						{renderClassTableIfAny(s)}
+						{renderTraitsTableIfAny(s)}
 						{renderChildren(s.children, 3)}
 					</section>
 				))}
@@ -654,14 +672,30 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 				return (
 					<div key={key}>
 						<h3 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h3>
-						<ClassTable 
+						<Table 
 							title={info.name} 
 							rows={rows} 
-							getNameHref={(row) => `#ability-${key}-${row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+							columns={createClassTableColumns((row) => `#ability-${key}-${row.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`)}
 						/>
 					</div>
 				);
 			})}
+		</div>
+	);
+}
+
+function renderTraitsTableIfAny(section: { id: string; title: string }) {
+	const isTraitsSection = /traits/i.test(section.title) || section.id === 'traits';
+	if (!isTraitsSection) return null;
+	
+	return (
+		<div style={{ marginTop: 16 }}>
+			{/* Render each trait group as a separate table */}
+			{rules.traitGroups && rules.traitGroups.map((group) => (
+				<div key={group.id} style={{ marginBottom: 24 }}>
+					{renderTraitGroupTable(group)}
+				</div>
+			))}
 		</div>
 	);
 }
@@ -678,6 +712,7 @@ function renderChildren(children: any[] | undefined, level: number) {
 					<HeadingTag id={child.id}>{child.title}</HeadingTag>
 					{renderBodyContent(child.body, renderWithTooltips)}
 					{renderClassTableIfAny(child)}
+					{renderTraitsTableIfAny(child)}
 					{renderChildren(child.children, level + 1)}
 				</div>
 			))}

@@ -30,12 +30,12 @@
 		margin-bottom: 0;
 	}
 	
-	.class-table {
+	.generic-table {
 		padding: 0;
 		overflow: visible;
 	}
 	
-	.class-table table {
+	.generic-table table {
 		overflow: visible;
 	}
 }

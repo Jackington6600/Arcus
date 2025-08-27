@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
-import ClassTable from '@/pages/components/ClassTable';
+import Table, { createClassTableColumns, createTraitsTableColumns, TraitRow, TraitGroup, renderTraitGroupTable } from '@/components/Table';
 import WikiTableOfContents, { WikiHeading } from '@/components/WikiTableOfContents';
 import MobileTableOfContents from '@/components/MobileTableOfContents';
 import DocumentContent from '@/components/DocumentContent';
@@ -192,6 +192,7 @@ export default function Wiki() {
 							{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
 							{/* Recursively render nested children */}
 							{renderChildren(child.children, level + 1)}
+							{renderTraitsTableIfAny(child)}
 						</div>
 					))}
 				</>
@@ -208,6 +209,7 @@ export default function Wiki() {
 					{renderChildren(section.children, 2)}
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
+					{renderTraitsTableIfAny(section)}
 				</div>
 			);
 		}
@@ -275,14 +277,18 @@ export default function Wiki() {
 							<strong>Character Class</strong>
 						</div>
 						{/* Show only this class's table */}
-						<ClassTable title={info.name} rows={(info.abilities || []).map((a) => ({
-							level: a.level,
-							name: a.name,
-							description: a.description || [],
-							target: a.target,
-							apCost: a.apCost,
-							tags: a.tags,
-						}))} />
+						<Table 
+							title={info.name} 
+							rows={(info.abilities || []).map((a) => ({
+								level: a.level,
+								name: a.name,
+								description: a.description || [],
+								target: a.target,
+								apCost: a.apCost,
+								tags: a.tags,
+							}))} 
+							columns={createClassTableColumns()}
+						/>
 						{/* Add navigation back to classes section */}
 						<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
 							<strong>Back to:</strong> <a href={`#classes`} onClick={(e) => { e.preventDefault(); navigateToPage('classes'); }}>Character Classes</a>
@@ -353,6 +359,22 @@ export default function Wiki() {
 				haystack: `${info?.name || key} character class`.toLowerCase() 
 			});
 		});
+		
+		// Add traits to search index
+		if (rules.traitGroups && Array.isArray(rules.traitGroups)) {
+			rules.traitGroups.forEach((group) => {
+				group.traits.forEach((trait) => {
+					const haystack = `${trait.name} ${trait.desc} ${trait.usage} ${trait.requirements} ${group.name} trait`.toLowerCase();
+					entries.push({ 
+						id: `trait-${group.id}-${trait.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, 
+						title: trait.name, 
+						preview: trait.desc, 
+						category: group.name, 
+						haystack: haystack 
+					});
+				});
+			});
+		}
 		
 		return entries;
 	}, []);
@@ -680,7 +702,7 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 	const isClassSection = /character classes/i.test(section.title) || section.id === 'classes';
 	if (!isClassSection) return null;
 	// Map each class in rules.classes to its own table
-	const classKeys = Object.keys((rules as any).classes || {});
+	const classKeys = Object.keys(rules.classes || {});
 	if (!classKeys.length) return null;
 	return (
 		<div style={{ display: 'grid', gap: 16 }}>
@@ -699,10 +721,26 @@ function renderClassTableIfAny(section: { id: string; title: string }) {
 				return (
 					<div key={key}>
 						<h2 id={`class-${key}`} style={{ marginTop: 0 }}>{info.name}</h2>
-						<ClassTable title={info.name} rows={rows} />
+						<Table title={info.name} rows={rows} columns={createClassTableColumns()} />
 					</div>
 				);
 			})}
+		</div>
+	);
+}
+
+function renderTraitsTableIfAny(section: { id: string; title: string }) {
+	const isTraitsSection = /traits/i.test(section.title) || section.id === 'traits';
+	if (!isTraitsSection) return null;
+	
+	return (
+		<div style={{ marginTop: 16 }}>
+			{/* Render each trait group as a separate table */}
+			{rules.traitGroups && rules.traitGroups.map((group) => (
+				<div key={group.id} style={{ marginBottom: 24 }}>
+					{renderTraitGroupTable(group)}
+				</div>
+			))}
 		</div>
 	);
 }
