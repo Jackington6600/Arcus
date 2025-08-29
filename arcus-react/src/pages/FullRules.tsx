@@ -51,6 +51,13 @@ export default function FullRules() {
         const addHeadings = (items: any[], level: number) => {
             items.forEach((item) => {
                 hs.push({ id: item.id, level, text: item.title });
+                // If this child is the Traits page, also add trait group headings
+                if (/traits/i.test(item.title) || item.id === 'traits') {
+                    const traitGroups = (rules as any).traitGroups || [];
+                    traitGroups.forEach((group: { id: string; name: string }) => {
+                        hs.push({ id: `trait-group-${group.id}`, level, text: group.name });
+                    });
+                }
                 if (item.children && Array.isArray(item.children)) {
                     addHeadings(item.children, level + 1);
                 }
@@ -70,6 +77,14 @@ export default function FullRules() {
                 classKeys.forEach((key) => {
                     const info = (rules as any).classes[key] as { name: string };
                     hs.push({ id: `class-${key}`, level: 3, text: info?.name || key });
+                });
+            }
+            // Add trait group headings under the Traits section
+            const isTraitsSection = /traits/i.test(section.title) || section.id === 'traits';
+            if (isTraitsSection) {
+                const traitGroups = (rules as any).traitGroups || [];
+                traitGroups.forEach((group: { id: string; name: string }) => {
+                    hs.push({ id: `trait-group-${group.id}`, level: 3, text: group.name });
                 });
             }
         });
@@ -97,6 +112,12 @@ export default function FullRules() {
 				const classKeys = Object.keys((rules as any).classes || {});
 				const hasActiveClass = classKeys.some(key => `class-${key}` === activeId);
 				if (hasActiveClass) return true;
+			}
+			// Check for trait group headings if this is the traits section
+			if (/traits/i.test(section.title) || section.id === 'traits') {
+				const traitGroups = ((rules as any).traitGroups || []) as { id: string }[];
+				const hasActiveTraitGroup = traitGroups.some(g => `trait-group-${g.id}` === activeId);
+				if (hasActiveTraitGroup) return true;
 			}
 			
 			return false;
@@ -156,6 +177,12 @@ export default function FullRules() {
 				const classKeys = Object.keys((rules as any).classes || {});
 				const hasActiveClass = classKeys.some(key => `class-${key}` === activeId);
 				if (hasActiveClass) return true;
+			}
+			// Check for trait group headings if this is the traits section
+			if (/traits/i.test(section.title) || section.id === 'traits') {
+				const traitGroups = ((rules as any).traitGroups || []) as { id: string }[];
+				const hasActiveTraitGroup = traitGroups.some(g => `trait-group-${g.id}` === activeId);
+				if (hasActiveTraitGroup) return true;
 			}
 			
 			return false;
@@ -693,6 +720,7 @@ function renderTraitsTableIfAny(section: { id: string; title: string }) {
 			{/* Render each trait group as a separate table */}
 			{rules.traitGroups && rules.traitGroups.map((group) => (
 				<div key={group.id} style={{ marginBottom: 24 }}>
+					<h3 id={`trait-group-${group.id}`} style={{ marginTop: 0 }}>{group.name}</h3>
 					{renderTraitGroupTable(group)}
 				</div>
 			))}

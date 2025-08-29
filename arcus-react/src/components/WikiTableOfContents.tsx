@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import SearchResults, { SearchResult } from './SearchResults';
-import { RuleSection, ClassesIndex } from '@/rules/rulesIndex';
+import { RuleSection, ClassesIndex, TraitGroup } from '@/rules/rulesIndex';
 
 export interface WikiHeading {
 	id: string;
@@ -14,6 +14,7 @@ export interface WikiTableOfContentsProps {
 	headings: WikiHeading[];
 	sections: RuleSection[];
 	classes: ClassesIndex;
+	traitGroups: TraitGroup[];
 	activePageId: string;
 	query: string;
 	onQueryChange: (query: string) => void;
@@ -32,6 +33,7 @@ export default function WikiTableOfContents({
 	headings,
 	sections,
 	classes,
+	traitGroups,
 	activePageId,
 	query,
 	onQueryChange,
@@ -104,6 +106,22 @@ export default function WikiTableOfContents({
 						>
 							{child.title}
 						</a>
+						{/* Render trait group links if this child is the Traits page */}
+						{((/traits/i.test(child.title) || child.id === 'traits') && traitGroups && traitGroups.length > 0) && (
+							<div>
+								{traitGroups.map((group) => (
+									<a
+										key={`trait-group-${group.id}`}
+										href={`#trait-group-${group.id}`}
+										className={getTocItemClasses(`trait-group-${group.id}`)}
+										onClick={(e) => { e.preventDefault(); onHeadingClick(`trait-group-${group.id}`); }}
+										style={{ paddingLeft: (level + 1) * 10 }}
+									>
+										{group.name}
+									</a>
+								))}
+							</div>
+						)}
 						{/* Recursively render nested children */}
 						{child.children && Array.isArray(child.children) && renderTocChildren(child.children, level + 1, onItemClick)}
 					</div>
@@ -170,6 +188,20 @@ export default function WikiTableOfContents({
 											</a>
 										);
 									})
+								) : null}
+								{/* Add trait group links if this is the traits section */}
+								{/traits/i.test(section.title) || section.id === 'traits' ? (
+									(traitGroups || []).map((group) => (
+										<a
+											key={`trait-group-${group.id}`}
+											href={`#trait-group-${group.id}`}
+											className={getTocItemClasses(`trait-group-${group.id}`)}
+											onClick={(e) => { e.preventDefault(); onHeadingClick(`trait-group-${group.id}`); }}
+											style={{ paddingLeft: 22 }}
+										>
+											{group.name}
+										</a>
+									))
 								) : null}
 							</div>
 						)}

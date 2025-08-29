@@ -67,6 +67,13 @@ export default function Wiki() {
 		const addHeadings = (items: any[], level: number, sectionId: string) => {
 			items.forEach((item) => {
 				hs.push({ id: item.id, level, text: item.title, sectionId });
+				// If this child is the Traits page, also add trait group headings
+				if (/traits/i.test(item.title) || item.id === 'traits') {
+					const traitGroups = (rules as any).traitGroups || [];
+					traitGroups.forEach((group: { id: string; name: string }) => {
+						hs.push({ id: `trait-group-${group.id}`, level, text: group.name, sectionId });
+					});
+				}
 				if (item.children && Array.isArray(item.children)) {
 					addHeadings(item.children, level + 1, sectionId);
 				}
@@ -85,6 +92,14 @@ export default function Wiki() {
 				classKeys.forEach((key) => {
 					const info = (rules as any).classes[key] as { name: string };
 					hs.push({ id: `class-${key}`, level: 3, text: info?.name || key, sectionId: section.id });
+				});
+			}
+			// Add trait group headings under the Traits section
+			const isTraitsSection = /traits/i.test(section.title) || section.id === 'traits';
+			if (isTraitsSection) {
+				const traitGroups = (rules as any).traitGroups || [];
+				traitGroups.forEach((group: { id: string; name: string }) => {
+					hs.push({ id: `trait-group-${group.id}`, level: 3, text: group.name, sectionId: section.id });
 				});
 			}
 		});
@@ -257,6 +272,8 @@ export default function Wiki() {
 				<div>
 					<HeadingTag>{child.title}</HeadingTag>
 					{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
+					{/* Show trait tables if the child page is Traits */}
+					{(/traits/i.test(child.title) || child.id === 'traits') && renderTraitsTableIfAny(child)}
 					{/* Show breadcrumb navigation */}
 					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
 						<strong>Part of:</strong> <a href={`#${section.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}>{section.title}</a>
@@ -293,6 +310,28 @@ export default function Wiki() {
 						<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
 							<strong>Back to:</strong> <a href={`#classes`} onClick={(e) => { e.preventDefault(); navigateToPage('classes'); }}>Character Classes</a>
 						</div>
+					</div>
+				);
+			}
+		}
+
+		// Check if it's a trait group page
+		if (activePageId.startsWith('trait-group-')) {
+			const groupId = activePageId.replace('trait-group-', '');
+			const group = (rules as any).traitGroups?.find((g: any) => g.id === groupId);
+			if (group) {
+				const traitsSection = rules.sections.find((s) => /traits/i.test(s.title) || s.id === 'traits');
+				return (
+					<div>
+						<h1>{group.name}</h1>
+						<div style={{ marginBottom: 16 }}>
+							{renderTraitGroupTable(group)}
+						</div>
+						{traitsSection && (
+							<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
+								<strong>Back to:</strong> <a href={`#${traitsSection.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(traitsSection.id); }}>Traits</a>
+							</div>
+						)}
 					</div>
 				);
 			}
@@ -400,6 +439,7 @@ export default function Wiki() {
 				headings={headings}
 				sections={rules.sections}
 				classes={rules.classes}
+				traitGroups={rules.traitGroups}
 				activePageId={activePageId}
 				query={query}
 				onQueryChange={setQuery}
@@ -487,6 +527,19 @@ export default function Wiki() {
 												</a>
 											);
 										})
+									) : null}
+									{/* Add trait group links if this is the traits section */}
+									{/traits/i.test(section.title) || section.id === 'traits' ? (
+										(rules.traitGroups || []).map((group) => (
+											<a
+												key={`trait-group-${group.id}`}
+												href={`#trait-group-${group.id}`}
+												onClick={(e) => { e.preventDefault(); navigateToPage(`trait-group-${group.id}`); setMenuOpen(false); }}
+												style={{ paddingLeft: 22 }}
+											>
+												{group.name}
+												</a>
+										))
 									) : null}
 								</div>
 							)}
@@ -738,6 +791,7 @@ function renderTraitsTableIfAny(section: { id: string; title: string }) {
 			{/* Render each trait group as a separate table */}
 			{rules.traitGroups && rules.traitGroups.map((group) => (
 				<div key={group.id} style={{ marginBottom: 24 }}>
+					<h2 id={`trait-group-${group.id}`} style={{ marginTop: 0 }}>{group.name}</h2>
 					{renderTraitGroupTable(group)}
 				</div>
 			))}
