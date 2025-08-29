@@ -1,0 +1,651 @@
+---
+description: "Comprehensive architecture and development guidelines for the Arcus React TTRPG application, covering component patterns, YAML content management, theming, and deployment strategies."
+globs: ["arcus-react/**/*"]
+alwaysApply: true
+---
+# Arcus React Project Architecture & Development Guidelines
+
+## Project Overview
+Arcus is a React-based web application for a tabletop role-playing game (TTRPG) system. It uses a modern, component-based architecture with TypeScript, featuring a comprehensive ruleset, wiki, character sheets, and GM resources.
+
+## Technology Stack
+
+### Core Technologies
+- **React 18.2.0** - Modern React with hooks and concurrent features
+- **TypeScript 5.5.4** - Type safety and enhanced developer experience
+- **Vite 5.4.0** - Fast build tool and development server
+- **React Router 6.26.1** - Client-side routing and navigation
+
+### Supporting Libraries
+- **React Intersection Observer 9.16.0** - Efficient scroll-based animations and lazy loading
+- **js-yaml 4.1.0** - YAML parsing for content management with build-time loading
+- **CSS Custom Properties** - Dynamic theming and consistent design tokens
+
+### Build & Development Tools
+- **Vite 5.4.0** - Fast build tool with HMR and optimized bundling
+- **Path Alias Configuration** - `@/*` maps to `src/*` for clean imports
+- **GitHub Pages Deployment** - Automated CI/CD with proper base path handling
+- **TypeScript Configuration** - Strict mode with ES2020 target and modern module resolution
+
+## Project Structure
+
+### Directory Organization
+```
+arcus-react/
+├── src/
+│   ├── components/          # Reusable UI components
+│   ├── pages/               # Route-level page components
+│   ├── rules/               # Game rules data and utilities
+│   ├── styles/              # Organized CSS architecture
+│   ├── utils/               # Utility functions and helpers
+│   └── *.tsx                # Entry points and type definitions
+├── public/                  # Static assets
+├── scripts/                 # Build and deployment scripts
+└── Configuration files     # package.json, tsconfig.json, vite.config.ts
+```
+
+### Component Architecture
+
+#### 1. Page Components (`src/pages/`)
+- **Purpose**: Route-level components that define entire pages
+- **Location**: `src/pages/`
+- **Naming**: PascalCase with `.tsx` extension
+- **Structure**: Each page handles its own layout and data fetching
+
+**Current Pages:**
+- `App.tsx` - Main layout wrapper with routing
+- `Home.tsx` - Landing page
+- `FullRules.tsx` - Complete rules documentation in one continuous scrolling page
+- `Wiki.tsx` - Complete rules documentation in separated and searchable wiki pages
+- `CharacterSheets.tsx` - Character creation and management
+- `TheWorld.tsx` - World-building content
+- `GMResources.tsx` - Game master tools and resources
+- `Blog.tsx` - News and updates
+
+#### 2. Reusable Components (`src/components/`)
+- **Purpose**: Modular, reusable UI components
+- **Location**: `src/components/`
+- **Naming**: PascalCase with `.tsx` extension
+- **Guidelines**:
+  - Keep components focused on a single responsibility
+  - Accept props for customization
+  - Use TypeScript interfaces for prop types
+  - Export default for the main component
+
+**Component Categories:**
+- **Navigation**: `Navbar.tsx`, `MobileTableOfContents.tsx`
+- **Content**: `DocumentContent.tsx`, `Table.tsx`, `Tooltip.tsx`
+- **Interactive**: `SearchBar.tsx`, `SearchResults.tsx`, `ThemeToggle.tsx`
+- **Layout**: `TableOfContents.tsx`, `WikiTableOfContents.tsx`, `Disclaimer.tsx`
+
+#### 3. Utility Functions (`src/utils/`)
+- **Purpose**: Pure functions and shared logic
+- **Location**: `src/utils/`
+- **Naming**: camelCase with `.tsx` extension
+- **Current Utilities**:
+  - `contentRenderer.tsx` - YAML content rendering utilities
+
+### Content Management System
+
+#### YAML-Based Content (`src/rules/`)
+- **Purpose**: Manage game content in structured YAML files
+- **Location**: `src/rules/yaml/`
+- **Structure**:
+  ```yaml
+  sections:
+    - id: section-id
+      title: Section Title
+      summary: Brief description
+      body: Content (string or array of strings)
+      children: # Nested sections
+  ```
+
+**Current Content Files:**
+- `basic.yaml` - Core game mechanics and rules
+- `classes.yaml` - Character classes and archetypes
+- `traits.yaml` - Character traits and abilities
+
+#### Content Rendering (`src/utils/contentRenderer.tsx`)
+- **Purpose**: Consistent rendering of YAML content across components
+- **Functions**:
+  - `renderBodyContent()` - Renders content with paragraph wrapping
+  - `renderBodyContentRaw()` - Renders content without wrapping
+
+#### Advanced YAML Features
+- **Type Definitions**: Comprehensive TypeScript interfaces for all content types
+- **Tooltip System**: `TOOLTIP_MAP` for automatic cross-referencing
+- **Wiki Link System**: `WIKI_LINK_MAP` for internal navigation
+- **Nested Content**: Recursive children support for hierarchical content
+- **Search Integration**: All YAML content is automatically indexed for search
+
+#### Data Loading Pattern
+```typescript
+// YAML files are imported as URLs and loaded synchronously at build time
+import classesYaml from './yaml/classes.yaml?url';
+import yaml from 'js-yaml';
+
+// Synchronous loading pattern for build-time data
+function fetchYamlText(url: string): string {
+  const req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  req.send(null);
+  return req.responseText;
+}
+```
+
+### Styling Architecture
+
+#### CSS Organization (`src/styles/`)
+- **Purpose**: Maintainable, component-based CSS architecture
+- **Import Order** (defined in `index.css`):
+  1. `variables.css` - CSS custom properties and theme definitions
+  2. `base.css` - Global styles and resets
+  3. `layout.css` - Layout and grid systems
+  4. `components/` - Component-specific styles
+  5. `pages/` - Page-specific overrides
+  6. `utilities.css` - Utility classes and animations
+
+#### CSS Best Practices
+- **Component Styles**: Each component gets its own CSS file in `components/`
+- **Naming Convention**: Kebab-case for component classes (e.g., `table-of-contents`)
+- **BEM-like Modifiers**: Use `--` for modifiers (e.g., `toc--active`)
+- **CSS Custom Properties**: Centralized theme variables in `variables.css`
+- **Responsive Design**: Mobile-first approach with media queries
+
+#### Theme System
+- **Light/Dark Themes**: Implemented via `[data-theme="dark"]` attribute on document root
+- **Theme Variables**: Defined in `variables.css` with CSS custom properties
+- **Theme Toggle**: Handled by `ThemeToggle` component with localStorage persistence
+- **Asset Management**: Automatic favicon and logo switching based on theme
+- **Color Palette**: Ethereal fantasy palette with consistent naming conventions
+- **Theme Detection**: Respects user's system preference on first visit
+
+#### Advanced CSS Features
+- **CSS Custom Properties**: Comprehensive variable system for colors, spacing, and effects
+- **Responsive Design**: Mobile-first approach with consistent breakpoints
+- **Animation System**: Smooth transitions and reveal animations using intersection observer
+- **Component Isolation**: Each component has its own CSS file with scoped styles
+
+## Key Application Features
+
+### Search System
+The application implements a comprehensive search system across both FullRules and Wiki pages:
+
+#### Search Architecture
+- **Index Generation**: Search indices are built from YAML content at runtime
+- **Token-Based Matching**: AND logic for multiple search terms
+- **Content Categories**: Sections, Classes, Abilities, and Traits are all searchable
+- **Preview Generation**: Automatic preview text extraction from content
+
+#### Search Components
+- **SearchBar**: Reusable search input with clear functionality
+- **SearchResults**: Displays categorized results with click handling
+- **MobileTableOfContents**: Integrated search for mobile navigation
+
+#### Implementation Pattern
+```typescript
+// Search index generation pattern
+const searchIndex = useMemo(() => {
+  const entries: SearchEntry[] = [];
+  
+  // Add sections with recursive children processing
+  rules.sections.forEach((section) => {
+    const haystack = `${section.title} ${section.summary || ''}`.toLowerCase();
+    entries.push({ id: section.id, title: section.title, category: 'Section', haystack });
+    
+    // Process nested children recursively
+    if (section.children) addSearchEntries(section.children, section.title);
+  });
+  
+  return entries;
+}, []);
+
+// Search filtering with token-based AND logic
+const results = useMemo(() => {
+  const tokens = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  return searchIndex.filter((e) => tokens.every((t) => e.haystack.includes(t)));
+}, [query, searchIndex]);
+```
+
+### Navigation System
+- **Responsive Navigation**: Mobile-first navbar with hamburger menu
+- **Table of Contents**: Dynamic TOC generation from content structure
+- **Active State Management**: Intersection observer for scroll-based active states
+- **Deep Linking**: URL fragments for direct section access
+
+### Content Management Patterns
+- **YAML-First**: All content lives in structured YAML files
+- **Type Safety**: Comprehensive TypeScript interfaces for all content types
+- **Cross-References**: Automatic tooltip and link generation
+- **Hierarchical Content**: Support for nested sections and children
+
+## Development Guidelines
+
+### 1. Component Development
+
+#### Creating New Components
+1. **Location**: Place in `src/components/` for reusable components, `src/pages/components/` for page-specific components
+2. **Structure**:
+   ```tsx
+   import React from 'react';
+   import './ComponentName.css';
+
+   interface ComponentNameProps {
+     // Define props interface
+   }
+
+   export default function ComponentName({ prop }: ComponentNameProps) {
+     return (
+       <div className="component-name">
+         {/* Component JSX */}
+       </div>
+     );
+   }
+   ```
+3. **CSS**: Create corresponding `.css` file in `src/styles/components/`
+4. **Export**: Use default export for the main component
+
+#### Component Props Pattern
+- Always define TypeScript interfaces for props
+- Use optional props with `?` for non-required properties
+- Provide sensible defaults where appropriate
+- Document complex prop usage with JSDoc comments
+
+#### Component Reusability
+- Design components to be as generic as possible
+- Accept `className` prop for custom styling
+- Use `children` prop for flexible content
+- Avoid hard-coded styles; prefer CSS classes
+
+### 2. Page Development
+
+#### Creating New Pages
+1. **Location**: `src/pages/`
+2. **Structure**:
+   ```tsx
+   import React from 'react';
+
+   export default function NewPage() {
+     return (
+       <div className="new-page">
+         {/* Page content */}
+       </div>
+     );
+   }
+   ```
+3. **Routing**: Add route to `src/main.tsx`
+4. **Styling**: Create page-specific CSS in `src/styles/pages/`
+5. **Navigation**: Add to `Navbar.tsx` if needed
+
+#### Page Layout Patterns
+- Use semantic HTML elements
+- Follow the established layout structure
+- Include appropriate headings hierarchy
+- Ensure mobile responsiveness
+
+### 3. Content Development
+
+#### Adding New Content
+1. **YAML Structure**: Follow existing patterns in `src/rules/yaml/`
+2. **Content Types**:
+   - `body`: String or array of strings for main content
+   - `summary`: Brief description for navigation/table of contents
+   - `children`: Nested content sections
+3. **Content Rendering**: Use `contentRenderer` utilities for consistent output
+
+#### Content Guidelines
+- Use clear, descriptive section IDs
+- Provide meaningful summaries for navigation
+- Break complex content into logical sections
+- Use consistent formatting and terminology
+
+### 4. Styling Guidelines
+
+#### CSS Class Naming
+- **Components**: `component-name`
+- **Modifiers**: `component-name--modifier`
+- **Elements**: `component-name__element`
+- **Utilities**: Descriptive names like `text-center`, `reveal`
+
+#### CSS Custom Properties
+- Define theme variables in `variables.css`
+- Use consistent naming: `--color-primary`, `--spacing-md`
+- Group related properties logically
+
+#### Responsive Design
+- Mobile-first approach
+- Use CSS custom properties for breakpoints
+- Test on multiple screen sizes
+- Consider touch interactions for mobile
+
+### 5. TypeScript Guidelines
+
+#### Type Definitions
+- Define interfaces for component props
+- Use union types for variant props
+- Create type aliases for complex types
+- Avoid `any` type; use specific types
+
+#### File Organization
+- Place type definitions in appropriate files
+- Use barrel exports (`index.ts`) for clean imports
+- Keep types close to their usage
+
+### 6. Performance Considerations
+
+#### Component Optimization
+- Use `React.memo()` for expensive components
+- Implement proper dependency arrays for `useEffect`
+- Avoid unnecessary re-renders
+- Use lazy loading for large components
+
+#### Bundle Optimization
+- Import only what you need
+- Use dynamic imports for route-based code splitting
+- Optimize images and assets
+- Monitor bundle size with build tools
+
+### 7. Testing and Quality
+
+#### Code Quality
+- Run TypeScript checks: `npm run build`
+- Follow consistent code formatting
+- Use meaningful variable and function names
+- Add comments for complex logic
+
+#### Browser Compatibility
+- Test on modern browsers (Chrome, Firefox, Safari, Edge)
+- Use progressive enhancement
+- Provide fallbacks for CSS features
+
+### 8. Deployment and Build
+
+#### Build Process
+- **Development**: `npm run dev` - Vite dev server with HMR
+- **Production Build**: `npm run build` - Optimized build for deployment
+- **Preview**: `npm run preview --port 5173` - Test production build locally
+- **Post-Build**: `npm run postbuild` - Runs SPA fallback script for routing
+
+#### GitHub Pages Deployment
+- **Automated CI/CD**: GitHub Actions workflow in `.github/workflows/deploy.yml`
+- **Base Path Detection**: Automatic base path configuration based on repository name
+- **Repository Types**:
+  - User/Org repos (*.github.io): base path `/`
+  - Project repos: base path `/repo-name/`
+- **Build Environment**: Uses `GITHUB_REPOSITORY` environment variable
+
+#### Vite Configuration Details
+```typescript
+// Dynamic base path configuration
+const githubRepository = process.env.GITHUB_REPOSITORY;
+const [ghOwner, ghRepo] = githubRepository ? githubRepository.split('/') : [undefined, undefined];
+const isUserOrOrgPagesRepo = ghRepo ? /\.(github|githubusercontent)\.io$/i.test(ghRepo) : false;
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: { '@': path.resolve(__dirname, 'src') },
+  },
+  base: isBuildingInGithubActions
+    ? (isUserOrOrgPagesRepo ? '/' : `/${ghRepo}/`)
+    : '/',
+});
+```
+
+#### SPA Routing Support
+- **Fallback Script**: `scripts/spa-fallback.js` generates 404.html for client-side routing
+- **Redirects**: `_redirects` file for Netlify-style routing (if used)
+- **Hash Routing Fallback**: Ensures all routes work on GitHub Pages
+
+## Architecture Principles
+
+### 1. Modularity
+- Keep components small and focused
+- Separate concerns across different layers
+- Create reusable utilities and helpers
+- Avoid tight coupling between components
+
+### 2. Maintainability
+- Use clear naming conventions
+- Document complex logic and decisions
+- Follow established patterns consistently
+- Keep the codebase organized and navigable
+
+### 3. Scalability
+- Design components to be extensible
+- Use composition over inheritance
+- Plan for future features and requirements
+- Maintain consistent code quality
+
+### 4. User Experience
+- Ensure fast loading times
+- Provide smooth interactions
+- Maintain consistent design language
+- Optimize for mobile devices
+
+### 5. Accessibility
+- Follow WCAG 2.1 AA guidelines
+- Ensure keyboard navigation works throughout the application
+- Provide proper ARIA labels and descriptions
+- Maintain sufficient color contrast ratios
+- Use semantic HTML elements appropriately
+- Test with screen readers
+
+## Common Patterns and Conventions
+
+### 1. Import Organization
+```tsx
+// React imports first
+import React from 'react';
+
+// Third-party libraries
+import { useLocation } from 'react-router-dom';
+
+// Local components
+import ComponentName from '@/components/ComponentName';
+
+// Utilities
+import { utilityFunction } from '@/utils/helpers';
+
+// Styles (last)
+import './ComponentName.css';
+```
+
+### 2. Component Props Interface
+```tsx
+interface ComponentProps {
+  title: string;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary';
+  className?: string;
+}
+```
+
+### 3. CSS Structure
+```css
+.component-name {
+  /* Base styles */
+}
+
+.component-name--modifier {
+  /* Modifier styles */
+}
+
+.component-name__element {
+  /* Element styles */
+}
+```
+
+### 4. Error Handling
+- Use try-catch blocks for async operations
+- Provide fallback UI for error states
+- Log errors appropriately
+- Handle edge cases gracefully
+
+## Getting Started with Development
+
+### Adding a New Feature
+1. **Plan**: Identify the feature requirements and affected components
+2. **Design**: Sketch the component structure and data flow
+3. **Implement**: Create components following established patterns
+4. **Style**: Add CSS following the styling guidelines
+5. **Test**: Verify functionality and responsiveness
+6. **Document**: Update relevant documentation
+
+### Code Review Checklist
+
+#### Code Quality
+- [ ] TypeScript types are properly defined with no `any` usage
+- [ ] Components follow established patterns and conventions
+- [ ] CSS follows naming conventions (kebab-case, BEM modifiers)
+- [ ] Code is well-documented with JSDoc for complex functions
+- [ ] Import order follows the established pattern
+- [ ] No unused imports or variables
+
+#### Functionality
+- [ ] Component props have proper TypeScript interfaces
+- [ ] Search functionality works if content is searchable
+- [ ] Navigation states are properly managed
+- [ ] Error handling is implemented for async operations
+- [ ] Loading states are provided where appropriate
+
+#### Performance
+- [ ] React.memo() used for expensive components
+- [ ] useCallback/useMemo used appropriately
+- [ ] Large components are lazy-loaded where possible
+- [ ] Bundle size impact considered
+
+#### Design & UX
+- [ ] Responsive design implemented (mobile-first)
+- [ ] Dark/light theme support maintained
+- [ ] Smooth animations and transitions
+- [ ] Consistent with design system
+
+#### Accessibility
+- [ ] Keyboard navigation works
+- [ ] ARIA labels provided where needed
+- [ ] Semantic HTML elements used
+- [ ] Color contrast meets WCAG AA standards
+- [ ] Focus management implemented
+
+#### Content & Data
+- [ ] YAML structure follows established patterns
+- [ ] Content is properly typed with TypeScript interfaces
+- [ ] Search indices updated for new content
+- [ ] Cross-references and tooltips configured if applicable
+
+## Project-Specific Patterns
+
+### YAML Content Patterns
+When adding new YAML content, follow these established patterns:
+
+```yaml
+# Section structure
+sections:
+  - id: unique-kebab-case-id
+    title: "Human-Readable Title"
+    summary: "Brief description for navigation"
+    body: "Content string or array of strings"
+    children:
+      - id: nested-section-id
+        title: "Nested Section"
+        body: ["Paragraph 1", "Paragraph 2"]
+
+# Class structure
+classes:
+  class-id:
+    name: "Class Name"
+    type: "Combat/Support/Utility"
+    attributes: "Primary attributes"
+    summary: "Brief class description"
+    abilities:
+      - level: "Core"
+        name: "Ability Name"
+        description: ["Ability description paragraphs"]
+        target: "Target description"
+        apCost: 1
+        energyCost:
+          base: "1 FORT"
+```
+
+### Component Composition Patterns
+```tsx
+// Page component with search and navigation
+export default function ContentPage() {
+  const [query, setQuery] = useState('');
+  const [activeId, setActiveId] = useState('');
+  
+  // Search index generation
+  const searchIndex = useMemo(() => generateSearchIndex(content), []);
+  
+  // Search results filtering
+  const results = useMemo(() => filterSearchResults(query, searchIndex), [query, searchIndex]);
+  
+  return (
+    <div className="content-page">
+      <TableOfContents 
+        query={query}
+        onQueryChange={setQuery}
+        searchResults={results}
+        activeId={activeId}
+      />
+      <main>
+        <SearchBar query={query} onQueryChange={setQuery} />
+        <ContentRenderer content={content} />
+      </main>
+    </div>
+  );
+}
+```
+
+### Theme Integration Pattern
+```tsx
+// Component with theme-aware styling
+export default function ThemedComponent() {
+  useEffect(() => {
+    // Theme-dependent logic
+    const theme = document.documentElement.getAttribute('data-theme');
+    // Update component behavior based on theme
+  }, []);
+  
+  return (
+    <div className="themed-component">
+      {/* Theme variables automatically applied via CSS */}
+    </div>
+  );
+}
+```
+
+## Troubleshooting Guide
+
+### Common Issues
+
+#### Build Issues
+- **YAML Loading Errors**: Ensure YAML files have valid syntax and proper encoding
+- **Path Resolution**: Check that `@/*` aliases are working with tsconfig.json configuration
+- **Base Path Issues**: Verify GitHub repository settings for proper deployment path
+
+#### Development Issues
+- **HMR Not Working**: Check Vite configuration and ensure no circular dependencies
+- **Theme Not Persisting**: Verify localStorage access and theme initialization logic
+- **Search Not Working**: Check search index generation and ensure content is properly typed
+
+#### Deployment Issues
+- **GitHub Pages 404**: Verify SPA fallback script and routing configuration
+- **Asset Loading**: Check base path configuration for different deployment environments
+- **Build Size**: Monitor bundle size and implement code splitting if needed
+
+### Performance Optimization Tips
+- Use `React.memo()` for components that render large lists
+- Implement intersection observer for scroll-based features
+- Lazy load large content sections
+- Optimize search index generation with proper memoization
+
+### Testing Strategies
+- Test theme switching across all components
+- Verify search functionality with various content types
+- Test responsive behavior on multiple screen sizes
+- Validate accessibility with keyboard navigation
+- Check deployment on different hosting platforms
+
+This comprehensive architecture ensures that Arcus remains maintainable, scalable, and easy to extend as the project grows. Follow these guidelines to maintain consistency and code quality across the codebase.
