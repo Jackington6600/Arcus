@@ -744,6 +744,9 @@ function renderChildren(children: any[] | undefined, level: number) {
 					{renderBodyContent(child.body, renderWithTooltips)}
 					{renderClassTableIfAny(child)}
 					{renderTraitsTableIfAny(child)}
+					{renderWeaponsTableIfAny(child)}
+					{renderArmourTableIfAny(child)}
+					{renderCoreAbilitiesTableIfAny(child)}
 					{renderChildren(child.children, level + 1)}
 				</div>
 			))}

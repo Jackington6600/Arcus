@@ -205,6 +205,22 @@ export default function Wiki() {
 						<div key={child.id} style={{ marginLeft: (level - 2) * 24 }}>
 							<HeadingTag id={child.id}>{child.title}</HeadingTag>
 							{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
+							{/* Render data tables in-place for specific child pages */}
+							{(/weapons/i.test(child.title) || child.id === 'weapons') && (
+								<div style={{ marginTop: 16 }}>
+									<Table title="Weapons" rows={(rules as any).weapons || []} columns={createWeaponsTableColumns()} />
+								</div>
+							)}
+							{(/armour/i.test(child.title) || child.id === 'armour') && (
+								<div style={{ marginTop: 16 }}>
+									<Table title="Armour" rows={(rules as any).armour || []} columns={createArmourTableColumns()} />
+								</div>
+							)}
+							{(/core abilities/i.test(child.title) || child.id === 'core-abilities') && (
+								<div style={{ marginTop: 16 }}>
+									<Table title="Core Abilities" rows={(rules as any).coreAbilities || []} columns={createCoreAbilitiesTableColumns()} />
+								</div>
+							)}
 							{/* Recursively render nested children */}
 							{renderChildren(child.children, level + 1)}
 							{renderTraitsTableIfAny(child)}
@@ -225,22 +241,6 @@ export default function Wiki() {
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
 					{renderTraitsTableIfAny(section)}
-					{/* Render weapons / armour / core abilities tables where appropriate */}
-					{(/weapons/i.test(section.title) || section.id === 'weapons') && (
-						<div style={{ marginTop: 16 }}>
-							<Table title="Weapons" rows={(rules as any).weapons || []} columns={createWeaponsTableColumns()} />
-						</div>
-					)}
-					{(/armour/i.test(section.title) || section.id === 'armour') && (
-						<div style={{ marginTop: 16 }}>
-							<Table title="Armour" rows={(rules as any).armour || []} columns={createArmourTableColumns()} />
-						</div>
-					)}
-					{(/core abilities/i.test(section.title) || section.id === 'core-abilities') && (
-						<div style={{ marginTop: 16 }}>
-							<Table title="Core Abilities" rows={(rules as any).coreAbilities || []} columns={createCoreAbilitiesTableColumns()} />
-						</div>
-					)}
 				</div>
 			);
 		}
@@ -290,6 +290,22 @@ export default function Wiki() {
 					{renderBodyContent(child.body, (text) => renderWithWikiLinks(text, navigateToPage))}
 					{/* Show trait tables if the child page is Traits */}
 					{(/traits/i.test(child.title) || child.id === 'traits') && renderTraitsTableIfAny(child)}
+					{/* Show data tables only on the individual child pages */}
+					{(/weapons/i.test(child.title) || child.id === 'weapons') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Weapons" rows={(rules as any).weapons || []} columns={createWeaponsTableColumns()} />
+						</div>
+					)}
+					{(/armour/i.test(child.title) || child.id === 'armour') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Armour" rows={(rules as any).armour || []} columns={createArmourTableColumns()} />
+						</div>
+					)}
+					{(/core abilities/i.test(child.title) || child.id === 'core-abilities') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Core Abilities" rows={(rules as any).coreAbilities || []} columns={createCoreAbilitiesTableColumns()} />
+						</div>
+					)}
 					{/* Show breadcrumb navigation */}
 					<div style={{ marginTop: 20, padding: 16, backgroundColor: 'var(--bg-secondary)', borderRadius: 8 }}>
 						<strong>Part of:</strong> <a href={`#${section.id}`} onClick={(e) => { e.preventDefault(); navigateToPage(section.id); }}>{section.title}</a>
