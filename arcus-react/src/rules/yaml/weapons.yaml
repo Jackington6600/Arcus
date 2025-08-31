@@ -1,0 +1,47 @@
+weapons:
+  - weapon: "Unarmed"
+    notes: "Light, melee, one-handed"
+    modifier: "STR or DEX but cannot add modifier to damage"
+    range: "Melee"
+
+  - weapon: "Club"
+    notes: "Light, melee, one-handed"
+    modifier: "STR or DEX"
+    range: "Melee"
+
+  - weapon: "Dagger"
+    notes: "Light, versatile, one-handed"
+    modifier: "STR or DEX, DEX if thrown"
+    range: "Melee or short range (25ft)"
+
+  - weapon: "Dual daggers (dual wielding)"
+    notes: "Light+Light (Medium total), versatile, one-handed (two hands total), can be used separately or combined into one attack"
+    modifier: "STR or DEX, DEX if thrown, modifier is only added to damage on the main hand weapon"
+    range: "Melee or short range (25ft)"
+
+  - weapon: "Sword"
+    notes: "Medium, melee, one-handed"
+    modifier: "STR or DEX"
+    range: "Melee"
+
+  - weapon: "Sword and dagger (dual wielding)"
+    notes: "Medium+Light (Heavy total), melee (sword), versatile (dagger), one-handed (two hands total), can be used separately or combined into one attack, all attack rolls are made with -2 to hit"
+    modifier: "STR or DEX, DEX if dagger thrown, modifier is only added to damage on the main hand weapon"
+    range: "Melee (sword), melee or short range (25ft) (dagger)"
+
+  - weapon: "Greatsword"
+    notes: "Heavy, melee, two-handed"
+    modifier: "STR"
+    range: "Melee"
+
+  - weapon: "Bow"
+    notes: "Medium, ranged, two-handed"
+    modifier: "PER"
+    range: "Long range (100ft)"
+
+  - weapon: "Light crossbow"
+    notes: "Light, ranged, one-handed"
+    modifier: "PER"
+    range: "Long range (100ft)"
+
+

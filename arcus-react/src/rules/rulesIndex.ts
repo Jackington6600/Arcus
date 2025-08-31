@@ -1,6 +1,9 @@
 import classesYaml from './yaml/classes.yaml?url';
 import basicYaml from './yaml/basic.yaml?url';
 import traitsYaml from './yaml/traits.yaml?url';
+import weaponsYaml from './yaml/weapons.yaml?url';
+import armourYaml from './yaml/armour.yaml?url';
+import coreAbilitiesYaml from './yaml/core_abilities.yaml?url';
 import yaml from 'js-yaml';
 
 export type RuleChild = {
@@ -37,6 +40,9 @@ export type RulesIndex = {
     sections: RuleSection[];
     classes: ClassesIndex;
     traitGroups: TraitGroup[];
+    weapons: WeaponInfo[];
+    armour: ArmourInfo[];
+    coreAbilities: CoreAbilityInfo[];
 };
 
 // Map phrases to rule ids for auto-tooltips
@@ -129,6 +135,11 @@ export type ClassInfo = {
 
 export type ClassesIndex = Record<string, ClassInfo>;
 
+// Weapons / Armour / Core Abilities
+export type WeaponInfo = { weapon: string; notes: string; modifier: string; range: string };
+export type ArmourInfo = { type: string; energy: string; movement: string; notes: string; requirements: string };
+export type CoreAbilityInfo = { level: string; name: string; description: string; target: string; apCost: number | string };
+
 // Load YAML files at build time via Vite. We keep data DRY so both Full Rules and Wiki share it.
 function fetchYamlText(url: string): string {
 	const req = new XMLHttpRequest();
@@ -139,17 +150,20 @@ function fetchYamlText(url: string): string {
 
 function load(): RulesIndex {
 	const docs: any[] = [];
-	for (const url of [basicYaml, classesYaml, traitsYaml]) {
+	for (const url of [basicYaml, classesYaml, traitsYaml, weaponsYaml, armourYaml, coreAbilitiesYaml]) {
 		const text = fetchYamlText(url);
 		docs.push(yaml.load(text));
 	}
     const sections: RuleSection[] = [];
     const classes: ClassesIndex = {};
     const traitGroups: TraitGroup[] = [];
+    const weapons: WeaponInfo[] = [];
+    const armour: ArmourInfo[] = [];
+    const coreAbilities: CoreAbilityInfo[] = [];
 	for (const doc of docs) {
 		if (!doc) continue;
-		if (Array.isArray(doc.sections)) {
-			for (const s of doc.sections) {
+		if (Array.isArray((doc as any).sections)) {
+			for (const s of (doc as any).sections) {
 				sections.push({
 					id: s.id,
 					title: s.title,
@@ -159,8 +173,8 @@ function load(): RulesIndex {
 				});
 			}
 		}
-        if (doc.classes && typeof doc.classes === 'object') {
-            for (const [key, value] of Object.entries<any>(doc.classes)) {
+        if ((doc as any).classes && typeof (doc as any).classes === 'object') {
+            for (const [key, value] of Object.entries<any>((doc as any).classes)) {
                 if (!value) continue;
                 const info: ClassInfo = {
                     id: key,
@@ -191,8 +205,8 @@ function load(): RulesIndex {
                 classes[key] = info;
             }
         }
-        if (doc.trait_groups && Array.isArray(doc.trait_groups)) {
-            for (const group of doc.trait_groups) {
+        if ((doc as any).trait_groups && Array.isArray((doc as any).trait_groups)) {
+            for (const group of (doc as any).trait_groups) {
                 if (!group) continue;
                 const traitGroup: TraitGroup = {
                     name: group.name ?? '',
@@ -208,8 +222,40 @@ function load(): RulesIndex {
                 traitGroups.push(traitGroup);
             }
         }
+        if (Array.isArray((doc as any).weapons)) {
+            for (const w of (doc as any).weapons) {
+                weapons.push({
+                    weapon: String(w.weapon ?? ''),
+                    notes: String(w.notes ?? ''),
+                    modifier: String(w.modifier ?? ''),
+                    range: String(w.range ?? ''),
+                });
+            }
+        }
+        if (Array.isArray((doc as any).armour)) {
+            for (const a of (doc as any).armour) {
+                armour.push({
+                    type: String(a.type ?? ''),
+                    energy: String(a.energy ?? ''),
+                    movement: String(a.movement ?? ''),
+                    notes: String(a.notes ?? ''),
+                    requirements: String(a.requirements ?? ''),
+                });
+            }
+        }
+        if (Array.isArray((doc as any).core_abilities)) {
+            for (const ca of (doc as any).core_abilities) {
+                coreAbilities.push({
+                    level: String(ca.level ?? ''),
+                    name: String(ca.name ?? ''),
+                    description: String(ca.description ?? ''),
+                    target: String(ca.target ?? ''),
+                    apCost: (typeof ca.apCost === 'number' || typeof ca.apCost === 'string') ? ca.apCost : String(ca.apCost ?? ''),
+                });
+            }
+        }
 	}
-    return { sections, classes, traitGroups };
+    return { sections, classes, traitGroups, weapons, armour, coreAbilities };
 }
 
 // Helper function to recursively process children and nested children

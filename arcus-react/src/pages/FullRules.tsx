@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
-import Table, { createClassTableColumns, createTraitsTableColumns, AbilityRow, TraitRow, TraitGroup, renderTraitGroupTable } from '@/components/Table';
+import Table, { createClassTableColumns, createTraitsTableColumns, AbilityRow, TraitRow, TraitGroup, renderTraitGroupTable, createWeaponsTableColumns, createArmourTableColumns, createCoreAbilitiesTableColumns, WeaponRow, ArmourRow, CoreAbilityRow } from '@/components/Table';
 import TableOfContents, { Heading } from '@/components/TableOfContents';
 import MobileTableOfContents from '@/components/MobileTableOfContents';
 import DocumentContent from '@/components/DocumentContent';
@@ -559,6 +559,9 @@ export default function FullRules() {
 						{renderBodyContent(s.body, renderWithTooltips)}
 						{renderClassTableIfAny(s)}
 						{renderTraitsTableIfAny(s)}
+						{renderWeaponsTableIfAny(s)}
+						{renderArmourTableIfAny(s)}
+						{renderCoreAbilitiesTableIfAny(s)}
 						{renderChildren(s.children, 3)}
 					</section>
 				))}
@@ -745,6 +748,42 @@ function renderChildren(children: any[] | undefined, level: number) {
 				</div>
 			))}
 		</>
+	);
+}
+
+function renderWeaponsTableIfAny(section: { id: string; title: string }) {
+	const isWeaponsSection = /weapons/i.test(section.title) || section.id === 'weapons';
+	if (!isWeaponsSection) return null;
+	const rows: WeaponRow[] = (rules.weapons || []) as any;
+	if (!rows.length) return null;
+	return (
+		<div style={{ marginTop: 16 }}>
+			<Table title="Weapons" rows={rows} columns={createWeaponsTableColumns()} />
+		</div>
+	);
+}
+
+function renderArmourTableIfAny(section: { id: string; title: string }) {
+	const isArmourSection = /armour/i.test(section.title) || section.id === 'armour';
+	if (!isArmourSection) return null;
+	const rows: ArmourRow[] = (rules.armour || []) as any;
+	if (!rows.length) return null;
+	return (
+		<div style={{ marginTop: 16 }}>
+			<Table title="Armour" rows={rows} columns={createArmourTableColumns()} />
+		</div>
+	);
+}
+
+function renderCoreAbilitiesTableIfAny(section: { id: string; title: string }) {
+	const isCoreAbilitiesSection = /core abilities/i.test(section.title) || section.id === 'core-abilities';
+	if (!isCoreAbilitiesSection) return null;
+	const rows: CoreAbilityRow[] = (rules.coreAbilities || []) as any;
+	if (!rows.length) return null;
+	return (
+		<div style={{ marginTop: 16 }}>
+			<Table title="Core Abilities" rows={rows} columns={createCoreAbilitiesTableColumns()} />
+		</div>
 	);
 }
 

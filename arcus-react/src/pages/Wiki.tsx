@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import rules from '@/rules/rulesIndex';
 import { TOOLTIP_MAP, WIKI_LINK_MAP } from '@/rules/rulesIndex';
 import Tooltip from '@/components/Tooltip';
-import Table, { createClassTableColumns, createTraitsTableColumns, TraitRow, TraitGroup, renderTraitGroupTable } from '@/components/Table';
+import Table, { createClassTableColumns, createTraitsTableColumns, TraitRow, TraitGroup, renderTraitGroupTable, createWeaponsTableColumns, createArmourTableColumns, createCoreAbilitiesTableColumns } from '@/components/Table';
 import WikiTableOfContents, { WikiHeading } from '@/components/WikiTableOfContents';
 import MobileTableOfContents from '@/components/MobileTableOfContents';
 import DocumentContent from '@/components/DocumentContent';
@@ -225,6 +225,22 @@ export default function Wiki() {
 					{/* Special handling for Character Classes section */}
 					{section.id === 'classes' ? renderClassesList(navigateToPage) : renderClassTableIfAny(section)}
 					{renderTraitsTableIfAny(section)}
+					{/* Render weapons / armour / core abilities tables where appropriate */}
+					{(/weapons/i.test(section.title) || section.id === 'weapons') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Weapons" rows={(rules as any).weapons || []} columns={createWeaponsTableColumns()} />
+						</div>
+					)}
+					{(/armour/i.test(section.title) || section.id === 'armour') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Armour" rows={(rules as any).armour || []} columns={createArmourTableColumns()} />
+						</div>
+					)}
+					{(/core abilities/i.test(section.title) || section.id === 'core-abilities') && (
+						<div style={{ marginTop: 16 }}>
+							<Table title="Core Abilities" rows={(rules as any).coreAbilities || []} columns={createCoreAbilitiesTableColumns()} />
+						</div>
+					)}
 				</div>
 			);
 		}

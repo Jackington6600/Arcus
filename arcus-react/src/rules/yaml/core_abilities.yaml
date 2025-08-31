@@ -1,0 +1,134 @@
+core_abilities:
+  - level: "Core"
+    name: "Move"
+    description: "Gain movement equal to your base movement speed. This movement can be split up however you wish on your turn and does not all need to be used. This ability can be used as many times as you like in a turn. All movement left at the end of your turn is lost. This movement can include jumping, climbing, swimming, crawling etc. However, this may require skill checks."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Disengage"
+    description: "You take on an evasive stance. During this turn, you do not provoke attacks of opportunity."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Regular Attack"
+    description: "Make a weapon attack or attack using a class core ability."
+    target: "E, Range varies"
+    apCost: 2
+
+  - level: "Core"
+    name: "Hold Regular Attack"
+    description: "Unlock the opportunity to make a regular attack outside of your turn when a specific trigger, that you choose, is met. For example: “I will make an attack with my greatsword when an enemy steps within range”. Making this attack also requires you to spend your reaction."
+    target: "E, Range varies"
+    apCost: 2
+
+  - level: "Core"
+    name: "Attack of Opportunity"
+    description: "If you have a melee weapon equipped or melee attack from a core ability available when a creature moves out of melee range, you can spend your reaction to make a regular melee attack against that target immediately before they step out of range. Movement used as part of an ability (such as Charge, Hit and Run, or Advance!), involuntary movement (such as being pushed or pulled), or teleportation movement does not trigger attacks of opportunity."
+    target: "E, melee"
+    apCost: "React"
+
+  - level: "Core"
+    name: "Resistance Drain"
+    description: "Reduce a single target’s resistance points by 1 (type of your choice). This will likely involve a relevant action - such as shouting insults at an enemy to reduce their WILL points by 1 or throwing a nearby rock to reduce their REFL by 1. Improvisation is encouraged here, such as thematically incorporating the 1 AP action into your attack/other actions that turn, or using features of the environment. Range depends on use (5-50ft range recommended). This is a key part of weakening your enemies before being able to make use of your potent class abilities."
+    target: "E, Range varies"
+    apCost: 1
+
+  - level: "Core"
+    name: "Empowered Resistance Drain"
+    description: "When you use the Resistance Drain core ability on a creature, you may spend up to 3 resistance points of any type to increase the resistance points drained from this creature by the same number."
+    target: "E, Range varies"
+    apCost: 0
+
+  - level: "Core"
+    name: "Empowered Ability"
+    description: "You may spend your resistance points to empower your abilities to make their effects more likely to succeed. When you use an ability with an effect that has an SR to resist, immediately before the creature attempts to resist, you may spend up to 3 resistance points of any type to increase the SR of the ability by the same number. If the ability can cause multiple effects that have an SR to resist, you must spend additional resistance points for each effect separately. For AoE abilities you may do this to any creatures of your choosing in the AoE, but you must spend resistance points for each creature separately."
+    target: "E, Range varies"
+    apCost: 0
+
+  - level: "Core"
+    name: "Heroic Resistance"
+    description: "You may spend 4 resistance points of any type or multiple types to make yourself resistant to a single instance of incoming damage (half damage) - this resistance ignores any other vulnerabilities or weaknesses you have affecting you and enforces resistance. You can do this at any time and it does not cost a reaction. If you are reduced to 0 HP when this is used, you are instead set to 1 HP and fall unconscious until another creature uses the help action for 1 minute on you."
+    target: "S"
+    apCost: "-"
+
+  - level: "Core"
+    name: "Inspect Creature"
+    description: "Have the GM roughly describe a creature’s strengths and weaknesses - this may require an INT+PER check (GM’s discretion). This is an opportunity for the GM to give clues to the players as to what might be a good strategy to take down the enemies and what abilities they might have. Without a skill check, a player can ask the GM to describe the creature’s resistance points as “exposed”/“vulnerable” if they have 0 resistance points of that type, “weak” if they have 1 point, and “strong”/“capable” if they have 2+ points. This is a key part of making sure your abilities have a good chance of taking effect on your enemies."
+    target: "E"
+    apCost: 0
+
+  - level: "Core"
+    name: "Hide"
+    description: "Make a DEX+DEX stealth check to become hidden. Any creature that cannot see you as you use this action is no longer aware of where you are if you roll higher than their passive perception. Most creatures still have object permanence so they may come looking for you using a perception check. If they roll higher than your stealth check or have direct line of sight to you, you are revealed."
+    target: "S"
+    apCost: 2
+
+  - level: "Core"
+    name: "Help"
+    description: "Help a creature within 5ft. This might be to wake them from being unconscious, give them Adv (+) in a skill check, or to help them by removing a condition from them (specifically hobbled, prone, immobilised, stunned, frightened, restrained, incapacitated, unconscious). This must be within reason (GM’s discretion) - such as the GM may describe the condition as being a particular nature that cannot be removed with any help."
+    target: "A, 5ft"
+    apCost: 1
+
+  - level: "Core"
+    name: "Push/Pull"
+    description: "Select a creature within 5ft and move them 5ft in any direction. 1 FORT or REFL SR to resist the push/pull."
+    target: "A+E"
+    apCost: 1
+
+  - level: "Core"
+    name: "Stand Up"
+    description: "If you are currently prone you may remove the prone condition and stand up again."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Draw Weapon"
+    description: "If either hand is empty, you may draw and equip a weapon from your inventory to that hand."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Swap Weapon"
+    description: "Change the weapons in your hands for another weapon in your inventory. This could also include just stowing your weapons."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Drop Item"
+    description: "Drop whatever item you have into your hand onto the floor."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Pick Up Item"
+    description: "Pick up one or more items from the floor within 5ft into one or more free hands. All of these items must fit in your free hands to all be picked up in one ability use, otherwise this ability must be used multiple times."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Drink Potion"
+    description: "Drink a potion from your inventory or hand."
+    target: "S"
+    apCost: 2
+
+  - level: "Core"
+    name: "Talk to Allies"
+    description: "The GM will decide roughly how much you can chat to other players in and out of character during combat. Preferably the players can discuss tactics freely out of character, and exchange a few words in character."
+    target: "A+S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Improvise"
+    description: "Describe something you do with extra flair or improvise a fun way to use your abilities, allies, and/or surroundings to your advantage. Your GM may choose to reward you with bonuses or Adv on your actions depending on what you describe. Bear in mind that this should not be a consistent source of advantage, damage, or conditions for any player, and should primarily reward creativity. This should not be something you're doing every round and you should not be rewarded for the same creative action or description more than once."
+    target: "-"
+    apCost: "-"
+
+  - level: "Core"
+    name: "Other"
+    description: "The GM will allow you to do other actions on your turn, just say what you would like to do and they will describe the AP and dice rolls required to succeed."
+    target: "-"
+    apCost: "-"
+
+

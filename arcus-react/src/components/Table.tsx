@@ -153,6 +153,30 @@ export type TraitGroup = {
     traits: TraitRow[];
 };
 
+// New types for weapons/armour/core abilities
+export type WeaponRow = {
+    weapon: string;
+    notes: string;
+    modifier: string;
+    range: string;
+};
+
+export type ArmourRow = {
+    type: string;
+    energy: string;
+    movement: string;
+    notes: string;
+    requirements: string;
+};
+
+export type CoreAbilityRow = {
+    level: string;
+    name: string;
+    description: string;
+    target: string;
+    apCost: string | number;
+};
+
 // Helper function to create columns for the old ClassTable format
 export function createClassTableColumns(getNameHref?: (row: AbilityRow, index: number) => string | undefined): TableColumn<AbilityRow>[] {
     return [
@@ -249,4 +273,36 @@ export function renderTraitGroupTable(group: TraitGroup, className?: string) {
             className={className}
         />
     );
+}
+
+// Helper function to create columns for weapons table
+export function createWeaponsTableColumns(): TableColumn<WeaponRow>[] {
+    return [
+        { key: 'weapon', header: 'Weapon', render: (v) => <span style={{ fontWeight: 600 }}>{v}</span> },
+        { key: 'notes', header: 'Notes' },
+        { key: 'modifier', header: 'Modifier', width: '220px' },
+        { key: 'range', header: 'Range', width: '200px' },
+    ];
+}
+
+// Helper function to create columns for armour table
+export function createArmourTableColumns(): TableColumn<ArmourRow>[] {
+    return [
+        { key: 'type', header: 'Type', width: '120px', render: (v) => <span style={{ fontWeight: 600 }}>{v}</span> },
+        { key: 'energy', header: 'Armour Energy Values' },
+        { key: 'movement', header: 'Movement Speed', width: '220px' },
+        { key: 'notes', header: 'Notes' },
+        { key: 'requirements', header: 'Requirements', width: '220px' },
+    ];
+}
+
+// Helper function to create columns for core abilities table
+export function createCoreAbilitiesTableColumns(): TableColumn<CoreAbilityRow>[] {
+    return [
+        { key: 'level', header: 'Level', width: '80px' },
+        { key: 'name', header: 'Name', render: (v) => <span style={{ fontWeight: 600 }}>{v}</span> },
+        { key: 'description', header: 'Description' },
+        { key: 'target', header: 'Target', width: '160px' },
+        { key: 'apCost', header: 'AP Cost', width: '100px', align: 'center' },
+    ];
 }
