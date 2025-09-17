@@ -761,7 +761,7 @@ function renderWeaponsTableIfAny(section: { id: string; title: string }) {
 	if (!rows.length) return null;
 	return (
 		<div style={{ marginTop: 16 }}>
-			<Table title="Weapons" rows={rows} columns={createWeaponsTableColumns()} />
+			<Table title="Weapon Types" rows={rows} columns={createWeaponsTableColumns()} />
 		</div>
 	);
 }
@@ -773,7 +773,7 @@ function renderArmourTableIfAny(section: { id: string; title: string }) {
 	if (!rows.length) return null;
 	return (
 		<div style={{ marginTop: 16 }}>
-			<Table title="Armour" rows={rows} columns={createArmourTableColumns()} />
+			<Table title="Armour Types" rows={rows} columns={createArmourTableColumns()} />
 		</div>
 	);
 }

@@ -2,7 +2,7 @@ armour:
   - type: "Light"
     energy: "5 total (e.g., 2 FORT, 2 REFL, 1 WILL)"
     movement: "-10ft per 1 AP of movement"
-    notes: "Flexible protection; points can be reassigned in any combination totaling 5"
+    notes: "Flexible protection; points can be reassigned in any combination totalling 5"
     requirements: "None"
 
   - type: "Medium"
@@ -14,7 +14,7 @@ armour:
   - type: "Heavy"
     energy: "11 total (e.g., 4 FORT, 4 REFL, 3 WILL)"
     movement: "-20ft per 1 AP of movement"
-    notes: "High protection; points can be reassigned in any combination totaling 11"
+    notes: "High protection; points can be reassigned in any combination totalling 11"
     requirements: "Strength requirement or GM approval"
 
 

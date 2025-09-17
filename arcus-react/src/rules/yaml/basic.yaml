@@ -161,7 +161,7 @@ sections:
         title: Traits
         summary: Traits are special abilities that provide utility and flavour to a character's background and talents.
         body: 
-          - Traits are special abilities that provide utility and flavoUr to a character's background and talents. As stated in the Skills section, at level 1 a character has 4 skill points to spend either on becoming Proficient in skills, or gaining traits.
+          - Traits are special abilities that provide utility and flavour to a character's background and talents. As stated in the Skills section, at level 1 a character has 4 skill points to spend either on becoming Proficient in skills, or gaining traits.
           - "On every odd level (3, 5, 7 etc.), a character gains 1 additional skill point to spend to either: increase the degree of skill in an existing skill, gain a new skill, or gain a new trait."
   - id: equipment
     title: Equipment
@@ -170,21 +170,21 @@ sections:
       - id: weapons
         title: Weapons
         body: >-
-          Weapons work the same as in regular Arcus: Light, Medium, or Heavy. Thrown, Ranged, Versatile, or Melee. See rules there for details.
+          Any weapon is one of the three weapon powers: Light, Medium, or Heavy. It is also one of the three usability types: Melee, Ranged, Versatile. Finally, it is either One-handed or Two-handed. For example, a weapon can be Medium, Melee, and One-handed.
       
       - id: armour
         title: Armour
-        body: >-
-          Armour grants additional energy to a creature in a separate Armour pool, which can only be used as a form of HP and cannot be spent for casting abilities etc. Armour will reduce movement speed as a cost - most commonly: Light armour increases the armour energy by 5 and reduces 1AP movement speed by 10ft; Heavy armour increases the armour energy by 11 and reduces speed by 20ft. Both of these will be available for FORT, REFL, or WILL in various combinations. For example:
-          
-          **Light Armour:** 2 FORT, 2 REFL, 1 WILL. These points can be shifted in any combination that totals 5, including some being 0.
-          
-          **Heavy Armour:** 4 FORT, 4 REFL, 3 WILL. These points can be shifted in any combination that totals 11, including some being 0.
+        body:
+          - Armour grants additional energy to a creature in a separate Armour pool, which can only be used as a form of HP and cannot be spent for casting abilities etc. Armour will reduce movement speed as a cost. 
+          - "Light armour increases the armour energy by 5 and reduces 1AP movement speed by 10ft; Medium armour increases the armour energy by 8 and reduced speed by 15ft; Heavy armour increases the armour energy by 11 and reduces speed by 20ft. Both of these will be available for FORT, REFL, or WILL in various combinations."
+          - "Example Armours:"
       
       - id: shields
         title: Shields
-        body: >-
-          Shields unlock the Shield core action that allows you to gain 1 shield in each energy type for 1 AP.
+        body: 
+          - Equipping a shield unlocks the Raise Shield core action that allows the wielder to gain 1 shield energy in each energy type for 0 AP. 
+
+          - Shields require at least 2 STR to equip.
 
   - id: combat
     title: Combat
@@ -192,30 +192,48 @@ sections:
     children:
       - id: combat-basics
         title: Combat Basics
-        body: >-
-          Combat is hex or square grid based. 5ft per tile.
+        body: 
+          - Combat starts when a creature takes an hostile action against a creature which leads to the other side wanting to take hostile actions against the initiator.
+
+          - Combat takes place on a hex or square grid. Each space on the grid is referred to as a tile and is 5ft across. Whenever a creature moves 5ft it moves 1 tile in any direction, including diagonals.
+
+          - Combat is turn based, each player and creature gets one turn in each round of combat. When a round is complete, the next round begins until the combat goal is achieved, or all hostile creatures on one side are defeated, surrender, or flee.
+
+          - Each creature has 3 action points each turn to spend taking actions such as moving, attacking, and using abilities.
+
+      - id: initiative
+        title: Initiative
+        body:
+          - Initiative determines the order in which turns are taken in combat. 
           
-          **Initiative:** Highest roll/initiator of combat acts first and then clockwise around the table. GM may place 1 group of enemies between each player, if there are too many enemy groups, the remaining groups are placed after the last player to act. The initiative remains static for the rest of the fight.
+          - Initiator of the combat acts first and then proceeds clockwise around the table. If there is no clear initiator then players and creatures may each make a PER+PER roll to decide who acts first. 
           
-          Alternating initiative between PCs and GM where 1 creature or player from each side takes a turn and then it is passed back to the other side. The GM decides who is going first based on who initiated the combat, if there is no clear initiator then PCs roll for REFL and if one of them gets the SR determined by the GM for this combat, the PCs may go first. If it is the PCs turn they may decide amongst them who will take that turn, after that player's turn is complete they cannot take another turn this round. Then it is the GMs turn and they will choose which creature will take their turn, and after that it is passed back to the PCs to choose who will go next, and so on.
+          - The GM may place 1 group of enemies between each player, if there are too many enemy groups, the remaining groups are placed after the last player to act. The initiative remains static for the rest of the fight.
+          
+          - "Alternative Initiative Ruling: Alternating initiative between PCs and GM where 1 creature or player from each side takes a turn and then it is passed back to the other side. The GM decides who is going first based on who initiated the combat, if there is no clear initiator then PCs roll for REFL and if one of them gets the SR determined by the GM for this combat, the PCs may go first. If it is the PCs turn they may decide amongst them who will take that turn, after that player's turn is complete they cannot take another turn this round. Then it is the GMs turn and they will choose which creature will take their turn, and after that it is passed back to the PCs to choose who will go next, and so on."
       
       - id: action-points
         title: Action Points
-        body: >-
-          Every turn a character has 3 action points (AP) to spend on movement, attacks, spells, and so on. Attacks and damaging effects will generally always cost 2 AP to use. 1 AP movement grants 50ft of movement.
-          
-          Reactions will be a part of the game, only some actions can be triggered as a reaction.
-      
+        body: 
+          - Every turn a character has 3 action points (AP) to spend on movement, attacks, abilities, and so on.
+
+          - See the Core Abilities section for a list of all the abilities that the players always have access to.
+        
+      - id: reactions
+        title: Reactions
+        body: 
+          - Some specific abilities will only be available as a reaction, which is an ability that has a specific trigger and may be used outside of your turn as well as during. Each creature has one reaction to use on each round of combat. A creature regains its reaction at the start of each of its turns.
+
+          - Attacks of opportunity are the most common type of reaction ability, which allows a creature to make a melee attack against a creature that moves out of melee range using the Move or Shift core abilities.
+
       - id: energy-combat
         title: Energy in Combat
-        body: >-
-          While in combat, energy (FORT, REFL, and WILL) will be both a resource pool for casting more powerful abilities, as well as a form of hit points that will be lost when a character suffers damage. If a character has 0 left in an energy type and that energy is damaged, it will instead reduce the character's HP.
+        body: 
+          - At the start of each character's turn, they will regain up to 2 energy in one or two energy types, up to their maximum.
           
-          At the start of each character's turn, they will regain 2 energy in any combination of one or two energy types, up to their maximum.
+          - "All attacks will target one of the three energy types: FORT, REFL, or WILL. For example: think of this as using a sword to attack the torso (FORT), the limbs (REFL), or the head (WILL). The attacking characters are encouraged to describe how they formulate their attack to target the chosen energy type, to add to the thematics of combat."
           
-          All attacks will target one of the three energy types: FORT, REFL, or WILL. For example: think of this as using a sword to attack the torso (FORT), the limbs (REFL), or the head (WILL). The attacking characters are encouraged to describe how they formulate their attack to target the chosen energy type, to add to the thematics of combat.
-          
-          Equally players can describe how they avoid suffering damage to their HP pool by losing their energy instead, such as suffering damage to REFL energy to dodge an attack, or suffering damage to WILL energy to outsmart their opponent by using some spell or item in the environment to throw the attacker off balance.
+          - Equally players can describe how they avoid suffering damage to their HP pool by losing their energy instead, such as suffering damage to REFL energy to dodge an attack, or suffering damage to WILL energy to outsmart their opponent by using some spell or item in the environment to throw the attacker off balance.
       
       - id: attacks
         title: Attacks
@@ -227,7 +245,7 @@ sections:
         body: >-
           Resistance X to damage will reduce the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this resistance to - such as Fire Resistance 2.
           
-          Vulnerability X will increase the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this vulnerability to - such as Fire Vulnerability 2.
+          Vulnerability X will increase the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this vulnerability to - such as Fire Vulnerability 2. At least 1 damage of the specified type must be dealt for this to have any affect.
       
       - id: healing
         title: Healing

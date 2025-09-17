@@ -288,11 +288,11 @@ export function createWeaponsTableColumns(): TableColumn<WeaponRow>[] {
 // Helper function to create columns for armour table
 export function createArmourTableColumns(): TableColumn<ArmourRow>[] {
     return [
-        { key: 'type', header: 'Type', width: '120px', render: (v) => <span style={{ fontWeight: 600 }}>{v}</span> },
-        { key: 'energy', header: 'Armour Energy Values' },
-        { key: 'movement', header: 'Movement Speed', width: '220px' },
-        { key: 'notes', header: 'Notes' },
-        { key: 'requirements', header: 'Requirements', width: '220px' },
+        { key: 'type', header: 'Type', width: '100px', render: (v) => <span style={{ fontWeight: 600 }}>{v}</span> },
+        { key: 'energy', header: 'Armour Energy Values', width: '200px' },
+        { key: 'movement', header: 'Movement Speed', width: '180px' },
+        { key: 'notes', header: 'Notes', width: '200px' },
+        { key: 'requirements', header: 'Requirements', width: '170px' },
     ];
 }
 
