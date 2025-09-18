@@ -242,10 +242,10 @@ sections:
       
       - id: resistance-vulnerability
         title: Resistance and Vulnerability
-        body: >-
-          Resistance X to damage will reduce the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this resistance to - such as Fire Resistance 2.
+        body: 
+          - Resistance X to damage will reduce the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this resistance to - such as Fire Resistance 2.
           
-          Vulnerability X will increase the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this vulnerability to - such as Fire Vulnerability 2. At least 1 damage of the specified type must be dealt for this to have any affect.
+          - Vulnerability X will increase the total damage dealt by X on every instance of damage. This will normally specify certain damage types to apply this vulnerability to - such as Fire Vulnerability 2. At least 1 damage of the specified type must be dealt for this to have any affect.
       
       - id: healing
         title: Healing
@@ -255,7 +255,7 @@ sections:
       - id: condition-mechanics
         title: Condition Mechanics
         body: >-
-          There are various conditions that will always last until the start of the source's next turn unless stated otherwise. Anything that applies a condition or immediate effect will also state which energy types must be used to resist it, such as: FORT to resist the push, or FORT or REFL (source of the condition decides which one the target must use) to resist being knocked prone. The target must roll 3d6 plus a number of d6 equal to their remaining points in that energy type (including shield, armour and energy) and require only one success to avoid the condition or effect. Therefore, you should generally aim to get an enemy's energy to 0 before attempting to apply conditions.
+          Conditions are continual effects that will always last until the start of the source's next turn unless stated otherwise. Anything that applies a condition or immediate effect will also state which energy types must be used to resist it, such as: FORT to resist the push, or FORT or REFL (source of the condition decides which one the target must use) to resist being knocked prone. The target must roll 3d6 plus a number of d6 equal to their remaining points in that energy type (including shield, armour and energy) and require only one success to avoid the condition or effect. Therefore, you should generally aim to get an enemy's energy to 0 before attempting to apply conditions.
       
       - id: abilities
         title: Abilities
