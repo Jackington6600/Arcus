@@ -14,7 +14,6 @@ interface TooltipProps {
 export function Tooltip({ tooltipId, children }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isPositioned, setIsPositioned] = useState(false); // Track when tooltip is ready to show
-  const [position, setPosition] = useState<'above' | 'below'>('below');
   const tooltipRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLSpanElement>(null);
   const { data } = useData();
@@ -31,7 +30,6 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
 
   const summary = data ? getTooltipSummary(tooltipId, data.mainRules) : null;
   const [tooltipStyle, setTooltipStyle] = useState<React.CSSProperties>({});
-  const [tooltipWidth, setTooltipWidth] = useState<number | undefined>(undefined);
 
   // Function to calculate optimal tooltip width based on available space
   const calculateOptimalWidth = useCallback((triggerRect: DOMRect, isMobileDevice: boolean, naturalWidth?: number): number => {
@@ -73,7 +71,6 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
     
     // Calculate optimal width based on available space
     const optimalWidth = calculateOptimalWidth(triggerRect, isMobile, naturalWidth);
-    setTooltipWidth(optimalWidth);
 
     // Calculate available space in all directions
     const spaceAbove = triggerRect.top;
@@ -104,8 +101,6 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
       // Neither fits perfectly, use whichever has more space (allow overlap)
       shouldBeAbove = spaceAbove > spaceBelow;
     }
-    
-    setPosition(shouldBeAbove ? 'above' : 'below');
 
     // Calculate horizontal position relative to viewport (since we're using portal)
     // Center tooltip on trigger text
@@ -181,7 +176,6 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
 
     // Reset positioning state when opening
     setIsPositioned(false);
-    setTooltipWidth(undefined);
     setTooltipStyle({ opacity: 0 }); // Start invisible
 
     // Wait for tooltip to be rendered in DOM, then calculate position
