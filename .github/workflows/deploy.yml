@@ -1,9 +1,11 @@
 name: Deploy to GitHub Pages
 
+# Automatically deploy on every push to main branch
 on:
   push:
     branches:
       - main
+  # Allow manual triggering from Actions tab
   workflow_dispatch:
 
 permissions:

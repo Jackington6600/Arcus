@@ -3,7 +3,7 @@ tooltips:
     id: "blind"
   - phrases: ["deaf", "deafened"]
     id: "deaf"
-  - phrases: ["frightened", "fear", "scared"]
+  - phrases: ["frightened", "fear"]
     id: "frightened"
   - phrases: ["prone"]
     id: "prone"
@@ -17,23 +17,23 @@ tooltips:
     id: "taunted"
   - phrases: ["immobilised", "immobilized", "immobilize"]
     id: "immobilised"
-  - phrases: ["hobbled"]
+  - phrases: ["hobbled", "hobble"]
     id: "hobbled"
-  - phrases: ["restrained"]
+  - phrases: ["restrained", "restrain"]
     id: "restrained"
-  - phrases: ["incapacitated"]
+  - phrases: ["incapacitated", "incapacitate"]
     id: "incapacitated"
   - phrases: ["paralysed", "paralyzed", "paralyze"]
     id: "paralysed"
   - phrases: ["poisoned", "poison"]
     id: "poisoned"
-  - phrases: ["bleeding"]
+  - phrases: ["bleeding", "bleed"]
     id: "bleeding"
   - phrases: ["unconscious"]
     id: "unconscious"
   - phrases: ["dying"]
     id: "dying"
-  - phrases: ["marked"]
+  - phrases: ["marked", "mark"]
     id: "marked"
   - phrases: ["dominated", "dominate"]
     id: "dominated"
@@ -43,4 +43,5 @@ tooltips:
     id: "vulnerability"
   - phrases: ["silenced", "silence"]
     id: "silenced"
-
+  - phrases: ["silenced", "silence"]
+    id: "silenced"
