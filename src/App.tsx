@@ -14,7 +14,7 @@ function App() {
   return (
     <ThemeProvider>
       <DataProvider>
-        <BrowserRouter basename="/Arcus2">
+        <BrowserRouter basename="/Arcus">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/full-rules" element={<FullRules />} />
