@@ -1,8 +1,16 @@
-# Arcus Website
+# [Arcus](https://jackington6600.github.io/Arcus)
 
-A modern, responsive website for the Arcus tabletop role-playing game (TTRPG) rules.
+[View the rules here!](https://jackington6600.github.io/Arcus)
 
-## Features
+[View the recent change notes here!](https://github.com/Jackington6600/Arcus/releases)
+
+Arcus is a pen and paper tabletop role playing game (TTRPG).
+
+This system is designed for a fantasy adventure setting and draws inspiration from a wide variety of TTRPG, video game, and board game systems to deliver an expressly simple, yet versatile and powerful ruleset. Arcus' unique take on combat and abilities grants players an abundance of choices in fights and in character progression, encourages teamwork, and provides greater tactical depth. 
+
+If you like games such as Divinity Original Sin 2, Baldur's Gate 3, or Gloom/Frosthaven, and wish there was a way to enjoy their fun combat systems within a simple, immersive, and flexible tabletop RPG format - this might be the game for you. If you enjoy Dungeons and Dragons 5e, Pathfinder 2e, or Draw Steel and want something a little more from combat without too much additional complexity or heroic elements - this might be the game for you.
+
+## Website Features
 
 - 📖 Full rules display with configurable content ordering
 - 🔍 Fuzzy search functionality
@@ -11,69 +19,4 @@ A modern, responsive website for the Arcus tabletop role-playing game (TTRPG) ru
 - 💡 Interactive tooltips for key terms
 - 📊 Multiple display formats for rule tables (table, card, text)
 - 🧭 Navigation menu with heading tree
-
-## Technology Stack
-
-- **React 18+** with TypeScript
-- **Vite** for build tooling
-- **Tailwind CSS** for styling
-- **React Router** for navigation
-- **js-yaml** for parsing YAML files
-- **fuse.js** for fuzzy search
-
-## Development
-
-### Prerequisites
-
-- Node.js 20+
-- npm
-
-### Installation
-
-```bash
-npm install
-```
-
-### Development Server
-
-```bash
-npm run dev
-```
-
-### Build
-
-```bash
-npm run build
-```
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-## Project Structure
-
-```
-src/
-├── components/       # React components
-├── contexts/         # React context providers
-├── pages/           # Page components
-├── styles/          # CSS files
-├── types/           # TypeScript type definitions
-└── utils/           # Utility functions
-public/              # Static assets and YAML files
-```
-
-## Configuration
-
-Content ordering and display is controlled by `public/contentConfig.yaml`. Tooltip phrases are configured in `public/tooltips.yaml`.
-
-## Deployment
-
-The site is configured to deploy to GitHub Pages via GitHub Actions. The workflow automatically builds and deploys when changes are pushed to the `main` branch.
-
-## License
-
-See LICENSE file for details.
 
