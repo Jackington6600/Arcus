@@ -1,0 +1,128 @@
+core_abilities:
+  - level: "Core"
+    name: "Move"
+    description: "Gain movement equal to your base movement speed. This movement can be split up however you wish on your turn and does not all need to be used. This ability can be used as many times as you like in a turn. All movement left at the end of your turn is lost. This movement can include jumping, climbing, swimming, crawling etc. However, this may require skill checks."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Disengage"
+    description: "You take on an evasive stance. During this turn, you do not provoke attacks of opportunity."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Shift"
+    description: "Spend 1 energy: Gain 10ft of movement. This ability can be used up to 3 times in a turn. This movement can be split up however you wish on your turn and does not all need to be used. All movement left at the end of your turn is lost. This movement can include jumping, climbing, swimming, crawling etc. However, this may require skill checks."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Regular Attack"
+    description: "Make a weapon attack or attack using a class core ability. This attack must target one of the three energy types and all damage from this attack will be dealt to that energy type first, and then the target's HP if there is no energy of that type remaining."
+    target: "E, Range varies"
+    apCost: 2
+
+  - level: "Core"
+    name: "Hold Regular Attack"
+    description: "Unlock the opportunity to make a regular attack outside of your turn when a specific trigger, that you choose, is met. For example: “I will make an attack with my greatsword when an enemy steps within range”. Making this attack also requires you to spend your reaction."
+    target: "E, Range varies"
+    apCost: 2
+
+  - level: "Core"
+    name: "Attack of Opportunity"
+    description: "If you have a melee weapon equipped or melee attack from a core ability available when a creature moves out of melee range, you can spend your reaction to make a regular melee attack against that target immediately before they step out of range. Movement used as part of an ability (such as Charge, Hit and Run, or Advance!), involuntary movement (such as being pushed or pulled), or teleportation movement does not trigger attacks of opportunity."
+    target: "E, melee"
+    apCost: "React"
+
+  - level: "Core"
+    name: "Raise Shield"
+    description: "You must have a shield equipped to use this ability. Once per round, gain 1 shield energy in each type. You may spend 1 additional AP to gain 2 shield energy in each type instead."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Inspect Creature"
+    description: "Have the GM roughly describe a creature’s strengths and weaknesses - this may require an INT+PER check (GM’s discretion). This is an opportunity for the GM to give clues to the players as to what might be a good strategy to take down the enemies and what abilities they might have. Without a skill check, a player can ask the GM to describe the creature’s resistance points as “exposed”/“vulnerable” if they have 0 resistance points of that type, “weak” if they have 1-3 points, and “strong”/“capable” if they have 4+ points. This is a key part of making sure your abilities have a good chance of taking effect on your enemies."
+    target: "E"
+    apCost: 0
+
+  - level: "Core"
+    name: "Hide"
+    description: "Make a DEX+DEX stealth check to become hidden. Any creature that cannot see you as you use this action is no longer aware of where you are if you roll higher than their passive perception. Most creatures still have object permanence so they may come looking for you using a perception check. If they roll higher than your stealth check or have direct line of sight to you, you are revealed."
+    target: "S"
+    apCost: 2
+
+  - level: "Core"
+    name: "Help"
+    description: "Help a creature within 5ft. This might be to wake them from being unconscious, give them Adv (+) on a roll, or to help them by removing a condition from them (specifically hobbled, prone, immobilised, stunned, frightened, restrained, incapacitated, unconscious). This must be within reason (GM’s discretion) - such as the GM may describe the condition as being a particular nature that cannot be removed with any help."
+    target: "A, 5ft"
+    apCost: 1
+
+  - level: "Core"
+    name: "Recover"
+    description: "Regain 1 energy in any type."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Push/Pull"
+    description: "Select a creature within 5ft and move them 5ft in any direction. 1 FORT or REFL SR to resist the push/pull."
+    target: "A+E"
+    apCost: 1
+
+  - level: "Core"
+    name: "Stand Up"
+    description: "If you are currently prone you may remove the prone condition and stand up again."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Draw Weapon"
+    description: "If either hand is empty, you may draw and equip a weapon from your inventory to that hand."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Swap Weapon"
+    description: "Change the weapons in your hands for another weapon in your inventory. This could also include just stowing your weapons."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Drop Item"
+    description: "Drop whatever item you have into your hand onto the floor."
+    target: "S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Pick Up Item"
+    description: "Pick up one or more items from the floor within 5ft into one or more free hands. All of these items must fit in your free hands to all be picked up in one ability use, otherwise this ability must be used multiple times."
+    target: "S"
+    apCost: 1
+
+  - level: "Core"
+    name: "Drink/Give Potion"
+    description: "Drink a potion from your inventory or hand, or help another creature drink it."
+    target: "A+S"
+    apCost: 2
+
+  - level: "Core"
+    name: "Talk to Allies"
+    description: "The GM will decide roughly how much you can chat to other players in and out of character during combat. Preferably the players can discuss tactics freely out of character, and exchange a few words in character."
+    target: "A+S"
+    apCost: 0
+
+  - level: "Core"
+    name: "Improvise"
+    description: "Describe something you do with extra flair or improvise a fun way to use your abilities, allies, and/or surroundings to your advantage. Your GM may choose to reward you with bonuses or Adv on your actions depending on what you describe. Bear in mind that this should not be a consistent source of advantage, damage, or conditions for any player, and should primarily reward creativity. This should not be something you're doing every round and you should not be rewarded for the same creative action or description more than once."
+    target: "-"
+    apCost: "-"
+
+  - level: "Core"
+    name: "Other"
+    description: "The GM will allow you to do other actions on your turn, just say what you would like to do and they will describe the AP and dice rolls required to succeed."
+    target: "-"
+    apCost: "-"
+
+

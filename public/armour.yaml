@@ -1,0 +1,20 @@
+armour:
+  - type: "Light"
+    armour: "5 total (e.g., 2 FORT, 2 REFL, 1 WILL)"
+    movement: "-10ft per 1 AP of movement"
+    notes: "Protection focused on mobility; protection for different armours can vary in any combination totalling 5"
+    requirements: "None"
+
+  - type: "Medium"
+    armour: "8 total (e.g., 3 FORT, 3 REFL, 2 WILL)"
+    movement: "-15ft per 1 AP of movement"
+    notes: "Balanced defence and speed; protection for different armours can vary in any combination totalling 8"
+    requirements: "None"
+
+  - type: "Heavy"
+    armour: "11 total (e.g., 4 FORT, 4 REFL, 3 WILL)"
+    movement: "-20ft per 1 AP of movement"
+    notes: "Heavy and slower protection; protection for different armours can vary in any combination totalling 8"
+    requirements: "None"
+
+

@@ -1,0 +1,46 @@
+tooltips:
+  - phrases: ["blind", "blinded"]
+    id: "blind"
+  - phrases: ["deaf", "deafened"]
+    id: "deaf"
+  - phrases: ["frightened", "fear", "scared"]
+    id: "frightened"
+  - phrases: ["prone"]
+    id: "prone"
+  - phrases: ["stunned", "stun"]
+    id: "stunned"
+  - phrases: ["dazed", "daze"]
+    id: "dazed"
+  - phrases: ["charmed", "charm"]
+    id: "charmed"
+  - phrases: ["taunted", "taunt"]
+    id: "taunted"
+  - phrases: ["immobilised", "immobilized", "immobilize"]
+    id: "immobilised"
+  - phrases: ["hobbled"]
+    id: "hobbled"
+  - phrases: ["restrained"]
+    id: "restrained"
+  - phrases: ["incapacitated"]
+    id: "incapacitated"
+  - phrases: ["paralysed", "paralyzed", "paralyze"]
+    id: "paralysed"
+  - phrases: ["poisoned", "poison"]
+    id: "poisoned"
+  - phrases: ["bleeding"]
+    id: "bleeding"
+  - phrases: ["unconscious"]
+    id: "unconscious"
+  - phrases: ["dying"]
+    id: "dying"
+  - phrases: ["marked"]
+    id: "marked"
+  - phrases: ["dominated", "dominate"]
+    id: "dominated"
+  - phrases: ["feeble"]
+    id: "feeble"
+  - phrases: ["vulnerability", "vulnerable"]
+    id: "vulnerability"
+  - phrases: ["silenced", "silence"]
+    id: "silenced"
+
