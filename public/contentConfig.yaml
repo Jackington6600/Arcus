@@ -1,0 +1,328 @@
+sections:
+  - id: "introduction"
+    displayFormat: "text"
+    visible: true
+
+  - id: "resolution-mechanics"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "dice-system"
+        displayFormat: "text"
+        visible: true
+        children:
+          - id: "challenge-roll"
+            displayFormat: "text"
+            visible: true
+          - id: "attack-roll"
+            displayFormat: "text"
+            visible: true
+          - id: "resistance-roll"
+            displayFormat: "text"
+            visible: true
+      - id: "advantage-disadvantage"
+        displayFormat: "text"
+        visible: true
+      - id: "push-for-success"
+        displayFormat: "text"
+        visible: true
+        children:
+          - id: "minor-setback-examples"
+            displayFormat: "text"
+            visible: true
+          - id: "major-setback-examples"
+            displayFormat: "text"
+            visible: true
+
+  - id: "creating-a-character"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "attributes"
+        displayFormat: "text"
+        visible: true
+        children:
+          - id: "strength"
+            displayFormat: "text"
+            visible: true
+          - id: "constitution"
+            displayFormat: "text"
+            visible: true
+          - id: "dexterity"
+            displayFormat: "text"
+            visible: true
+          - id: "perception"
+            displayFormat: "text"
+            visible: true
+          - id: "intelligence"
+            displayFormat: "text"
+            visible: true
+          - id: "spirit"
+            displayFormat: "text"
+            visible: true
+      - id: "energy"
+        displayFormat: "text"
+        visible: true
+        children:
+          - id: "spending-energy"
+            displayFormat: "text"
+            visible: true
+          - id: "hp-energy"
+            displayFormat: "text"
+            visible: true
+          - id: "resist-energy"
+            displayFormat: "text"
+            visible: true
+      - id: "hit-points"
+        displayFormat: "text"
+        visible: true
+      - id: "skills"
+        displayFormat: "text"
+        visible: true
+        children:
+          - id: "skill-ideas"
+            displayFormat: "text"
+            visible: true
+      - id: "traits"
+        displayFormat: "text"
+        visible: true
+
+  - id: "equipment"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "weapons"
+        displayFormat: "text"
+        visible: true
+      - id: "armour"
+        displayFormat: "text"
+        visible: true
+      - id: "shields"
+        displayFormat: "text"
+        visible: true
+
+  - id: "weapons-table"
+    sourceFile: "weapons.yaml"
+    displayFormat: "table"
+    visibleFields: ["weapon", "notes", "modifier", "range"]
+    visible: true
+    showInNavigation: true
+    # filter: { field: "weapon", values: [] }  # Example: filter by weapon names
+
+  - id: "armour-table"
+    sourceFile: "armour.yaml"
+    displayFormat: "table"
+    visibleFields: ["type", "armour", "movement", "notes"]
+    visible: true
+    showInNavigation: true
+    # filter: { field: "type", values: [] }  # Example: filter by armour types
+
+  - id: "traits-table"
+    sourceFile: "traits.yaml"
+    displayFormat: "table"
+    visibleFields: ["name", "desc", "type", "usage", "useLimit", "requirements"]
+    visible: true
+    showInNavigation: true
+    splitBy: "groupId"
+    groupTitleField: "group"
+    metadataFields: ["description"]
+    # filter: { groupIds: [] }  # Example: filter by trait group IDs (e.g., ["ancestral", "combat"])
+
+  - id: "combat"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "combat-basics"
+        displayFormat: "text"
+        visible: true
+      - id: "initiative"
+        displayFormat: "text"
+        visible: true
+      - id: "action-points"
+        displayFormat: "text"
+        visible: true
+      - id: "reactions"
+        displayFormat: "text"
+        visible: true
+      - id: "energy-combat"
+        displayFormat: "text"
+        visible: true
+      - id: "attacks"
+        displayFormat: "text"
+        visible: true
+      - id: "resistance-vulnerability"
+        displayFormat: "text"
+        visible: true
+      - id: "healing"
+        displayFormat: "text"
+        visible: true
+      - id: "condition-mechanics"
+        displayFormat: "text"
+        visible: true
+      - id: "abilities"
+        displayFormat: "text"
+        visible: true
+      - id: "unconscious-death"
+        displayFormat: "text"
+        visible: true
+
+  - id: "core-abilities"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "move"
+        displayFormat: "text"
+        visible: true
+      - id: "disengage"
+        displayFormat: "text"
+        visible: true
+      - id: "shift"
+        displayFormat: "text"
+        visible: true
+      - id: "regular-attack"
+        displayFormat: "text"
+        visible: true
+      - id: "hold-regular-attack"
+        displayFormat: "text"
+        visible: true
+      - id: "attack-of-opportunity"
+        displayFormat: "text"
+        visible: true
+      - id: "inspect-creature"
+        displayFormat: "text"
+        visible: true
+      - id: "hide"
+        displayFormat: "text"
+        visible: true
+      - id: "help"
+        displayFormat: "text"
+        visible: true
+      - id: "push-pull"
+        displayFormat: "text"
+        visible: true
+      - id: "stand-up"
+        displayFormat: "text"
+        visible: true
+      - id: "draw-weapon"
+        displayFormat: "text"
+        visible: true
+      - id: "swap-weapon"
+        displayFormat: "text"
+        visible: true
+      - id: "drop-item"
+        displayFormat: "text"
+        visible: true
+      - id: "pick-up-item"
+        displayFormat: "text"
+        visible: true
+      - id: "drink-potion"
+        displayFormat: "text"
+        visible: true
+      - id: "talk-to-allies"
+        displayFormat: "text"
+        visible: true
+      - id: "improvise"
+        displayFormat: "text"
+        visible: true
+      - id: "other"
+        displayFormat: "text"
+        visible: true
+
+  - id: "core-abilities-table"
+    sourceFile: "core_abilities.yaml"
+    displayFormat: "table"
+    visibleFields: ["name", "description", "target", "apCost"]
+    visible: true
+    showInNavigation: true
+    # filter: { field: "name", values: [] }  # Example: filter by ability names
+
+  - id: "conditions"
+    displayFormat: "text"
+    visible: true
+    children:
+      - id: "blind"
+        displayFormat: "text"
+        visible: true
+      - id: "deaf"
+        displayFormat: "text"
+        visible: true
+      - id: "marked"
+        displayFormat: "text"
+        visible: true
+      - id: "charmed"
+        displayFormat: "text"
+        visible: true
+      - id: "dominated"
+        displayFormat: "text"
+        visible: true
+      - id: "taunted"
+        displayFormat: "text"
+        visible: true
+      - id: "frightened"
+        displayFormat: "text"
+        visible: true
+      - id: "prone"
+        displayFormat: "text"
+        visible: true
+      - id: "hobbled"
+        displayFormat: "text"
+        visible: true
+      - id: "immobilised"
+        displayFormat: "text"
+        visible: true
+      - id: "dazed"
+        displayFormat: "text"
+        visible: true
+      - id: "stunned"
+        displayFormat: "text"
+        visible: true
+      - id: "silenced"
+        displayFormat: "text"
+        visible: true
+      - id: "restrained"
+        displayFormat: "text"
+        visible: true
+      - id: "incapacitated"
+        displayFormat: "text"
+        visible: true
+      - id: "paralysed"
+        displayFormat: "text"
+        visible: true
+      - id: "poisoned"
+        displayFormat: "text"
+        visible: true
+      - id: "bleeding"
+        displayFormat: "text"
+        visible: true
+      - id: "feeble"
+        displayFormat: "text"
+        visible: true
+      - id: "vulnerability"
+        displayFormat: "text"
+        visible: true
+      - id: "unconscious"
+        displayFormat: "text"
+        visible: true
+      - id: "dying"
+        displayFormat: "text"
+        visible: true
+
+  - id: "classes"
+    displayFormat: "text"
+    visible: true
+
+  - id: "class-abilities-table"
+    sourceFile: "class_abilities.yaml"
+    displayFormat: "table"
+    visibleFields: ["name", "description", "target", "apCost", "level", "type"]
+    visible: true
+    showInNavigation: true
+    splitBy: "classId"
+    groupTitleField: "className"
+    metadataFields: ["type", "attributes", "summary"]
+    children:
+      - id: "deadly-escalation"
+        displayFormat: "text"
+        visible: true
+    # filter: { classIds: [] }  # Example: filter by class IDs (e.g., ["warrior", "scoundrel", "marksman"])
+
