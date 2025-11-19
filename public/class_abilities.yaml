@@ -13,7 +13,6 @@ classes:
       - level: Core
         name: Ignore Pain
         apCost: "-"
-        otherCost: "-"
         flavourText: Focus your defenses despite the agony.
         description: You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing. You also ignore the effects of difficult terrain.
         range: "-"
@@ -23,7 +22,6 @@ classes:
       - level: Core
         name: Forceful Shove
         apCost: 1
-        otherCost: "-"
         flavourText: Push harder and further with great technique.
         description: Select a creature within 5ft and move them 5-15ft (your choice) in any direction. Target may resist the push with FORT or REFL.
         range: 5ft
@@ -33,7 +31,6 @@ classes:
       - level: Core
         name: Provoking Shout
         apCost: 1
-        otherCost: "-"
         flavourText: Goad an enemy into fighting you.
         description: Select a creature within 50ft and taunt them. Target may resist the taunt with WILL.
         range: 5ft
@@ -167,7 +164,6 @@ classes:
       - level: 3
         name: Pin and Crush
         apCost: 1
-        otherCost: "-"
         flavourText: Pin a foe and ready your weapon for a massive attack.
         description: Select a creature within 5ft and immobilise it. Target may resist the immobilise with FORT or REFL. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 additional AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
         range: Melee
@@ -184,7 +180,6 @@ classes:
       - level: Core
         name: Manoeuvrable
         apCost: "-"
-        otherCost: "-"
         flavourText: You know how to be in the right place at the right time.
         description: When you deal damage to a creature you may immediately move up to 5ft without provoking attacks of opportunity. If the creature you damaged was within 5ft, you may immediately move up to 15ft instead. This effect can only trigger once per round and this movement cannot be broken up.
         range: "-"
@@ -194,7 +189,6 @@ classes:
       - level: Core
         name: Swift Striker
         apCost: "-"
-        otherCost: "-"
         flavourText: Move fast and strike faster.
         description: At any time on your turn, if you have moved to a position that is 30ft or further away from where you started your turn, your next attack against a single target has Adv (++).
         range: "-"
@@ -248,7 +242,6 @@ classes:
       - level: 1
         name: Expeditious Retreat
         apCost: "-"
-        otherCost: "-"
         flavourText: Move away from engagements with flawless grace.
         description: Attacks of opportunity have DisAdv (--) against you.
         range: "-"
@@ -347,7 +340,6 @@ classes:
       - level: Core
         name: Ranger
         apCost: "-"
-        otherCost: "-"
         flavourText: You are accurate even at the greatest ranges.
         description: For each level in Marksman, increase the range of all short range weapons by 5ft (max bonus 50ft) and all long range weapons by 10ft (max bonus 100ft).
         range: "-"
@@ -357,7 +349,6 @@ classes:
       - level: Core
         name: Precision
         apCost: "-"
-        otherCost: "-"
         flavourText: Take aim to bypass the enemy's defenses.
         description: Before you make a ranged single target attack, you may choose to reduce the attack power by 4d6, 11d6, or 18d6 and deal 1, 3, or 6 direct damage respectively. You cannot reduce the attack power below 0.
         range: "-"
@@ -367,7 +358,6 @@ classes:
       - level: Core
         name: Commanding Movement
         apCost: "-"
-        otherCost: "-"
         flavourText: Order others to reposition with the flow of battle.
         description: Whenever you use the core movement ability, you may spend either 10ft or 20ft of that movement speed to grant an ally within 50ft either 5ft or 10ft of movement respectively to be spent immediately.
         range: 50ft
@@ -387,7 +377,6 @@ classes:
       - level: 1
         name: Forceful Shot
         apCost: 2
-        otherCost: "-"
         flavourText: Push back your enemies with a projectile of great force.
         description: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 5ft directly away from you. Target may resist the push with FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
         extraEffectCost: 1 FORT or REFL
@@ -419,7 +408,6 @@ classes:
       - level: 1
         name: Expeditious Retreat
         apCost: "-"
-        otherCost: "-"
         flavourText: Move away from engagements with flawless grace.
         description: Attacks of opportunity have DisAdv (--) against you.
         range: "-"
@@ -501,7 +489,6 @@ classes:
       - level: 3
         name: Prone Sniper
         apCost: "-"
-        otherCost: "-"
         flavourText: Lay prone for greater stability and accuracy.
         description: You now gain Adv (++) instead of DisAdv (--) while attacking with ranged weapons when prone. This does not include thrown weapon attacks.
         range: "-"
@@ -528,7 +515,6 @@ classes:
       - level: Core
         name: Elemental Balance
         apCost: "-"
-        otherCost: "-"
         flavourText: You have mastered the balance of mind and spirit.
         description: You may use either INT or SPI as your modifiers for any elemental abilities. In this table these attributes will be referred to as MOD and Modifiers (modifiers of your choice). E.g. Medium+MOD+MOD attack power = Medium+INT+INT or Medium+SPI+SPI attack power.
         range: "-"
@@ -538,7 +524,6 @@ classes:
       - level: Core
         name: Elemental Blast
         apCost: 2
-        otherCost: "-"
         flavourText: Conjure a burst of elemental power.
         description: Make a melee MOD attack against a creature with Medium+MOD+MOD (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+MOD+MOD (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
         range: 50ft
@@ -548,7 +533,6 @@ classes:
       - level: Core
         name: Stone Skin
         apCost: "-"
-        otherCost: "-"
         flavourText: Your skin is as tough as stone.
         description: You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing.
         range: "-"
@@ -561,7 +545,7 @@ classes:
         otherCost: 1 FORT or WILL
         flavourText: Summon shards of ice that orbit around you.
         description: Create 3 ice daggers that persist with you until the end of your next turn. You cannot have more than 3 ice daggers at any one time.
-        extraEffectCost: 1 Ice Dagger
+        extraEffectCost: 1 AP + 1 Ice Dagger
         extraEffectDescription: Make a ranged MOD attack against a creature within 50ft with Light+MOD+MOD frost attack power targeting FORT or REFL.
         range: 50ft
         target: A+E, Single target
@@ -692,7 +676,6 @@ classes:
       - level: 3
         name: Elemental Brawler
         apCost: "-"
-        otherCost: "-"
         flavourText: These elements were made for fighting, and that's just what they'll do.
         description: You permanently gain Vulnerability 2 to all damage types. Immediately after you damage a creature you may gain 5 shield in all energy types for each hostile creature within 10ft of you. You may only do this once per round.
         range: "-"
@@ -709,7 +692,6 @@ classes:
       - level: Core
         name: Soul Strike
         apCost: 2
-        otherCost: "-"
         flavourText: Lash out at another's soul.
         description: Make a ranged SPI attack against a creature within 100ft with Medium+MOD+MOD soul attack power.
         range: 100ft
@@ -719,7 +701,6 @@ classes:
       - level: Core
         name: Vital Exchange
         apCost: "-"
-        otherCost: "-"
         flavourText: Sacrifice your own health to maximise your power.
         description: Whenever you heal or attack a creature, you may choose to suffer up to 3 direct damage to increase the healing by the same amount or gain additional Light attack power per damage suffered. You cannot suffer more direct damage than you have remaining HP.
         range: "-"
@@ -866,7 +847,6 @@ classes:
       - level: Core
         name: Arcane Snap
         apCost: 0
-        otherCost: "-"
         flavourText: Create a spark of force if you have not caused harm.
         description: Immediately before you end your turn, if you have dealt no damage since the start of your turn you may immediately make an attack against a creature within 100ft with Light force attack power. Your turn then immediately ends.
         range: 100ft
@@ -876,7 +856,6 @@ classes:
       - level: Core
         name: Arcane Bolt
         apCost: 2
-        otherCost: "-"
         flavourText: Launch a beam of pure force at your foe.
         description: Make a ranged INT attack against a creature within 100ft with Medium+MOD+MOD force damage.
         range: 100ft
@@ -886,7 +865,6 @@ classes:
       - level: Core
         name: Magic Momentum
         apCost: "-"
-        otherCost: "-"
         flavourText: Maintain your spellcasting momentum to grant additional protection.
         description: Once per turn, if you cast at least two 1 AP abilities on the same turn, you may grant a creature within 100ft 1 shield in any energy type.
         range: 100ft
@@ -1033,7 +1011,6 @@ classes:
       - level: Core
         name: Psychic Pierce
         apCost: 2
-        otherCost: "-"
         flavourText: Puncture a creatures mind as if taking a blade to their synapses.
         description: Make a ranged INT attack against a creature within 100ft with Medium+MOD+MOD psychic attack power. If the target currently has 3 or more distinct negative conditions, the attack gains additional Light attack power.
         range: 100ft
@@ -1043,7 +1020,6 @@ classes:
       - level: Core
         name: Painful Inhibition
         apCost: "-"
-        otherCost: "-"
         flavourText: Choose harm over hindrance.
         description: Whenever you inflict a negative condition upon another creature (after they fail to resist) you may immediately choose to deal 1 psychic damage to that creature. This effect cannot be performed with the marked or deafened conditions. You may only perform this action once per creature per round.
         range: "-"

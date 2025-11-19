@@ -109,6 +109,18 @@ export interface TableFilter {
   values?: string[];
 }
 
+export interface AggregateFieldConfig {
+  field: string; // Field name
+  label?: string; // Optional label
+  labelFormat?: ('bold' | 'italic')[]; // Formatting for label
+  valueFormat?: ('bold' | 'italic')[]; // Formatting for value
+}
+
+export interface AggregateColumnConfig {
+  name: string; // Column name
+  fields: AggregateFieldConfig[];
+}
+
 export interface ContentSection {
   id: string;
   displayFormat?: DisplayFormat;
@@ -120,6 +132,7 @@ export interface ContentSection {
   splitBy?: string; // Field name to group by (e.g., "classId", "groupId")
   groupTitleField?: string; // Field name to use as the group title/heading (e.g., "className", "group")
   metadataFields?: string[]; // Fields to display as metadata before each table (e.g., ["type", "attributes", "summary"])
+  aggregateColumns?: AggregateColumnConfig[]; // Aggregate columns configuration
   children?: ContentSection[];
 }
 

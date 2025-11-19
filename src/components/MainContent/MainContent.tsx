@@ -297,6 +297,7 @@ export function MainContent({ onHeadingsChange, onCurrentHeadingChange }: MainCo
                 visibleFields={configSection.visibleFields}
                 title={undefined} // Don't show title since we have the heading
                 sourceFile={configSection.sourceFile}
+                aggregateColumns={configSection.aggregateColumns}
               />
             </div>
           );
@@ -414,6 +415,7 @@ export function MainContent({ onHeadingsChange, onCurrentHeadingChange }: MainCo
               visibleFields={configSection.visibleFields}
               title={title}
               sourceFile={configSection.sourceFile}
+              aggregateColumns={configSection.aggregateColumns}
             />
           </div>
         );

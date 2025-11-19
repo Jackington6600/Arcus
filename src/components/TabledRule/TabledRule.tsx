@@ -1,8 +1,8 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useData } from '@/contexts/DataContext';
 import { TooltipText } from '../Tooltip/TooltipText';
-import type { DisplayFormat, SortDirection, TooltipsConfig } from '@/types';
+import type { DisplayFormat, SortDirection, TooltipsConfig, AggregateColumnConfig } from '@/types';
 
 export type TableData = Record<string, any>[];
 
@@ -11,6 +11,7 @@ interface TabledRuleProps {
   visibleFields?: string[];
   title?: string;
   sourceFile?: string;
+  aggregateColumns?: AggregateColumnConfig[];
 }
 
 /**
@@ -51,10 +52,31 @@ export function generateRowId(sourceFile: string | undefined, row: any): string 
   }
 }
 
+
+/**
+ * Helper function to render formatted text (bold/italic)
+ * Can accept either a string or React.ReactNode (for wrapping TooltipText results)
+ */
+export function renderFormattedText(text: string | React.ReactNode, formats?: ('bold' | 'italic')[]): JSX.Element {
+  let content: React.ReactNode = text;
+  
+  if (formats) {
+    formats.forEach((format) => {
+      if (format === 'bold') {
+        content = <strong>{content}</strong>;
+      } else if (format === 'italic') {
+        content = <em className="italic" style={{ fontStyle: 'italic' }}>{content}</em>;
+      }
+    });
+  }
+  
+  return <>{content}</>;
+}
+
 /**
  * Component for displaying rule data in table, card, or text format
  */
-export function TabledRule({ data, visibleFields, title, sourceFile }: TabledRuleProps) {
+export function TabledRule({ data, visibleFields, title, sourceFile, aggregateColumns }: TabledRuleProps) {
   const { preferences } = useTheme();
   const { data: appData } = useData();
   const [sortField, setSortField] = useState<string | null>(null);
@@ -67,14 +89,60 @@ export function TabledRule({ data, visibleFields, title, sourceFile }: TabledRul
 
   // Get fields to display
   const fields = useMemo(() => {
+    let baseFields: string[] = [];
+    
     if (visibleFields && visibleFields.length > 0) {
-      return visibleFields;
+      baseFields = visibleFields;
+    } else if (data.length > 0) {
+      baseFields = Object.keys(data[0]);
     }
-    if (data.length > 0) {
-      return Object.keys(data[0]);
+    
+    // If we have aggregate columns, exclude fields that are in aggregate columns
+    // unless they're explicitly in visibleFields
+    if (aggregateColumns && aggregateColumns.length > 0) {
+      const aggregateFieldNames = new Set(
+        aggregateColumns.flatMap((col) => col.fields.map((f) => f.field))
+      );
+      const aggregateColumnNames = new Set(
+        aggregateColumns.map((col) => col.name)
+      );
+      
+      // Filter out aggregate fields unless they're explicitly in visibleFields
+      // Also preserve aggregate column names if they're already in visibleFields
+      // (so we don't duplicate them when appending)
+      baseFields = baseFields.filter((field) => {
+        const isAggregateColumnName = aggregateColumnNames.has(field);
+        const isAggregateField = aggregateFieldNames.has(field);
+        const isExplicitlyVisible = visibleFields && visibleFields.includes(field);
+        
+        // If it's an aggregate column name already in visibleFields, keep it
+        if (isAggregateColumnName && isExplicitlyVisible) {
+          return true;
+        }
+        
+        // If it's a regular field in an aggregate column, exclude unless explicitly visible
+        if (isAggregateField) {
+          return isExplicitlyVisible;
+        }
+        
+        // Keep regular fields
+        return true;
+      });
+      
+      // Add aggregate column names that aren't already in visibleFields
+      // This preserves the order: if aggregate column names are in visibleFields,
+      // they stay in that position; otherwise, append them at the end
+      const existingAggregateColumns = new Set(
+        baseFields.filter((field) => aggregateColumnNames.has(field))
+      );
+      const aggregateColumnNamesToAdd = aggregateColumns
+        .map((col) => col.name)
+        .filter((name) => !existingAggregateColumns.has(name));
+      baseFields = [...baseFields, ...aggregateColumnNamesToAdd];
     }
-    return [];
-  }, [data, visibleFields]);
+    
+    return baseFields;
+  }, [data, visibleFields, aggregateColumns]);
 
   // Sort data
   const sortedData = useMemo(() => {
@@ -82,16 +150,22 @@ export function TabledRule({ data, visibleFields, title, sourceFile }: TabledRul
       return data;
     }
 
+    // Check if sorting by an aggregate column
+    const aggregateColumn = aggregateColumns?.find((col) => col.name === sortField);
+    const sortByField = aggregateColumn && aggregateColumn.fields.length > 0
+      ? aggregateColumn.fields[0].field // Sort by first field in aggregate column
+      : sortField;
+
     return [...data].sort((a, b) => {
-      const aVal = a[sortField];
-      const bVal = b[sortField];
+      const aVal = a[sortByField];
+      const bVal = b[sortByField];
 
       if (aVal === bVal) return 0;
 
       const comparison = aVal < bVal ? -1 : 1;
       return sortDirection === 'asc' ? comparison : -comparison;
     });
-  }, [data, sortField, sortDirection]);
+  }, [data, sortField, sortDirection, aggregateColumns]);
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -123,15 +197,16 @@ export function TabledRule({ data, visibleFields, title, sourceFile }: TabledRul
         title={title}
         sourceFile={sourceFile}
         tooltips={tooltips}
+        aggregateColumns={aggregateColumns}
       />
     );
   }
 
   if (displayFormat === 'card') {
-    return <CardDisplay data={sortedData} fields={fields} title={title} sourceFile={sourceFile} tooltips={tooltips} />;
+    return <CardDisplay data={sortedData} fields={fields} title={title} sourceFile={sourceFile} tooltips={tooltips} aggregateColumns={aggregateColumns} />;
   }
 
-  return <TextDisplay data={sortedData} fields={fields} title={title} sourceFile={sourceFile} tooltips={tooltips} />;
+  return <TextDisplay data={sortedData} fields={fields} title={title} sourceFile={sourceFile} tooltips={tooltips} aggregateColumns={aggregateColumns} />;
 }
 
 interface TableDisplayProps {
@@ -143,6 +218,7 @@ interface TableDisplayProps {
   title?: string;
   sourceFile?: string;
   tooltips?: TooltipsConfig['tooltips'];
+  aggregateColumns?: AggregateColumnConfig[];
 }
 
 function TableDisplay({
@@ -154,7 +230,66 @@ function TableDisplay({
   title,
   sourceFile,
   tooltips,
+  aggregateColumns,
 }: TableDisplayProps) {
+  
+  /**
+   * Helper function to find aggregate column by name
+   */
+  const getAggregateColumn = (name: string): AggregateColumnConfig | undefined => {
+    return aggregateColumns?.find((col) => col.name === name);
+  };
+  
+  /**
+   * Helper function to render aggregate column content
+   */
+  const renderAggregateColumn = (row: any, columnConfig: AggregateColumnConfig): JSX.Element => {
+    const fieldElements: JSX.Element[] = [];
+    
+    columnConfig.fields.forEach((fieldConfig, index) => {
+      const fieldValue = row[fieldConfig.field];
+      
+      // Skip empty/missing fields
+      if (fieldValue === undefined || fieldValue === null || fieldValue === '' || String(fieldValue).trim() === '') {
+        return;
+      }
+      
+      const valueText = String(fieldValue);
+      const hasLabel = fieldConfig.label && fieldConfig.label.trim() !== '';
+      
+      const content = (
+        <div key={fieldConfig.field} className={index > 0 ? 'mt-2' : ''}>
+          {hasLabel ? (
+            <>
+              <span className="text-text-primary">
+                {renderFormattedText(fieldConfig.label || '', fieldConfig.labelFormat)}
+                {': '}
+              </span>
+              <span className="text-text-secondary">
+                {tooltips ? (
+                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                ) : (
+                  renderFormattedText(valueText, fieldConfig.valueFormat)
+                )}
+              </span>
+            </>
+          ) : (
+            <span className="text-text-secondary">
+              {tooltips ? (
+                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+              ) : (
+                renderFormattedText(valueText, fieldConfig.valueFormat)
+              )}
+            </span>
+          )}
+        </div>
+      );
+      
+      fieldElements.push(content);
+    });
+    
+    return <div className="space-y-1">{fieldElements}</div>;
+  };
 
   const getSortIcon = (field: string) => {
     if (sortField !== field) {
@@ -218,6 +353,21 @@ function TableDisplay({
                   `}
                 >
                 {fields.map((field) => {
+                  const aggregateColumn = getAggregateColumn(field);
+                  
+                  // If this is an aggregate column, render it specially
+                  if (aggregateColumn) {
+                    return (
+                      <td 
+                        key={field} 
+                        className="px-4 py-3 text-sm border-b border-border-light break-words whitespace-normal"
+                      >
+                        {renderAggregateColumn(row, aggregateColumn)}
+                      </td>
+                    );
+                  }
+                  
+                  // Regular column rendering
                   const cellValue = String(row[field] || '-');
                   return (
                     <td 
@@ -248,6 +398,7 @@ interface CardDisplayProps {
   title?: string;
   sourceFile?: string;
   tooltips?: TooltipsConfig['tooltips'];
+  aggregateColumns?: AggregateColumnConfig[];
 }
 
 interface TextDisplayProps {
@@ -256,9 +407,68 @@ interface TextDisplayProps {
   title?: string;
   sourceFile?: string;
   tooltips?: TooltipsConfig['tooltips'];
+  aggregateColumns?: AggregateColumnConfig[];
 }
 
-function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips }: CardDisplayProps) {
+function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips, aggregateColumns }: CardDisplayProps) {
+  /**
+   * Helper function to find aggregate column by name
+   */
+  const getAggregateColumn = (name: string): AggregateColumnConfig | undefined => {
+    return aggregateColumns?.find((col) => col.name === name);
+  };
+  
+  /**
+   * Helper function to render aggregate column content for cards
+   */
+  const renderAggregateColumn = (row: any, columnConfig: AggregateColumnConfig): JSX.Element => {
+    const fieldElements: JSX.Element[] = [];
+    
+    columnConfig.fields.forEach((fieldConfig) => {
+      const fieldValue = row[fieldConfig.field];
+      
+      // Skip empty/missing fields
+      if (fieldValue === undefined || fieldValue === null || fieldValue === '' || String(fieldValue).trim() === '') {
+        return;
+      }
+      
+      const valueText = String(fieldValue);
+      const hasLabel = fieldConfig.label && fieldConfig.label.trim() !== '';
+      
+      const content = (
+        <div key={fieldConfig.field} className="mb-2 last:mb-0">
+          {hasLabel ? (
+            <>
+              <span className="text-xs font-semibold text-text-tertiary uppercase">
+                {renderFormattedText(fieldConfig.label || '', fieldConfig.labelFormat)}
+                {': '}
+              </span>
+              <span className="ml-2 text-sm text-text-secondary">
+                {tooltips ? (
+                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                ) : (
+                  renderFormattedText(valueText, fieldConfig.valueFormat)
+                )}
+              </span>
+            </>
+          ) : (
+            <span className="text-sm text-text-secondary">
+              {tooltips ? (
+                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+              ) : (
+                renderFormattedText(valueText, fieldConfig.valueFormat)
+              )}
+            </span>
+          )}
+        </div>
+      );
+      
+      fieldElements.push(content);
+    });
+    
+    return <>{fieldElements}</>;
+  };
+  
   return (
     <div className="my-8">
       {title && (
@@ -274,6 +484,23 @@ function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips }: 
               className="bg-surface border border-border-light rounded-medium p-4 shadow-soft hover:shadow-medium transition-smooth"
             >
             {fields.map((field) => {
+              const aggregateColumn = getAggregateColumn(field);
+              
+              // If this is an aggregate column, render it specially
+              if (aggregateColumn) {
+                return (
+                  <div key={field} className="mb-2 last:mb-0">
+                    <span className="text-xs font-semibold text-text-tertiary uppercase mb-2 block">
+                      {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
+                    </span>
+                    <div className="ml-2">
+                      {renderAggregateColumn(row, aggregateColumn)}
+                    </div>
+                  </div>
+                );
+              }
+              
+              // Regular field rendering
               const fieldValue = String(row[field] || '-');
               return (
                 <div key={field} className="mb-2 last:mb-0">
@@ -298,7 +525,65 @@ function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips }: 
   );
 }
 
-function TextDisplay({ data: sortedData, fields, title, sourceFile, tooltips }: TextDisplayProps) {
+function TextDisplay({ data: sortedData, fields, title, sourceFile, tooltips, aggregateColumns }: TextDisplayProps) {
+  /**
+   * Helper function to find aggregate column by name
+   */
+  const getAggregateColumn = (name: string): AggregateColumnConfig | undefined => {
+    return aggregateColumns?.find((col) => col.name === name);
+  };
+  
+  /**
+   * Helper function to render aggregate column content for text display
+   */
+  const renderAggregateColumn = (row: any, columnConfig: AggregateColumnConfig): JSX.Element => {
+    const fieldElements: JSX.Element[] = [];
+    
+    columnConfig.fields.forEach((fieldConfig) => {
+      const fieldValue = row[fieldConfig.field];
+      
+      // Skip empty/missing fields
+      if (fieldValue === undefined || fieldValue === null || fieldValue === '' || String(fieldValue).trim() === '') {
+        return;
+      }
+      
+      const valueText = String(fieldValue);
+      const hasLabel = fieldConfig.label && fieldConfig.label.trim() !== '';
+      
+      const content = (
+        <div key={fieldConfig.field} className="mb-2 last:mb-0">
+          {hasLabel ? (
+            <>
+              <span className="font-semibold text-text-primary">
+                {renderFormattedText(fieldConfig.label || '', fieldConfig.labelFormat)}
+                {': '}
+              </span>
+              <span className="ml-2 text-text-secondary">
+                {tooltips ? (
+                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                ) : (
+                  renderFormattedText(valueText, fieldConfig.valueFormat)
+                )}
+              </span>
+            </>
+          ) : (
+            <span className="text-text-secondary">
+              {tooltips ? (
+                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+              ) : (
+                renderFormattedText(valueText, fieldConfig.valueFormat)
+              )}
+            </span>
+          )}
+        </div>
+      );
+      
+      fieldElements.push(content);
+    });
+    
+    return <>{fieldElements}</>;
+  };
+  
   return (
     <div className="my-8">
       {title && (
@@ -314,6 +599,23 @@ function TextDisplay({ data: sortedData, fields, title, sourceFile, tooltips }: 
               className="bg-surface-secondary rounded-medium p-6 border border-border-light"
             >
             {fields.map((field) => {
+              const aggregateColumn = getAggregateColumn(field);
+              
+              // If this is an aggregate column, render it specially
+              if (aggregateColumn) {
+                return (
+                  <div key={field} className="mb-3 last:mb-0">
+                    <span className="font-semibold text-text-primary mb-2 block">
+                      {field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}:
+                    </span>
+                    <div className="ml-2">
+                      {renderAggregateColumn(row, aggregateColumn)}
+                    </div>
+                  </div>
+                );
+              }
+              
+              // Regular field rendering
               const fieldValue = String(row[field] || '-');
               return (
                 <div key={field} className="mb-3 last:mb-0">
