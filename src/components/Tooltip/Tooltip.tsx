@@ -16,7 +16,7 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
   const [isPositioned, setIsPositioned] = useState(false); // Track when tooltip is ready to show
   const tooltipRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLSpanElement>(null);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const closeTimeoutRef = useRef<number | null>(null);
   const { data } = useData();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTapped, setIsTapped] = useState(false); // Track tap state for mobile

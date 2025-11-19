@@ -7,7 +7,6 @@ import App from './App.tsx'
 // We need to convert this back to /path#hash format for React Router
 (function handle404Redirect() {
   const location = window.location;
-  const pathSegmentsToKeep = 1; // Keep /Arcus/ in the path
   
   // Check if we have the special redirect format: /?/path#hash
   if (location.search && location.search.includes('/')) {
