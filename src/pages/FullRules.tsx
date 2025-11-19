@@ -14,6 +14,8 @@ export function FullRules() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const isScrollingFromHashRef = useRef(false);
   const isScrollingProgrammaticallyRef = useRef(false);
+  const initialHashRef = useRef<string | null>(null);
+  const hasProcessedInitialHashRef = useRef(false);
 
   useEffect(() => {
     function handleResize() {
@@ -23,47 +25,76 @@ export function FullRules() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Read hash from URL on mount and scroll to that element
+  // Helper function to scroll to hash element
+  const scrollToHash = useCallback((hash: string, behavior: ScrollBehavior = 'smooth') => {
+    const element = document.getElementById(hash);
+    if (element) {
+      isScrollingFromHashRef.current = true;
+      const offset = 80; // Account for sticky header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior,
+      });
+
+      // Highlight the element briefly
+      element.classList.add('animate-highlight');
+      setTimeout(() => {
+        element.classList.remove('animate-highlight');
+        isScrollingFromHashRef.current = false;
+      }, 1000);
+      return true;
+    }
+    return false;
+  }, []);
+
+  // Check for hash on initial mount and scroll to it
+  // This runs independently of headings loading to handle page refreshes
   useEffect(() => {
-    const hash = window.location.hash.slice(1); // Remove the # symbol
+    const hash = window.location.hash.slice(1);
     if (hash) {
-      // Wait for headings to be loaded before scrolling
-      const checkAndScroll = () => {
-        const element = document.getElementById(hash);
-        if (element) {
-          isScrollingFromHashRef.current = true;
-          const offset = 80; // Account for sticky header
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-
-          // Highlight the element briefly
-          element.classList.add('animate-highlight');
-          setTimeout(() => {
-            element.classList.remove('animate-highlight');
-            isScrollingFromHashRef.current = false;
-          }, 1000);
-          return true; // Element found and scrolled
-        }
-        return false; // Element not found yet
-      };
-
-      // Try immediately, then retry with increasing delays to handle slow content loading
-      if (!checkAndScroll()) {
+      // Store the initial hash so we don't clear it prematurely
+      initialHashRef.current = hash;
+      
+      // Try to scroll immediately (in case content is already loaded)
+      if (scrollToHash(hash, 'auto')) {
+        hasProcessedInitialHashRef.current = true;
+      } else {
+        // If element not found, wait a bit and retry
+        // This handles the case where content is still loading
         const timeout1 = setTimeout(() => {
-          if (!checkAndScroll()) {
+          if (scrollToHash(hash, 'smooth')) {
+            hasProcessedInitialHashRef.current = true;
+          } else {
             // One more retry after content should definitely be loaded
-            setTimeout(checkAndScroll, 1000);
+            setTimeout(() => {
+              if (scrollToHash(hash, 'smooth')) {
+                hasProcessedInitialHashRef.current = true;
+              }
+            }, 1000);
           }
-        }, 500);
+        }, 100);
         return () => clearTimeout(timeout1);
       }
+    } else {
+      hasProcessedInitialHashRef.current = true;
     }
-  }, [headings]);
+  }, []); // Run only on mount
+
+  // Also check for hash when headings are loaded (in case content wasn't ready on mount)
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash && headings.length > 0 && !hasProcessedInitialHashRef.current) {
+      // Only scroll if we haven't already scrolled from hash
+      if (!isScrollingFromHashRef.current) {
+        if (scrollToHash(hash, 'smooth')) {
+          hasProcessedInitialHashRef.current = true;
+        }
+      }
+    }
+  }, [headings, scrollToHash]);
 
   // Update URL hash when currentHeadingId changes (but not when scrolling from hash)
   useEffect(() => {
@@ -77,42 +108,43 @@ export function FullRules() {
         // Use replaceState to avoid cluttering browser history
         window.history.replaceState(null, '', newHash);
       }
-    } else if (window.location.hash) {
-      // Clear hash if no heading is active
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      // Mark that we've processed the initial hash if it matches
+      if (initialHashRef.current === currentHeadingId) {
+        hasProcessedInitialHashRef.current = true;
+      }
+    } else if (window.location.hash && hasProcessedInitialHashRef.current && headings.length > 0) {
+      // Only clear hash if:
+      // 1. We've processed the initial hash navigation (content has loaded)
+      // 2. Headings have been loaded (so we know there's content)
+      // 3. No heading is currently active (user scrolled away from all headings)
+      // This prevents clearing the hash prematurely during initial page load
+      const currentHash = window.location.hash.slice(1);
+      // Don't clear if this is the initial hash we're navigating to
+      if (currentHash !== initialHashRef.current) {
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
     }
-  }, [currentHeadingId]);
+  }, [currentHeadingId, headings.length]);
 
   // Handle hash changes from browser navigation (back/forward buttons, direct URL entry)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
       if (hash) {
-        const element = document.getElementById(hash);
-        if (element) {
-          isScrollingFromHashRef.current = true;
-          const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
-
-          // Highlight the element briefly
-          element.classList.add('animate-highlight');
-          setTimeout(() => {
-            element.classList.remove('animate-highlight');
-            isScrollingFromHashRef.current = false;
-          }, 1000);
-        }
+        // Update the initial hash reference for new navigation
+        initialHashRef.current = hash;
+        hasProcessedInitialHashRef.current = false;
+        scrollToHash(hash, 'smooth');
+      } else {
+        // Hash was removed
+        initialHashRef.current = null;
+        hasProcessedInitialHashRef.current = true;
       }
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [scrollToHash]);
 
   const handleHeadingClick = useCallback((id: string) => {
     const element = document.getElementById(id);
