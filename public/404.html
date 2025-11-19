@@ -1,1 +1,31 @@
-<!DOCTYPE html><html><head><meta charset=utf-8><title>Redirecting</title><script>var s=1;var l=location;l.replace(l.protocol+'//'+l.host+(l.pathname.split('/').slice(0,1+s).join('/')+'/?/'+l.pathname.slice(1).split('/').slice(s).join('/').replace(/&/g,'~and~')+(l.search?'&'+l.search.slice(1).replace(/&/g,'~and~'):'')+l.hash));</script></head><body></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pages SPA redirect - redirect to index.html and restore the original path
+    // This allows React Router to handle the routing client-side
+    var segmentCount = 1; // Number of path segments to keep (for /Arcus/)
+    var l = window.location;
+    var path = l.pathname;
+    var segments = path.split('/').filter(function(segment) {
+      return segment.length > 0;
+    });
+    
+    // Extract the base path (/Arcus) and the remaining path (/full-rules)
+    var basePath = '/' + segments.slice(0, segmentCount).join('/');
+    var remainingPath = '/' + segments.slice(segmentCount).join('/');
+    
+    // Store the original path in sessionStorage so React Router can restore it
+    sessionStorage.setItem('redirectPath', remainingPath + l.search + l.hash);
+    
+    // Redirect to index.html
+    var redirectPath = basePath + '/index.html';
+    l.replace(l.protocol + '//' + l.host + redirectPath);
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

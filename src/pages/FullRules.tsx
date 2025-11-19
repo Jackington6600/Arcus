@@ -47,16 +47,21 @@ export function FullRules() {
             element.classList.remove('animate-highlight');
             isScrollingFromHashRef.current = false;
           }, 1000);
-        } else if (headings.length > 0) {
-          // If headings are loaded but element not found, stop trying
-          isScrollingFromHashRef.current = false;
+          return true; // Element found and scrolled
         }
+        return false; // Element not found yet
       };
 
-      // Try immediately, then retry after a short delay if headings aren't loaded yet
-      checkAndScroll();
-      const timeoutId = setTimeout(checkAndScroll, 500);
-      return () => clearTimeout(timeoutId);
+      // Try immediately, then retry with increasing delays to handle slow content loading
+      if (!checkAndScroll()) {
+        const timeout1 = setTimeout(() => {
+          if (!checkAndScroll()) {
+            // One more retry after content should definitely be loaded
+            setTimeout(checkAndScroll, 1000);
+          }
+        }, 500);
+        return () => clearTimeout(timeout1);
+      }
     }
   }, [headings]);
 

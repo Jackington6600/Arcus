@@ -8,6 +8,7 @@ import { CharacterSheets } from './pages/CharacterSheets';
 import { TheWorld } from './pages/TheWorld';
 import { GMResources } from './pages/GMResources';
 import { Blog } from './pages/Blog';
+import { NotFound } from './pages/NotFound';
 import './styles/index.css';
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
             <Route path="/the-world" element={<TheWorld />} />
             <Route path="/gm-resources" element={<GMResources />} />
             <Route path="/blog" element={<Blog />} />
-            {/* Catch-all route to handle page refreshes - redirects to home */}
-            <Route path="*" element={<Home />} />
+            {/* Catch-all route for unmatched paths */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </DataProvider>
