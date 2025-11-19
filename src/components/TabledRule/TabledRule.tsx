@@ -267,7 +267,7 @@ function TableDisplay({
               </span>
               <span className="text-text-secondary">
                 {tooltips ? (
-                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                  <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
                 ) : (
                   renderFormattedText(valueText, fieldConfig.valueFormat)
                 )}
@@ -276,7 +276,7 @@ function TableDisplay({
           ) : (
             <span className="text-text-secondary">
               {tooltips ? (
-                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
               ) : (
                 renderFormattedText(valueText, fieldConfig.valueFormat)
               )}
@@ -445,7 +445,7 @@ function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips, ag
               </span>
               <span className="ml-2 text-sm text-text-secondary">
                 {tooltips ? (
-                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                  <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
                 ) : (
                   renderFormattedText(valueText, fieldConfig.valueFormat)
                 )}
@@ -454,7 +454,7 @@ function CardDisplay({ data: sortedData, fields, title, sourceFile, tooltips, ag
           ) : (
             <span className="text-sm text-text-secondary">
               {tooltips ? (
-                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
               ) : (
                 renderFormattedText(valueText, fieldConfig.valueFormat)
               )}
@@ -560,7 +560,7 @@ function TextDisplay({ data: sortedData, fields, title, sourceFile, tooltips, ag
               </span>
               <span className="ml-2 text-text-secondary">
                 {tooltips ? (
-                  renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                  <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
                 ) : (
                   renderFormattedText(valueText, fieldConfig.valueFormat)
                 )}
@@ -569,7 +569,7 @@ function TextDisplay({ data: sortedData, fields, title, sourceFile, tooltips, ag
           ) : (
             <span className="text-text-secondary">
               {tooltips ? (
-                renderFormattedText(<TooltipText text={valueText} tooltips={tooltips} />, fieldConfig.valueFormat)
+                <TooltipText text={valueText} tooltips={tooltips} formats={fieldConfig.valueFormat} />
               ) : (
                 renderFormattedText(valueText, fieldConfig.valueFormat)
               )}

@@ -16,16 +16,28 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
   const [isPositioned, setIsPositioned] = useState(false); // Track when tooltip is ready to show
   const tooltipRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLSpanElement>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { data } = useData();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isTapped, setIsTapped] = useState(false); // Track tap state for mobile
+
+  // Clear any pending close timeout
+  const clearCloseTimeout = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
 
   useEffect(() => {
     function handleResize() {
       setIsMobile(window.innerWidth < 768);
     }
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearCloseTimeout();
+    };
   }, []);
 
   const summary = data ? getTooltipSummary(tooltipId, data.mainRules) : null;
@@ -258,6 +270,7 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
 
   // Handle hover for both desktop and mobile (mobile devices with cursor support)
   const handleMouseEnter = () => {
+    clearCloseTimeout();
     if (summary) {
       setIsOpen(true);
     }
@@ -265,6 +278,22 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
 
   const handleMouseLeave = () => {
     // Only close on mouse leave if not tapped (tap takes precedence)
+    if (!isTapped) {
+      // Add a small delay before closing to allow smooth transition to tooltip popup
+      clearCloseTimeout();
+      closeTimeoutRef.current = setTimeout(() => {
+        setIsOpen(false);
+      }, 100);
+    }
+  };
+
+  // Handle mouse enter on tooltip popup itself
+  const handleTooltipMouseEnter = () => {
+    clearCloseTimeout();
+  };
+
+  // Handle mouse leave on tooltip popup
+  const handleTooltipMouseLeave = () => {
     if (!isTapped) {
       setIsOpen(false);
     }
@@ -313,6 +342,8 @@ export function Tooltip({ tooltipId, children }: TooltipProps) {
             opacity: isPositioned ? 1 : 0, // Fade in once positioned
             pointerEvents: isPositioned ? 'auto' : 'none', // Prevent interaction until positioned
           }}
+          onMouseEnter={handleTooltipMouseEnter}
+          onMouseLeave={handleTooltipMouseLeave}
         >
           {summary}
         </div>,
