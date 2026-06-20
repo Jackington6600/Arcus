@@ -40,7 +40,7 @@ classes:
       - level: 1
         name: Charge
         apCost: 2
-        otherCost: 1 FORT
+        otherCost: 2 FORT
         flavourText: Rush forward smashing all enemies in your path.
         description: Move up to 40ft in a straight line, moving through other creatures. Make a melee weapon attack against all creatures moved through targeting FORT.
         extraEffectCost: 1 FORT
@@ -52,7 +52,7 @@ classes:
       - level: 1
         name: Sweeping Strike
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: "-"
         description: Select 3 connected tiles all within 5ft. Make a melee weapon attack against all creatures on these tiles targeting FORT or REFL. All creatures attacked are knocked prone. Target may resist the prone with FORT or REFL.
         range: Melee
@@ -64,7 +64,9 @@ classes:
         apCost: 1
         otherCost: 1 FORT or REFL
         flavourText: "-"
-        description: Move up to 15ft and make a melee attack with Light attack power targeting FORT or REFL and push them to another tile within 15ft of you. Target may resist the push with FORT or REFL. The creature is then also knocked prone. Target may resist the prone with FORT or REFL.
+        description: Move up to 15ft and make a melee attack with Light attack power targeting FORT or REFL and push them to another tile within 15ft of you. Target may resist the push with FORT or REFL.
+        extraEffectCost: 1 FORT or REFL
+        extraEffectDescription: The creature is then also knocked prone. Target may resist the prone with FORT or REFL.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -74,7 +76,9 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL
         flavourText: "-"
-        description: Taunt all enemies within 30ft of you. Target may resist the taunt with FORT or WILL. You also gain Physical Resistance 1 and Resistance 1 for one other damage type of your choice.
+        description: Taunt all enemies within 30ft of you. Target may resist the taunt with FORT or WILL. You also gain Physical Resistance 1.
+        extraEffectCost: 1 FORT or WILL
+        extraEffectDescription: Gain Resistance 1 for one additional damage type of your choice.
         range: 30ft
         target: E, All within range (AoE)
         type: Active
@@ -82,9 +86,9 @@ classes:
       - level: 1
         name: Danger Close
         apCost: "-"
-        otherCost: 1 FORT or REFL in addition to your reaction
+        otherCost: 1 FORT or REFL + Reaction
         flavourText: Strike at those who dare approach you.
-        description: Then, when a creature moves into a tile within 5ft of you (voluntarily or involuntarily), you may make a melee attack that creature with Light attack power. Each creature can only be damaged by this ability once per cast. This ability has no effect when you are the one moving.
+        description: When a creature moves into a tile within 5ft of you (voluntarily or involuntarily), you may make a melee attack that creature with Light attack power. Each creature can only be damaged by this ability once per cast. This ability has no effect when you are the one moving.
         extraEffectCost: 2 FORT or REFL
         extraEffectDescription: Increase the attack power to that of your melee weapon.
         range: 5ft
@@ -94,7 +98,7 @@ classes:
       - level: 2
         name: Whirlwind
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Ferociously swing your weapon around you, striking all nearby creatures.
         description: Make a melee weapon attack against all creatures within weapon range, targeting FORT or REFL.
         range: Melee
@@ -133,9 +137,9 @@ classes:
         tags: [attack, debuff]
       - level: 3
         name: Savage Leap
-        apCost: 3
-        otherCost: 3 FORT
-        flavourText: Leap forward and use your momentum to strike harder.
+        apCost: 2
+        otherCost: 4 FORT
+        flavourText: Leap forward and put all of your momentum into your strike.
         description: Select a tile you can see within 20ft and jump to that tile. You may then immediately make a melee attack against a creature targeting FORT. This attack gains additional Medium attack power for each tile you moved (distance in ft divided by 5).
         range: 20ft/Melee
         target: A+E, Single target
@@ -165,7 +169,7 @@ classes:
         name: Pin and Crush
         apCost: 1
         flavourText: Pin a foe and ready your weapon for a massive attack.
-        description: Select a creature within 5ft and immobilise it. Target may resist the immobilise with FORT or REFL. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 additional AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
+        description: Select a creature within 5ft and immobilise it. Target may resist the immobilise with FORT or REFL. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -190,7 +194,7 @@ classes:
         name: Swift Striker
         apCost: "-"
         flavourText: Move fast and strike faster.
-        description: At any time on your turn, if you have moved to a position that is 30ft or further away from where you started your turn, your next attack against a single target has Adv (++).
+        description: During your turn, if you have moved to a position that is at least 30ft from where you started your turn, your next attack against a single target has Adv (++).
         range: "-"
         target: Self
         type: Passive
@@ -222,7 +226,7 @@ classes:
       - level: 1
         name: Flashbang
         apCost: 1
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Dazzle your foes with a small explosive.
         description: Select a tile within 50ft and blind all creatures within a 10ft. Target may resist the blind with REFL or WILL.
         range: 50ft
@@ -232,9 +236,9 @@ classes:
       - level: 1
         name: Expose Weakness
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Reveal your foe's greatest strengths and weaknesses.
-        description: Make a weapon attack against a creature targeting REFL or WILL. The creature becomes marked. Then choose any energy type, the creature rolls 3 fewer d6 when attempting to resist incoming conditions for that energy type. You also learn all of the creature's vulnerabilities, resistances, and immunities.
+        description: Make a weapon attack against a creature targeting REFL or WILL. The creature becomes marked. Then choose any energy type, the creature rolls half the number of d6 (rounded down) when attempting to resist incoming conditions for that energy type. You also learn all of the creature's vulnerabilities, resistances, and immunities.
         range: Weapon
         target: A+E, Single target
         type: Active
@@ -251,7 +255,7 @@ classes:
       - level: 2
         name: Poisoned Strike
         apCost: 2
-        otherCost: 2 FORT or REFL
+        otherCost: 3 FORT or REFL
         flavourText: Coat your weapon in a sickening poison.
         description: Make a weapon attack against a creature targeting FORT or REFL. Then for each energy type that the creature has no remaining energy, it suffers additional 2 direct poison damage. The creature also becomes poisoned. Target may resist the poison with FORT or WILL.
         range: Weapon
@@ -273,9 +277,9 @@ classes:
         apCost: 3
         otherCost: 1 FORT or REFL
         flavourText: Rapidly reposition and attack.
-        description: Move up to 150ft and make a melee or ranged weapon attack against a creature targeting FORT or REFL. This movement may be broken up by the attack. The creature is also hobbled. Target may resist the hobble with FORT or REFL.
-        extraEffectCost: 1 FORT or REFL
-        extraEffectDescription: The creature additionally gains bleeding. Target may resist the bleed with FORT or REFL.
+        description: Move up to 150ft and make a melee or ranged weapon attack against a creature targeting FORT or REFL. This movement may be broken up by the attack.
+        extraEffectCost: 2 FORT or REFL
+        extraEffectDescription: The creature additionally gains the hobbled and bleeding conditions. Target may resist the both conditions simultaneously with FORT or REFL.
         range: Weapon
         target: A+E, Single target
         type: Active
@@ -324,7 +328,7 @@ classes:
         name: Headshot
         apCost: 2
         otherCost: 2 REFL or WILL
-        flavourText: Daze your target with a well timed blow to the head.
+        flavourText: Rock your target with a well timed blow to the head.
         description: Make a weapon attack against a creature. On a hit the creature is stunned. Target may resist the stun with FORT or WILL.
         range: Weapon
         target: A+E, Single target
@@ -356,7 +360,7 @@ classes:
         type: Passive
         tags: [attack]
       - level: Core
-        name: Commanding Movement
+        name: Move With Me!
         apCost: "-"
         flavourText: Order others to reposition with the flow of battle.
         description: Whenever you use the core movement ability, you may spend either 10ft or 20ft of that movement speed to grant an ally within 50ft either 5ft or 10ft of movement respectively to be spent immediately.
@@ -377,10 +381,9 @@ classes:
       - level: 1
         name: Forceful Shot
         apCost: 2
+        otherCost: 1 FORT or REFL
         flavourText: Push back your enemies with a projectile of great force.
-        description: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 5ft directly away from you. Target may resist the push with FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
-        extraEffectCost: 1 FORT or REFL
-        extraEffectDescription: Increase the push distance to 20ft.
+        description: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 20ft directly away from you. Target may resist the push with FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
         range: Weapon
         target: A+E (Ranged weapon required), Single target
         type: Active
@@ -427,7 +430,7 @@ classes:
       - level: 2
         name: Piercing Shot
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Strike through foes with a piercing projectile.
         description: Make a ranged weapon attack against all creatures in a 30ft line originating from you targeting FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
         range: 30ft
@@ -479,7 +482,7 @@ classes:
       - level: 3
         name: Opportunist
         apCost: "-"
-        otherCost: 1 REFL and your reaction
+        otherCost: 2 REFL and your reaction
         flavourText: Seize every opportunity to strike.
         description: When an ally within weapon range makes an attack of opportunity against a creature, you may spend 1 REFL and your reaction to make a ranged weapon attack against the same creature.
         range: Weapon
@@ -498,9 +501,9 @@ classes:
       - level: 3
         name: Bring It Down!
         apCost: 1
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Command your allies to bring a foe to its knees.
-        description: Select a creature within 100ft and mark it. Also select one energy type for which it has 1 or more points remaining. At the start of your next turn if the creature has 0 points remaining in the chosen type you may force the creature to lose resistance points equal to half the number of points it lost in the chosen type (rounded up).
+        description: Select a creature within 100ft and mark it. Also select one energy type for which it has 5 or more points remaining. At the start of your next turn if the creature has 0 points remaining in the chosen type you may force the creature to lose 5 energy in different type.
         range: 100ft
         target: A+E, Single target
         type: Active

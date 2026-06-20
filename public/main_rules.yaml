@@ -356,7 +356,7 @@ sections:
       - id: poisoned
         title: Poisoned
         body: >-
-          The creature cannot heal or regain health or regain any energy type. This condition is removed by healing.
+          The creature cannot heal or regain health or regain any energy type. This condition is removed by healing. When an instance of healing removes the poisoned condition, no health is regained.
       
       - id: bleeding
         title: Bleeding
