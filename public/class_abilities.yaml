@@ -226,7 +226,7 @@ classes:
       - level: 1
         name: Flashbang
         apCost: 1
-        otherCost: 2 REFL or WILL
+        otherCost: 3 REFL or WILL
         flavourText: Dazzle your foes with a small explosive.
         description: Select a tile within 50ft and blind all creatures within a 10ft. Target may resist the blind with REFL or WILL.
         range: 50ft
@@ -1124,7 +1124,7 @@ classes:
       - level: 3
         name: Sensory Overload
         apCost: 1
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
         description: Select a creature within 100ft, they become blind and deafened. Target may resist the blind with REFL or WILL.
         range: 100ft

@@ -318,6 +318,8 @@ sections:
               - "- Versatile attack uses the described range to make the attack roll - has no disadvantages due to hostile creatures within melee range. This could include a magical ability, which does not require a free hand."
               - "STR, DEX, PER, INT, or SPI: Describes the attribute modifier used to make the attack roll. Can also be described as ATR if there are multiple attribute modifiers that could be used."
               - "Targeting FORT, REFL, or WILL: Describes the energy type that will be targeted by the attack. The target of the attack will lose energy in that type if the attack is successful. If no energy type is listed, the attacker may choose any of the 3 energy types to target."
+              - "Attack power: Describes the number of d6 rolled for the attack. Can be Light, Medium, or Heavy."
+              - "Damage type: Describes the type of damage dealt by the attack. Can be Physical, Acid, Poison, Fire, Frost, Lightning, Psychic, Force, or Soul. If no damage type is listed, the attack will deal Physical damage. Damage can also be Direct, which ignores energy and damages HP directly."
               - "Regular attack: An attack is considered a regular attack if it is a weapon attack or attack using a class core ability. Attacks that occur during an ability's effect are not considered regular attacks unless stated otherwise."
               - "Attack examples:"
               - "- \"Make a ranged ATR attack against a creature within 50ft with Medium frost attack power targeting FORT or WILL.\""
@@ -326,27 +328,23 @@ sections:
           - id: surprise
             title: Surprise
             body:
-              - "If you are hidden from a creature and make an attack against it, you will have Adv (++) on the attack roll and the attack may also deal critical damage due to surprise."
+              - "If you are hidden from a creature and make an attack against it, you may double the attack power of your attack against the creature."
               - "An attack can be considered as a surprise when a creature that is not expecting a violent threat of any kind, such as not being involved in combat of any kind and unaware of your presence. After this, the attacked creature and other creatures in the area will become aware of your presence - such as the target shouting to their allies to warn them about you - and you will no longer be hidden."
-              - "Also if the target is aware of you but is strongly not expecting you to attack them, this may also class as a surprise in some circumstances, gaining Adv (++) and dealing critical damage. For example, betraying an ally stood beside you to initiate combat."
+              - "Also if the target is aware of you but is strongly not expecting you to attack them, this may also class as a surprise in some circumstances, gaining the benefit described above. For example, betraying an ally stood beside you to initiate combat."
           - id: cover-concealment
             title: Cover & Concealment
             body:
-              - "A ranged attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered by terrain or an obstacle is known as in cover. All attacks against this enemy is made with DisAdv (-). Marking a target removes it's cover bonus."
+              - "A ranged attack against a creature you can see and make a valid attack against but has over 1/2 of it's body covered by terrain or an obstacle is known as in cover. All attacks against this enemy is made with DisAdv (--). Marking a target removes it's cover bonus."
               - "To be considered hidden from another certain creature, the creature must not be able to see you and therefore be unaware of your presence or current location. This might come from making a successful Hide core ability, or from being invisible. An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage."
               - "A melee attack against a target you cannot see (such as when you are blind or the target is invisible) is made with DisAdv (--)."
-              - "A ranged attack against a target you cannot see (such as when you are blind or the target is invisible) is made with DisAdv (---)."
+              - "A ranged attack against a target you cannot see (such as when you are blind or the target is invisible) cannot be made."
           - id: range
             title: Range
             body:
               - "There are 3 classes of range:"
               - "Melee refers to a range of 5ft."
               - "Short range refers to a range of 25ft."
-              - "Attempting an attack above this range gives disadvantage: (-) for every additional 25ft (up to a max of an additional 75ft). E.g. (-) up to 50ft and (---) up to 100ft."
-              - "This range extension can ONLY be done with abilities if it is specified to have “Short” range."
               - "Long range refers to a range of 100ft."
-              - "Attempting an attack above this range gives disadvantage: (-) for every additional 50ft (up to a max of an additional 150ft). E.g. (-) up to 150ft and (--) up to 200ft."
-              - "This range extension can ONLY be done with abilities if it is specified to have “Long” range."
               - "These values will be referred to throughout. If an ability has a specific range it can only be used within that range."
       - id: resistance-vulnerability
         title: Resistance and Vulnerability
@@ -384,7 +382,7 @@ sections:
       - id: blind
         title: Blind
         body: >-
-          The creature cannot see. The creature cannot select or target anything that is not within 5ft of the creature. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (++).
+          The creature cannot see. The creature cannot select or target anything that is not within 5ft of the creature. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (++). All attacks made by the creature have DisAdv (--).
       
       - id: deaf
         title: Deaf
@@ -508,9 +506,7 @@ sections:
         title: Description Column Key
         body:
           - The first sentence is flavour text.
-          - If the description states “make a weapon attack”, on a hit you always deal weapon damage as part of that attack unless stated otherwise.
-          - If damage type is not specified, it is physical damage.
-          - "\"Conditions\" are shown in italics."
+          - "\"Conditions\" are underlined and should have tooltips."
       - id: target-column-key
         title: Target Column Key
         body:
@@ -536,10 +532,8 @@ sections:
       - id: ap-cost-column-key
         title: AP Cost Column Key
         body:
-          - All abilities with an AP cost are limited to 3 uses, unless “Core” is written in the level column - these can be used unlimited times (unless stated otherwise).
           - A number describes the AP cost.
-          - “Pass” means the ability is passive and is always taking effect.
-          - “React” means the ability uses your reaction and has unlimited uses (unless it also has an AP cost - which takes priority and is limited to 3 uses). 
+          - A \"-" describes that the ability is either passive or costs 0 AP.
 
 
 
