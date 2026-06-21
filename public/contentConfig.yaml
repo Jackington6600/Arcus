@@ -182,6 +182,15 @@ sections:
       - id: "traits"
         displayFormat: "text"
         visible: true
+      - id: "traits-table"
+        sourceFile: "traits.yaml"
+        displayFormat: "table"
+        visibleFields: ["name", "desc", "type", "usage", "useLimit", "requirements"]
+        visible: true
+        showInNavigation: true
+        splitBy: "groupId"              # Groups traits by their group ID
+        groupTitleField: "group"         # Uses "group" field as the heading for each group
+        metadataFields: ["description"]  # Shows group description above each group's table
 
   - id: "equipment"
     displayFormat: "text"
@@ -190,9 +199,21 @@ sections:
       - id: "weapons"
         displayFormat: "text"
         visible: true
+      - id: "weapons-table"
+        sourceFile: "weapons.yaml"
+        displayFormat: "table"
+        visibleFields: ["weapon", "notes", "modifier", "range"]
+        visible: true
+        showInNavigation: true
       - id: "armour"
         displayFormat: "text"
         visible: true
+      - id: "armour-table"
+        sourceFile: "armour.yaml"
+        displayFormat: "table"
+        visibleFields: ["type", "armour", "movement", "notes"]
+        visible: true
+        showInNavigation: true
       - id: "shields"
         displayFormat: "text"
         visible: true
@@ -205,36 +226,36 @@ sections:
   # Table sections can be mixed with text sections in any order
   
   # Basic table example - displays all specified fields
-  - id: "weapons-table"
-    sourceFile: "weapons.yaml"
-    displayFormat: "table"
-    visibleFields: ["weapon", "notes", "modifier", "range"]
-    visible: true
-    showInNavigation: true
+  # - id: "weapons-table"
+  #   sourceFile: "weapons.yaml"
+  #   displayFormat: "table"
+  #   visibleFields: ["weapon", "notes", "modifier", "range"]
+  #   visible: true
+  #   showInNavigation: true
     # Optional: Filter to show only specific weapons
     # filter: { field: "weapon", values: ["Sword", "Bow"] }
 
   # Another basic table example
-  - id: "armour-table"
-    sourceFile: "armour.yaml"
-    displayFormat: "table"
-    visibleFields: ["type", "armour", "movement", "notes"]
-    visible: true
-    showInNavigation: true
+  # - id: "armour-table"
+  #   sourceFile: "armour.yaml"
+  #   displayFormat: "table"
+  #   visibleFields: ["type", "armour", "movement", "notes"]
+  #   visible: true
+  #   showInNavigation: true
     # Optional: Filter to show only specific armour types
     # filter: { field: "type", values: ["Light", "Medium"] }
 
   # Grouped table example - splits data into separate tables by group
   # Each group gets its own heading and optional metadata
-  - id: "traits-table"
-    sourceFile: "traits.yaml"
-    displayFormat: "table"
-    visibleFields: ["name", "desc", "type", "usage", "useLimit", "requirements"]
-    visible: true
-    showInNavigation: true
-    splitBy: "groupId"              # Groups traits by their group ID
-    groupTitleField: "group"         # Uses "group" field as the heading for each group
-    metadataFields: ["description"]  # Shows group description above each group's table
+  # - id: "traits-table"
+  #   sourceFile: "traits.yaml"
+  #   displayFormat: "table"
+  #   visibleFields: ["name", "desc", "type", "usage", "useLimit", "requirements"]
+  #   visible: true
+  #   showInNavigation: true
+  #   splitBy: "groupId"              # Groups traits by their group ID
+  #   groupTitleField: "group"         # Uses "group" field as the heading for each group
+  #   metadataFields: ["description"]  # Shows group description above each group's table
     # Optional: Filter to show only specific trait groups
     # filter: { groupIds: ["ancestral", "combat"] }
 
@@ -276,67 +297,67 @@ sections:
         displayFormat: "text"
         visible: true
 
-  - id: "core-abilities"
-    displayFormat: "text"
-    visible: true
-    children:
-      - id: "move"
-        displayFormat: "text"
-        visible: true
-      - id: "disengage"
-        displayFormat: "text"
-        visible: true
-      - id: "shift"
-        displayFormat: "text"
-        visible: true
-      - id: "regular-attack"
-        displayFormat: "text"
-        visible: true
-      - id: "hold-regular-attack"
-        displayFormat: "text"
-        visible: true
-      - id: "attack-of-opportunity"
-        displayFormat: "text"
-        visible: true
-      - id: "inspect-creature"
-        displayFormat: "text"
-        visible: true
-      - id: "hide"
-        displayFormat: "text"
-        visible: true
-      - id: "help"
-        displayFormat: "text"
-        visible: true
-      - id: "push-pull"
-        displayFormat: "text"
-        visible: true
-      - id: "stand-up"
-        displayFormat: "text"
-        visible: true
-      - id: "draw-weapon"
-        displayFormat: "text"
-        visible: true
-      - id: "swap-weapon"
-        displayFormat: "text"
-        visible: true
-      - id: "drop-item"
-        displayFormat: "text"
-        visible: true
-      - id: "pick-up-item"
-        displayFormat: "text"
-        visible: true
-      - id: "drink-potion"
-        displayFormat: "text"
-        visible: true
-      - id: "talk-to-allies"
-        displayFormat: "text"
-        visible: true
-      - id: "improvise"
-        displayFormat: "text"
-        visible: true
-      - id: "other"
-        displayFormat: "text"
-        visible: true
+  # - id: "core-abilities"
+  #   displayFormat: "text"
+  #   visible: true
+  #   children:
+  #     - id: "move"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "disengage"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "shift"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "regular-attack"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "hold-regular-attack"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "attack-of-opportunity"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "inspect-creature"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "hide"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "help"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "push-pull"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "stand-up"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "draw-weapon"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "swap-weapon"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "drop-item"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "pick-up-item"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "drink-potion"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "talk-to-allies"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "improvise"
+  #       displayFormat: "text"
+  #       visible: true
+  #     - id: "other"
+  #       displayFormat: "text"
+  #       visible: true
 
   # Simple table without grouping
   # Note: showInNavigation controls whether this appears in the sidebar navigation
@@ -423,6 +444,22 @@ sections:
   - id: "classes"
     displayFormat: "text"
     visible: true
+    children:
+      - id: "deadly-escalation"
+        displayFormat: "text"
+        visible: true
+      - id: "level-column-key"
+        displayFormat: "text"
+        visible: true
+      - id: "description-column-key"
+        displayFormat: "text"
+        visible: true
+      - id: "target-column-key"
+        displayFormat: "text"
+        visible: true
+      - id: "ap-cost-column-key"
+        displayFormat: "text"
+        visible: true
 
   # ============================================================================
   # AGGREGATE COLUMNS EXAMPLE
@@ -485,10 +522,7 @@ sections:
             valueFormat: []
             
     
-    children:
-      - id: "deadly-escalation"
-        displayFormat: "text"
-        visible: true
+    
     # Optional: Filter to show only specific classes
     # filter: { classIds: ["warrior", "scoundrel", "marksman"] }
   

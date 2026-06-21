@@ -323,7 +323,7 @@ sections:
               - "Regular attack: An attack is considered a regular attack if it is a weapon attack or attack using a class core ability. Attacks that occur during an ability's effect are not considered regular attacks unless stated otherwise."
               - "Attack examples:"
               - "- \"Make a ranged ATR attack against a creature within 50ft with Medium frost attack power targeting FORT or WILL.\""
-              - "- \"Make a melee weapon attack against all creatures within weapon range\""
+              - "- \"Make a melee weapon attack against all creatures within weapon range.\""
               - "- \"Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT.\""
           - id: surprise
             title: Surprise
@@ -337,7 +337,7 @@ sections:
               - "A ranged attack against a creature you can see and make a valid attack against but has over 1/2 of it's body covered by terrain or an obstacle is known as in cover. All attacks against this enemy is made with DisAdv (--). Marking a target removes it's cover bonus."
               - "To be considered hidden from another certain creature, the creature must not be able to see you and therefore be unaware of your presence or current location. This might come from making a successful Hide core ability, or from being invisible. An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage."
               - "A melee attack against a target you cannot see (such as when you are blind or the target is invisible) is made with DisAdv (--)."
-              - "A ranged attack against a target you cannot see (such as when you are blind or the target is invisible) cannot be made."
+              - "A ranged attack against a target you cannot see (such as when you are blind or the target is invisible) can only be made against a creature within 5ft of you and is made with DisAdv (---)."
           - id: range
             title: Range
             body:
