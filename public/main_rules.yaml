@@ -489,51 +489,56 @@ sections:
         body: >-
           When a creature gains the dying condition, it also falls unconscious. At the start of each of the creature's turns, it loses 3 energy (ignoring armour and shield) in any combination of its choice. If a creature with this condition has 0 energy in all 3 types at any time, and has 1 HP, its HP is set to 0 and it dies. The creature remains dying until it is helped by another creature or is healed. When healed, the creature does not lose the unconscious condition.
 
-  - id: class-tables
-    title: Class Tables
-    summary: Special rules and mechanics that apply to specific class abilities.
+  - id: classes
+    title: Classes
+    summary: The different classes available to characters, and their abilities.
     children:
-      - id: deadly-escalation
-        title: Deadly Escalation
+      - id: class-overview
+        title: Class Overview
         body: >-
-          An ability affected by Deadly Escalation will cause you to suffer direct damage equal to the number of times you have completed casting that ability since your last long rest. This damage occurs at the same time as you would spend other costs for the ability. For example, the first time you cast the ability you suffer no damage, but the second and third times you will suffer 1 and 2 direct damage respectively, and so on.
-      - id: level-column-key
-        title: Level Column Key
-        body:
-          - The number describes the level in this class at which these abilities are unlocked and possible to be gained by a character.
-          - "\"Core\" in the level column means that the ability is a core ability and is automatically unlocked at level 1 in the class and can be used unlimited times (unless stated otherwise). You may only have the core abilities from 1 class active at any time, and you may change which class' core abilities are active after completing a long rest."
-      - id: description-column-key
-        title: Description Column Key
-        body:
-          - The first sentence is flavour text.
-          - "\"Conditions\" are underlined and should have tooltips."
-      - id: target-column-key
-        title: Target Column Key
-        body:
-          - This column concisely describes what and how the ability assigns targets, range, and description of AoE. These details will all still be present in the description column.
-          - "First part is who can it target:"
-          - Self (Self) - Can only target self.
-          - Allies (A) - Target willing creatures of your choice excluding self.
-          - Enemies (E) - Target non willing creatures of your choice excluding self.
-          - All (All) - Target all creatures including self.
-          - Not Applicable (-)
-          - "Second part is range:"
-          - Melee Range (Melee)
-          - Short Range (Short)
-          - Long Range (Long)
-          - Use Equipped Weapon Range (Weapon) This may specify Melee or Ranged only.
-          - Or Specific Range e.g. (30ft)
-          - "Third part is other specific descriptions:"
-          - E.g. All within 40ft straight line from self (AoE)
-          - E.g. Single target
-          - E.g. Up to 3 targets
-          - E.g. All within range (AoE)
-          - All of these parts are optional but they will appear in this order.
-      - id: ap-cost-column-key
-        title: AP Cost Column Key
-        body:
-          - A number describes the AP cost.
-          - A \"-" describes that the ability is either passive or costs 0 AP.
-
-
-
+          Each class has a set of abilities that are unlocked at certain levels. These abilities can be used in combat and outside of combat. Some abilities have additional costs to use them, such as spending energy or suffering damage. Some abilities have a limited number of uses per long rest. Some abilities have a cooldown period before they can be used again.
+      - id: class-tables
+        title: Class Tables
+        summary: Special rules and mechanics that apply to specific class abilities.
+        children:
+          - id: deadly-escalation
+            title: Deadly Escalation
+            body: >-
+              An ability affected by Deadly Escalation will cause you to suffer direct damage equal to the number of times you have completed casting that ability since your last long rest. This damage occurs at the same time as you would spend other costs for the ability. For example, the first time you cast the ability you suffer no damage, but the second and third times you will suffer 1 and 2 direct damage respectively, and so on.
+          - id: level-column-key
+            title: Level Column Key
+            body:
+              - The number describes the level in this class at which these abilities are unlocked and possible to be gained by a character.
+              - "\"Core\" in the level column means that the ability is a core ability and is automatically unlocked at level 1 in the class and can be used unlimited times (unless stated otherwise). You may only have the core abilities from 1 class active at any time, and you may change which class' core abilities are active after completing a long rest."
+          - id: description-column-key
+            title: Description Column Key
+            body:
+              - The first sentence is flavour text.
+              - "\"Conditions\" are underlined and should have tooltips."
+          - id: target-column-key
+            title: Target Column Key
+            body:
+              - This column concisely describes what and how the ability assigns targets, range, and description of AoE. These details will all still be present in the description column.
+              - "First part is who can it target:"
+              - Self (Self) - Can only target self.
+              - Allies (A) - Target willing creatures of your choice excluding self.
+              - Enemies (E) - Target non willing creatures of your choice excluding self.
+              - All (All) - Target all creatures including self.
+              - Not Applicable (-)
+              - "Second part is range:"
+              - Melee Range (Melee)
+              - Short Range (Short)
+              - Long Range (Long)
+              - Use Equipped Weapon Range (Weapon) This may specify Melee or Ranged only.
+              - Or Specific Range e.g. (30ft)
+              - "Third part is other specific descriptions:"
+              - E.g. All within 40ft straight line from self (AoE)
+              - E.g. Single target
+              - E.g. Up to 3 targets
+              - E.g. All within range (AoE)
+              - All of these parts are optional but they will appear in this order.
+          - id: ap-cost-column-key
+            title: AP Cost Column Key
+            body:
+              - A number describes the AP cost.
+              - A \"-" describes that the ability is either passive or costs 0 AP.
