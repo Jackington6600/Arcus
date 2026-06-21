@@ -229,7 +229,7 @@ sections:
       - id: energy-combat
         title: Energy in Combat
         body: 
-          - At the start of each character's turn, they may regain one energy, up to their maximum.
+          - At the start of each character's turn they may regain one energy in a type of their choice, up to their maximum.
           
           - "All attacks will target one of the three energy types: FORT, REFL, or WILL. For example: think of this as using a sword to attack the torso (FORT), the limbs (REFL), or the head (WILL). The attacking characters are encouraged to describe how they formulate their attack to target the chosen energy type, to add to the thematics of combat."
           
