@@ -461,157 +461,157 @@ sections:
         displayFormat: "text"
         visible: true
 
-  # ============================================================================
-  # AGGREGATE COLUMNS EXAMPLE
-  # ============================================================================
-  # This example shows how to use aggregateColumns to combine multiple fields
-  # into a single "Description" column. Fields like "otherCost", "flavourText",
-  # "extraEffectCost", "extraEffectDescription", and "description" are combined
-  # into one column with custom labels and formatting.
-  #
-  # Key features demonstrated:
-  # - Multiple fields combined into one column
-  # - Custom column name ("Description")
-  # - Optional labels for each field
-  # - Formatting options (bold, italic) for labels and values
-  # - Empty fields are automatically skipped
-  # - Fields in aggregate columns are excluded from regular columns
-  # - Fields can appear in both if explicitly listed in visibleFields
-  # - Column order: Include aggregate column name in visibleFields to control position
-  #   (if not included, aggregate columns appear at the end)
-  # ============================================================================
-  - id: "class-abilities-table"
-    sourceFile: "class_abilities.yaml"
-    displayFormat: "table"
-    # Note: Fields in aggregateColumns are automatically excluded unless listed here
-    # To control aggregate column position, include its name in visibleFields at desired position
-    # Example: ["level", "Description", "name", "apCost"] puts Description between level and name
-    # If aggregate column name is not in visibleFields, it will be appended at the end
-    visibleFields: ["level", "name", "Description", "apCost", "target", "range", "type"]
-    visible: true
-    showInNavigation: true
-    splitBy: "classId"
-    groupTitleField: "className"
-    metadataFields: ["type", "attributes", "summary"]
-    
-    # Aggregate columns combine multiple fields into custom columns
-    aggregateColumns:
-      - name: "Description"
-        fields:
-          # Field with italic label
-          - field: "flavourText"
-            valueFormat: ["italic"]
-          # Field with label and formatting
-          - field: "otherCost"
-            label: "Additional Cost"
-            labelFormat: ["bold"]
-            valueFormat: []
-          # Field without label (just displays the value)
-          - field: "description"
-            # No label means just the value is shown
-            valueFormat: []
-          # Field with bold and italic formatting
-          - field: "extraEffectCost"
-            label: "Extra Effect Cost"
-            labelFormat: ["bold"]
-            valueFormat: []
-          # Field with label
-          - field: "extraEffectDescription"
-            label: "Extra Effect"
-            labelFormat: []
-            valueFormat: []
-            
-    
-    
-    # Optional: Filter to show only specific classes
-    # filter: { classIds: ["warrior", "scoundrel", "marksman"] }
-  
-  # ============================================================================
-  # MORE AGGREGATE COLUMN EXAMPLES (commented out - uncomment to use)
-  # ============================================================================
-  
-  # Example 1: Simple aggregate column with no labels
-  # - id: "example-table-1"
-  #   sourceFile: "weapons.yaml"
-  #   displayFormat: "table"
-  #   visibleFields: ["weapon", "modifier"]
-  #   visible: true
-  #   aggregateColumns:
-  #     - name: "Details"
-  #       fields:
-  #         - field: "notes"
-  #           # No label - just shows the value
-  #         - field: "range"
-  #           # No label - just shows the value
-  
-  # Example 2: Aggregate column with labels and formatting
-  # - id: "example-table-2"
-  #   sourceFile: "core_abilities.yaml"
-  #   displayFormat: "table"
-  #   visibleFields: ["name", "apCost"]
-  #   visible: true
-  #   aggregateColumns:
-  #     - name: "Ability Details"
-  #       fields:
-  #         - field: "description"
-  #           label: "Description"
-  #           labelFormat: ["bold"]
-  #         - field: "target"
-  #           label: "Target"
-  #           labelFormat: ["bold"]
-  #           valueFormat: ["italic"]
-  
-  # Example 3: Multiple aggregate columns
-  # - id: "example-table-3"
-  #   sourceFile: "class_abilities.yaml"
-  #   displayFormat: "table"
-  #   visibleFields: ["level", "name"]
-  #   visible: true
-  #   aggregateColumns:
-  #     - name: "Costs"
-  #       fields:
-  #         - field: "apCost"
-  #           label: "AP"
-  #           labelFormat: ["bold"]
-  #         - field: "otherCost"
-  #           label: "Other"
-  #           labelFormat: ["bold"]
-  #     - name: "Effects"
-  #       fields:
-  #         - field: "description"
-  #         - field: "extraEffectDescription"
-  #           label: "Extra"
-  #           labelFormat: ["italic"]
-  
-  # Example 4: Field appearing in both aggregate and regular column
-  # - id: "example-table-4"
-  #   sourceFile: "class_abilities.yaml"
-  #   displayFormat: "table"
-  #   # Include "description" here to show it in both places
-  #   visibleFields: ["level", "name", "description", "apCost"]
-  #   visible: true
-  #   aggregateColumns:
-  #     - name: "Full Description"
-  #       fields:
-  #         - field: "description"
-  #           label: "Main"
-  #         - field: "flavourText"
-  #           label: "Flavour"
-  #           labelFormat: ["italic"]
-  
-  # Example 5: Controlling aggregate column position
-  # - id: "example-table-5"
-  #   sourceFile: "class_abilities.yaml"
-  #   displayFormat: "table"
-  #   # Include "Description" in visibleFields to control where it appears
-  #   # This puts Description between "name" and "apCost"
-  #   visibleFields: ["level", "name", "Description", "apCost", "target"]
-  #   visible: true
-  #   aggregateColumns:
-  #     - name: "Description"  # Must match the name in visibleFields
-  #       fields:
-  #         - field: "description"
-  #         - field: "flavourText"
-  #           label: "Flavour"
-  #           labelFormat: ["italic"]
+      # ============================================================================
+      # AGGREGATE COLUMNS EXAMPLE
+      # ============================================================================
+      # This example shows how to use aggregateColumns to combine multiple fields
+      # into a single "Description" column. Fields like "otherCost", "flavourText",
+      # "extraEffectCost", "extraEffectDescription", and "description" are combined
+      # into one column with custom labels and formatting.
+      #
+      # Key features demonstrated:
+      # - Multiple fields combined into one column
+      # - Custom column name ("Description")
+      # - Optional labels for each field
+      # - Formatting options (bold, italic) for labels and values
+      # - Empty fields are automatically skipped
+      # - Fields in aggregate columns are excluded from regular columns
+      # - Fields can appear in both if explicitly listed in visibleFields
+      # - Column order: Include aggregate column name in visibleFields to control position
+      #   (if not included, aggregate columns appear at the end)
+      # ============================================================================
+      - id: "class-abilities-table"
+        sourceFile: "class_abilities.yaml"
+        displayFormat: "table"
+        # Note: Fields in aggregateColumns are automatically excluded unless listed here
+        # To control aggregate column position, include its name in visibleFields at desired position
+        # Example: ["level", "Description", "name", "apCost"] puts Description between level and name
+        # If aggregate column name is not in visibleFields, it will be appended at the end
+        visibleFields: ["level", "name", "Description", "apCost", "target", "range", "type"]
+        visible: true
+        showInNavigation: true
+        splitBy: "classId"
+        groupTitleField: "className"
+        metadataFields: ["type", "attributes", "summary"]
+        
+        # Aggregate columns combine multiple fields into custom columns
+        aggregateColumns:
+          - name: "Description"
+            fields:
+              # Field with italic label
+              - field: "flavourText"
+                valueFormat: ["italic"]
+              # Field with label and formatting
+              - field: "otherCost"
+                label: "Additional Cost"
+                labelFormat: ["bold"]
+                valueFormat: []
+              # Field without label (just displays the value)
+              - field: "description"
+                # No label means just the value is shown
+                valueFormat: []
+              # Field with bold and italic formatting
+              - field: "extraEffectCost"
+                label: "Extra Effect Cost"
+                labelFormat: ["bold"]
+                valueFormat: []
+              # Field with label
+              - field: "extraEffectDescription"
+                label: "Extra Effect"
+                labelFormat: []
+                valueFormat: []
+                
+        
+        
+        # Optional: Filter to show only specific classes
+        # filter: { classIds: ["warrior", "scoundrel", "marksman"] }
+      
+      # ============================================================================
+      # MORE AGGREGATE COLUMN EXAMPLES (commented out - uncomment to use)
+      # ============================================================================
+      
+      # Example 1: Simple aggregate column with no labels
+      # - id: "example-table-1"
+      #   sourceFile: "weapons.yaml"
+      #   displayFormat: "table"
+      #   visibleFields: ["weapon", "modifier"]
+      #   visible: true
+      #   aggregateColumns:
+      #     - name: "Details"
+      #       fields:
+      #         - field: "notes"
+      #           # No label - just shows the value
+      #         - field: "range"
+      #           # No label - just shows the value
+      
+      # Example 2: Aggregate column with labels and formatting
+      # - id: "example-table-2"
+      #   sourceFile: "core_abilities.yaml"
+      #   displayFormat: "table"
+      #   visibleFields: ["name", "apCost"]
+      #   visible: true
+      #   aggregateColumns:
+      #     - name: "Ability Details"
+      #       fields:
+      #         - field: "description"
+      #           label: "Description"
+      #           labelFormat: ["bold"]
+      #         - field: "target"
+      #           label: "Target"
+      #           labelFormat: ["bold"]
+      #           valueFormat: ["italic"]
+      
+      # Example 3: Multiple aggregate columns
+      # - id: "example-table-3"
+      #   sourceFile: "class_abilities.yaml"
+      #   displayFormat: "table"
+      #   visibleFields: ["level", "name"]
+      #   visible: true
+      #   aggregateColumns:
+      #     - name: "Costs"
+      #       fields:
+      #         - field: "apCost"
+      #           label: "AP"
+      #           labelFormat: ["bold"]
+      #         - field: "otherCost"
+      #           label: "Other"
+      #           labelFormat: ["bold"]
+      #     - name: "Effects"
+      #       fields:
+      #         - field: "description"
+      #         - field: "extraEffectDescription"
+      #           label: "Extra"
+      #           labelFormat: ["italic"]
+      
+      # Example 4: Field appearing in both aggregate and regular column
+      # - id: "example-table-4"
+      #   sourceFile: "class_abilities.yaml"
+      #   displayFormat: "table"
+      #   # Include "description" here to show it in both places
+      #   visibleFields: ["level", "name", "description", "apCost"]
+      #   visible: true
+      #   aggregateColumns:
+      #     - name: "Full Description"
+      #       fields:
+      #         - field: "description"
+      #           label: "Main"
+      #         - field: "flavourText"
+      #           label: "Flavour"
+      #           labelFormat: ["italic"]
+      
+      # Example 5: Controlling aggregate column position
+      # - id: "example-table-5"
+      #   sourceFile: "class_abilities.yaml"
+      #   displayFormat: "table"
+      #   # Include "Description" in visibleFields to control where it appears
+      #   # This puts Description between "name" and "apCost"
+      #   visibleFields: ["level", "name", "Description", "apCost", "target"]
+      #   visible: true
+      #   aggregateColumns:
+      #     - name: "Description"  # Must match the name in visibleFields
+      #       fields:
+      #         - field: "description"
+      #         - field: "flavourText"
+      #           label: "Flavour"
+      #           labelFormat: ["italic"]
 
