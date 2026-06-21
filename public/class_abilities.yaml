@@ -484,7 +484,7 @@ classes:
         apCost: "-"
         otherCost: 2 REFL and your reaction
         flavourText: Seize every opportunity to strike.
-        description: When an ally within weapon range makes an attack of opportunity against a creature, you may spend 1 REFL and your reaction to make a ranged weapon attack against the same creature.
+        description: When an ally within weapon range makes an attack of opportunity against a creature, you may make a ranged weapon attack against the same creature.
         range: Weapon
         target: A+E (Ranged weapon required), Single target
         type: Active
@@ -528,7 +528,7 @@ classes:
         name: Elemental Blast
         apCost: 2
         flavourText: Conjure a burst of elemental power.
-        description: Make a melee MOD attack against a creature with Medium+ATR (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+ATR (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
+        description: Make a melee ATR attack against a creature with Medium+ATR (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+ATR (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -545,11 +545,11 @@ classes:
       - level: 1
         name: Ice Spikes
         apCost: 0
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Summon shards of ice that orbit around you.
         description: Create 3 ice daggers that persist with you until the end of your next turn. You cannot have more than 3 ice daggers at any one time.
         extraEffectCost: 1 AP + 1 Ice Dagger
-        extraEffectDescription: Make a ranged MOD attack against a creature within 50ft with Light+ATR frost attack power targeting FORT or REFL.
+        extraEffectDescription: Make a ranged ATR attack against a creature within 50ft with Medium frost attack power targeting FORT or REFL.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -559,7 +559,7 @@ classes:
         apCost: 2
         otherCost: 1 REFL or WILL
         flavourText: Push your foes with a forceful gust.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. The creature is pushed 15ft in a straight line in a direction of your choice. Target may resist the push with FORT or REFL.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. The creature is pushed 15ft in a straight line in a direction of your choice. Target may resist the push with FORT or REFL.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -567,9 +567,9 @@ classes:
       - level: 1
         name: Sun Beam
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Unleash a ray as powerful as the sun.
-        description: Make a versatile MOD attack against all creatures in up to a 20ft line originating from you with Medium+ATR fire attack power targeting REFL.
+        description: Make a versatile ATR attack against all creatures in up to a 20ft line originating from you with Medium+ATR fire attack power targeting REFL.
         range: 20ft
         target: A+E, All within straight line from self (AoE)
         type: Active
@@ -577,7 +577,7 @@ classes:
       - level: 1
         name: Elemental Grapple
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Launch an elemental grapple that pulls a foe to you.
         description: Select a creature within 40ft and pull it to an unoccupied space within 5ft of you. The target suffers 1 (fire, frost, lightning, or physical) damage for every 10ft the creature is moved. For example, a distance of 25ft would result in 2 damage. Target may resist the pull with FORT or REFL.
         range: 40ft
@@ -599,7 +599,7 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL
         flavourText: A large rock erupts from the ground and then explodes.
-        description: Select a tile on the ground within 50ft, any creature stood on this tile is knocked prone. Then all prone creatures within 5ft of this tile, including the initial target, suffer 2 damage. Target may resist the prone with REFL or FORT.
+        description: Select a tile on the ground within 50ft, the creature on this tile is knocked prone. Then all prone creatures within 5ft of this tile, including the initial target, suffer 2 FORT damage. Target may resist the prone with REFL or FORT.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -607,10 +607,10 @@ classes:
       - level: 2
         name: Fireball
         apCost: 2
-        otherCost: 2 WILL
+        otherCost: 4 WILL
         flavourText: Throw an explosive ball of flame.
         description: Select a tile within 50ft. All creatures within 5ft are attacked with Heavy+ATR fire attack power targeting REFL.
-        extraEffectCost: 2 WILL
+        extraEffectCost: 3 WILL
         extraEffectDescription: Double the attack power of the attack against all creatures.
         range: 50ft
         target: All, All within 5ft (AoE)
@@ -619,9 +619,11 @@ classes:
       - level: 2
         name: Lightning Strike
         apCost: 2
-        otherCost: 2 REFL or WILL
+        otherCost: 3 REFL or WILL
         flavourText: Invoke a shocking bolt of lightning.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+ATR lightning attack power targeting REFL or WILL. The creature is also dazed, and you may then select another creature within 5ft of the original target which also becomes dazed. Target may resist the daze with REFL or WILL.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR lightning attack power targeting REFL or WILL. The creature is also stunned. Target may resist the stun with REFL or WILL.
+        extraEffectCost: 1 REFL or WILL
+        extraEffectDescription: Also daze all creatures within 5ft of the initial target. REFL or WILL to resist the daze.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -641,7 +643,7 @@ classes:
         apCost: "-"
         otherCost: 1 REFL or WILL and your reaction
         flavourText: Engulf yourself in flames to fight back.
-        description: When you are hit by a melee attack, you may make a melee MOD attack against the attacking creature with Light+ATR fire attack power targeting REFL or WILL.
+        description: When you are damaged by a melee attack, you may make a melee ATR attack against the attacking creature with Light+ATR fire attack power targeting REFL or WILL.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -649,9 +651,9 @@ classes:
       - level: 3
         name: Thunder Jump
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Leap away with a thunderous blast.
-        description: Make a versatile MOD attack against all creatures within 10ft with Medium lightning attack power targeting REFL. Then you may jump to a tile within 30ft.
+        description: Make a versatile ATR attack against all creatures within 10ft with Medium lightning attack power targeting REFL. Then you may jump to a tile within 30ft.
         range: 10ft
         target: A+E, All within range (AoE)
         type: Active
@@ -659,9 +661,9 @@ classes:
       - level: 3
         name: Stalactite
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Drop a large spiked rock on your foe.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. If the creature is prone or immobilised, gain additional Medium attack power.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. If the creature is prone or immobilised, gain additional Medium attack power.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -743,9 +745,9 @@ classes:
       - level: 1
         name: Toll The Dead
         apCost: "-"
-        otherCost: 1 WILL and your reaction
+        otherCost: 2 WILL and your reaction
         flavourText: Exploit the last of a creature's essence to maim your foe.
-        description: When you reduce a creature within 100ft to 0 HP, you may spend 1 WILL and your reaction to make a versatile SPI attack against another creature within 15ft of the initial target with Medium+ATR soul attack power. It must specifically be you and your damage that reduces the creature to 0 HP.
+        description: When you reduce a creature within 100ft to 0 HP, you may make a versatile SPI attack against another creature within 15ft of the initial target with Medium+ATR soul attack power. It must specifically be you and your damage that reduces the creature to 0 HP.
         range: 100ft
         target: A+E, Single target within 15ft
         type: Active
@@ -773,7 +775,7 @@ classes:
       - level: 2
         name: Burst of Essence
         apCost: 2
-        otherCost: 2 FORT or WILL - Deadly Escalation
+        otherCost: 3 FORT or WILL - Deadly Escalation
         flavourText: Explode with restorative or destructive energy.
         description: "Select any number of creatures within 10ft and then either: heal each creature for SPI HP (includes self); or remove the Deadly Escalation cost and make a versatile SPI attack against each creature with Light+ATR soul attack power targeting FORT or WILL (excludes self). You cannot both heal and deal damage with one use of this ability."
         range: 10ft
@@ -793,23 +795,23 @@ classes:
       - level: 3
         name: Don't Die On Me!
         apCost: "-"
-        otherCost: 1 REFL or 1 WILL
+        otherCost: 2 REFL or WILL + Reaction
         flavourText: Save an ally from death at the last possible moment.
-        description: When a creature within 25ft suffers damage that would reduce it to 0HP, you can have it reduced to 1HP instead and it becomes unconscious. The creature can only be woken up by another creature using the help action for 1 minute. On your next turn you start with 1 fewer AP.
-        range: 25ft
+        description: When a creature within 50ft gains the dying condition or suffers damage that would reduce it to 0HP, you can remove the dying condition, have it reduced to 1HP instead, and it becomes unconscious. 
+        range: 50ft
         target: A+E, Single target
         type: Active
         tags: [heal, reactive]
       - level: 3
         name: Tormented Soul
         apCost: 1
-        otherCost: 2 WILL
+        otherCost: 3 WILL
         flavourText: Your foe will destroy itself by harming others.
         description: Select a creature within 100ft and mark it. Half of all damage that this creature deals to other creatures is also dealt to themselves. Target may resist the mark and the damage effect with WILL. Cannot be cast on a creature already under the effect of this ability.
         range: 100ft
         target: A+E, Single target
         type: Active
-        tags: [debuff]
+        tags: [debuff] 
       - level: 3
         name: Blessed Aura
         apCost: 1
@@ -874,7 +876,7 @@ classes:
         target: All, Single target
         type: Passive
         tags: [defensive, support]
-      - level: 1
+      - level: 1 
         name: Spectral Ally
         apCost: 1
         otherCost: 1 WILL
@@ -1062,7 +1064,7 @@ classes:
       - level: 1
         name: Panic Attack
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Trigger a creature to lose control and strike wildly.
         description: Select a creature within 100ft, this creature must spend its reaction to attack the closest creature using a regular attack without moving. If multiple creatures are the same distance the target is selected randomly. Target may resist being forced to make the attack with FORT or WILL.
         range: 100ft
@@ -1082,7 +1084,7 @@ classes:
       - level: 2
         name: Cruel Joke
         apCost: 2
-        otherCost: 3 WILL
+        otherCost: 4 WILL
         flavourText: Make a joke that cuts so deep it hurts.
         description: "Make a versatile INT attack against a creature within 100ft, with Heavy+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
         range: 100ft
@@ -1092,7 +1094,7 @@ classes:
       - level: 2
         name: Silence!
         apCost: 0
-        otherCost: 1 WILL
+        otherCost: 2 WILL
         flavourText: Mute yourself and another in an instant.
         description: Select a creature within 100ft and silence them and yourself. Target may resist the silence with WILL - you must both resist the condition separately. If you are silenced by this ability the other creature suffers 1 psychic damage.
         range: 100ft
@@ -1102,7 +1104,7 @@ classes:
       - level: 2
         name: Mirror Image
         apCost: 1
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Conjure an illusion of yourself that animates as if real.
         description: Select a tile within 100ft and summon an illusion of yourself there. The illusion has 2 HP, no energy, is unaffected by all conditions, and doesn't have a turn. All enemies within 10ft of the illusion are taunted. The taunt ends if the illusion is destroyed. Target may resist the taunt with REFL or WILL.
         range: 100ft
@@ -1124,7 +1126,7 @@ classes:
         apCost: 1
         otherCost: 1 REFL or WILL
         flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
-        description: Select a creature within 100ft, they become blind and deafened. Target may resist the bilnd with REFL or WILL.
+        description: Select a creature within 100ft, they become blind and deafened. Target may resist the blind with REFL or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active

@@ -326,7 +326,7 @@ sections:
       - id: dazed
         title: Dazed
         body: >-
-          The creature starts its next turn with 1AP fewer and cannot use reactions while dazed. If the creature is dazed during its turn it immediately spends up to 1AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the stun still lasts until the start of the creature's turn that was the source of the daze as normal. If a creature that is dazed becomes dazed again, the most recent daze is upgraded to a stun instead.
+          The creature starts its next turn with 1AP fewer and cannot use reactions while dazed. If the creature is dazed during its turn it immediately spends up to 1AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the daze still lasts until the start of the creature's turn that was the source of the daze as normal. If a creature that is dazed becomes dazed again, the most recent daze is upgraded to a stun instead.
       
       - id: stunned
         title: Stunned
