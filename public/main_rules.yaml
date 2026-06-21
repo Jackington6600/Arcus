@@ -235,11 +235,119 @@ sections:
           
           - Equally players can describe how they avoid suffering damage to their HP pool by losing their energy instead, such as suffering damage to REFL energy to dodge an attack, or suffering damage to WILL energy to outsmart their opponent by using some spell or item in the environment to throw the attacker off balance.
       
+      - id: movement
+        title: Movement
+        body:
+          - Your base movement speed is 50ft. However, this can be affected by armour, abilities, and equipment. You can spend 1 AP to move up to your base movement speed. This movement can be broken up around the other things you do on your turn - for example with 50ft of movement you could move 15ft, then attack, then move the remaining 35ft.
+        children:
+          - id: difficult-terrain
+            title: Difficult Terrain
+            body: 
+              - It costs 10ft of movement instead of 5ft to move into a tile that is considered difficult terrain. Creatures can also move through allies as if they were difficult terrain. Creatures cannot move through other hostile creatures.
+          - id: types-of-movement
+            title: Types of Movement
+            body:
+              - There are several movement types that describe how creatures move in different situations.
+            children:
+              - id: regular-movement
+                title: Regular Movement
+                body:
+                  - Regular movement includes running, walking, and crawling. Generally referred to as "move" or "movement".
+              - id: jumping-movement
+                title: Jumping Movement
+                body:
+                  - Jumping movement works the same as regular movement except obstacles (such as gaps, low obstacles, or small creatures) can be avoided on the path.
+                  - The distance that can be jumped in ft is equal to the creature's STR value (if in tile based combat, rounded down to a multiple of 5). The height that can be jumped in ft is equal to half the creature's STR value (if in tile based combat, rounded down to a multiple of 5). What can or cannot be jumped may be up to the GM's discretion. The jump may require a roll depending on the difficulty, distance, or height of the jump - this will use Strength and/or Dexterity depending on the nature of the jump (Strength for greater distance, Dexterity for greater accuracy).
+                  - Generally referred to as "jump" or "jumping".
+              - id: climbing-movement
+                title: Climbing Movement
+                body:
+                  - Climbing movement works the same as regular movement but is done up a more vertical surface such as up a wall or a tree.
+                  - What can or cannot be climbed is up to the GM's discretion. The GM will make the creature perform a skill check based on the difficulty of the surface they are attempting to climb. If successful the creature can climb as if the surface was difficult terrain. The creature must repeat the skill check every time it wishes to move its base movement speed. It is up to the GM if and when they may need to repeat the skill check based on time spent climbing or if the difficulty of the climb significantly changes.
+              - id: swimming-movement
+                title: Swimming Movement
+                body:
+                  - Swimming movement works the same as regular movement but is done through a liquid such as water or slime.
+                  - What can or cannot be swam through is up to the GM's discretion. The GM will make the creature perform a skill check based on the difficulty. If successful the creature can swim as if the liquid was difficult terrain. It is up to the GM if and when they may need to repeat the skill check based on time spent swimming or if the difficulty of the swim significantly changes.
+              - id: teleportation-movement
+                title: Teleportation Movement
+                body:
+                  - Teleportation movement allows a creature to move to a tile they can see, ignoring all obstacles between their start and end tile. Teleportation movement ignores all movement restrictions the creature might have (immobilised or hobbled specifically). Teleportation movement happens instantaneously and cannot be broken up throughout a turn. A creature can teleport to a tile in mid-air.
+                  - Generally referred to as "teleport", "teleportation" or "teleported".
+              - id: flying-movement
+                title: Flying Movement
+                body:
+                  - Flying movement allows movement in all directions including directly and diagonally up and down.
+                  - A creature can only fly if they have a flying movement speed. Some abilities or transformations can unlock a flying movement speed. A flying creature does not have to end its movement on the ground - it does not fall or suffer falling damage while flying. If the creature is knocked prone or stunned they are no longer flying and will immediately fall at normal speed and suffer fall damage as normal. The creature becomes flying again when it spends flying movement speed.
+                  - Generally referred to as "fly", "flight" or "flying".
+              - id: voluntary-movement
+                title: Voluntary Movement
+                body:
+                  - Movement is considered voluntary if the creature has a choice of how it moves and where. Most movement is considered voluntary.
+                  - For example, base movement, or movement gained from a creature's own abilities or ally's abilities.
+              - id: involuntary-movement
+                title: Involuntary Movement
+                body:
+                  - Movement is considered involuntary if the creature does not have a choice of how it moves and where.
+                  - For example, a hostile pulling, pushing, or teleporting another creature, or any movement effect on a creature that it can attempt to resist.
+                  - Movement due to being taunted, frightened, or dominated is still considered voluntary movement.
+              - id: push-pull-movement
+                title: Push/Pull Movement
+                body:
+                  - Push/pull movement is always involuntary and ignores difficult terrain and movement restrictions the creature might have (immobilised, paralysed, or hobbled specifically) unless the GM deems it unreasonable.
+                  - Generally referred to as "push", "pushed", "pull", or "pulled".
+              - id: collisions
+                title: Collisions
+                body:
+                  - A collision is when push movement is stopped or blocked by an object or creature. When a collision occurs, the creature being pushed suffers Light damage and the movement ends.
+                  - If multiple creatures are all being pushed by the same ability, these movements happen simultaneously and movement may be stopped. All creatures involved in the push in this way do not suffer damage from colliding with each other. They can still be pushed into other creatures or objects and suffer damage from those collisions.
       - id: attacks
         title: Attacks
         body: >-
           When attacking, a character will select one of the energy types to target and roll a number of d6 equal to the attack power (3, 6, or 9 for Light, Medium, or Heavy respectively) plus a number of d6 equal to one other attribute required for the attack. Each success (hit) will deal 1 damage to the target energy type. If the damage is greater than the number of energy points then the damage will carry over into the target's HP.
-      
+        children:
+          - id: types-of-attack-roll
+            title: Types of Attack Roll
+            body:
+              - "Weapon, melee, or ranged."
+              - "- Weapon attack uses your equipped weapon to make the attack roll."
+              - "- Melee weapon attack uses your equipped melee weapon to make the attack roll."
+              - "- Ranged weapon attack uses your equipped ranged weapon to make the attack roll - will have DisAdv (-) if you are within melee range of a hostile creature. If this type of attack is made against a target that is at least 10ft above the attacker, the attack is made with DisAdv (-). An attack made against a target 10ft below the attacker is made with Adv (+)."
+              - "- Melee attack uses melee range to make the attack roll but does not require a melee weapon. This could include a magical punch attack, which does not require a free hand."
+              - "- Ranged attack uses the described range to make the attack roll but does not require a ranged weapon - will have DisAdv (-) if you are within melee range of a hostile creature. If this type of attack is made against a target that is at least 10ft above the attacker, the attack is made with DisAdv (-). An attack made against a target 10ft below the attacker is made with Adv (+). This could include a magical ranged attack, which does not require a free hand."
+              - "- Versatile attack uses the described range to make the attack roll - has no disadvantages due to hostile creatures within melee range. This could include a magical ability, which does not require a free hand."
+              - "STR, DEX, PER, INT, or SPI: Describes the attribute modifier used to make the attack roll. Can also be described as ATR if there are multiple attribute modifiers that could be used."
+              - "Targeting FORT, REFL, or WILL: Describes the energy type that will be targeted by the attack. The target of the attack will lose energy in that type if the attack is successful. If no energy type is listed, the attacker may choose any of the 3 energy types to target."
+              - "Regular attack: An attack is considered a regular attack if it is a weapon attack or attack using a class core ability. Attacks that occur during an ability's effect are not considered regular attacks unless stated otherwise."
+              - "Attack examples:"
+              - "- \"Make a ranged ATR attack against a creature within 50ft with Medium frost attack power targeting FORT or WILL.\""
+              - "- \"Make a melee weapon attack against all creatures within weapon range\""
+              - "- \"Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT.\""
+          - id: surprise
+            title: Surprise
+            body:
+              - "If you are hidden from a creature and make an attack against it, you will have Adv (++) on the attack roll and the attack may also deal critical damage due to surprise."
+              - "An attack can be considered as a surprise when a creature that is not expecting a violent threat of any kind, such as not being involved in combat of any kind and unaware of your presence. After this, the attacked creature and other creatures in the area will become aware of your presence - such as the target shouting to their allies to warn them about you - and you will no longer be hidden."
+              - "Also if the target is aware of you but is strongly not expecting you to attack them, this may also class as a surprise in some circumstances, gaining Adv (++) and dealing critical damage. For example, betraying an ally stood beside you to initiate combat."
+          - id: cover-concealment
+            title: Cover & Concealment
+            body:
+              - "A ranged attack against a creature you can see and make a valid attack against but has over 3/4 of it's body covered by terrain or an obstacle is known as in cover. All attacks against this enemy is made with DisAdv (-). Marking a target removes it's cover bonus."
+              - "To be considered hidden from another certain creature, the creature must not be able to see you and therefore be unaware of your presence or current location. This might come from making a successful Hide core ability, or from being invisible. An attack against a creature that you are hidden from has Adv (++). This grade of Adv may vary based on GM's discretion. Being hidden can be broken in many ways such as by making noise, being seen, or dealing damage."
+              - "A melee attack against a target you cannot see (such as when you are blind or the target is invisible) is made with DisAdv (--)."
+              - "A ranged attack against a target you cannot see (such as when you are blind or the target is invisible) is made with DisAdv (---)."
+          - id: range
+            title: Range
+            body:
+              - "There are 3 classes of range:"
+              - "Melee refers to a range of 5ft."
+              - "Short range refers to a range of 25ft."
+              - "Attempting an attack above this range gives disadvantage: (-) for every additional 25ft (up to a max of an additional 75ft). E.g. (-) up to 50ft and (---) up to 100ft."
+              - "This range extension can ONLY be done with abilities if it is specified to have “Short” range."
+              - "Long range refers to a range of 100ft."
+              - "Attempting an attack above this range gives disadvantage: (-) for every additional 50ft (up to a max of an additional 150ft). E.g. (-) up to 150ft and (--) up to 200ft."
+              - "This range extension can ONLY be done with abilities if it is specified to have “Long” range."
+              - "These values will be referred to throughout. If an ability has a specific range it can only be used within that range."
       - id: resistance-vulnerability
         title: Resistance and Vulnerability
         body: 
@@ -391,6 +499,47 @@ sections:
         title: Deadly Escalation
         body: >-
           An ability affected by Deadly Escalation will cause you to suffer direct damage equal to the number of times you have completed casting that ability since your last long rest. This damage occurs at the same time as you would spend other costs for the ability. For example, the first time you cast the ability you suffer no damage, but the second and third times you will suffer 1 and 2 direct damage respectively, and so on.
+      - id: level-column-key
+        title: Level Column Key
+        body:
+          - The number describes the level in this class at which these abilities are unlocked and possible to be gained by a character.
+          - "\"Core\" in the level column means that the ability is a core ability and is automatically unlocked at level 1 in the class and can be used unlimited times (unless stated otherwise). You may only have the core abilities from 1 class active at any time, and you may change which class' core abilities are active after completing a long rest."
+      - id: description-column-key
+        title: Description Column Key
+        body:
+          - The first sentence is flavour text.
+          - If the description states “make a weapon attack”, on a hit you always deal weapon damage as part of that attack unless stated otherwise.
+          - If damage type is not specified, it is physical damage.
+          - "\"Conditions\" are shown in italics."
+      - id: target-column-key
+        title: Target Column Key
+        body:
+          - This column concisely describes what and how the ability assigns targets, range, and description of AoE. These details will all still be present in the description column.
+          - "First part is who can it target:"
+          - Self (Self) - Can only target self.
+          - Allies (A) - Target willing creatures of your choice excluding self.
+          - Enemies (E) - Target non willing creatures of your choice excluding self.
+          - All (All) - Target all creatures including self.
+          - Not Applicable (-)
+          - "Second part is range:"
+          - Melee Range (Melee)
+          - Short Range (Short)
+          - Long Range (Long)
+          - Use Equipped Weapon Range (Weapon) This may specify Melee or Ranged only.
+          - Or Specific Range e.g. (30ft)
+          - "Third part is other specific descriptions:"
+          - E.g. All within 40ft straight line from self (AoE)
+          - E.g. Single target
+          - E.g. Up to 3 targets
+          - E.g. All within range (AoE)
+          - All of these parts are optional but they will appear in this order.
+      - id: ap-cost-column-key
+        title: AP Cost Column Key
+        body:
+          - All abilities with an AP cost are limited to 3 uses, unless “Core” is written in the level column - these can be used unlimited times (unless stated otherwise).
+          - A number describes the AP cost.
+          - “Pass” means the ability is passive and is always taking effect.
+          - “React” means the ability uses your reaction and has unlimited uses (unless it also has an AP cost - which takes priority and is limited to 3 uses). 
 
 
 
