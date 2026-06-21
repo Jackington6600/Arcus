@@ -40,7 +40,7 @@ classes:
       - level: 1
         name: Charge
         apCost: 2
-        otherCost: 1 FORT
+        otherCost: 2 FORT
         flavourText: Rush forward smashing all enemies in your path.
         description: Move up to 40ft in a straight line, moving through other creatures. Make a melee weapon attack against all creatures moved through targeting FORT.
         extraEffectCost: 1 FORT
@@ -52,7 +52,7 @@ classes:
       - level: 1
         name: Sweeping Strike
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: "-"
         description: Select 3 connected tiles all within 5ft. Make a melee weapon attack against all creatures on these tiles targeting FORT or REFL. All creatures attacked are knocked prone. Target may resist the prone with FORT or REFL.
         range: Melee
@@ -64,7 +64,9 @@ classes:
         apCost: 1
         otherCost: 1 FORT or REFL
         flavourText: "-"
-        description: Move up to 15ft and make a melee attack with Light attack power targeting FORT or REFL and push them to another tile within 15ft of you. Target may resist the push with FORT or REFL. The creature is then also knocked prone. Target may resist the prone with FORT or REFL.
+        description: Move up to 15ft and make a melee attack with Light attack power targeting FORT or REFL and push them to another tile within 15ft of you. Target may resist the push with FORT or REFL.
+        extraEffectCost: 1 FORT or REFL
+        extraEffectDescription: The creature is then also knocked prone. Target may resist the prone with FORT or REFL.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -74,7 +76,9 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL
         flavourText: "-"
-        description: Taunt all enemies within 30ft of you. Target may resist the taunt with FORT or WILL. You also gain Physical Resistance 1 and Resistance 1 for one other damage type of your choice.
+        description: Taunt all enemies within 30ft of you. Target may resist the taunt with FORT or WILL. You also gain Physical Resistance 1.
+        extraEffectCost: 1 FORT or WILL
+        extraEffectDescription: Gain Resistance 1 for one additional damage type of your choice.
         range: 30ft
         target: E, All within range (AoE)
         type: Active
@@ -82,9 +86,9 @@ classes:
       - level: 1
         name: Danger Close
         apCost: "-"
-        otherCost: 1 FORT or REFL in addition to your reaction
+        otherCost: 1 FORT or REFL + Reaction
         flavourText: Strike at those who dare approach you.
-        description: Then, when a creature moves into a tile within 5ft of you (voluntarily or involuntarily), you may make a melee attack that creature with Light attack power. Each creature can only be damaged by this ability once per cast. This ability has no effect when you are the one moving.
+        description: When a creature moves into a tile within 5ft of you (voluntarily or involuntarily), you may make a melee attack that creature with Light attack power. Each creature can only be damaged by this ability once per cast. This ability has no effect when you are the one moving.
         extraEffectCost: 2 FORT or REFL
         extraEffectDescription: Increase the attack power to that of your melee weapon.
         range: 5ft
@@ -94,7 +98,7 @@ classes:
       - level: 2
         name: Whirlwind
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Ferociously swing your weapon around you, striking all nearby creatures.
         description: Make a melee weapon attack against all creatures within weapon range, targeting FORT or REFL.
         range: Melee
@@ -133,9 +137,9 @@ classes:
         tags: [attack, debuff]
       - level: 3
         name: Savage Leap
-        apCost: 3
-        otherCost: 3 FORT
-        flavourText: Leap forward and use your momentum to strike harder.
+        apCost: 2
+        otherCost: 4 FORT
+        flavourText: Leap forward and put all of your momentum into your strike.
         description: Select a tile you can see within 20ft and jump to that tile. You may then immediately make a melee attack against a creature targeting FORT. This attack gains additional Medium attack power for each tile you moved (distance in ft divided by 5).
         range: 20ft/Melee
         target: A+E, Single target
@@ -165,7 +169,7 @@ classes:
         name: Pin and Crush
         apCost: 1
         flavourText: Pin a foe and ready your weapon for a massive attack.
-        description: Select a creature within 5ft and immobilise it. Target may resist the immobilise with FORT or REFL. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 additional AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
+        description: Select a creature within 5ft and immobilise it. Target may resist the immobilise with FORT or REFL. At the start of your next turn, before performing any other actions, you may immediately spend 1 FORT or REFL and 1 AP to make a melee weapon attack against the same creature targeting FORT or REFL. This attack gains additional Medium attack power.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -190,7 +194,7 @@ classes:
         name: Swift Striker
         apCost: "-"
         flavourText: Move fast and strike faster.
-        description: At any time on your turn, if you have moved to a position that is 30ft or further away from where you started your turn, your next attack against a single target has Adv (++).
+        description: During your turn, if you have moved to a position that is at least 30ft from where you started your turn, your next attack against a single target has Adv (++).
         range: "-"
         target: Self
         type: Passive
@@ -222,7 +226,7 @@ classes:
       - level: 1
         name: Flashbang
         apCost: 1
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Dazzle your foes with a small explosive.
         description: Select a tile within 50ft and blind all creatures within a 10ft. Target may resist the blind with REFL or WILL.
         range: 50ft
@@ -232,9 +236,9 @@ classes:
       - level: 1
         name: Expose Weakness
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Reveal your foe's greatest strengths and weaknesses.
-        description: Make a weapon attack against a creature targeting REFL or WILL. The creature becomes marked. Then choose any energy type, the creature rolls 3 fewer d6 when attempting to resist incoming conditions for that energy type. You also learn all of the creature's vulnerabilities, resistances, and immunities.
+        description: Make a weapon attack against a creature targeting REFL or WILL. The creature becomes marked. Then choose any energy type, the creature rolls half the number of d6 (rounded down) when attempting to resist incoming conditions for that energy type. You also learn all of the creature's vulnerabilities, resistances, and immunities.
         range: Weapon
         target: A+E, Single target
         type: Active
@@ -251,7 +255,7 @@ classes:
       - level: 2
         name: Poisoned Strike
         apCost: 2
-        otherCost: 2 FORT or REFL
+        otherCost: 3 FORT or REFL
         flavourText: Coat your weapon in a sickening poison.
         description: Make a weapon attack against a creature targeting FORT or REFL. Then for each energy type that the creature has no remaining energy, it suffers additional 2 direct poison damage. The creature also becomes poisoned. Target may resist the poison with FORT or WILL.
         range: Weapon
@@ -273,9 +277,9 @@ classes:
         apCost: 3
         otherCost: 1 FORT or REFL
         flavourText: Rapidly reposition and attack.
-        description: Move up to 150ft and make a melee or ranged weapon attack against a creature targeting FORT or REFL. This movement may be broken up by the attack. The creature is also hobbled. Target may resist the hobble with FORT or REFL.
-        extraEffectCost: 1 FORT or REFL
-        extraEffectDescription: The creature additionally gains bleeding. Target may resist the bleed with FORT or REFL.
+        description: Move up to 150ft and make a melee or ranged weapon attack against a creature targeting FORT or REFL. This movement may be broken up by the attack.
+        extraEffectCost: 2 FORT or REFL
+        extraEffectDescription: The creature additionally gains the hobbled and bleeding conditions. Target may resist the both conditions simultaneously with FORT or REFL.
         range: Weapon
         target: A+E, Single target
         type: Active
@@ -324,7 +328,7 @@ classes:
         name: Headshot
         apCost: 2
         otherCost: 2 REFL or WILL
-        flavourText: Daze your target with a well timed blow to the head.
+        flavourText: Rock your target with a well timed blow to the head.
         description: Make a weapon attack against a creature. On a hit the creature is stunned. Target may resist the stun with FORT or WILL.
         range: Weapon
         target: A+E, Single target
@@ -356,7 +360,7 @@ classes:
         type: Passive
         tags: [attack]
       - level: Core
-        name: Commanding Movement
+        name: Move With Me!
         apCost: "-"
         flavourText: Order others to reposition with the flow of battle.
         description: Whenever you use the core movement ability, you may spend either 10ft or 20ft of that movement speed to grant an ally within 50ft either 5ft or 10ft of movement respectively to be spent immediately.
@@ -377,10 +381,9 @@ classes:
       - level: 1
         name: Forceful Shot
         apCost: 2
+        otherCost: 1 FORT or REFL
         flavourText: Push back your enemies with a projectile of great force.
-        description: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 5ft directly away from you. Target may resist the push with FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
-        extraEffectCost: 1 FORT or REFL
-        extraEffectDescription: Increase the push distance to 20ft.
+        description: Make a ranged weapon attack against a creature targeting FORT or REFL. The creature is pushed 20ft directly away from you. Target may resist the push with FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
         range: Weapon
         target: A+E (Ranged weapon required), Single target
         type: Active
@@ -427,7 +430,7 @@ classes:
       - level: 2
         name: Piercing Shot
         apCost: 2
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Strike through foes with a piercing projectile.
         description: Make a ranged weapon attack against all creatures in a 30ft line originating from you targeting FORT or REFL. This attack ignores any disadvantage due to being within 5ft.
         range: 30ft
@@ -479,9 +482,9 @@ classes:
       - level: 3
         name: Opportunist
         apCost: "-"
-        otherCost: 1 REFL and your reaction
+        otherCost: 2 REFL and your reaction
         flavourText: Seize every opportunity to strike.
-        description: When an ally within weapon range makes an attack of opportunity against a creature, you may spend 1 REFL and your reaction to make a ranged weapon attack against the same creature.
+        description: When an ally within weapon range makes an attack of opportunity against a creature, you may make a ranged weapon attack against the same creature.
         range: Weapon
         target: A+E (Ranged weapon required), Single target
         type: Active
@@ -498,9 +501,9 @@ classes:
       - level: 3
         name: Bring It Down!
         apCost: 1
-        otherCost: 1 FORT or REFL
+        otherCost: 2 FORT or REFL
         flavourText: Command your allies to bring a foe to its knees.
-        description: Select a creature within 100ft and mark it. Also select one energy type for which it has 1 or more points remaining. At the start of your next turn if the creature has 0 points remaining in the chosen type you may force the creature to lose resistance points equal to half the number of points it lost in the chosen type (rounded up).
+        description: Select a creature within 100ft and mark it. Also select one energy type for which it has 5 or more points remaining. At the start of your next turn if the creature has 0 points remaining in the chosen type you may force the creature to lose 5 energy in different type.
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -516,7 +519,7 @@ classes:
         name: Elemental Balance
         apCost: "-"
         flavourText: You have mastered the balance of mind and spirit.
-        description: You may use either INT or SPI as your modifiers for any elemental abilities. In this table these attributes will be referred to as MOD and Modifiers (modifiers of your choice). E.g. Medium+MOD+MOD attack power = Medium+INT+INT or Medium+SPI+SPI attack power.
+        description: "You may use either INT or SPI as your attribute for any elemental abilities. In this table these attributes will be referred to as ATR (attribute of your choice). E.g. Medium+ATR attack power -> Medium+INT or Medium+SPI attack power."
         range: "-"
         target: Self
         type: Passive
@@ -525,7 +528,7 @@ classes:
         name: Elemental Blast
         apCost: 2
         flavourText: Conjure a burst of elemental power.
-        description: Make a melee MOD attack against a creature with Medium+MOD+MOD (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+MOD+MOD (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
+        description: Make a melee ATR attack against a creature with Medium+ATR (fire, frost, lightning, or physical) attack power, or a ranged attack against a creature within 50ft with Light+ATR (fire, frost, lightning, or physical) attack power. At level 5 in Elemental, the ranged attack increases from Light attack power to Medium.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -542,11 +545,11 @@ classes:
       - level: 1
         name: Ice Spikes
         apCost: 0
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Summon shards of ice that orbit around you.
         description: Create 3 ice daggers that persist with you until the end of your next turn. You cannot have more than 3 ice daggers at any one time.
         extraEffectCost: 1 AP + 1 Ice Dagger
-        extraEffectDescription: Make a ranged MOD attack against a creature within 50ft with Light+MOD+MOD frost attack power targeting FORT or REFL.
+        extraEffectDescription: Make a ranged ATR attack against a creature within 50ft with Medium frost attack power targeting FORT or REFL.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -556,7 +559,7 @@ classes:
         apCost: 2
         otherCost: 1 REFL or WILL
         flavourText: Push your foes with a forceful gust.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+MOD+MOD attack power targeting FORT or REFL. The creature is pushed 15ft in a straight line in a direction of your choice. Target may resist the push with FORT or REFL.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. The creature is pushed 15ft in a straight line in a direction of your choice. Target may resist the push with FORT or REFL.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -564,9 +567,9 @@ classes:
       - level: 1
         name: Sun Beam
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Unleash a ray as powerful as the sun.
-        description: Make a versatile MOD attack against all creatures in up to a 20ft line originating from you with Medium+MOD+MOD fire attack power targeting REFL.
+        description: Make a versatile ATR attack against all creatures in up to a 20ft line originating from you with Medium+ATR fire attack power targeting REFL.
         range: 20ft
         target: A+E, All within straight line from self (AoE)
         type: Active
@@ -574,7 +577,7 @@ classes:
       - level: 1
         name: Elemental Grapple
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Launch an elemental grapple that pulls a foe to you.
         description: Select a creature within 40ft and pull it to an unoccupied space within 5ft of you. The target suffers 1 (fire, frost, lightning, or physical) damage for every 10ft the creature is moved. For example, a distance of 25ft would result in 2 damage. Target may resist the pull with FORT or REFL.
         range: 40ft
@@ -596,7 +599,7 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL
         flavourText: A large rock erupts from the ground and then explodes.
-        description: Select a tile on the ground within 50ft, any creature stood on this tile is knocked prone. Then all prone creatures within 5ft of this tile, including the initial target, suffer 2 damage. Target may resist the prone with REFL or FORT.
+        description: Select a tile on the ground within 50ft, the creature on this tile is knocked prone. Then all prone creatures within 5ft of this tile, including the initial target, suffer 2 FORT damage. Target may resist the prone with REFL or FORT.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -604,10 +607,10 @@ classes:
       - level: 2
         name: Fireball
         apCost: 2
-        otherCost: 2 WILL
+        otherCost: 4 WILL
         flavourText: Throw an explosive ball of flame.
-        description: Select a tile within 50ft. All creatures within 5ft are attacked with Heavy+MOD+MOD fire attack power targeting REFL.
-        extraEffectCost: 2 WILL
+        description: Select a tile within 50ft. All creatures within 5ft are attacked with Heavy+ATR fire attack power targeting REFL.
+        extraEffectCost: 3 WILL
         extraEffectDescription: Double the attack power of the attack against all creatures.
         range: 50ft
         target: All, All within 5ft (AoE)
@@ -616,9 +619,11 @@ classes:
       - level: 2
         name: Lightning Strike
         apCost: 2
-        otherCost: 2 REFL or WILL
+        otherCost: 3 REFL or WILL
         flavourText: Invoke a shocking bolt of lightning.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+MOD+MOD lightning attack power targeting REFL or WILL. The creature is also dazed, and you may then select another creature within 5ft of the original target which also becomes dazed. Target may resist the daze with REFL or WILL.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR lightning attack power targeting REFL or WILL. The creature is also stunned. Target may resist the stun with REFL or WILL.
+        extraEffectCost: 1 REFL or WILL
+        extraEffectDescription: Also daze all creatures within 5ft of the initial target. REFL or WILL to resist the daze.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -638,7 +643,7 @@ classes:
         apCost: "-"
         otherCost: 1 REFL or WILL and your reaction
         flavourText: Engulf yourself in flames to fight back.
-        description: When you are hit by a melee attack, you may make a melee MOD attack against the attacking creature with Light+MOD+MOD fire attack power targeting REFL or WILL.
+        description: When you are damaged by a melee attack, you may make a melee ATR attack against the attacking creature with Light+ATR fire attack power targeting REFL or WILL.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -646,9 +651,9 @@ classes:
       - level: 3
         name: Thunder Jump
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Leap away with a thunderous blast.
-        description: Make a versatile MOD attack against all creatures within 10ft with Medium lightning attack power targeting REFL. Then you may jump to a tile within 30ft.
+        description: Make a versatile ATR attack against all creatures within 10ft with Medium lightning attack power targeting REFL. Then you may jump to a tile within 30ft.
         range: 10ft
         target: A+E, All within range (AoE)
         type: Active
@@ -656,9 +661,9 @@ classes:
       - level: 3
         name: Stalactite
         apCost: 2
-        otherCost: 1 FORT or WILL
+        otherCost: 2 FORT or WILL
         flavourText: Drop a large spiked rock on your foe.
-        description: Make a versatile MOD attack against a creature within 50ft with Medium+MOD+MOD attack power targeting FORT or REFL. If the creature is prone or immobilised, gain additional Medium attack power.
+        description: Make a versatile ATR attack against a creature within 50ft with Medium+ATR attack power targeting FORT or REFL. If the creature is prone or immobilised, gain additional Medium attack power.
         range: 50ft
         target: A+E, Single target
         type: Active
@@ -693,7 +698,7 @@ classes:
         name: Soul Strike
         apCost: 2
         flavourText: Lash out at another's soul.
-        description: Make a ranged SPI attack against a creature within 100ft with Medium+MOD+MOD soul attack power.
+        description: Make a ranged SPI attack against a creature within 100ft with Medium+ATR soul attack power.
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -712,7 +717,7 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL - Deadly Escalation
         flavourText: Restore part of a being's soul.
-        description: Select a creature within 100ft and heal them for 3+SPI HP.
+        description: Select a creature within 100ft and heal them for 1+SPI HP.
         range: 100ft
         target: All, Single target
         type: Active
@@ -722,7 +727,7 @@ classes:
         apCost: 1
         otherCost: 2 FORT or WILL - Deadly Escalation
         flavourText: Create a burst of healing energy that restores all in proximity.
-        description: Select a tile within 100ft, heal all creatures within 5ft for 1+SPI HP.
+        description: Select a tile within 100ft, heal all creatures within 5ft for SPI-1 HP (minimum 1).
         range: 100ft
         target: All, All within 5ft (AoE)
         type: Active
@@ -740,9 +745,9 @@ classes:
       - level: 1
         name: Toll The Dead
         apCost: "-"
-        otherCost: 1 WILL and your reaction
+        otherCost: 2 WILL and your reaction
         flavourText: Exploit the last of a creature's essence to maim your foe.
-        description: When you reduce a creature within 100ft to 0 HP, you may spend 1 WILL and your reaction to make a versatile SPI attack against another creature within 15ft of the initial target with Medium+MOD+MOD soul attack power. It must specifically be you and your damage that reduces the creature to 0 HP.
+        description: When you reduce a creature within 100ft to 0 HP, you may make a versatile SPI attack against another creature within 15ft of the initial target with Medium+ATR soul attack power. It must specifically be you and your damage that reduces the creature to 0 HP.
         range: 100ft
         target: A+E, Single target within 15ft
         type: Active
@@ -762,7 +767,7 @@ classes:
         apCost: 2
         otherCost: 3 FORT or WILL
         flavourText: Drain life and grant it to another.
-        description: Make a versatile SPI attack against a creature within 100ft with Medium+MOD+MOD soul attack power targeting FORT or WILL. Then heal a creature (excluding self) for HP equal to the damage you dealt with this ability.
+        description: Make a versatile SPI attack against a creature within 100ft with Medium+ATR soul attack power targeting FORT or WILL. Then heal a creature (excluding self) for HP equal to the damage you dealt with this ability.
         range: 100ft
         target: All, Single target
         type: Active
@@ -770,9 +775,9 @@ classes:
       - level: 2
         name: Burst of Essence
         apCost: 2
-        otherCost: 2 FORT or WILL - Deadly Escalation
+        otherCost: 3 FORT or WILL - Deadly Escalation
         flavourText: Explode with restorative or destructive energy.
-        description: "Select any number of creatures within 10ft and then either: heal each creature for 2+SPI HP (includes self); or remove the Deadly Escalation cost and make a versatile SPI attack against each creature with Light+MOD+MOD soul attack power targeting FORT or WILL (excludes self). You cannot both heal and deal damage with one use of this ability."
+        description: "Select any number of creatures within 10ft and then either: heal each creature for SPI HP (includes self); or remove the Deadly Escalation cost and make a versatile SPI attack against each creature with Light+ATR soul attack power targeting FORT or WILL (excludes self). You cannot both heal and deal damage with one use of this ability."
         range: 10ft
         target: A+Self or E, All within range (AoE)
         type: Active
@@ -790,29 +795,29 @@ classes:
       - level: 3
         name: Don't Die On Me!
         apCost: "-"
-        otherCost: 1 REFL or 1 WILL
+        otherCost: 2 REFL or WILL + Reaction
         flavourText: Save an ally from death at the last possible moment.
-        description: When a creature within 25ft suffers damage that would reduce it to 0HP, you can have it reduced to 1HP instead and it becomes unconscious. The creature can only be woken up by another creature using the help action for 1 minute. On your next turn you start with 1 fewer AP.
-        range: 25ft
+        description: When a creature within 50ft gains the dying condition or suffers damage that would reduce it to 0HP, you can remove the dying condition, have it reduced to 1HP instead, and it becomes unconscious. 
+        range: 50ft
         target: A+E, Single target
         type: Active
         tags: [heal, reactive]
       - level: 3
         name: Tormented Soul
         apCost: 1
-        otherCost: 2 WILL
+        otherCost: 3 WILL
         flavourText: Your foe will destroy itself by harming others.
         description: Select a creature within 100ft and mark it. Half of all damage that this creature deals to other creatures is also dealt to themselves. Target may resist the mark and the damage effect with WILL. Cannot be cast on a creature already under the effect of this ability.
         range: 100ft
         target: A+E, Single target
         type: Active
-        tags: [debuff]
+        tags: [debuff] 
       - level: 3
         name: Blessed Aura
         apCost: 1
         otherCost: 2 FORT or WILL - Deadly Escalation
         flavourText: Positive energy emanates from you, healing yourself and those who get close.
-        description: Mark yourself, and when a creature moves within 5ft of you, you may heal both yourself and the creature for 2+SPI HP. This can only happen 3 times per ability use, and only once per creature.
+        description: Mark yourself, and when a creature moves within 5ft of you, you may heal both yourself and the creature for SPI HP. This can only happen 3 times per ability use, and only once per creature.
         range: 5ft
         target: A+Self, 3 within range (AoE)
         type: Active
@@ -832,7 +837,7 @@ classes:
         apCost: 2
         otherCost: 2 FORT or WILL
         flavourText: Detach a soul from a creature and shift it with lethal force.
-        description: Select a creature within 100ft and draw a 20ft line in a direction of your choice. Make a versatile SPI attack against all creatures in the line with Medium+SPI soul attack power.
+        description: Select a creature within 100ft and draw a 20ft line in a direction of your choice. Make a versatile SPI attack against all creatures in the line with Light+SPI soul attack power.
         range: 100ft
         target: A+E, All within 20ft straight line from target (AoE)
         type: Active
@@ -857,7 +862,7 @@ classes:
         name: Arcane Bolt
         apCost: 2
         flavourText: Launch a beam of pure force at your foe.
-        description: Make a ranged INT attack against a creature within 100ft with Medium+MOD+MOD force damage.
+        description: Make a ranged INT attack against a creature within 100ft with Medium+ATR force damage.
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -871,7 +876,7 @@ classes:
         target: All, Single target
         type: Passive
         tags: [defensive, support]
-      - level: 1
+      - level: 1 
         name: Spectral Ally
         apCost: 1
         otherCost: 1 WILL
@@ -896,7 +901,7 @@ classes:
         apCost: 2
         otherCost: 1 REFL or WILL
         flavourText: Emit a powerful short range blast to escape your enemies.
-        description: Make a melee INT attack against a creature with Heavy+MOD+MOD force damage targeting REFL or WILL. You are then pushed up to 20ft directly away from the target.
+        description: Make a melee INT attack against a creature with Heavy+ATR force damage targeting REFL or WILL. You are then pushed up to 20ft directly away from the target.
         range: Melee
         target: A+E, Single target
         type: Active
@@ -956,7 +961,7 @@ classes:
         apCost: 2
         otherCost: 2 FORT or WILL
         flavourText: Aggressively teleport towards a foe, forcing them out of your way.
-        description: Select a creature within 25ft, teleport to them and briefly occupy the same space as them. Make a melee INT attack against the initial target with Heavy+MOD+MOD force damage targeting FORT or WILL and is pushed to a tile of your choice within 5ft of you. Target may resist the push with FORT or WILL. If the creature resists the push it does not move, and you are pushed to a tile within 5ft of the creature instead.
+        description: Select a creature within 25ft, teleport to them and briefly occupy the same space as them. Make a melee INT attack against the initial target with Heavy+ATR force damage targeting FORT or WILL and is pushed to a tile of your choice within 5ft of you. Target may resist the push with FORT or WILL. If the creature resists the push it does not move, and you are pushed to a tile within 5ft of the creature instead.
         range: 25ft
         target: A+E, Single target
         type: Active
@@ -986,7 +991,7 @@ classes:
         apCost: 2
         otherCost: 2 FORT or WILL
         flavourText: Summon an invincible creature of pure energy that stands vigilant.
-        description: Select a tile within 100ft and summon an astral guardian creature. This creature is Large and takes up 3 tiles on a hex grid, and 4 on a square grid. Other creatures can move through this creature as if it were difficult terrain. This creature is invincible, has no stats, and cannot be moved. This creature cannot taunt other creatures. When a creature moves into a tile within 5ft of the astral guardian from outside this range, you may make an melee INT attack with Medium+MOD+MOD force attack power targeting WILL. In addition to this, the astral guardian may make attacks of opportunity with no limit. Each creature may only be damaged by the astral guardian once per round.
+        description: Select a tile within 100ft and summon an astral guardian creature. This creature is Large and takes up 3 tiles on a hex grid, and 4 on a square grid. Other creatures can move through this creature as if it were difficult terrain. This creature is invincible, has no stats, and cannot be moved. This creature cannot taunt other creatures. When a creature moves into a tile within 5ft of the astral guardian from outside this range, you may make an melee INT attack with Medium+ATR force attack power targeting WILL. In addition to this, the astral guardian may make attacks of opportunity with no limit. Each creature may only be damaged by the astral guardian once per round.
         range: 100ft
         target: A+E, All within 5ft (AoE)
         type: Active
@@ -1012,7 +1017,7 @@ classes:
         name: Psychic Pierce
         apCost: 2
         flavourText: Puncture a creatures mind as if taking a blade to their synapses.
-        description: Make a ranged INT attack against a creature within 100ft with Medium+MOD+MOD psychic attack power. If the target currently has 3 or more distinct negative conditions, the attack gains additional Light attack power.
+        description: Make a ranged INT attack against a creature within 100ft with Medium+ATR psychic attack power. If the target currently has 3 or more distinct negative conditions, the attack gains additional Light attack power.
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -1059,7 +1064,7 @@ classes:
       - level: 1
         name: Panic Attack
         apCost: 2
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Trigger a creature to lose control and strike wildly.
         description: Select a creature within 100ft, this creature must spend its reaction to attack the closest creature using a regular attack without moving. If multiple creatures are the same distance the target is selected randomly. Target may resist being forced to make the attack with FORT or WILL.
         range: 100ft
@@ -1071,7 +1076,7 @@ classes:
         apCost: 2
         otherCost: 2 WILL
         flavourText: Slowly emit a sense of pain and suffering.
-        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 5+INT WILL psychic damage. Or if it is within 20ft of the noted position it suffers 1+INT WILL psychic damage. Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
+        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Or if it is within 20ft of the noted position it suffers INT-1 WILL psychic damage (minimum 1). Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -1079,9 +1084,9 @@ classes:
       - level: 2
         name: Cruel Joke
         apCost: 2
-        otherCost: 3 WILL
+        otherCost: 4 WILL
         flavourText: Make a joke that cuts so deep it hurts.
-        description: "Make a versatile INT attack against a creature within 100ft, with Heavy+MOD+MOD psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
+        description: "Make a versatile INT attack against a creature within 100ft, with Heavy+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -1089,7 +1094,7 @@ classes:
       - level: 2
         name: Silence!
         apCost: 0
-        otherCost: 1 WILL
+        otherCost: 2 WILL
         flavourText: Mute yourself and another in an instant.
         description: Select a creature within 100ft and silence them and yourself. Target may resist the silence with WILL - you must both resist the condition separately. If you are silenced by this ability the other creature suffers 1 psychic damage.
         range: 100ft
@@ -1099,7 +1104,7 @@ classes:
       - level: 2
         name: Mirror Image
         apCost: 1
-        otherCost: 1 REFL or WILL
+        otherCost: 2 REFL or WILL
         flavourText: Conjure an illusion of yourself that animates as if real.
         description: Select a tile within 100ft and summon an illusion of yourself there. The illusion has 2 HP, no energy, is unaffected by all conditions, and doesn't have a turn. All enemies within 10ft of the illusion are taunted. The taunt ends if the illusion is destroyed. Target may resist the taunt with REFL or WILL.
         range: 100ft
@@ -1121,7 +1126,7 @@ classes:
         apCost: 1
         otherCost: 1 REFL or WILL
         flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
-        description: Select a creature within 100ft, they become blind and deafened. Target may resist the bilnd with REFL or WILL.
+        description: Select a creature within 100ft, they become blind and deafened. Target may resist the blind with REFL or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active

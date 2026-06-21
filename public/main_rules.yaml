@@ -14,26 +14,28 @@ sections:
       - id: dice-system
         title: Core Dice System
         body: >-
-          Arcus uses a d6 dice pool system. Always 3d6 plus some number of additional dice. Every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance.
+          Arcus uses a d6 dice pool system. Roll a number of d6, commonly determined by attributes or energy, every 5 or 6 rolled counts as 1 success. The three types of dice rolls in Arcus are Challenge, Attack, and Resistance.
         children:
           - id: challenge-roll
             title: Challenge Roll
-            summary: "A roll to resolve a challenging task. 3d6 plus 2 modifiers."
+            summary: "A roll to resolve a challenging task. 3d6 plus d6 equal to an attribute."
             body: 
-              - Whenever a player or creature attempts to do something that is challenging (not trivial or impossible), the GM will ask them to roll a challenge roll. The number of dice rolled will always be 3d6 plus additional d6 equal to 2 attributes added together. Every 5 or 6 counts as 1 success. The GM will secretly decide a number of successes required (SR) to succeed, rolling a number successes equal to or greater than the SR succeeds.
-              - The 2 attributes required for the roll are decided by the GM, and they may both be the same attribute. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
+              - Whenever a player or creature attempts to do something that is challenging (not trivial or impossible), the GM will ask them to roll a challenge roll. The number of dice rolled will always be 3d6 plus additional d6 equal to an attribute. Every 5 or 6 counts as 1 success. The GM will secretly decide a number of successes required (SR) to succeed, rolling a number successes equal to or greater than the SR succeeds.
+              - The attribute required for the roll is decided by the GM. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
           - id: attack-roll
             title: Attack Roll
-            summary: "A roll to resolve an attack and deal damage. Weapon power plus 2 modifiers."
+            summary: "A roll to resolve an attack and deal damage per success. Select energy type to target. d6 equal to attack power."
             body: 
-              - Whenever a player or creature attempts an attack, they will roll d6 equal to the attack power of the attack. The attack power will depend on the weapon or attack used, but will most commonly be Light, Medium, or Heavy (3, 6, or 9 d6) plus additional d6 equal to 2 attributes added together. Every success (5 or 6 rolled) counts as 1 damage dealt to the target of the attack.
-              - The weapon or attack type will decide what attributes are used for the roll. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
+              - "To resolve an attack against a target, the attacker must first select an energy type to attack: FORT, REFL, or WILL. This determines which energy the target will lose when the attack deals damage."
+              - Attack power determines how many d6 the attacker will roll. The attack power will depend on the weapon or attack used, which will most commonly be Light, Medium, or Heavy (3, 6, or 9 d6) plus additional d6 equal to an attribute. Every success (5 or 6 rolled) counts as 1 damage dealt to the target of the attack.
+              - The weapon or attack type will determine what attribute is used for the roll. Additional dice may be added to the roll based on skills, advantages etc. Similarly, dice may be removed from the roll.
+              - By default attacks may select any of the three energy types. Some attacks are restricted in which energy they can attack. Players being targeted by attacks may select which energy they lose when damage is dealt - only one energy type may be selected.  
           - id: resistance-roll
             title: Resistance Roll
-            summary: "A roll to resist an incoming negative effect. 3d6 plus one energy type."
+            summary: "A roll to resist an incoming negative effect. d6 equal to energy remaining in one type."
             body:
-              - Whenever a player or creature is inflicted with a negative effect they may roll 3d6 plus additional d6 equal to the number of energy points they have remaining in one of the energy types required. Only 1 success is needed to successfully resist the incoming effect.
-              - The energy type required is determined by the source of the effect, usually an ability description. If there are multiple energy types, the player will always get to decide which energy type they use to resist. If a player inflicts a creature with a negative condition, the player gets to choose which energy type the creature must use to attempt to resist.
+              - Whenever a player or creature is inflicted with a negative effect they may roll d6 equal to the number of energy points they have remaining in one of the energy types required. Only 1 success is needed to successfully resist the incoming effect.
+              - The energy type required is determined by the source of the effect, usually an ability description. If there are multiple energy types, the player will always get to select which energy type they use to resist. If a player inflicts a creature with a negative condition, the player gets to select which energy type the creature must use to attempt to resist.
       
       - id: advantage-disadvantage
         title: Advantage and Disadvantage (Adv/DisAdv)
@@ -77,33 +79,32 @@ sections:
         body:
           - "Characters have 6 attributes: Strength (STR), Constitution (CON), Dexterity (DEX), Perception (PER), Intelligence (INT), and Spirit (SPI)."
                     
-          - At level 1, characters have 0 in each attribute and 10 points to assign in any combination of attributes they choose. Players may reduce an attribute to -1 so long as it does not result in a negative energy total. On every even level (2, 4, 6 etc.) characters gain 1 additional attribute point to assign in any attribute they choose.
-          
-          - The value of an attribute is equal to the number of additional dice rolled when making a roll that includes that attribute type. 2 attributes will be added to almost all rolls. The value will also increase energy in the corresponding type.
+          - At level 1, characters have 0 in each attribute and 18 points to assign in any combination of attributes they choose. To increase an attribute from 5 to 6 (and above) it costs 2 points to increase the attribute by 1. Characters may reduce an attribute to -1. However, after assigning attributes and calculating energy, characters must have a minimum value of 1 in each energy type. On every even level (2, 4, 6 etc.) characters gain 2 additional points to assign in any attribute(s) they choose.
+
         children: 
           - id: strength 
             title: Strength (STR)
-            body: A character's physical strength and brute force. In addition to strength based rolls, strength value (STR) can be used for all melee weapons, and to reduce incoming damage with a shield.
+            body: A character's physical strength and brute force. In addition to strength based rolls, the strength attribute (STR) can be used for all melee weapons, and to reduce incoming damage with a shield.
           
           - id: constitution 
             title: Constitution (CON)
-            body: A combination of the character's overall health and endurance. In addition to constitution based rolls, characters will also have hit points (HP) equal to 6 plus 3 times their CON attribute.
+            body: A combination of the character's overall health and endurance. In addition to constitution based rolls, characters will also have hit points (HP) equal to 5 plus 2 times their constitution attribute (CON).
 
           - id: dexterity 
             title: Dexterity (DEX)
-            body: A character's hand-eye coordination, balance, and overall grace. In addition to dexterity based rolls, dexterity value (DEX) can be used for light and medium melee weapons, and thrown weapon attacks.
+            body: A character's hand-eye coordination, balance, and overall grace. In addition to dexterity based rolls, the dexterity attribute (DEX) can be used for light and medium melee weapons, and thrown weapon attacks.
 
           - id: perception 
             title: Perception (PER)
-            body: A character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. In addition to perception based rolls, perception value (PER) is used for ranged weapons and sometimes initiative - how early a creature acts in combat.
+            body: A character's senses/awareness, ability to aim, and their instinctive ability to pick up on details. In addition to perception based rolls, the perception attribute (PER) is used for ranged weapons and sometimes initiative - how early a creature acts in combat.
 
           - id: intelligence 
             title: Intelligence (INT)
-            body: a character's logic and reasoning capabilities as well as memory and knowledge. In addition to intelligence based rolls, intelligence value (INT) is used for some abilities from classes such as Arcane and Psionic.
+            body: a character's logic and reasoning capabilities as well as memory and knowledge. In addition to intelligence based rolls, the intelligence attribute (INT) is used for some abilities from classes such as Arcane and Psionic.
 
           - id: spirit 
             title: Spirit (SPI)
-            body: A character's mental resolve, confidence and creativity. In addition to spirit based rolls, spirit modifier (SPI) is used for some abilities from some classes such as Mortality and Elemental.
+            body: A character's mental resolve, confidence and creativity. In addition to spirit based rolls, the spirit attribute (SPI) is used for some abilities from some classes such as Mortality and Elemental.
       
       - id: energy
         title: Energy
@@ -129,19 +130,18 @@ sections:
           
           - id: resist-energy
             title: Energy For Resisting Conditions
-            summary: "If the creature has energy remaining, make a resist roll: 3d6 + a number of d6 equal to it's remaining energy in that type. 1 success to resist and negate the incoming negative effect."
+            summary: "Make a resist roll: roll a number of d6 equal to the remaining energy in that type. 1 success to resist and negate the incoming negative effect."
             body:
-              - "When a creature is inflicted with a negative condition, if the creature has 1 or more energy of the required type to resist the effect it may make a resist roll: 3d6 + a number of d6 equal to it's remaining energy in that type. The incoming negative effect is resisted and therefore completely negated if the creature rolls at least 1 success. However, some effects may require more successes to resist. If the creature has 0 energy in the required type it cannot attempt a resist roll."
+              - Whenever a player or creature is inflicted with a negative effect they may roll d6 equal to the number of energy points they have remaining in one of the energy types required. Only 1 success is needed to successfully resist the incoming effect.
+              - The energy type required is determined by the source of the effect, usually an ability description. If there are multiple energy types, the player will always get to select which energy type they use to resist. If a player inflicts a creature with a negative condition, the player gets to select which energy type the creature must use to attempt to resist.
           
       - id: hit-points
         title: Hit Points
         summary: The amount of damage a creature can suffer before it dies. 
         body:
-          - At level 1 characters will have hit points (HP) equal to 6 plus 3 times their CON attribute. 2 CON would lead to 6 + 3*2 = 12 HP. HP can be fully regained on a long rest.
+          - At level 1 characters will have hit points (HP) equal to 5 plus 2 times their CON attribute. 2 CON would lead to 5 + 2*2 = 9 HP. HP can be fully regained on a long rest.
 
-          - When a character's HP would reduced to 0, if it has any energy remaining (ignoring armour and shield energy) it instead falls unconscious and it's HP is set to 1 and it gains the Dying condition. If the creature has no energy remaining (ignoring armour and shield energy) is dies.
-
-          - When any creature that is not a character is reduced to 0 HP it dies - unless the damage dealt is classed as non-lethal, in which case it falls unconscious and it's HP is set to 1.
+          - See the Unconscious and Death section to learn about what happens when HP is reduced to 0.
       
       - id: skills
         title: Skills
@@ -182,9 +182,9 @@ sections:
       - id: shields
         title: Shields
         body: 
-          - Equipping a shield unlocks the Raise Shield core action that allows the wielder to gain 1 shield energy in each energy type for 0 AP. 
+          - Equipping a shield unlocks the Raise Shield core action that allows the wielder to gain 1 shield energy in each energy type for 0 AP, or gain 2 shield in each energy type for 1 AP. 
 
-          - Shields require at least 2 STR to equip.
+          - Shields require at least 4 STR to equip.
 
   - id: combat
     title: Combat
@@ -193,7 +193,7 @@ sections:
       - id: combat-basics
         title: Combat Basics
         body: 
-          - Combat starts when a creature takes an hostile action against a creature which leads to the other side wanting to take hostile actions against the initiator.
+          - Combat starts when a creature resolves a hostile action against a creature which leads to the other side wanting to take hostile actions against the initiator.
 
           - Combat takes place on a hex or square grid. Each space on the grid is referred to as a tile and is 5ft across. Whenever a creature moves 5ft it moves 1 tile in any direction, including diagonals.
 
@@ -206,11 +206,11 @@ sections:
         body:
           - Initiative determines the order in which turns are taken in combat. 
           
-          - Initiator of the combat acts first and then proceeds clockwise around the table. If there is no clear initiator then players and creatures may each make a PER+PER roll to decide who acts first. 
+          - Initiator of the combat acts first and then proceeds clockwise around the table. If there is no clear initiator then players and creatures may each make a PER roll to decide who acts first. 
           
           - The GM may place 1 group of enemies between each player, if there are too many enemy groups, the remaining groups are placed after the last player to act. The initiative remains static for the rest of the fight.
           
-          - "Alternative Initiative Ruling: Alternating initiative between PCs and GM where 1 creature or player from each side takes a turn and then it is passed back to the other side. The GM decides who is going first based on who initiated the combat, if there is no clear initiator then PCs roll for REFL and if one of them gets the SR determined by the GM for this combat, the PCs may go first. If it is the PCs turn they may decide amongst them who will take that turn, after that player's turn is complete they cannot take another turn this round. Then it is the GMs turn and they will choose which creature will take their turn, and after that it is passed back to the PCs to choose who will go next, and so on."
+          - "Alternative Initiative Ruling: Alternating initiative between PCs and GM where 1 creature or player from each side takes a turn and then it is passed back to the other side. The GM decides who is going first based on who initiated the combat, if there is no clear initiator then PCs roll for PER and if one of them gets the SR determined by the GM for this combat, the PCs may go first. If it is the PCs turn they may decide amongst them who will take that turn, after that player's turn is complete they cannot take another turn this round. Then it is the GMs turn and they will choose which creature will take their turn, and after that it is passed back to the PCs to choose who will go next, and so on."
       
       - id: action-points
         title: Action Points
@@ -229,7 +229,7 @@ sections:
       - id: energy-combat
         title: Energy in Combat
         body: 
-          - At the start of each character's turn, they will regain up to 2 energy in one or two energy types, up to their maximum.
+          - At the start of each character's turn they may regain one energy in a type of their choice, up to their maximum.
           
           - "All attacks will target one of the three energy types: FORT, REFL, or WILL. For example: think of this as using a sword to attack the torso (FORT), the limbs (REFL), or the head (WILL). The attacking characters are encouraged to describe how they formulate their attack to target the chosen energy type, to add to the thematics of combat."
           
@@ -238,7 +238,7 @@ sections:
       - id: attacks
         title: Attacks
         body: >-
-          When attacking, a character will select one of the energy types to target and roll a number of d6 equal to the attack power (3, 6, or 9 for Light, Medium, or Heavy respectively) plus a number of d6 equal to 2 other attributes required for the attack (most commonly the same attribute twice). Each success (hit) will deal 1 damage to the target energy type. If the damage is greater than the number of energy points then the damage will carry over into the target's HP.
+          When attacking, a character will select one of the energy types to target and roll a number of d6 equal to the attack power (3, 6, or 9 for Light, Medium, or Heavy respectively) plus a number of d6 equal to one other attribute required for the attack. Each success (hit) will deal 1 damage to the target energy type. If the damage is greater than the number of energy points then the damage will carry over into the target's HP.
       
       - id: resistance-vulnerability
         title: Resistance and Vulnerability
@@ -255,7 +255,7 @@ sections:
       - id: condition-mechanics
         title: Condition Mechanics
         body: >-
-          Conditions are continual effects that will always last until the start of the source's next turn unless stated otherwise. Anything that applies a condition or immediate effect will also state which energy types must be used to resist it, such as: FORT to resist the push, or FORT or REFL (source of the condition decides which one the target must use) to resist being knocked prone. The target must roll 3d6 plus a number of d6 equal to their remaining points in that energy type (including shield, armour and energy) and require only one success to avoid the condition or effect. Therefore, you should generally aim to get an enemy's energy to 0 before attempting to apply conditions.
+          Conditions are a type of negative effect. Conditions are continual effects that will always last until the start of the source's next turn unless stated otherwise. See the Resistance Roll section to learn how negative effects are applied.
       
       - id: abilities
         title: Abilities
@@ -265,9 +265,9 @@ sections:
       - id: unconscious-death
         title: Unconscious and Death
         body: >-
-          A character will fall unconscious when it is reduced to 0HP. Other creatures will die when they reach 0HP (unless the attacker was trying to knock them unconscious). Characters that are unconscious cannot regain energy at the start of each turn. They will remain stable and only lose energy if they suffer any damage of any type.
-          
-          A character will die when it has 0HP and also 0 points in all 3 energy types.
+          - When a character's HP would reduced to 0, if it has any energy remaining (ignoring armour and shield energy) it instead falls unconscious and it's HP is set to 1 and it gains the Dying condition. If the creature has no energy remaining (ignoring armour and shield energy) it dies.
+
+          - When any creature that is not a character is reduced to 0 HP it dies - unless the damage dealt is classed as non-lethal, in which case it falls unconscious and it's HP is set to 1.
 
   - id: conditions
     title: Conditions
@@ -326,7 +326,7 @@ sections:
       - id: dazed
         title: Dazed
         body: >-
-          The creature starts its next turn with 1AP fewer and cannot use reactions while dazed. If the creature is dazed during its turn it immediately spends up to 1AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the stun still lasts until the start of the creature's turn that was the source of the daze as normal. If a creature that is dazed becomes dazed again, the most recent daze is upgraded to a stun instead.
+          The creature starts its next turn with 1AP fewer and cannot use reactions while dazed. If the creature is dazed during its turn it immediately spends up to 1AP. If it now has 0 AP remaining its turn immediately ends, otherwise it may continue to act. In all cases the daze still lasts until the start of the creature's turn that was the source of the daze as normal. If a creature that is dazed becomes dazed again, the most recent daze is upgraded to a stun instead.
       
       - id: stunned
         title: Stunned
@@ -356,7 +356,7 @@ sections:
       - id: poisoned
         title: Poisoned
         body: >-
-          The creature cannot heal or regain health or regain any energy type. This condition is removed by healing.
+          The creature cannot heal or regain health or regain any energy type. This condition is removed by healing. When an instance of healing removes the poisoned condition, no health is regained.
       
       - id: bleeding
         title: Bleeding

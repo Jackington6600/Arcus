@@ -43,13 +43,13 @@ core_abilities:
 
   - level: "Core"
     name: "Inspect Creature"
-    description: "Have the GM roughly describe a creature’s strengths and weaknesses - this may require an INT+PER check (GM’s discretion). This is an opportunity for the GM to give clues to the players as to what might be a good strategy to take down the enemies and what abilities they might have. Without a skill check, a player can ask the GM to describe the creature’s resistance points as “exposed”/“vulnerable” if they have 0 resistance points of that type, “weak” if they have 1-3 points, and “strong”/“capable” if they have 4+ points. This is a key part of making sure your abilities have a good chance of taking effect on your enemies."
+    description: "Have the GM roughly describe a creature’s strengths and weaknesses - this may require an PER check (GM’s discretion). This is an opportunity for the GM to give clues to the players as to what might be a good strategy to take down the enemies and what abilities they might have. Without a skill check, a player can ask the GM to describe the creature’s resistance points as “exposed”/“vulnerable” if they have 0 resistance points of that type, “weak” if they have 1-3 points, and “strong”/“capable” if they have 4+ points. This is a key part of making sure your abilities have a good chance of taking effect on your enemies."
     target: "E"
     apCost: 0
 
   - level: "Core"
     name: "Hide"
-    description: "Make a DEX+DEX stealth check to become hidden. Any creature that cannot see you as you use this action is no longer aware of where you are if you roll higher than their passive perception. Most creatures still have object permanence so they may come looking for you using a perception check. If they roll higher than your stealth check or have direct line of sight to you, you are revealed."
+    description: "Make a DEX stealth check to become hidden. Any creature that cannot see you as you use this action is no longer aware of where you are if you roll higher than their passive perception. Most creatures still have object permanence so they may come looking for you using a perception check. If they roll higher than your stealth check or have direct line of sight to you, you are revealed."
     target: "S"
     apCost: 2
 
