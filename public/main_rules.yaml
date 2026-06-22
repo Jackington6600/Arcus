@@ -54,7 +54,7 @@ sections:
             title: Minor Setback Examples
             body:
               - "- Unlocking the door with a lockpick, but making a lot more noise than you'd like when doing so."
-              - "- Pulling a muscle as you make a physical check, reducing your movement speed slightly until the next long rest."
+              - "- Pulling a muscle as you make a physical challenge roll, reducing your movement speed slightly until the next long rest."
               - "- Taking a 1 or 2 direct damage from pushing too hard when achieving something."
               - "- Damaging your armour or weapon slightly, reducing its protection or attack power capabilities by 1."
               - "- Managing to persuade or deceive someone, but making someone else nearby suspicious leading them to question your actions."
@@ -63,7 +63,7 @@ sections:
           - id: major-setback-examples
             title: Major Setback Examples
             body:
-              - "- Taking 5 direct damage from dangerous circumstances while making the check."
+              - "- Taking 5 direct damage from dangerous circumstances while making the challenge roll."
               - "- Directly alerting the guards of your location."
               - "- Having your movement speed halved until the next long rest."
               - "- Persuading or deceiving someone, but they learn a secret of your own, which they will likely want to pursue."
@@ -257,18 +257,18 @@ sections:
                 title: Jumping Movement
                 body:
                   - Jumping movement works the same as regular movement except obstacles (such as gaps, low obstacles, or small creatures) can be avoided on the path.
-                  - The distance that can be jumped in ft is equal to the creature's STR value (if in tile based combat, rounded down to a multiple of 5). The height that can be jumped in ft is equal to half the creature's STR value (if in tile based combat, rounded down to a multiple of 5). What can or cannot be jumped may be up to the GM's discretion. The jump may require a roll depending on the difficulty, distance, or height of the jump - this will use Strength and/or Dexterity depending on the nature of the jump (Strength for greater distance, Dexterity for greater accuracy).
+                  - The distance that can be jumped in ft is equal to 10 plus the creature's STR value (if in tile based combat, rounded down to a multiple of 5). The height that can be jumped in ft is equal to the creature's STR value (if in tile based combat, rounded down to a multiple of 5). What can or cannot be jumped may be up to the GM's discretion. The jump may require a roll depending on the difficulty, distance, or height of the jump - this will use Strength and/or Dexterity depending on the nature of the jump (Strength for greater distance, Dexterity for greater accuracy).
                   - Generally referred to as "jump" or "jumping".
               - id: climbing-movement
                 title: Climbing Movement
                 body:
                   - Climbing movement works the same as regular movement but is done up a more vertical surface such as up a wall or a tree.
-                  - What can or cannot be climbed is up to the GM's discretion. The GM will make the creature perform a skill check based on the difficulty of the surface they are attempting to climb. If successful the creature can climb as if the surface was difficult terrain. The creature must repeat the skill check every time it wishes to move its base movement speed. It is up to the GM if and when they may need to repeat the skill check based on time spent climbing or if the difficulty of the climb significantly changes.
+                  - What can or cannot be climbed is up to the GM's discretion. The GM will make the creature perform a challenge roll based on the difficulty of the surface they are attempting to climb. If successful the creature can climb as if the surface was difficult terrain. The creature must repeat the challenge roll every time it wishes to move its base movement speed. It is up to the GM if and when they may need to repeat the challenge roll based on time spent climbing or if the difficulty of the climb significantly changes.
               - id: swimming-movement
                 title: Swimming Movement
                 body:
                   - Swimming movement works the same as regular movement but is done through a liquid such as water or slime.
-                  - What can or cannot be swam through is up to the GM's discretion. The GM will make the creature perform a skill check based on the difficulty. If successful the creature can swim as if the liquid was difficult terrain. It is up to the GM if and when they may need to repeat the skill check based on time spent swimming or if the difficulty of the swim significantly changes.
+                  - What can or cannot be swam through is up to the GM's discretion. The GM will make the creature perform a challenge roll based on the difficulty. If successful the creature can swim as if the liquid was difficult terrain. It is up to the GM if and when they may need to repeat the challenge roll based on time spent swimming or if the difficulty of the swim significantly changes.
               - id: teleportation-movement
                 title: Teleportation Movement
                 body:
@@ -290,7 +290,7 @@ sections:
                 body:
                   - Movement is considered involuntary if the creature does not have a choice of how it moves and where.
                   - For example, a hostile pulling, pushing, or teleporting another creature, or any movement effect on a creature that it can attempt to resist.
-                  - Movement due to being taunted, frightened, or dominated is still considered voluntary movement.
+                  - Movement due to being taunted or dominated is still considered voluntary movement.
               - id: push-pull-movement
                 title: Push/Pull Movement
                 body:
@@ -299,8 +299,13 @@ sections:
               - id: collisions
                 title: Collisions
                 body:
-                  - A collision is when push movement is stopped or blocked by an object or creature. When a collision occurs, the creature being pushed suffers Light damage and the movement ends.
-                  - If multiple creatures are all being pushed by the same ability, these movements happen simultaneously and movement may be stopped. All creatures involved in the push in this way do not suffer damage from colliding with each other. They can still be pushed into other creatures or objects and suffer damage from those collisions.
+                  - A collision is when push movement is stopped or blocked by an object or creature. When a collision occurs, the creature being pushed suffers 1 damage and the movement ends.
+                  - If multiple creatures are all being pushed by the same ability, these movements happen simultaneously and movement may be stopped. All creatures involved in the push in this way do not suffer damage from colliding with each other. They can still be pushed into other creatures or objects not involved in the push and suffer damage from those collisions.
+              - id: falling-damage
+                title: Falling Damage
+                body:
+                  - A creature that falls 15ft or less suffers no damage.
+                  - A creature that falls from 20ft suffers 3 FORT or REFL damage. For every additional 10ft fallen, the creature suffers 3 additional damage. The GM may reduce the damage if the creature has a way to slow their fall or land safely.
       - id: attacks
         title: Attacks
         body: >-
@@ -328,8 +333,8 @@ sections:
           - id: surprise
             title: Surprise
             body:
-              - "If you are hidden from a creature and make an attack against it, you may double the attack power of your attack against the creature."
-              - "An attack can be considered as a surprise when a creature that is not expecting a violent threat of any kind, such as not being involved in combat of any kind and unaware of your presence. After this, the attacked creature and other creatures in the area will become aware of your presence - such as the target shouting to their allies to warn them about you - and you will no longer be hidden."
+              - "If you surprise attack a creature, you may double the attack power of your attack against the creature."
+              - "An attack can be considered as a surprise attack when a creature that is not expecting a violent threat of any kind, such as not being involved in combat of any kind at the same time as being unaware of your presence. After this, the attacked creature and other creatures in the area will become aware of your presence - such as the target shouting to their allies to warn them about you - and you will no longer be hidden."
               - "Also if the target is aware of you but is strongly not expecting you to attack them, this may also class as a surprise in some circumstances, gaining the benefit described above. For example, betraying an ally stood beside you to initiate combat."
           - id: cover-concealment
             title: Cover & Concealment
@@ -382,12 +387,12 @@ sections:
       - id: blind
         title: Blind
         body: >-
-          The creature cannot see. The creature cannot select or target anything that is not within 5ft of the creature. The creature automatically fails on all checks requiring sight. The creature will have appropriate levels of DisAdv for other checks that partially involve sight (DMs discretion). All attacks against the creature have Adv (++). All attacks made by the creature have DisAdv (--).
+          The creature cannot see. The creature cannot select or target anything that is not within 5ft of the creature. The creature automatically fails on all challenge rolls requiring sight. The creature will have appropriate levels of DisAdv for other challenge rolls that partially involve sight (DMs discretion). All attacks against the creature have Adv (++). All attacks made by the creature have DisAdv (--).
       
       - id: deaf
         title: Deaf
         body: >-
-          The creature cannot hear. The creature automatically fails on all checks requiring hearing. The creature will have appropriate levels of DisAdv for other checks that partially involve hearing (DMs discretion).
+          The creature cannot hear. The creature automatically fails on all challenge rolls requiring hearing. The creature will have appropriate levels of DisAdv for other challenge rolls that partially involve hearing (DMs discretion).
       
       - id: marked
         title: Marked
@@ -397,7 +402,7 @@ sections:
       - id: charmed
         title: Charmed
         body: >-
-          The creature cannot attack the creature that has charmed it (the charmer) or target them with harmful abilities or magical effects. The creature treats the charmer as though they were a close friend. The charmer has Adv (++) on any ability check to interact socially with the creature.
+          The creature cannot attack the creature that has charmed it (the charmer) or target them with harmful abilities or magical effects. The creature treats the charmer as though they were a close friend. The charmer has Adv (++) on any challenge roll to interact socially with the creature.
       
       - id: dominated
         title: Dominated
@@ -412,7 +417,7 @@ sections:
       - id: frightened
         title: Frightened
         body: >-
-          The creature gains DisAdv (--) on all ability checks and attacks while the creature can see the source of the fear. The creature also cannot willingly move closer to the source of the fear.
+          The creature gains DisAdv (--) on all challenge rolls and attacks while the creature can see the source of the fear. The creature also cannot willingly move closer to the source of the fear.
       
       - id: prone
         title: Prone
