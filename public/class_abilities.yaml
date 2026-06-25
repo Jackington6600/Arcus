@@ -1084,7 +1084,7 @@ classes:
       - level: 2
         name: Radiating Anguish
         apCost: 2
-        otherCost: 2 WILL
+        otherCost: 1 WILL
         flavourText: Slowly emit a sense of pain and suffering.
         description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
         range: 100ft
@@ -1094,9 +1094,9 @@ classes:
       - level: 2
         name: Cruel Joke
         apCost: 2
-        otherCost: 4 WILL
+        otherCost: 3 WILL
         flavourText: Make a joke that cuts so deep it hurts.
-        description: "Make a versatile INT attack against a creature within 100ft, with Heavy+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
+        description: "Make a versatile INT attack against a creature within 100ft, with Medium+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
