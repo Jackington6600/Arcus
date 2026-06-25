@@ -1032,15 +1032,15 @@ classes:
         type: Passive
         tags: [buff]
       - level: 1
-        name: Mind Prism
+        name: Withering Gaze
         apCost: 1
         otherCost: 1 REFL or WILL
-        flavourText: Enhance or degrade a creature's focus.
-        description: Select a creature within 100ft. This creature gains Adv (+++) or DisAdv (---) (your choice) on all their rolls. Target may resist the DisAdv (---) with REFL or WILL.
+        flavourText: Break a creature's will to fight.
+        description: Select a creature within 100ft. This creature becomes feeble and frightened. Target may resist both conditions simultaneously with REFL or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active
-        tags: [debuff, buff]
+        tags: [debuff]
       - level: 1
         name: Neglect
         apCost: 1
@@ -1071,12 +1071,22 @@ classes:
         target: A+E, Single target
         type: Active
         tags: [control]
+      - level: 1
+        name: Hemorrhage
+        apCost: 1
+        otherCost: 2 WILL
+        flavourText: Overload a creature's mind, causing it to rupture.
+        description: Select a creature within 100ft. This creature suffers 1 WILL damage and gains bleeding. Target may resist the bleed with FORT or WILL.
+        range: 100ft
+        target: A+E, Single target
+        type: Active
+        tags: [debuff]
       - level: 2
         name: Radiating Anguish
         apCost: 2
         otherCost: 2 WILL
         flavourText: Slowly emit a sense of pain and suffering.
-        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Or if it is within 20ft of the noted position it suffers INT-1 WILL psychic damage (minimum 1). Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
+        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
