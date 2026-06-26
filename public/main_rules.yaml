@@ -501,7 +501,7 @@ sections:
       - id: class-overview
         title: Class Overview
         body: >-
-          Each class has a set of abilities that are unlocked at certain levels. These abilities can be used in combat and outside of combat. Some abilities have additional costs to use them, such as spending energy or suffering damage. Some abilities have a limited number of uses per long rest. Some abilities have a cooldown period before they can be used again.
+          Each class has a set of abilities that are unlocked at certain levels. These abilities can be used in combat and outside of combat. Some abilities have additional costs to use them, such as spending energy or suffering damage.
       - id: class-tables
         title: Class Tables
         summary: Special rules and mechanics that apply to specific class abilities.
