@@ -124,9 +124,8 @@ sections:
           - id: hp-energy
             title: Energy As Hit Points
             body:
-              - Armour energy and shield energy are two other pools of energy - armour energy is permanent and shield energy lasts until the start of a creature's next turn. Both armour and shield energy can only act as a pool of HP and be used to resist incoming effects - they cannot be spent on using abilities. Armour energy can be regained when aan effect would cause a creature to regain energy.
-
-              - When a creature suffers damage, energy is always lost first if possible (removing from shield energy first, then armour energy, then energy), then any remaining damage reduces the creature's HP - unless the damage type is direct damage, then it ignores energy and damages HP directly. See the Damage section for more information on how damage is dealt.
+              - When a creature suffers damage, energy is always lost before HP if possible - removing from shield first, then energy, then any remaining damage reduces the creature's HP. When a player suffers damage, they may choose which single energy type they lose. If the attack specifies one or two energy types, the player must choose from those types. If the attack does not specify any energy type, the player may choose any of the 3 energy types to lose damage from.
+              - If the incoming damage type is direct damage, then it ignores all other defenses (energy and shield) and damages HP directly. See the Damage section for more information on how damage is dealt.
           
           - id: resist-energy
             title: Energy For Resisting Conditions
@@ -175,8 +174,8 @@ sections:
       - id: armour
         title: Armour
         body:
-          - Armour grants additional energy to a creature in a separate Armour pool, which can only be used as a form of HP and cannot be spent for casting abilities etc. Armour will reduce movement speed as a cost. 
-          - "Light armour increases the armour energy by 5 and reduces 1AP movement speed by 10ft; Medium armour increases the armour energy by 8 and reduced speed by 15ft; Heavy armour increases the armour energy by 11 and reduces speed by 20ft. Both of these will be available for FORT, REFL, or WILL in various combinations."
+          - Armour grants the wearer an additional stat to protect themselves called an armour value, often referred to as armour. This armour value will normally range from 0 to 3. Whenever the wearer suffers damage, they may spend one armour to reduce the incoming damage to 1. Armour also reduces movement speed as a cost. 
+          - "Light armour increases the armour value by 1 and reduces 1AP movement speed by 10ft; Medium armour increases the armour value by 2 and reduces speed by 15ft; Heavy armour increases the armour value by 3 and reduces speed by 20ft."
           - "Example Armours:"
       
       - id: shields
