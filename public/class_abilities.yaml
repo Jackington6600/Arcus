@@ -1122,25 +1122,25 @@ classes:
         type: Active
         tags: [summon, debuff, AoE]
       - level: 2
-        name: Nerve Blight
+        name: Viral Neurotoxin
         apCost: 1
         otherCost: 1 FORT or WILL
-        flavourText: Radiate a power that decays nerve endings.
-        description: All enemies within 25ft become marked, hobbled and deafened. Target may resist the hobble with FORT, REFL, or WILL.
-        range: 25ft
-        target: E, All within range (AoE)
-        type: Active
-        tags: [debuff, AoE]
-      - level: 3
-        name: Sensory Overload
-        apCost: 1
-        otherCost: 2 REFL or WILL
-        flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
-        description: Select a creature within 100ft, they become blind and deafened. Target may resist the blind with REFL or WILL.
+        flavourText: Intoxicate a creature's nerves with contagious corrosion.
+        description: Select a creature within 100ft, they become poisoned. Target may resist the poison with FORT or WILL. When an enemy moves within 5ft of the poisoned creature, they also become poisoned. This effect can only occur once per creature per round. This other creature may resist the poison with FORT or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active
         tags: [debuff]
+      - level: 3
+        name: Sensory Blight
+        apCost: 1
+        otherCost: 2 FORT or WILL
+        flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
+        description: Select a tile within 100ft. All enemies within 5ft become blind, hobbled and deafened. Target may resist the blind and hobble simultaneously with FORT, REFL, or WILL.
+        range: 100ft
+        target: E, All within 5ft (AoE)
+        type: Active
+        tags: [debuff, AoE]
       - level: 3
         name: Horrifying Visage
         apCost: 1
