@@ -1032,15 +1032,15 @@ classes:
         type: Passive
         tags: [buff]
       - level: 1
-        name: Mind Prism
+        name: Withering Gaze
         apCost: 1
         otherCost: 1 REFL or WILL
-        flavourText: Enhance or degrade a creature's focus.
-        description: Select a creature within 100ft. This creature gains Adv (+++) or DisAdv (---) (your choice) on all their rolls. Target may resist the DisAdv (---) with REFL or WILL.
+        flavourText: Break a creature's will to fight.
+        description: Select a creature within 100ft. This creature becomes feeble and frightened. Target may resist both conditions simultaneously with REFL or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active
-        tags: [debuff, buff]
+        tags: [debuff]
       - level: 1
         name: Neglect
         apCost: 1
@@ -1071,12 +1071,22 @@ classes:
         target: A+E, Single target
         type: Active
         tags: [control]
+      - level: 1
+        name: Hemorrhage
+        apCost: 1
+        otherCost: 2 WILL
+        flavourText: Overload a creature's mind, causing it to rupture.
+        description: Select a creature within 100ft. This creature suffers 1 WILL damage and gains bleeding. Target may resist the bleed with FORT or WILL.
+        range: 100ft
+        target: A+E, Single target
+        type: Active
+        tags: [debuff]
       - level: 2
         name: Radiating Anguish
         apCost: 2
-        otherCost: 2 WILL
+        otherCost: 1 WILL
         flavourText: Slowly emit a sense of pain and suffering.
-        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Or if it is within 20ft of the noted position it suffers INT-1 WILL psychic damage (minimum 1). Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
+        description: "Select a creature within 100ft, make note of their current position, and hobble them. At the start of your next turn: If the selected creature is within 5ft of the noted position it suffers 3+INT WILL psychic damage. Otherwise it suffers 2 WILL psychic damage. Target may resist the hobble with FORT or WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -1084,9 +1094,9 @@ classes:
       - level: 2
         name: Cruel Joke
         apCost: 2
-        otherCost: 4 WILL
+        otherCost: 3 WILL
         flavourText: Make a joke that cuts so deep it hurts.
-        description: "Make a versatile INT attack against a creature within 100ft, with Heavy+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
+        description: "Make a versatile INT attack against a creature within 100ft, with Medium+ATR psychic attack power targeting WILL. Double the attack power of this attack if the creature has any of the following conditions: charmed, dominated, taunted, frightened, feeble or silenced. The creature is then also taunted by you. Target may resist the taunt with WILL."
         range: 100ft
         target: A+E, Single target
         type: Active
@@ -1112,25 +1122,25 @@ classes:
         type: Active
         tags: [summon, debuff, AoE]
       - level: 2
-        name: Nerve Blight
+        name: Viral Neurotoxin
         apCost: 1
         otherCost: 1 FORT or WILL
-        flavourText: Radiate a power that decays nerve endings.
-        description: All enemies within 25ft become marked, hobbled and deafened. Target may resist the hobble with FORT, REFL, or WILL.
-        range: 25ft
-        target: E, All within range (AoE)
-        type: Active
-        tags: [debuff, AoE]
-      - level: 3
-        name: Sensory Overload
-        apCost: 1
-        otherCost: 2 REFL or WILL
-        flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
-        description: Select a creature within 100ft, they become blind and deafened. Target may resist the blind with REFL or WILL.
+        flavourText: Intoxicate a creature's nerves with contagious corrosion.
+        description: Select a creature within 100ft, they become poisoned. Target may resist the poison with FORT or WILL. When an enemy moves within 5ft of the poisoned creature, they also become poisoned. This effect can only occur once per creature per round. This other creature may resist the poison with FORT or WILL.
         range: 100ft
         target: A+E, Single target
         type: Active
         tags: [debuff]
+      - level: 3
+        name: Sensory Blight
+        apCost: 1
+        otherCost: 2 FORT or WILL
+        flavourText: Overstimulate foe's five senses with white noise, causing them to sense nothing.
+        description: Select a tile within 100ft. All enemies within 5ft become blind, hobbled and deafened. Target may resist the blind and hobble simultaneously with FORT, REFL, or WILL.
+        range: 100ft
+        target: E, All within 5ft (AoE)
+        type: Active
+        tags: [debuff, AoE]
       - level: 3
         name: Horrifying Visage
         apCost: 1
