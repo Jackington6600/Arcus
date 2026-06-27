@@ -174,9 +174,8 @@ sections:
       - id: armour
         title: Armour
         body:
-          - Armour grants the wearer an additional stat to protect themselves called an armour value, often referred to as armour. This armour value will normally range from 0 to 3. Whenever the wearer suffers damage, they may spend one armour to reduce the incoming damage to 1. Armour also reduces movement speed as a cost. 
+          - Armour grants the wearer an additional stat to protect themselves called an armour value, often simply referred to as armour. Armour will normally range from 0 to 3. Whenever the wearer suffers damage, they may spend one armour to reduce the incoming damage by half (rounded down). Armour also reduces movement speed as a cost. 
           - "Light armour increases the armour value by 1 and reduces 1AP movement speed by 10ft; Medium armour increases the armour value by 2 and reduces speed by 15ft; Heavy armour increases the armour value by 3 and reduces speed by 20ft."
-          - "Example Armours:"
       
       - id: shields
         title: Shields

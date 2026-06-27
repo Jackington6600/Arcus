@@ -14,7 +14,7 @@ classes:
         name: Ignore Pain
         apCost: "-"
         flavourText: Focus your defenses despite the agony.
-        description: You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing. You also ignore the effects of difficult terrain.
+        description: You gain 1 additional armour value, regardless of what armour you are wearing. You also ignore the effects of difficult terrain.
         range: "-"
         target: Self
         type: Passive
@@ -148,9 +148,9 @@ classes:
       - level: 3
         name: Hunker Down
         apCost: 1
-        otherCost: 2 FORT or WILL
+        otherCost: 1 FORT or WILL
         flavourText: Adopt a greatly defensive stance.
-        description: You and an ally within 5ft each regain 4 armour in two energy types of your choice. Any surplus armour gained this way is added as shield instead. You and the ally do not need to choose the same energy types.
+        description: You and an ally within 5ft each gain 2 shield.
         range: "-"
         target: Self
         type: Active
@@ -537,7 +537,7 @@ classes:
         name: Stone Skin
         apCost: "-"
         flavourText: Your skin is as tough as stone.
-        description: You gain 3 additional armour in any combination of the three energy types, regardless of what armour you are wearing.
+        description: You gain 1 additional armour value, regardless of what armour you are wearing.
         range: "-"
         target: Self
         type: Passive
@@ -891,7 +891,7 @@ classes:
         apCost: 1
         otherCost: 1 FORT or WILL
         flavourText: Conjure a magical armour-like barrier that protects yourself or an ally.
-        description: Select a creature within 100ft. That creature regains 3 armour in two energy types of your choice.
+        description: Select a creature within 100ft. That creature gains 2 shield.
         range: 100ft
         target: All, Single target
         type: Active
