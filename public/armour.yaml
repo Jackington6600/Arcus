@@ -1,13 +1,13 @@
 armour:
   - type: "Light"
     armour: "1"
-    movement: "-10ft per 1 AP of movement"
+    movement: "No movement penalty"
     notes: "Protection focused on mobility"
     requirements: "None"
 
   - type: "Medium"
     armour: "2"
-    movement: "-15ft per 1 AP of movement"
+    movement: "-10ft per 1 AP of movement"
     notes: "Balanced defence and speed"
     requirements: "None"
 
